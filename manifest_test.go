@@ -78,12 +78,19 @@ func TestVirtualFilesystemIgnoresHostSymlinks(t *testing.T) {
 		t.Fatal(err)
 	}
 	t.Chdir(root)
-	loader := Filesystem{Root: "assets", FS: fstest.MapFS{"assets/main.css": {Data: []byte(`.image {background:url(./icon.png)}`)}}}
+	loader := Filesystem{Root: "assets", FS: fstest.MapFS{"assets/main.css": {Data: []byte(`.image {background:url(./icon.png);mask:url(../../media/icon.svg)}`)}}}
 	sheet, err := loader.LoadStylesheet("./main.css", "assets")
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(sheet.Content, "url(./icon.png)") {
+	if !strings.Contains(sheet.Content, "url(./icon.png)") || !strings.Contains(sheet.Content, "url(../../media/icon.svg)") {
 		t.Fatal(sheet.Content)
+	}
+}
+
+func TestVirtualFilesystemRejectsMismatchedRoot(t *testing.T) {
+	loader := Filesystem{Root: "/absolute", FS: fstest.MapFS{"assets/main.css": {Data: []byte(`.image {background:url(./icon.png)}`)}}}
+	if _, err := loader.LoadStylesheet("./main.css", "assets"); err == nil {
+		t.Fatal("absolute virtual root accepted")
 	}
 }

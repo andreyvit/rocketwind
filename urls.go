@@ -51,6 +51,24 @@ func ResolveURLs(input, baseURL string) (string, error) {
 	})
 }
 
+// Virtual assets can refer above the embedded filesystem's root: the CSS may
+// be served at a deeper URL. Rebase lexically without clamping those parents.
+func rewriteVirtualURLs(input, base, root string) (string, error) {
+	relativeBase, err := filepath.Rel(root, base)
+	if err != nil {
+		return "", err
+	}
+	return rewriteURLs(input, func(raw string) (string, bool) {
+		return rewriteAssetURLUsing(raw, func(raw string) (string, error) {
+			relative := path.Join(filepath.ToSlash(relativeBase), raw)
+			if !strings.HasPrefix(relative, ".") {
+				relative = "./" + relative
+			}
+			return relative, nil
+		})
+	})
+}
+
 func rewriteURLs(input string, rewrite func(string) (string, bool)) (string, error) {
 	nodes, err := ParseCSS(input, "")
 	if err != nil {

@@ -24,9 +24,10 @@ rocketwind scan -i assets/app.css --config theme.json -o assets/classes.txt
 ```
 
 The output is sorted, unique, and one name per line. Embed it with your CSS
-source and JSON configuration. `rocketwind.Filesystem{FS: embeddedFiles}` loads
+source and JSON configuration. `rocketwind.Filesystem{FS: embeddedFiles, Root: "assets"}` loads
 imports, configuration and standard Go plugins directly from `embed.FS`.
-Compile the stylesheet, then call `compiler.Build(strings.Split(classList, "\n"))`.
+`Root` is the entry stylesheet directory within the embedded filesystem; it
+preserves relative asset paths across imports. Compile the stylesheet, then call `compiler.Build(strings.Split(classList, "\n"))`.
 No source tree, Node installation or temporary files are needed at runtime.
 
 `scan` accepts the same source patterns, compatibility profile, safelists,
