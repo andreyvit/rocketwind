@@ -406,6 +406,22 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Coverage is complete for the current implementation. Performance, the v3
   compatibility profile, Bubblehouse migration proof and GoX hookup remain open.
 
+### Final standalone allocation pass
+
+- Reused small stack buffers when splitting candidate syntax; reused parsed
+  node slices during browser transforms until an inserted prefix needs more
+  space. No caching of account values or changes to compiler ownership.
+- Three-run medians: 586 candidates take 1.27 ms and 26,630 allocations, down
+  from 1.31 ms and 33,056 immediately before this pass. Allocated bytes fell
+  from 1.84 MB to 1.75 MB. The initial implementation used 6.74 MB and 109,122
+  allocations for the same workload.
+- Readable optimization of 40 KB takes 308 us and 4,082 allocations, down from
+  322 us and 4,764. Compact output takes 416 us and 7,639 allocations, down
+  from 441 us and 8,321. Unchanged incremental builds still allocate nothing.
+- Full tests, race tests and all 2,272 independent optimizer comparisons pass.
+  The coverage gate passes: 10,803/10,803 statements (100%). Application-level
+  measurements will accompany the Bubblehouse integration.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

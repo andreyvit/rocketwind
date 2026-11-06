@@ -21,8 +21,11 @@ func optimizeBrowserCSS(nodes []*Node) ([]*Node, error) {
 }
 
 func lowerBrowserNodes(nodes []*Node, custom map[string]string) ([]*Node, error) {
-	var output []*Node
-	for _, node := range nodes {
+	output := browserOutput{nodes: nodes[:0]}
+	for i, node := range nodes {
+		if output.limit >= 0 {
+			output.limit = i + 1
+		}
 		if node.Kind == "at-rule" && node.Name == "@custom-media" {
 			continue
 		}
@@ -41,20 +44,36 @@ func lowerBrowserNodes(nodes []*Node, custom map[string]string) ([]*Node, error)
 			}
 		}
 		if node.Kind == "declaration" {
-			output = prefixBrowserDeclaration(output, node)
+			prefixBrowserDeclaration(&output, node)
 			continue
 		}
-		output = append(output, node)
+		output.append(node)
 	}
-	return output, nil
+	return output.nodes, nil
 }
 
-func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
+// Reuse a parsed list until inserting a prefix would overwrite unread nodes.
+// A negative limit means append already owns a separate backing array.
+type browserOutput struct {
+	nodes []*Node
+	limit int
+}
+
+func (o *browserOutput) append(node *Node) {
+	if o.limit >= 0 && len(o.nodes) >= o.limit {
+		copyOfNodes := make([]*Node, len(o.nodes), cap(o.nodes)+4)
+		copy(copyOfNodes, o.nodes)
+		o.nodes, o.limit = copyOfNodes, -1
+	}
+	o.nodes = append(o.nodes, node)
+}
+
+func prefixBrowserDeclaration(output *browserOutput, node *Node) {
 	add := func(name, value string) {
 		// Preserve distinct fallback values, including explicit vendor values.
 		// Re-optimizing our output must not accumulate identical prefixes.
-		for i := len(output) - 1; i >= 0 && output[i].Kind == "declaration"; i-- {
-			previous := output[i]
+		for i := len(output.nodes) - 1; i >= 0 && output.nodes[i].Kind == "declaration"; i-- {
+			previous := output.nodes[i]
 			if previous.Name == name && previous.Important == node.Important {
 				if previous.Value == value || compactCSSValue(previous.Value) == compactCSSValue(value) {
 					return
@@ -64,7 +83,7 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 		}
 		copy := *node
 		copy.Name, copy.Value = name, value
-		output = append(output, &copy)
+		output.append(&copy)
 	}
 	name, value := strings.ToLower(node.Name), node.Value
 	switch name {
@@ -114,10 +133,11 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 			}
 			if thickness != "" {
 				node.Value = strings.Join(parts, " ")
-				output = prefixBrowserDeclaration(output, node)
+				prefixBrowserDeclaration(output, node)
 				copy := *node
 				copy.Name, copy.Value = "text-decoration-thickness", thickness
-				return append(output, &copy)
+				output.append(&copy)
+				return
 			}
 		}
 		if browserUnparsedValue(value) || browserDecorationShorthand(value) {
@@ -157,8 +177,9 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 		add("-webkit-mask-box-image"+strings.TrimPrefix(name, "mask-border"), value)
 	case "width", "height", "min-width", "max-width", "min-height", "max-height", "inline-size", "block-size", "min-inline-size", "max-inline-size", "min-block-size", "max-block-size":
 		if value == "stretch" {
-			if n := len(output); n >= 2 && output[n-2].Name == name && output[n-2].Value == "-webkit-fill-available" && output[n-2].Important == node.Important && output[n-1].Name == name && output[n-1].Value == "-moz-available" && output[n-1].Important == node.Important {
-				return append(output, node)
+			if n := len(output.nodes); n >= 2 && output.nodes[n-2].Name == name && output.nodes[n-2].Value == "-webkit-fill-available" && output.nodes[n-2].Important == node.Important && output.nodes[n-1].Name == name && output.nodes[n-1].Value == "-moz-available" && output.nodes[n-1].Important == node.Important {
+				output.append(node)
+				return
 			}
 			add(name, "-webkit-fill-available")
 			add(name, "-moz-available")
@@ -192,14 +213,16 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 				if node.Value == "" {
 					node.Value = "0 0"
 				}
-				output = append(output, node)
+				output.append(node)
 				copy := *node
 				copy.Name, copy.Value = "background-clip", strings.Join(clips, ", ")
-				return prefixBrowserDeclaration(output, &copy)
+				prefixBrowserDeclaration(output, &copy)
+				return
 			}
 		}
 	}
-	return append(output, node)
+	output.append(node)
+	return
 }
 
 func browserDecorationLength(percentage float64) string {

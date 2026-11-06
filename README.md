@@ -333,7 +333,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full Go suite has 100% statement coverage, including the CLI subprocess. Final performance work remains open. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full Go suite has 100% statement coverage, including the CLI subprocess. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
@@ -349,6 +349,26 @@ generated twice.
 The library currently has **zero dependencies**. Node, Rust and ICU are used
 only to run upstream tests and generate reference data during development.
 The Go compiler does not run external tools.
+
+
+Performance
+-----------
+
+On an Apple M5 Max with Go 1.27.3, three-run medians:
+
+| Work | Time | Allocations |
+| --- | --- | --- |
+| Compile 10 classes | 26 us | 505 |
+| Compile 100 classes | 136 us | 2,836 |
+| Compile 586 classes, including variants | 1.27 ms | 26,630 |
+| Resolve and render a prepared account template | 2.08 us | 59 |
+| Repeat an unchanged incremental build of 586 classes | 3.44 us | 0 |
+| Extract candidates from 27.9 KB of templates | 135 us | 0 |
+| Optimize 40 KB of CSS | 308 us | 4,082 |
+
+These are local measurements, not guarantees for every template. The benchmarks
+live in `benchmark_test.go`. Reuse compilers and prepared templates; use an
+incremental builder when the set of classes grows over time.
 
 
 License

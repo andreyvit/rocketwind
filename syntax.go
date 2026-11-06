@@ -50,6 +50,14 @@ func Segments(input string, separator byte) iter.Seq[string] {
 	}
 }
 
+// Stack buffers avoid allocating a collector for short candidate components.
+func appendSegments(dst []string, input string, separator byte) []string {
+	for part := range Segments(input, separator) {
+		dst = append(dst, part)
+	}
+	return dst
+}
+
 // Escape serializes a CSS identifier according to CSSOM.
 func Escape(s string) string {
 	if s == "-" {

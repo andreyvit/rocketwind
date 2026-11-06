@@ -3,7 +3,6 @@ package rocketwind
 
 import (
 	"iter"
-	"slices"
 	"strings"
 )
 
@@ -102,7 +101,8 @@ func candidateRoots(input string, exists func(string) bool) iter.Seq[candidateRo
 
 func (p candidateParser) parse(input string) iter.Seq[Candidate] {
 	return func(yield func(Candidate) bool) {
-		parts := slices.Collect(Segments(input, ':'))
+		var local [8]string
+		parts := appendSegments(local[:0], input, ':')
 		if p.prefix != "" {
 			if len(parts) == 1 || parts[0] != p.prefix {
 				return
@@ -133,7 +133,7 @@ func (p candidateParser) parse(input string) iter.Seq[Candidate] {
 				return
 			}
 		}
-		parts = slices.Collect(Segments(base, '/'))
+		parts = appendSegments(parts[:0], base, '/')
 		if len(parts) > 2 {
 			return
 		}
@@ -184,7 +184,8 @@ func (p candidateParser) parse(input string) iter.Seq[Candidate] {
 			value := root.value
 			if strings.HasPrefix(value, "(") && strings.HasSuffix(value, ")") {
 				body := value[1 : len(value)-1]
-				parts := slices.Collect(Segments(body, ':'))
+				var local [3]string
+				parts := appendSegments(local[:0], body, ':')
 				hint := ""
 				if len(parts) == 2 {
 					hint, body = parts[0]+":", parts[1]
@@ -271,7 +272,8 @@ func parseVariantSyntax(raw string, lookup func(string) (variantDefinition, bool
 		}
 		return &CandidateVariant{Kind: "arbitrary", Selector: body, Relative: relative, definition: variantDefinition{Kind: "arbitrary", Order: 10000, Compounds: compounds}}
 	}
-	parts := slices.Collect(Segments(raw, '/'))
+	var local [3]string
+	parts := appendSegments(local[:0], raw, '/')
 	if len(parts) > 2 {
 		return nil
 	}
