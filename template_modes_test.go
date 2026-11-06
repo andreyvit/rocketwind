@@ -346,3 +346,24 @@ func TestTemplateTypesDoNotUseUnrelatedThemeTokens(t *testing.T) {
 		t.Fatalf("unrelated theme tokens were emitted: %s %v", css, err)
 	}
 }
+
+func TestTemplateAutoTriesEveryConfiguredToken(t *testing.T) {
+	c, err := NewWithPlugins(Config{DisablePolyfills: PolyfillAll}, func(api *PluginAPI) error {
+		api.MatchVariant(Variant{Name: "when", Values: []NamedValue{{"wide screen", "expanded"}}, Match: func(value, modifier string) string { return "&[data-state=" + value + "]" }})
+		return api.MatchUtility(Utility{Name: "size", Values: []NamedValue{{"var(--setting)", "19px"}}, Modifiers: []NamedValue{{"細い", "3px"}}, Compile: func(value, modifier string) []*Node {
+			return append(declarations("width", value), declarations("height", modifier)...)
+		}})
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	template, err := c.Prepare("when-{state}:size-{size}/{height}", TemplateOptions{TypeOf: func(string) (ValueType, error) { return TypeAny, nil }})
+	if err != nil {
+		t.Fatal(err)
+	}
+	values := map[string]string{"state": "wide screen", "size": "var(--setting)", "height": "細い"}
+	css, err := template.CSS(".x", func(p Parameter) (Value, error) { return Value{CSS: values[p.Expression]}, nil })
+	if err != nil || css != ".x[data-state=expanded] {\n  width: 19px;\n  height: 3px;\n}\n" {
+		t.Fatalf("configured token was skipped: %s %v", css, err)
+	}
+}

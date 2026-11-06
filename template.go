@@ -356,7 +356,7 @@ func (r *templateResolution) text(input string) (value string, mode ValueMode, o
 		}
 		if index == 0 && end+1 == len(input) && out.Len() == 0 {
 			mode := resolved.Mode
-			if mode == ValueModeAuto && (input[end] == 'L' || !validTemplateToken(resolved.CSS)) {
+			if mode == ValueModeAuto && input[end] == 'L' {
 				mode = ValueModeLiteral
 			}
 			return resolved.CSS, mode, false, nil
@@ -371,14 +371,6 @@ func (r *templateResolution) text(input string) (value string, mode ValueMode, o
 	}
 	out.WriteString(input)
 	return out.String(), ValueModeLiteral, false, nil
-}
-
-func validTemplateToken(value string) bool {
-	if validNamed(value) {
-		return true
-	}
-	numerator, denominator, ok := strings.Cut(value, "/")
-	return ok && numerator != "" && denominator != "" && validNamed(numerator) && validNamed(denominator)
 }
 
 func (r *templateResolution) candidateValue(input *CandidateValue) (*CandidateValue, bool, error) {
