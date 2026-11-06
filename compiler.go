@@ -198,7 +198,9 @@ func (b *buildContext) renderRules(rules []compiledRule) string {
 }
 
 func (b *buildContext) compileRules(candidates []string) []compiledRule {
-	seen := make(map[string]bool, len(candidates))
+	// Source scanners also return identifiers and prose. Keep only recognized
+	// candidates here instead of sizing and filling a map for every source word.
+	seen := make(map[string]bool, min(len(candidates), 1024))
 	var rules []compiledRule
 	for _, raw := range candidates {
 		if b.compiler.blocklist[raw] {
@@ -210,8 +212,8 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 		if seen[raw] {
 			continue
 		}
-		seen[raw] = true
 		if !b.inApply && strings.HasPrefix(raw, "--") {
+			seen[raw] = true
 			key := raw
 			if prefix := b.compiler.config.Prefix; prefix != "" {
 				key = "--" + key[min(len(key), len(prefix)+3):]
@@ -223,6 +225,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			continue
 		}
 		b.compiler.parseInto(raw, func(candidate Candidate) bool {
+			seen[raw] = true
 			variants := make([]*parsedVariant, len(candidate.Variants))
 			for i, variant := range candidate.Variants {
 				variants[i] = b.compiledVariant(variant)

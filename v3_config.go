@@ -51,24 +51,31 @@ func (c *Compiler) finishV3Legacy() error {
 			}
 			if classes == nil {
 				classes = c.v3ClassList()
+				// ClassList owns each modifier slice. Expand names once for all
+				// safelist patterns, preserving the class and modifier order.
+				for i := range classes {
+					for j, modifier := range classes[i].Modifiers {
+						classes[i].Modifiers[j] = classes[i].Name + "/" + modifier
+					}
+				}
 			}
 			variants, _ := object.Get("variants").([]any)
-			for _, class := range classes {
-				names := []string{class.Name}
-				for _, modifier := range class.Modifiers {
-					names = append(names, class.Name+"/"+modifier)
-				}
-				if strings.Contains(pattern.String(), "!") {
-					names = append(names, "!"+class.Name)
-				}
-				for _, name := range names {
-					if !pattern.MatchString(name) {
-						continue
-					}
+			add := func(name string) {
+				if pattern.MatchString(name) {
 					c.inlineCandidates = append(c.inlineCandidates, name)
 					for _, variant := range variants {
 						c.inlineCandidates = append(c.inlineCandidates, themeString(variant)+":"+name)
 					}
+				}
+			}
+			important := strings.Contains(pattern.String(), "!")
+			for _, class := range classes {
+				add(class.Name)
+				for _, name := range class.Modifiers {
+					add(name)
+				}
+				if important {
+					add("!" + class.Name)
 				}
 			}
 		}

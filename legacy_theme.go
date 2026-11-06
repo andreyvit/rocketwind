@@ -217,6 +217,9 @@ func splitThemeAlpha(path string) (string, string) {
 }
 
 func (c *Compiler) cssThemeObject(path []string) (any, any) {
+	if c.config.NoDefaultTheme && len(c.config.Theme) == 0 {
+		return nil, 0
+	}
 	if len(path) != 1 || c.legacyCSSCache == nil {
 		return c.buildCSSThemeObject(path)
 	}
