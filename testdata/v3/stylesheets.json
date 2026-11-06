@@ -1,5 +1,58 @@
 [
   {
+    "name": "utility and variant cascade",
+    "css": "@tailwind utilities;",
+    "classes": [
+      "scale-95",
+      "scale-100",
+      "border-dotted",
+      "border-dashed",
+      "border-solid",
+      "p-2",
+      "p-10",
+      "md:p-2",
+      "sm:p-4",
+      "lg:p-1",
+      "min-[700px]:p-1",
+      "max-[800px]:p-2",
+      "max-[400px]:p-4",
+      "group-[.selected]/x:hidden",
+      "group-[.selected]/x:flex",
+      "group-aria-[expanded=false]/x:hidden",
+      "group-aria-[expanded=true]/x:flex",
+      "group-aria-[expanded=true]/x:block",
+      "group-has-[img]/x:hidden",
+      "group-hover/b:block",
+      "group-hover/a:hidden"
+    ],
+    "result": ".scale-100 {\n    --tw-scale-x: 1;\n    --tw-scale-y: 1;\n    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))\n}\n.scale-95 {\n    --tw-scale-x: .95;\n    --tw-scale-y: .95;\n    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))\n}\n.border-solid {\n    border-style: solid\n}\n.border-dashed {\n    border-style: dashed\n}\n.border-dotted {\n    border-style: dotted\n}\n.p-10 {\n    padding: 2.5rem\n}\n.p-2 {\n    padding: 0.5rem\n}\n.group\\/b:hover .group-hover\\/b\\:block {\n    display: block\n}\n.group\\/a:hover .group-hover\\/a\\:hidden {\n    display: none\n}\n.group\\/x.selected .group-\\[\\.selected\\]\\/x\\:flex {\n    display: flex\n}\n.group\\/x.selected .group-\\[\\.selected\\]\\/x\\:hidden {\n    display: none\n}\n.group\\/x:has(img) .group-has-\\[img\\]\\/x\\:hidden {\n    display: none\n}\n.group\\/x[aria-expanded=\"true\"] .group-aria-\\[expanded\\=true\\]\\/x\\:block {\n    display: block\n}\n.group\\/x[aria-expanded=\"true\"] .group-aria-\\[expanded\\=true\\]\\/x\\:flex {\n    display: flex\n}\n.group\\/x[aria-expanded=\"false\"] .group-aria-\\[expanded\\=false\\]\\/x\\:hidden {\n    display: none\n}\n@media (max-width: 800px) {\n    .max-\\[800px\\]\\:p-2 {\n        padding: 0.5rem\n    }\n}\n@media (max-width: 400px) {\n    .max-\\[400px\\]\\:p-4 {\n        padding: 1rem\n    }\n}\n@media (min-width: 640px) {\n    .sm\\:p-4 {\n        padding: 1rem\n    }\n}\n@media (min-width: 700px) {\n    .min-\\[700px\\]\\:p-1 {\n        padding: 0.25rem\n    }\n}\n@media (min-width: 768px) {\n    .md\\:p-2 {\n        padding: 0.5rem\n    }\n}\n@media (min-width: 1024px) {\n    .lg\\:p-1 {\n        padding: 0.25rem\n    }\n}"
+  },
+  {
+    "name": "shared nested layer rules",
+    "css": "@tailwind components; @tailwind utilities; @layer components {.a, .b {@apply p-2 hover:p-3;} .a .b {color:red;} .c {color:blue;}}",
+    "classes": [
+      "a",
+      "b",
+      "c",
+      "hover:a",
+      "hover:b",
+      "!a"
+    ],
+    "result": ".\\!a {padding:0.5rem;}.\\!a:hover {padding:0.75rem;}.a, .b {padding:0.5rem;}.a:hover, .b:hover {padding:0.75rem;} .\\!a .b {color:red !important;} .a .b {color:red;} .c {color:blue;}.hover\\:a:hover {padding:0.5rem;}.hover\\:a:hover:hover {padding:0.75rem;}.hover\\:b:hover {padding:0.5rem;}.hover\\:b:hover:hover {padding:0.75rem;} .hover\\:a:hover .b {color:red;} .a .hover\\:b:hover {color:red;}"
+  },
+  {
+    "name": "duplicate and fallback declarations",
+    "css": ".x { /* keep */ display:-webkit-box;display:flex;height:10px;height:20%;height:20px;height:30%;color:red;color:blue;color:blue;} .x {width:2px;width:3px;} @font-face {font-family:A;} @font-face {font-family:B;}",
+    "classes": [],
+    "result": ".x { /* keep */ display:-webkit-box;display:flex;height:20px;height:30%;color:red;color:blue;width:3px;} @font-face {font-family:A;} @font-face {font-family:B;}"
+  },
+  {
+    "name": "unconditional wrapped layer",
+    "css": "@tailwind utilities; @layer utilities {@media print {h1 {color:theme(colors.red.500);}}} .empty {} @media screen {.empty-child{}} @unknown custom;",
+    "classes": [],
+    "result": "@media print {h1 {color:#ef4444;}} .empty {} @media screen {.empty-child{}} @unknown custom;"
+  },
+  {
     "name": "layer important",
     "css": "@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4 !important; } } @layer utilities { .heavy { @apply font-bold !important; } }",
     "classes": [

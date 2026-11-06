@@ -18,5 +18,14 @@ const original=fs.readFileSync(path.join(upstream,'tests/default-extractor.test.
 fs.copyFileSync(path.join(upstream,'tests/default-extractor.test.js'),'testdata/v3/default-extractor.test.js')
 vm.runInNewContext(original.replace(/^import .*\n/gm,''),{test,it:test,beforeEach:fn=>before=fn,expect:require('expect').expect,html:String.raw,createDefaultExtractor:context=>{const extract=mod.exports.defaultExtractor(context);return input=>{const result=extract(input);fixtures.push({name,input,results:[...new Set(result)].sort()});return result}}})
 for(const [title,fn] of tests){name=title;before();await fn()}
-fs.writeFileSync('testdata/v3/extractor.json.gz',zlib.gzipSync(JSON.stringify(fixtures)))
+// Exercise the native plain-text fast path against the unmodified extractor.
+let seed=123456789
+const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed}
+const alphabet='abc_xyz-0129.!@/\\\"\'` $=(){}<>#%\t\n'
+const extract=mod.exports.defaultExtractor({tailwindConfig:{prefix:'',separator:':'}})
+for(let i=0;i<1500;i++){
+ let input='';for(let j=0,n=5+random()%100;j<n;j++)input+=alphabet[random()%alphabet.length]
+ fixtures.push({name:'plain-text differential '+i,input,results:[...new Set(extract(input))].sort()})
+}
+fs.writeFileSync('testdata/v3/extractor.json.gz' ,zlib.gzipSync(JSON.stringify(fixtures)))
 console.log(tests.length+' original tests passed; '+fixtures.length+' extraction calls')

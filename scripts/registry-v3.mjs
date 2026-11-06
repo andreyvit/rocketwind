@@ -24,8 +24,8 @@ function nodes(input) {
   })
 }
 function addStatic(styles) {
-  const order = group++
   for(const node of parseStyles(styles)) {
+    const order = group++
     const candidates = new Set()
     node.walkRules?.(n => selectors(sel => sel.walkClasses(c => candidates.add(c.value))).processSync(n.selector))
     if(node.type === 'rule') selectors(sel => sel.walkClasses(c => candidates.add(c.value))).processSync(node.selector)

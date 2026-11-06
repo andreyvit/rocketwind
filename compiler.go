@@ -118,7 +118,7 @@ func (c *Compiler) Build(candidates []string) (string, error) {
 }
 
 func (c *Compiler) build(candidates []string, track bool) (string, *decodedSourceMap, error) {
-	if c.hasInput && c.features == 0 {
+	if c.hasInput && c.features == 0 && c.config.Compatibility != Tailwind3 {
 		if track {
 			return c.inputCSS, c.identitySourceMap(), nil
 		}
@@ -219,8 +219,10 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			}
 			for _, nodes := range groups {
 				v3Order := 1 << 20
+				v3Shared := false
 				if len(nodes) > 0 && nodes[0].Kind == "v3-order" {
 					v3Order, _ = strconv.Atoi(nodes[0].Value)
+					v3Shared = nodes[0].v3Shared && len(variants) == 0 && !candidate.Important && !b.inApply
 					nodes = nodes[1:]
 				}
 				if b.compiler.config.Compatibility == Tailwind3 && (len(variants) > 0 || candidate.Important || b.inApply) {
@@ -270,7 +272,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 					n = cloneNode(n, "", false)
 					setLocations([]*Node{n}, b.compiler.utilitiesSource, false)
 				}
-				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: key})
+				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: key, v3Shared: v3Shared})
 			}
 		}
 	}
@@ -279,6 +281,11 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 }
 
 func (b *buildContext) compareRules(a, z compiledRule) int {
+	if b.compiler.config.Compatibility == Tailwind3 && len(a.variants) > 0 && len(z.variants) > 0 {
+		if v := cmp.Compare(boolInt(a.order[0] >= 0), boolInt(z.order[0] >= 0)); v != 0 {
+			return v
+		}
+	}
 	if v := b.compareVariantKeys(a.variants, z.variants); v != 0 {
 		return v
 	}
@@ -295,6 +302,9 @@ func (b *buildContext) compareRules(a, z compiledRule) int {
 	}
 	if v := cmp.Compare(z.count, a.count); v != 0 {
 		return v
+	}
+	if b.compiler.config.Compatibility == Tailwind3 {
+		return strings.Compare(a.raw, z.raw)
 	}
 	return naturalCompare(a.raw, z.raw)
 }
@@ -314,6 +324,7 @@ type buildContext struct {
 }
 
 type compiledRule struct {
+	v3Shared bool
 	variants []*parsedVariant
 	raw      string
 	node     *Node

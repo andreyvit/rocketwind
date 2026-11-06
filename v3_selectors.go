@@ -99,7 +99,15 @@ func v3MovePseudos(selector string) string {
 			result := nodes[:0]
 			for _, n := range nodes {
 				if !drop[n] {
-					if n.Nodes != nil {
+					if n.Kind == "list" {
+						for i, child := range n.Nodes {
+							if drop[child] {
+								n.Nodes[i] = &selectorNode{Kind: "selector"}
+							} else {
+								n.Nodes[i] = remove([]*selectorNode{child})[0]
+							}
+						}
+					} else if n.Nodes != nil {
 						n.Nodes = remove(n.Nodes)
 					}
 					result = append(result, n)

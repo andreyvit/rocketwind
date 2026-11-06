@@ -74,7 +74,7 @@ func (b *buildContext) v3Container() []*Node {
 			widths = append(widths, NamedValue{name, value})
 		case []any:
 			for _, v := range value {
-				collect(name, v)
+				collect(name, configObject(v))
 			}
 		default:
 			if min := configObject(value).Get("min"); min != nil {

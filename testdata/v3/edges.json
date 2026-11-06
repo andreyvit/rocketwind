@@ -1,0 +1,451 @@
+{
+  "normalize": [
+    {
+      "input": "foo",
+      "output": "foo"
+    },
+    {
+      "input": "foo-bar",
+      "output": "foo-bar"
+    },
+    {
+      "input": "16/9",
+      "output": "16/9"
+    },
+    {
+      "input": "16_/_9",
+      "output": "16 / 9"
+    },
+    {
+      "input": "foo_bar",
+      "output": "foo bar"
+    },
+    {
+      "input": "foo__bar",
+      "output": "foo  bar"
+    },
+    {
+      "input": "foo\\_bar",
+      "output": "foo_bar"
+    },
+    {
+      "input": "url(\"https://example.com/abc+def/some-path/2022-01-01-abc/some_underscoered_path\")",
+      "output": "url(\"https://example.com/abc+def/some-path/2022-01-01-abc/some_underscoered_path\")"
+    },
+    {
+      "input": "/foo/bar/baz.png",
+      "output": "/foo/bar/baz.png"
+    },
+    {
+      "input": "/foo/bar-2/baz.png",
+      "output": "/foo/bar-2/baz.png"
+    },
+    {
+      "input": "var(--foo)",
+      "output": "var(--foo)"
+    },
+    {
+      "input": "var(--headings-h1-size)",
+      "output": "var(--headings-h1-size)"
+    },
+    {
+      "input": "calc(1+2)",
+      "output": "calc(1 + 2)"
+    },
+    {
+      "input": "calc(100%+1rem)",
+      "output": "calc(100% + 1rem)"
+    },
+    {
+      "input": "calc(1+calc(100%-20px))",
+      "output": "calc(1 + calc(100% - 20px))"
+    },
+    {
+      "input": "calc(var(--headings-h1-size)*100)",
+      "output": "calc(var(--headings-h1-size) * 100)"
+    },
+    {
+      "input": "calc(var(--headings-h1-size)*calc(100%+50%))",
+      "output": "calc(var(--headings-h1-size) * calc(100% + 50%))"
+    },
+    {
+      "input": "min(1+2)",
+      "output": "min(1 + 2)"
+    },
+    {
+      "input": "max(1+2)",
+      "output": "max(1 + 2)"
+    },
+    {
+      "input": "clamp(1+2,1+3,1+4)",
+      "output": "clamp(1 + 2,1 + 3,1 + 4)"
+    },
+    {
+      "input": "var(--heading-h1-font-size)",
+      "output": "var(--heading-h1-font-size)"
+    },
+    {
+      "input": "var(--my-var-with-more-than-3-words)",
+      "output": "var(--my-var-with-more-than-3-words)"
+    },
+    {
+      "input": "var(--width, calc(100%+1rem))",
+      "output": "var(--width, calc(100% + 1rem))"
+    },
+    {
+      "input": "calc(1px*(7--12/24))",
+      "output": "calc(1px * (7 - -12 / 24))"
+    },
+    {
+      "input": "calc((7-32)/(1400-782))",
+      "output": "calc((7 - 32) / (1400 - 782))"
+    },
+    {
+      "input": "calc((7-3)/(1400-782))",
+      "output": "calc((7 - 3) / (1400 - 782))"
+    },
+    {
+      "input": "calc((7-32)/(1400-782))",
+      "output": "calc((7 - 32) / (1400 - 782))"
+    },
+    {
+      "input": "calc((70-3)/(1400-782))",
+      "output": "calc((70 - 3) / (1400 - 782))"
+    },
+    {
+      "input": "calc((70-32)/(1400-782))",
+      "output": "calc((70 - 32) / (1400 - 782))"
+    },
+    {
+      "input": "calc((704-3)/(1400-782))",
+      "output": "calc((704 - 3) / (1400 - 782))"
+    },
+    {
+      "input": "calc((704-320))",
+      "output": "calc((704 - 320))"
+    },
+    {
+      "input": "calc((704-320)/1)",
+      "output": "calc((704 - 320) / 1)"
+    },
+    {
+      "input": "calc((704-320)/(1400-782))",
+      "output": "calc((704 - 320) / (1400 - 782))"
+    },
+    {
+      "input": "calc(24px+-1rem)",
+      "output": "calc(24px + -1rem)"
+    },
+    {
+      "input": "calc(24px+(-1rem))",
+      "output": "calc(24px + (-1rem))"
+    },
+    {
+      "input": "calc(24px_+_-1rem)",
+      "output": "calc(24px + -1rem)"
+    },
+    {
+      "input": "calc(24px+(-1rem))",
+      "output": "calc(24px + (-1rem))"
+    },
+    {
+      "input": "calc(24px_+_(-1rem))",
+      "output": "calc(24px + (-1rem))"
+    },
+    {
+      "input": "calc(var(--10-10px,calc(-20px-(-30px--40px)-50px)",
+      "output": "calc(var(--10-10px,calc(-20px - (-30px - -40px) - 50px)"
+    },
+    {
+      "input": "calc(theme(spacing.1-bar))",
+      "output": "calc(theme(spacing.1-bar))"
+    },
+    {
+      "input": "theme(spacing.1-bar)",
+      "output": "theme(spacing.1-bar)"
+    },
+    {
+      "input": "calc(theme(spacing.1-bar))",
+      "output": "calc(theme(spacing.1-bar))"
+    },
+    {
+      "input": "calc(1rem-theme(spacing.1-bar))",
+      "output": "calc(1rem - theme(spacing.1-bar))"
+    },
+    {
+      "input": "calc(theme(spacing.foo-2))",
+      "output": "calc(theme(spacing.foo-2))"
+    },
+    {
+      "input": "calc(theme(spacing.foo-bar))",
+      "output": "calc(theme(spacing.foo-bar))"
+    },
+    {
+      "input": "clamp(-3px+4px,-3px+4px,-3px+4px)",
+      "output": "clamp(-3px + 4px,-3px + 4px,-3px + 4px)"
+    },
+    {
+      "input": "calc(var(--foo-bar-bar)*2)",
+      "output": "calc(var(--foo-bar-bar) * 2)"
+    },
+    {
+      "input": "calc(env(safe-area-inset-bottom)*2)",
+      "output": "calc(env(safe-area-inset-bottom) * 2)"
+    },
+    {
+      "input": "env(safe-area-inset-bottom,calc(10px+20px))",
+      "output": "env(safe-area-inset-bottom,calc(10px + 20px))"
+    },
+    {
+      "input": "calc(env(safe-area-inset-bottom,calc(10px+20px))+5px)",
+      "output": "calc(env(safe-area-inset-bottom,calc(10px + 20px)) + 5px)"
+    },
+    {
+      "input": "minmax(min-content,25%)",
+      "output": "minmax(min-content,25%)"
+    },
+    {
+      "input": "radial-gradient(calc(1+2)),radial-gradient(calc(1+2))",
+      "output": "radial-gradient(calc(1 + 2)),radial-gradient(calc(1 + 2))"
+    },
+    {
+      "input": "[content-start]_calc(100%-1px)_[content-end]_minmax(1rem,1fr)",
+      "output": "[content-start] calc(100% - 1px) [content-end] minmax(1rem,1fr)"
+    },
+    {
+      "input": "w-[calc(anchor-size(width)+8px)]",
+      "output": "w-[calc(anchor-size(width) + 8px)]"
+    },
+    {
+      "input": "color(0_0_0/1.0)",
+      "output": "color(0 0 0/1.0)"
+    },
+    {
+      "input": "color(0_0_0_/_1.0)",
+      "output": "color(0 0 0 / 1.0)"
+    },
+    {
+      "input": "calc([foo-bar]+2px)",
+      "output": "calc([foo-bar] + 2px)"
+    },
+    {
+      "input": "calc(1+var(--foo",
+      "output": "calc(1+var(--foo"
+    },
+    {
+      "input": "calc(1+theme(foo",
+      "output": "calc(1+theme(foo"
+    },
+    {
+      "input": "x\\_y",
+      "output": "x_y"
+    },
+    {
+      "input": "--color",
+      "output": "var(--color)"
+    },
+    {
+      "input": "min(1+2)",
+      "output": "min(1 + 2)"
+    },
+    {
+      "input": "calc(anchor-size(width)+1px)",
+      "output": "calc(anchor-size(width) + 1px)"
+    }
+  ],
+  "sheets": [
+    {
+      "name": "normalize-data-types.test.js: should not automatically inject the `var()` for properties that accept `<dashed-ident>` as the value",
+      "css": "\n    @tailwind utilities;\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "[color:--foo]"
+          },
+          {
+            "raw": "[scroll-timeline-name:--foo]"
+          },
+          {
+            "raw": "[timeline-scope:--foo]"
+          },
+          {
+            "raw": "[view-timeline-name:--foo]"
+          },
+          {
+            "raw": "[font-palette:--foo]"
+          },
+          {
+            "raw": "[anchor-name:--foo]"
+          },
+          {
+            "raw": "[anchor-scope:--foo]"
+          },
+          {
+            "raw": "[position-anchor:--foo]"
+          },
+          {
+            "raw": "[position-try-options:--foo]"
+          },
+          {
+            "raw": "[scroll-timeline:--foo]"
+          },
+          {
+            "raw": "[animation-timeline:--foo]"
+          },
+          {
+            "raw": "[view-timeline:--foo]"
+          },
+          {
+            "raw": "[position-try:--foo]"
+          }
+        ]
+      },
+      "classes": "[color:--foo] [scroll-timeline-name:--foo] [timeline-scope:--foo] [view-timeline-name:--foo] [font-palette:--foo] [anchor-name:--foo] [anchor-scope:--foo] [position-anchor:--foo] [position-try-options:--foo] [scroll-timeline:--foo] [animation-timeline:--foo] [view-timeline:--foo] [position-try:--foo]",
+      "result": ".\\[anchor-name\\:--foo\\] {\n    anchor-name: --foo\n}\n.\\[anchor-scope\\:--foo\\] {\n    anchor-scope: --foo\n}\n.\\[animation-timeline\\:--foo\\] {\n    animation-timeline: --foo\n}\n.\\[color\\:--foo\\] {\n    color: var(--foo)\n}\n.\\[font-palette\\:--foo\\] {\n    font-palette: --foo\n}\n.\\[position-anchor\\:--foo\\] {\n    position-anchor: --foo\n}\n.\\[position-try-options\\:--foo\\] {\n    position-try-options: --foo\n}\n.\\[position-try\\:--foo\\] {\n    position-try: --foo\n}\n.\\[scroll-timeline-name\\:--foo\\] {\n    scroll-timeline-name: --foo\n}\n.\\[scroll-timeline\\:--foo\\] {\n    scroll-timeline: --foo\n}\n.\\[timeline-scope\\:--foo\\] {\n    timeline-scope: --foo\n}\n.\\[view-timeline-name\\:--foo\\] {\n    view-timeline-name: --foo\n}\n.\\[view-timeline\\:--foo\\] {\n    view-timeline: --foo\n}\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should collapse duplicate declarations with the same units (px)",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .example {\n        height: 100px;\n        height: 200px;\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"example\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"example\"></div>",
+      "result": "\n      .example {\n        height: 200px;\n      }\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should collapse duplicate declarations with the same units (no unit)",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .example {\n        line-height: 3;\n        line-height: 2;\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"example\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"example\"></div>",
+      "result": "\n      .example {\n        line-height: 2;\n      }\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should not collapse duplicate declarations with the different units",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .example {\n        height: 100px;\n        height: 50%;\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"example\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"example\"></div>",
+      "result": "\n      .example {\n        height: 100px;\n        height: 50%;\n      }\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should collapse the duplicate declarations with the same unit, but leave the ones with different units",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .example {\n        height: 100px;\n        height: 50%;\n        height: 20vh;\n        height: 200px;\n        height: 100%;\n        height: 30vh;\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"example\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"example\"></div>",
+      "result": "\n      .example {\n        height: 200px;\n        height: 100%;\n        height: 30vh;\n      }\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should collapse the duplicate declarations with the exact same value",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .example {\n        height: var(--value);\n        color: blue;\n        height: var(--value);\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"example\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"example\"></div>",
+      "result": "\n      .example {\n        color: blue;\n        height: var(--value);\n      }\n  "
+    },
+    {
+      "name": "collapse-duplicate-declarations.test.js: should work on a real world example",
+      "css": "\n    @tailwind utilities;\n\n    @layer utilities {\n      .h-available {\n        height: 100%;\n        height: 100vh;\n        height: -webkit-fill-available;\n      }\n    }\n  ",
+      "config": {
+        "content": [
+          {
+            "raw": "<div class=\"h-available\"></div>"
+          }
+        ],
+        "corePlugins": {
+          "preflight": false
+        },
+        "plugins": []
+      },
+      "classes": "<div class=\"h-available\"></div>",
+      "result": "\n      .h-available {\n        height: 100%;\n        height: 100vh;\n        height: -webkit-fill-available;\n      }\n  "
+    }
+  ],
+  "pseudos": [
+    {
+      "input": ".x",
+      "output": ".x"
+    },
+    {
+      "input": ".x::before:hover > .y",
+      "output": ".x:hover > .y::before"
+    },
+    {
+      "input": ".x::cue:hover > .y",
+      "output": ".x::cue:hover > .y"
+    },
+    {
+      "input": ".x::deep:hover .y",
+      "output": ".x::deep:hover .y"
+    },
+    {
+      "input": ".x::part(foo):hover:focus",
+      "output": ".x::part(foo):hover:focus"
+    },
+    {
+      "input": ".x:is(::before,.y::part(a)):hover",
+      "output": ".x:is(,.y)::before::part(a):hover"
+    },
+    {
+      "input": ".x:not(:is(::after)):hover",
+      "output": ".x:not(:is()):hover::after"
+    },
+    {
+      "input": ".x::selection:where(.y)",
+      "output": ".x:where(.y)::selection"
+    },
+    {
+      "input": ".x::mystery:hover > .y::after",
+      "output": ".x::mystery:hover > .y::after"
+    },
+    {
+      "input": ".x:has(::before,.y)::after",
+      "output": ".x:has(,.y)::before::after"
+    }
+  ]
+}

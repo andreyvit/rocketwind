@@ -242,7 +242,7 @@ func (api *PluginAPI) AddUtility(name string, nodes []*Node) {
 		c.custom = make(map[string][]*Node)
 	}
 	nodes = cloneNodes(nodes, "", false)
-	if c.config.Compatibility == Tailwind3 {
+	if c.config.Compatibility == Tailwind3 && (len(nodes) == 0 || nodes[0].Kind != "v3-order") {
 		nodes = v3Ordered(nodes, c.nextV3Order())
 	}
 	if c.customGroups == nil {

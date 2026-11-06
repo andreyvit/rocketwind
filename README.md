@@ -3,16 +3,15 @@
 If your Go app lets people build pages or edit their theme, the CSS you need
 doesn't exist when you build the app. It depends on what someone saves tomorrow.
 
-Rocketwind is being built to compile that CSS inside your Go process. No Node
+Rocketwind compiles that CSS inside your Go process. No Node
 process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
-**Work in progress.** Core utilities, variants, stylesheet directives and the
-Go plugin API work, along with typed settings, named classes, forms and
-typography and the other standard plugins. The CLI and browser transforms work;
-the Tailwind 3 compatibility profile is under test, and application integrations
-remain open.
-See [WORK.md](WORK.md) for the implementation gates.
+The compiler targets **Tailwind CSS 4.3.4**, with an opt-in **3.4.17** profile
+for existing applications. It includes a CLI, typed settings, named classes and
+Go ports of the standard plugins. The library has no dependencies.
+See [TESTING.md](TESTING.md) for compatibility evidence and the JavaScript-only
+exceptions. Application integration is tracked in [WORK.md](WORK.md).
 
 
 Why?
@@ -75,11 +74,17 @@ callbacks, breakpoints, container settings, dark mode, prefixes and blocklists.
 Use `ConfigObject` when field order matters, or ordinary maps for nested values.
 `ThemeFunc` receives a resolver for references to other settings. Plugin callbacks
 can read scalar values with `Theme`, or objects and tuples with `ThemeValue`.
-By default this is Tailwind 4's compatibility API. An experimental
-`Config{Compatibility: rocketwind.Tailwind3}` profile reproduces the older
-generation's utilities, variants, defaults and stylesheet directives. The CLI
-selects it with `--compat=3`; the default is `--compat=4`. Application migration
-checks and complete coverage of the older profile are still in progress.
+By default this is Tailwind 4's compatibility API. Use
+`Config{Compatibility: rocketwind.Tailwind3}` for the older generation's
+utilities, variants, defaults and stylesheet directives. The CLI selects it
+with `--compat=3`; the default is `--compat=4`. The old profile supports string
+and regexp safelists, and accepts the old prefix and important syntax. Browser
+optimization uses current targets in either profile.
+
+The old profile is intended to keep existing CSS working during a migration.
+It does not implement the removed `corePlugins` switches, experimental flags,
+or configurable separators. It has extensive reference tests and an application
+stylesheet comparison; it has not ported the entire Tailwind 3 test suite.
 
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
@@ -267,8 +272,8 @@ shorter color spelling used by Lightning CSS.
 All 64 applicable cases from the upstream CLI integration suite pass in Go,
 including watch sequences, plugin callbacks and source-map positions. Four
 cases require JavaScript execution; two others are already skipped upstream.
-Both optimizer modes pass 2,272 additional comparisons against Tailwind's
-optimizer, including 287 inputs for browser transforms and error handling.
+Both optimizer modes pass 2,310 additional comparisons against Tailwind's
+optimizer, including 306 inputs for browser transforms and error handling.
 
 Applications can call `cli.Run` with Go modules registered in `cli.Options`.
 Use `ResolveModule` for configuration that changes on disk; report its dependency
@@ -317,6 +322,10 @@ customizes selected declarations or selectors. All 16 original upstream tests
 pass with their pinned Tailwind 3.2.2 dependency. The same cases plus four default
 configurations match Tailwind 4.3.4 output; 20 selector cases also match.
 
+For existing Tailwind 3 applications, forms **0.5.9** and typography **0.5.15**
+are also available. Set their Go options' `Version` field, or use versioned module
+names such as `@tailwindcss/forms@0.5.9`.
+
 The older **aspect-ratio 0.4.2**, **line-clamp 0.4.4** and **container-queries
 0.1.1** plugins are also available, through their `@plugin` names or the
 `AspectRatio`, `LineClamp` and `ContainerQueries` Go functions. Their options
@@ -329,7 +338,7 @@ dependencies. Their inputs and 24 additional cases match Tailwind 4 output.
 The line-clamp comparison supplies a no-op `variants()` function because its
 JavaScript release still calls that API, which Tailwind 4 removed. The Go port
 has no such dependency. Original legacy CSS results are retained for testing
-the pending compatibility profile.
+the compatibility profile.
 
 
 Tailwind compatibility
@@ -337,8 +346,8 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. This implementation reached 100% statement coverage, including the CLI subprocess, before the ongoing Tailwind 3 work. |
-| Tailwind CSS **3.4.17** | Experimental compatibility profile. All 11,344 default named utilities, 841 variant cases, 2,759 arbitrary-value cases, configuration and stylesheet cases match the original compiler. The CLI supports `--compat=3`; application migration checks and full coverage of this new code remain open. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,310 additional comparisons. The complete Go implementation has 100% statement coverage, including the CLI subprocess. |
+| Tailwind CSS **3.4.17** | Opt-in compatibility profile. All 11,344 named utilities, 848 variant cases, 2,759 arbitrary-value cases, 258 standard-plugin builds, configuration and stylesheet cases match the original compiler. An application comparison checks 2,506 selectors and cascade order, and current browser optimization. See the profile limits above. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
 their upstream tests. Running JavaScript configuration or arbitrary JavaScript

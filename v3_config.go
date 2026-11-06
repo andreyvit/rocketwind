@@ -38,7 +38,7 @@ func (c *Compiler) finishV3Legacy() error {
 			}
 			object := configObject(entry)
 			pattern, ok := object.Get("pattern").(*regexp.Regexp)
-			if !ok {
+			if !ok || pattern == nil {
 				value, ok := object.Get("pattern").(string)
 				if !ok {
 					return fmt.Errorf("safelist pattern must be a string or *regexp.Regexp")
@@ -148,7 +148,7 @@ func (c *Compiler) v3ClassList() []ClassSuggestion {
 func v3ObjectEntries(object ConfigObject) ConfigObject {
 	index := func(key string) uint64 {
 		v, err := strconv.ParseUint(key, 10, 32)
-		if err != nil || strconv.FormatUint(v, 10) != key {
+		if err != nil || v == 1<<32-1 || strconv.FormatUint(v, 10) != key {
 			return 1 << 32
 		}
 		return v

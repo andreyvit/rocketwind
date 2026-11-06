@@ -111,10 +111,8 @@ func compileV3(input string, config Config) (*Compiler, error) {
 		var result []*Node
 		for _, n := range nodes {
 			if n.Kind == "v3-layer" && n.Value == "base" {
-				base, err := ParseCSS(v3Preflight, "")
-				if err != nil {
-					return nil, err
-				}
+				// The embedded, source-controlled preflight is valid CSS.
+				base, _ := ParseCSS(v3Preflight, "")
 				result = append(result, c.v3BaseDefaults()...)
 				result = append(result, &Node{Kind: "comment", Value: "\n! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com\n"})
 				result = append(result, base...)
@@ -163,11 +161,15 @@ func compileV3(input string, config Config) (*Compiler, error) {
 	}
 	b := buildContext{compiler: c, used: map[string]bool{}}
 	c.input = b.evaluateNodes(c.input)
-	for i := range c.v3AlwaysRules {
-		c.v3AlwaysRules[i].node = b.evaluateNodes([]*Node{c.v3AlwaysRules[i].node})[0]
-	}
 	if b.err != nil {
 		return nil, b.err
+	}
+	for i := range c.v3AlwaysRules {
+		nodes := b.evaluateNodes([]*Node{c.v3AlwaysRules[i].node})
+		if b.err != nil {
+			return nil, b.err
+		}
+		c.v3AlwaysRules[i].node = nodes[0]
 	}
 	if err := c.resolveApplies(); err != nil {
 		return nil, err
@@ -219,6 +221,7 @@ func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node, prefix bool) {
 		c.v3AlwaysRules = append(c.v3AlwaysRules, compiledRule{node: node, order: []int{c.nextV3Order()}})
 		return
 	}
+	order := c.nextV3Order()
 	for _, name := range slices.Sorted(maps.Keys(classes)) {
 		tree := parseSelectorMode(node.Name, true)
 		var replace func([]*selectorNode)
@@ -242,6 +245,8 @@ func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node, prefix bool) {
 			copy.Nodes = nodes
 			nodes = []*Node{&copy}
 		}
+		nodes = v3Ordered(nodes, order)
+		nodes[0].v3Shared = true
 		(&PluginAPI{compiler: c}).AddUtility(name, nodes)
 	}
 }
@@ -279,7 +284,14 @@ func (b *buildContext) renderV3Rules(rules []compiledRule) string {
 		rules = append(slices.Clone(rules), c.v3AlwaysRules...)
 		slices.SortStableFunc(rules, b.compareRules)
 	}
+	seen := map[int]bool{}
 	for _, rule := range rules {
+		if rule.v3Shared {
+			if seen[rule.order[0]] {
+				continue
+			}
+			seen[rule.order[0]] = true
+		}
 		if len(rule.variants) > 0 {
 			variants = append(variants, rule.node)
 		} else if len(rule.order) > 0 && rule.order[0] < 0 {

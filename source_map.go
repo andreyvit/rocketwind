@@ -51,7 +51,7 @@ func (builder *Builder) BuildWithSourceMap(candidates []string) (string, *Source
 	}
 	if builder.sourceMap == nil {
 		b := buildContext{compiler: builder.compiler, used: map[string]bool{}, track: true, externalVariables: builder.externalVariables}
-		if builder.compiler.hasInput && builder.compiler.features == 0 {
+		if builder.compiler.hasInput && builder.compiler.features == 0 && builder.compiler.config.Compatibility != Tailwind3 {
 			builder.sourceMap = builder.compiler.identitySourceMap().encode()
 		} else {
 			css = b.renderRules(builder.rules)

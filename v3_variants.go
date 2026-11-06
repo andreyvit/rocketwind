@@ -7,6 +7,10 @@ func (c *Compiler) v3VariantDefinition(name string) (variantDefinition, bool) {
 		return variantDefinition{}, false
 	}
 	order, known := v3VariantOrder[name]
+	if value := configObject(c.themeLookup("screens")).Get(name); value != nil {
+		query := v3ScreenQuery(value)
+		return variantDefinition{Kind: "static", Order: v3VariantOrder["min"], Compounds: 1, Nodes: []*Node{{Kind: "at-rule", Name: "@media", Value: query, Nodes: []*Node{{Kind: "slot"}}}}}, true
+	}
 	if formats, ok := v3VariantFormats[name]; ok {
 		nodes, _ := pluginVariantFormats(formats, []*Node{{Kind: "slot"}})
 		compounds := 2
@@ -14,12 +18,6 @@ func (c *Compiler) v3VariantDefinition(name string) (variantDefinition, bool) {
 			compounds = 1
 		}
 		return variantDefinition{Kind: "static", Order: order, Compounds: compounds, Nodes: nodes}, true
-	}
-	if value := configObject(c.themeLookup("screens")).Get(name); value != nil {
-		query := v3ScreenQuery(value)
-		if query != "" {
-			return variantDefinition{Kind: "static", Order: v3VariantOrder["min"], Compounds: 1, Nodes: []*Node{{Kind: "at-rule", Name: "@media", Value: query, Nodes: []*Node{{Kind: "slot"}}}}}, true
-		}
 	}
 	if known {
 		kind := "functional"
@@ -40,9 +38,7 @@ func v3ScreenQuery(value any) string {
 	if values, ok := value.([]any); ok {
 		var queries []string
 		for _, value := range values {
-			if q := v3ScreenQuery(value); q != "" {
-				queries = append(queries, q)
-			}
+			queries = append(queries, v3ScreenQuery(configObject(value)))
 		}
 		return strings.Join(queries, ", ")
 	}
@@ -90,7 +86,7 @@ func (b *buildContext) applyV3Variant(nodes []*Node, v *parsedVariant, depth int
 		return slotNodes(v.definition.Nodes, nodes), true
 	}
 	if v.root == "has" {
-		if v.modifier != "" || v.child == nil || !v.child.arbitrary {
+		if v.child == nil || !v.child.arbitrary {
 			return nil, false
 		}
 		selector := v.child.value

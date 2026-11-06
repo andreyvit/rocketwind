@@ -63,6 +63,14 @@ func (c *Compiler) parseV3(parser candidateParser, class string) iter.Seq[Candid
 			base = "!" + base
 		}
 		parts[len(parts)-1] = base
+		for i := range len(parts) - 1 {
+			variant := appendSegments(nil, parts[i], '/')
+			if len(variant) == 2 {
+				if d, ok := parser.variant(variant[0]); ok && d.Kind == "static" || strings.HasPrefix(variant[0], "has-") {
+					parts[i] = variant[0]
+				}
+			}
+		}
 		for candidate := range parser.parse(strings.Join(parts, ":")) {
 			candidate.Raw = class
 			valid := true
@@ -102,6 +110,11 @@ func v3ParseVariant(raw string, lookup func(string) (variantDefinition, bool)) *
 	}
 	if v.Kind == "arbitrary" && !strings.Contains(raw, "&") && !strings.HasPrefix(raw, "[@") {
 		return nil
+	}
+	if (v.Root == "group" || v.Root == "peer") && v.Variant != nil {
+		if order, ok := v3VariantOrder[v.Root+"-"+v.Variant.Root]; ok {
+			v.definition.Order = order
+		}
 	}
 	if (v.Root == "group" || v.Root == "peer") && v.Variant != nil && v.Variant.Kind == "arbitrary" {
 		body := appendSegments(nil, strings.TrimPrefix(raw, v.Root+"-"), '/')[0]

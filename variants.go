@@ -401,9 +401,25 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 		if v := b.compareParsedVariant(a.child, z.child); v != 0 {
 			return v
 		}
+		if b.compiler.config.Compatibility == Tailwind3 {
+			return 0
+		}
 		return strings.Compare(a.modifier, z.modifier)
 	}
 	order := a.definition.Order
+	if b.compiler.config.Compatibility == Tailwind3 && (order == v3VariantOrder["min"] || order == v3VariantOrder["max"]) {
+		value := func(v *parsedVariant) string {
+			if v.arbitrary {
+				return v.value
+			}
+			name := v.value
+			if v.definition.Kind == "static" {
+				name = v.root
+			}
+			return themeString(configObject(b.compiler.themeLookup("screens")).Get(name))
+		}
+		return compareBreakpointValues(value(a), value(z), order == v3VariantOrder["max"])
+	}
 	if order == builtinVariants["min"].Order || order == builtinVariants["max"].Order || order == builtinVariants["@"].Order+b.compiler.legacyScreenCount || order == builtinVariants["@max"].Order+b.compiler.legacyScreenCount {
 		value := func(v *parsedVariant) string {
 			if v.arbitrary {
@@ -419,6 +435,9 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 			return b.themeValue(namespace + v.value)
 		}
 		return compareBreakpointValues(value(a), value(z), order == builtinVariants["max"].Order || order == builtinVariants["@max"].Order+b.compiler.legacyScreenCount)
+	}
+	if b.compiler.config.Compatibility == Tailwind3 && a.matcher == nil && a.root != "[]" {
+		return 0
 	}
 	if v := strings.Compare(a.root, z.root); v != 0 {
 		return v

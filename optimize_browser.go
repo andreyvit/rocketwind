@@ -3,6 +3,7 @@ package rocketwind
 import (
 	"fmt"
 	"math"
+	"slices"
 	"strings"
 )
 
@@ -87,6 +88,31 @@ func prefixBrowserDeclaration(output *browserOutput, node *Node) {
 	}
 	name, value := strings.ToLower(node.Name), node.Value
 	switch name {
+	case "tab-size", "appearance", "backface-visibility":
+		if !browserUnparsedValue(value) {
+			prefix := "-moz-"
+			if name == "backface-visibility" {
+				prefix = "-webkit-"
+			}
+			output.nodes = slices.DeleteFunc(output.nodes, func(previous *Node) bool {
+				return previous.Kind == "declaration" && previous.Name == prefix+name && previous.Important == node.Important
+			})
+		}
+	case "transition-property":
+		if !browserUnparsedValue(value) {
+			var properties []string
+			for part := range Segments(value, ',') {
+				part = strings.TrimSpace(part)
+				if containsWord("backdrop-filter mask mask-image mask-position mask-size mask-repeat mask-clip mask-origin mask-composite mask-mode user-select hyphens box-decoration-break print-color-adjust text-decoration-skip-ink", part) {
+					prefix := "-webkit-" + part
+					if !slices.Contains(properties, prefix) {
+						properties = append(properties, prefix)
+					}
+				}
+				properties = append(properties, part)
+			}
+			node.Value = strings.Join(properties, ", ")
+		}
 	case "backdrop-filter", "mask-image", "mask-position", "mask-size", "mask-repeat", "mask-clip", "mask-origin":
 		add("-webkit-"+name, value)
 	case "user-select", "hyphens", "box-decoration-break", "print-color-adjust", "text-decoration-skip-ink":

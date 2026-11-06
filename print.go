@@ -9,7 +9,7 @@ func (c *Compiler) Print(candidate Candidate) string {
 		parts = append(parts, c.config.Prefix)
 	}
 	for i := len(candidate.Variants) - 1; i >= 0; i-- {
-		parts = append(parts, printVariant(candidate.Variants[i]))
+		parts = append(parts, printVariantMode(candidate.Variants[i], c.config.Compatibility == Tailwind3))
 	}
 	base := candidate.Root
 	if candidate.Kind == "arbitrary" {
@@ -28,7 +28,7 @@ func (c *Compiler) Print(candidate Candidate) string {
 		}
 	}
 	if candidate.Kind != "static" {
-		base += printModifier(candidate.Modifier)
+		base += printModifierMode(candidate.Modifier, c.config.Compatibility == Tailwind3)
 	}
 	if candidate.Important {
 		if c.config.Compatibility != Tailwind3 {
@@ -51,10 +51,17 @@ func (c *Compiler) Print(candidate Candidate) string {
 }
 
 func printModifier(modifier *CandidateModifier) string {
+	return printModifierMode(modifier, false)
+}
+
+func printModifierMode(modifier *CandidateModifier, legacy bool) string {
 	if modifier == nil {
 		return ""
 	}
 	if modifier.Kind == "arbitrary" {
+		if legacy {
+			return "/[" + printArbitraryValue(modifier.Value) + "]"
+		}
 		return "/" + printArbitrary(modifier.Value, "")
 	}
 	return "/" + modifier.Value
@@ -74,6 +81,10 @@ func printArbitrary(value, hint string) string {
 }
 
 func printVariant(v *CandidateVariant) string {
+	return printVariantMode(v, false)
+}
+
+func printVariantMode(v *CandidateVariant, legacy bool) string {
 	if v.Kind == "static" {
 		return v.Root
 	}
@@ -87,18 +98,20 @@ func printVariant(v *CandidateVariant) string {
 	}
 	base := v.Root
 	if v.Kind == "compound" {
-		base += "-" + printVariant(v.Variant)
+		base += "-" + printVariantMode(v.Variant, legacy)
 	} else if v.Value != nil {
 		if v.Root != "@" {
 			base += "-"
 		}
 		if v.Value.Kind == "named" {
 			base += v.Value.Value
+		} else if legacy {
+			base += "[" + printArbitraryValue(v.Value.Value) + "]"
 		} else {
 			base += printArbitrary(v.Value.Value, "")
 		}
 	}
-	return base + printModifier(v.Modifier)
+	return base + printModifierMode(v.Modifier, legacy)
 }
 
 func printArbitraryValue(value string) string {

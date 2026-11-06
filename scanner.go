@@ -28,6 +28,7 @@ type Scanner struct {
 	scanned                 []string
 	discovered              bool
 	buffer                  []Extracted
+	v3Lines                 map[string]bool
 }
 
 // ScannerOptions controls filesystem discovery. Base is the working directory
@@ -113,6 +114,14 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string) {
 	}
 	for line := range strings.SplitSeq(text, "\n") {
 		if s.compatibility == Tailwind3 {
+			line = strings.TrimSpace(line)
+			if line == "" || s.v3Lines[line] {
+				continue
+			}
+			if s.v3Lines == nil {
+				s.v3Lines = map[string]bool{}
+			}
+			s.v3Lines[strings.Clone(line)] = true
 			s.buffer = appendExtractedV3(s.buffer[:0], line)
 		} else if cssOnly && content.Extension == "css" {
 			s.buffer = append(s.buffer[:0], CSSVariables(line)...)
@@ -149,7 +158,11 @@ func (s *Scanner) Positions(content Content) []Extracted {
 	text, _ := readScanContent(content)
 	processed := strings.ReplaceAll(text, "-[]", "XYZ")
 	var result []Extracted
-	for _, token := range Extract(processed) {
+	tokens := Extract(processed)
+	if s.compatibility == Tailwind3 {
+		tokens = appendExtractedV3(nil, processed)
+	}
+	for _, token := range tokens {
 		if token.Kind == "candidate" && utf8.ValidString(token.Value) {
 			token.Value = text[token.Start:token.End]
 			result = append(result, token)

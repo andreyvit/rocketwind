@@ -2,9 +2,10 @@ package rocketwind
 
 import (
 	"regexp"
-	"strconv"
 	"strings"
 )
+
+var v3ExtractNumber = regexp.MustCompile(`^(?:[+-]?(?:Infinity|(?:[0-9]+\.?[0-9]*|\.[0-9]+)(?:[eE][+-]?[0-9]+)?)|0[xX][0-9a-fA-F]+|0[bB][01]+|0[oO][0-7]+)$`)
 
 var v3ExtractRegexps = func() []*regexp.Regexp {
 	var result []*regexp.Regexp
@@ -21,7 +22,12 @@ var v3ExtractRegexps = func() []*regexp.Regexp {
 
 func appendExtractedV3(dst []Extracted, input string) []Extracted {
 	start := len(dst)
-	for _, pattern := range v3ExtractRegexps {
+	patterns := v3ExtractRegexps
+	if !strings.ContainsAny(input, "[:") && strings.IndexFunc(input, func(r rune) bool { return r >= 128 }) < 0 {
+		dst = appendV3PlainTokens(dst, input)
+		patterns = nil
+	}
+	for _, pattern := range patterns {
 		for _, span := range pattern.FindAllStringIndex(input, -1) {
 			value := v3ClipCandidate(input[span[0]:span[1]])
 			dst = append(dst, Extracted{Kind: "candidate", Value: value, Start: span[0], End: span[0] + len(value)})
@@ -30,13 +36,16 @@ func appendExtractedV3(dst []Extracted, input string) []Extracted {
 	end := len(dst)
 	for i := start; i < end; i++ {
 		token := dst[i]
+		if !strings.ContainsRune(token.Value, '.') {
+			continue
+		}
 		parts := appendSegments(nil, token.Value, '.')
 		offset := 0
 		for j := 0; j < len(parts); j++ {
 			part := parts[j]
 			if j+1 < len(parts) {
 				next := strings.TrimSpace(parts[j+1])
-				if _, err := strconv.ParseFloat(next, 64); next == "" || err == nil {
+				if next == "" || v3ExtractNumber.MatchString(next) {
 					offset += len(part) + len(parts[j+1]) + 2
 					j++
 					continue
@@ -89,4 +98,54 @@ func v3ClipCandidate(input string) string {
 		i--
 	}
 	return input
+}
+
+// Without variants or bracket values, both detailed extractors reduce to this
+// ASCII word scanner. The broad fallback preserves the old extractor's tokens.
+func appendV3PlainTokens(dst []Extracted, input string) []Extracted {
+	word := func(ch byte) bool { return asciiLetter(ch) || digit(ch) || ch == '_' }
+	for i := 0; i < len(input); {
+		start := i
+		if input[i] == '!' {
+			i++
+		}
+		if i < len(input) && (input[i] == '-' || input[i] == '@') {
+			i++
+		}
+		if i == len(input) || !word(input[i]) {
+			i = start + 1
+			continue
+		}
+		for i < len(input) && word(input[i]) {
+			i++
+		}
+		if i < len(input) && (input[i] == '-' || input[i] == '/') {
+			i++
+			for i < len(input) && !cssSpace(input[i]) && !strings.ContainsRune("\"'`\\$={><", rune(input[i])) {
+				i++
+			}
+		}
+		dst = append(dst, Extracted{Kind: "candidate", Value: input[start:i], Start: start, End: i})
+	}
+	// Third upstream expression: two or more characters, with stricter edges.
+	for i := 0; i < len(input); {
+		for i < len(input) && (cssSpace(input[i]) || strings.ContainsRune("<>\"'`(){}[]#=%$", rune(input[i]))) {
+			i++
+		}
+		start := i
+		for i < len(input) && !cssSpace(input[i]) && !strings.ContainsRune("<>\"'`(){}[]#=%$", rune(input[i])) {
+			i++
+		}
+		end := i
+		for start < end && input[start] == '.' {
+			start++
+		}
+		for end > start && strings.ContainsRune(".:", rune(input[end-1])) {
+			end--
+		}
+		if end-start >= 2 {
+			dst = append(dst, Extracted{Kind: "candidate", Value: input[start:end], Start: start, End: end})
+		}
+	}
+	return dst
 }

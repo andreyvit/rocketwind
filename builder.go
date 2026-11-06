@@ -25,7 +25,7 @@ func (builder *Builder) Build(candidates []string) (string, error) {
 
 func (builder *Builder) build(candidates []string, track bool) (string, error) {
 	c := builder.compiler
-	if c.hasInput && c.features == 0 {
+	if c.hasInput && c.features == 0 && c.config.Compatibility != Tailwind3 {
 		return c.inputCSS, nil
 	}
 	var local [64]string

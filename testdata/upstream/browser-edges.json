@@ -2,6 +2,48 @@
   "tailwind": "4.3.4",
   "cases": [
     {
+      "test": "browser edges: .a{transition-property:backdrop-filter}",
+      "css": ".a{transition-property:backdrop-filter}",
+      "pretty": ".a {\n  transition-property: -webkit-backdrop-filter, backdrop-filter;\n}\n",
+      "compact": ".a{transition-property:-webkit-backdrop-filter,backdrop-filter}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:transform, filter, backdrop-filter}",
+      "css": ".a{transition-property:transform, filter, backdrop-filter}",
+      "pretty": ".a {\n  transition-property: transform, filter, -webkit-backdrop-filter, backdrop-filter;\n}\n",
+      "compact": ".a{transition-property:transform,filter,-webkit-backdrop-filter,backdrop-filter}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:mask-image, user-select, color}",
+      "css": ".a{transition-property:mask-image, user-select, color}",
+      "pretty": ".a {\n  transition-property: -webkit-mask-image, mask-image, -webkit-user-select, user-select, color;\n}\n",
+      "compact": ".a{transition-property:-webkit-mask-image,mask-image,-webkit-user-select,user-select,color}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:-webkit-backdrop-filter, backdrop-filter}",
+      "css": ".a{transition-property:-webkit-backdrop-filter, backdrop-filter}",
+      "pretty": ".a {\n  transition-property: -webkit-backdrop-filter, backdrop-filter;\n}\n",
+      "compact": ".a{transition-property:-webkit-backdrop-filter,backdrop-filter}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:var(--value)}",
+      "css": ".a{transition-property:var(--value)}",
+      "pretty": ".a {\n  transition-property: var(--value);\n}\n",
+      "compact": ".a{transition-property:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:inherit}",
+      "css": ".a{transition-property:inherit}",
+      "pretty": ".a {\n  transition-property: inherit;\n}\n",
+      "compact": ".a{transition-property:inherit}"
+    },
+    {
+      "test": "browser edges: .a{transition-property:backdrop-filter!important}",
+      "css": ".a{transition-property:backdrop-filter!important}",
+      "pretty": ".a {\n  transition-property: -webkit-backdrop-filter, backdrop-filter !important;\n}\n",
+      "compact": ".a{transition-property:-webkit-backdrop-filter,backdrop-filter!important}"
+    },
+    {
       "test": "browser edges: .a{backdrop-filter:blur(1px)}",
       "css": ".a{backdrop-filter:blur(1px)}",
       "pretty": ".a {\n  -webkit-backdrop-filter: blur(1px);\n  backdrop-filter: blur(1px);\n}\n",
@@ -1050,6 +1092,78 @@
       "css": ".a{background-image:image-set(\"a.png\" 1x, \"b.png\" 2x)!important}",
       "pretty": ".a {\n  background-image: -webkit-image-set(url(\"a.png\") 1x, url(\"b.png\") 2x) !important;\n  background-image: image-set(\"a.png\" 1x, \"b.png\" 2x) !important;\n}\n",
       "compact": ".a{background-image:-webkit-image-set(url(a.png) 1x,url(b.png) 2x)!important;background-image:image-set(\"a.png\" 1x,\"b.png\" 2x)!important}"
+    },
+    {
+      "test": "browser edges: .a{-moz-tab-size:4}",
+      "css": ".a{-moz-tab-size:4}",
+      "pretty": ".a {\n  -moz-tab-size: 4;\n}\n",
+      "compact": ".a{-moz-tab-size:4}"
+    },
+    {
+      "test": "browser edges: .a{-moz-tab-size:4;tab-size:4}",
+      "css": ".a{-moz-tab-size:4;tab-size:4}",
+      "pretty": ".a {\n  tab-size: 4;\n}\n",
+      "compact": ".a{tab-size:4}"
+    },
+    {
+      "test": "browser edges: .a{-moz-tab-size:4;tab-size:var(--value)}",
+      "css": ".a{-moz-tab-size:4;tab-size:var(--value)}",
+      "pretty": ".a {\n  -moz-tab-size: 4;\n  tab-size: var(--value);\n}\n",
+      "compact": ".a{-moz-tab-size:4;tab-size:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{-moz-tab-size:4!important;tab-size:4}",
+      "css": ".a{-moz-tab-size:4!important;tab-size:4}",
+      "pretty": ".a {\n  tab-size: 4;\n  -moz-tab-size: 4 !important;\n}\n",
+      "compact": ".a{tab-size:4;-moz-tab-size:4!important}"
+    },
+    {
+      "test": "browser edges: .a{-moz-appearance:textfield}",
+      "css": ".a{-moz-appearance:textfield}",
+      "pretty": ".a {\n  -moz-appearance: textfield;\n}\n",
+      "compact": ".a{-moz-appearance:textfield}"
+    },
+    {
+      "test": "browser edges: .a{-moz-appearance:textfield;appearance:textfield}",
+      "css": ".a{-moz-appearance:textfield;appearance:textfield}",
+      "pretty": ".a {\n  appearance: textfield;\n}\n",
+      "compact": ".a{appearance:textfield}"
+    },
+    {
+      "test": "browser edges: .a{-moz-appearance:textfield;appearance:var(--value)}",
+      "css": ".a{-moz-appearance:textfield;appearance:var(--value)}",
+      "pretty": ".a {\n  -moz-appearance: textfield;\n  appearance: var(--value);\n}\n",
+      "compact": ".a{-moz-appearance:textfield;appearance:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{-moz-appearance:textfield!important;appearance:textfield}",
+      "css": ".a{-moz-appearance:textfield!important;appearance:textfield}",
+      "pretty": ".a {\n  appearance: textfield;\n  -moz-appearance: textfield !important;\n}\n",
+      "compact": ".a{appearance:textfield;-moz-appearance:textfield!important}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-backface-visibility:hidden}",
+      "css": ".a{-webkit-backface-visibility:hidden}",
+      "pretty": ".a {\n  -webkit-backface-visibility: hidden;\n}\n",
+      "compact": ".a{-webkit-backface-visibility:hidden}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+      "css": ".a{-webkit-backface-visibility:hidden;backface-visibility:hidden}",
+      "pretty": ".a {\n  backface-visibility: hidden;\n}\n",
+      "compact": ".a{backface-visibility:hidden}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-backface-visibility:hidden;backface-visibility:var(--value)}",
+      "css": ".a{-webkit-backface-visibility:hidden;backface-visibility:var(--value)}",
+      "pretty": ".a {\n  -webkit-backface-visibility: hidden;\n  backface-visibility: var(--value);\n}\n",
+      "compact": ".a{-webkit-backface-visibility:hidden;backface-visibility:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-backface-visibility:hidden!important;backface-visibility:hidden}",
+      "css": ".a{-webkit-backface-visibility:hidden!important;backface-visibility:hidden}",
+      "pretty": ".a {\n  backface-visibility: hidden;\n  -webkit-backface-visibility: hidden !important;\n}\n",
+      "compact": ".a{backface-visibility:hidden;-webkit-backface-visibility:hidden!important}"
     },
     {
       "test": "browser edges: .a{width:stretch}",

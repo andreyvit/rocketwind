@@ -485,3 +485,24 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
 - Full Go tests pass. Combined coverage is 12,043/12,190 statements (98.794%);
   closing these new paths and application integration remain open.
 - Browser prefix upgrades are explicitly desired and permitted output changes.
+
+### Legacy compatibility and application comparison complete
+
+- Added original normalization and duplicate-declaration suites, malformed-input
+  regressions, complex configuration, named-template and plugin boundary tests.
+  Invalid theme references return errors instead of indexing an empty result.
+- Matched old class sorting, registration order, responsive variants and grouped
+  component selectors. An independent application comparison finds no missing or
+  extra selectors, no value changes and no conflicting cascade-order inversions.
+  Three declaration lists differ only in independent longhand order.
+- Modern optimization matches the independent current Tailwind optimizer across
+  all 2,504 application selectors and declarations. Added transition prefixes and
+  removal of obsolete paired prefixes; all 2,310 optimizer comparisons pass.
+- Added a native common path for old source scanning and repeated-line reuse.
+  The 16.5 MB application scan/build fell from about five seconds to three.
+  All original extractor tests and 1,500 deterministic differential inputs pass.
+- Full tests, race tests and vet pass. The strict combined coverage gate passes:
+  12,300/12,300 statements, including the actual CLI process. TESTING.md records
+  the executed suites, profile limits and JavaScript host exceptions precisely.
+- Standalone implementation is ready for application integration. The disabled
+  runtime-theming proof, application build switch and GoX tenant hookup remain.

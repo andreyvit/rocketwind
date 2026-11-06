@@ -1,5 +1,201 @@
 [
   {
+    "name": "complex screens",
+    "config": {
+      "theme": {
+        "screens": {
+          "a": [
+            {
+              "min": "300px",
+              "max": "500px"
+            },
+            "600px"
+          ],
+          "b": {
+            "min": "300px"
+          },
+          "print": {
+            "raw": "print"
+          },
+          "max": {
+            "max": "800px"
+          },
+          "empty": {}
+        },
+        "container": {
+          "center": true,
+          "padding": {
+            "a": "3px",
+            "b": "4px"
+          }
+        }
+      }
+    },
+    "classes": [
+      "container",
+      "a:flex",
+      "b:flex",
+      "print:flex",
+      "max:flex",
+      "empty:flex"
+    ],
+    "results": [
+      ".container {\n    width: 100%;\n    margin-right: auto;\n    margin-left: auto\n}\n@media (min-width: 300px) {\n    .container {\n        max-width: 300px;\n        padding-right: 3px;\n        padding-left: 3px\n    }\n}",
+      "@media (min-width: 300px) and (max-width: 500px), {\n    .a\\:flex {\n        display: flex\n    }\n}",
+      "@media (min-width: 300px) {\n    .b\\:flex {\n        display: flex\n    }\n}",
+      "@media print {\n    .print\\:flex {\n        display: flex\n    }\n}",
+      "@media (max-width: 800px) {\n    .max\\:flex {\n        display: flex\n    }\n}",
+      "@media {\n    .empty\\:flex {\n        display: flex\n    }\n}"
+    ]
+  },
+  {
+    "name": "font and color edges",
+    "config": {
+      "theme": {
+        "extend": {
+          "fontSize": {
+            "tuple": [
+              "19px",
+              "22px"
+            ],
+            "empty": [],
+            "single": [
+              "21px"
+            ]
+          },
+          "colors": {
+            "rgba": "rgba(1, 2, 3, 0.4)",
+            "hsla": "hsla(0, 50%, 50%, 1)",
+            "short": "#abcd",
+            "hex": "#12345678",
+            "bad": "#zzzzzz",
+            "invalid": "#12",
+            "custom": "custom(1)",
+            "partial": "rgb(1 2)",
+            "variable": "var(--brand)"
+          },
+          "spacing": {
+            "empty": "",
+            "minus": "-3px",
+            "word": "word"
+          },
+          "backgroundPosition": {
+            "ambiguous": "center"
+          }
+        }
+      }
+    },
+    "classes": [
+      "text-tuple",
+      "text-tuple/unknown",
+      "text-single",
+      "bg-rgba",
+      "bg-rgba/50",
+      "bg-hsla/25",
+      "bg-short",
+      "bg-hex",
+      "bg-bad",
+      "bg-invalid",
+      "bg-custom",
+      "bg-partial",
+      "bg-variable/50",
+      "-mt-minus",
+      "-mt-word",
+      "bg-red-500/unknown",
+      "text-[shadow:foo]",
+      "bg-[center_var(--x)]",
+      "bg-[thin]",
+      "shadow-[red]"
+    ],
+    "results": [
+      ".text-tuple {\n    font-size: 19px;\n    line-height: 22px\n}",
+      "",
+      ".text-single {\n    font-size: 21px\n}",
+      ".bg-rgba {\n    background-color: rgba(1, 2, 3, 0.4)\n}",
+      ".bg-rgba\\/50 {\n    background-color: rgba(1, 2, 3, 0.5)\n}",
+      ".bg-hsla\\/25 {\n    background-color: hsla(0, 50%, 50%, 0.25)\n}",
+      ".bg-short {\n    background-color: #abcd\n}",
+      ".bg-hex {\n    background-color: #12345678\n}",
+      ".bg-bad {\n    background-color: #zzzzzz\n}",
+      ".bg-invalid {\n    background-color: #12\n}",
+      ".bg-custom {\n    background-color: custom(1)\n}",
+      ".bg-partial {\n    background-color: rgb(1 2)\n}",
+      "",
+      ".-mt-minus {\n    margin-top: 3px\n}",
+      "",
+      "",
+      "",
+      ".bg-\\[center_var\\(--x\\)\\] {\n    background-position: center var(--x)\n}",
+      ".bg-\\[thin\\] {\n    background-color: thin\n}",
+      ".shadow-\\[red\\] {\n    --tw-shadow-color: red;\n    --tw-shadow: var(--tw-shadow-colored)\n}"
+    ]
+  },
+  {
+    "name": "configured variants",
+    "config": {
+      "theme": {
+        "extend": {
+          "aria": {
+            "busy": "busy=true"
+          },
+          "data": {
+            "open": "state=open"
+          },
+          "supports": {
+            "grid": "display: grid",
+            "backdrop": "backdrop-filter"
+          }
+        }
+      }
+    },
+    "classes": [
+      "aria-busy:flex",
+      "data-open:flex",
+      "data-missing:flex",
+      "aria-missing:flex",
+      "supports-grid:flex",
+      "supports-backdrop:flex",
+      "supports-missing:flex",
+      "min-missing:flex",
+      "group-supports-[display:grid]:flex",
+      "group-has-hover:flex",
+      "has-hover:flex",
+      "has-[img]/a:flex",
+      "hover/foo:flex",
+      "[>p]:flex",
+      "[@media_print]:flex",
+      "[.x]:flex",
+      "foo:[color:red]",
+      "[color:foo:bar]",
+      "w-[foo:bar:baz]",
+      "w-[foo}bar]",
+      "bg-[rgb(1,2,3)/.5]"
+    ],
+    "results": [
+      ".aria-busy\\:flex[aria-busy=\"true\"] {\n    display: flex\n}",
+      ".data-open\\:flex[data-state=\"open\"] {\n    display: flex\n}",
+      "",
+      "",
+      "@supports (display: grid) {\n    .supports-grid\\:flex {\n        display: flex\n    }\n}",
+      "@supports (backdrop-filter: var(--tw)) {\n    .supports-backdrop\\:flex {\n        display: flex\n    }\n}",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ".has-\\[img\\]\\/a\\:flex:has(img) {\n    display: flex\n}",
+      ".hover\\/foo\\:flex:hover {\n    display: flex\n}",
+      "",
+      "@media print {\n    .\\[\\@media_print\\]\\:flex {\n        display: flex\n    }\n}",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ".bg-\\[rgb\\(1\\2c 2\\2c 3\\)\\/\\.5\\] {\n    background-color: rgb(1,2,3)/.5\n}"
+    ]
+  },
+  {
     "name": "legacy arbitrary syntax",
     "config": {},
     "classes": [

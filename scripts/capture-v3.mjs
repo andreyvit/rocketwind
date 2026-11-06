@@ -41,6 +41,10 @@ for(const variant of ['group-[.x]/menu','group-[&:is(.x)]','aria-expanded:before
 fs.writeFileSync('testdata/v3/variants.json',JSON.stringify(variants,null,2)+'\n')
 console.log('Captured '+variants.length+' Tailwind 3.4.17 variant builds')
 const configurations=[
+ {name:'complex screens',config:{theme:{screens:{a:[{min:'300px',max:'500px'},'600px'], b:{min:'300px'}, print:{raw:'print'}, max:{max:'800px'}, empty:{}},container:{center:true,padding:{a:'3px',b:'4px'}}}},classes:['container','a:flex','b:flex','print:flex','max:flex','empty:flex']},
+ {name:'font and color edges',config:{theme:{extend:{fontSize:{tuple:['19px','22px'],empty:[],single:['21px']},colors:{rgba:'rgba(1, 2, 3, 0.4)',hsla:'hsla(0, 50%, 50%, 1)',short:'#abcd',hex:'#12345678',bad:'#zzzzzz',invalid:'#12',custom:'custom(1)',partial:'rgb(1 2)',variable:'var(--brand)'},spacing:{empty:'',minus:'-3px',word:'word'},backgroundPosition:{ambiguous:'center'}}}},classes:['text-tuple','text-tuple/unknown','text-single','bg-rgba','bg-rgba/50','bg-hsla/25','bg-short','bg-hex','bg-bad','bg-invalid','bg-custom','bg-partial','bg-variable/50','-mt-minus','-mt-word','bg-red-500/unknown','text-[shadow:foo]','bg-[center_var(--x)]','bg-[thin]','shadow-[red]']},
+ {name:'configured variants',config:{theme:{extend:{aria:{busy:'busy=true'},data:{open:'state=open'},supports:{grid:'display: grid',backdrop:'backdrop-filter'}}}},classes:['aria-busy:flex','data-open:flex','data-missing:flex','aria-missing:flex','supports-grid:flex','supports-backdrop:flex','supports-missing:flex','min-missing:flex','group-supports-[display:grid]:flex','group-has-hover:flex','has-hover:flex','has-[img]/a:flex','hover/foo:flex','[>p]:flex','[@media_print]:flex','[.x]:flex','foo:[color:red]','[color:foo:bar]','w-[foo:bar:baz]','w-[foo}bar]','bg-[rgb(1,2,3)/.5]']},
+
   {name:'legacy arbitrary syntax',config:{},classes:['[name.dot:value]','[e.f(a:value]','[title::value]','[_property:value]','[-property:value]','[--foo:--bar]','[color:--brand]','[https://example.com]','bg-[--brand]','w-[calc(100%-theme(spacing.2))]','grid-cols-[minmax(min-content,{.widget.max-width.size})]','[display:flex]/2','[.x]:flex','[background:center,_no-repeat_{.image.position}/cover]']},
 
   {name:'prefix',config:{prefix:'tw-'},classes:['flex','tw-flex','hover:tw-bg-black','group-hover:tw-flex','peer-checked/item:tw-flex','-tw-mt-4','tw--mt-4','!tw-p-4','hover:!tw-p-4','tw-p-4!','[color:red]','tw-[color:red]','tw-bg-(--brand)']},
@@ -61,6 +65,12 @@ for(const fixture of configurations) {
 }
 fs.writeFileSync('testdata/v3/configuration.json',JSON.stringify(configurations,null,2)+'\n')
 const sheets=[
+ {name:'utility and variant cascade',css:'@tailwind utilities;',classes:['scale-95','scale-100','border-dotted','border-dashed','border-solid','p-2','p-10','md:p-2','sm:p-4','lg:p-1','min-[700px]:p-1','max-[800px]:p-2','max-[400px]:p-4','group-[.selected]/x:hidden','group-[.selected]/x:flex','group-aria-[expanded=false]/x:hidden','group-aria-[expanded=true]/x:flex','group-aria-[expanded=true]/x:block','group-has-[img]/x:hidden','group-hover/b:block','group-hover/a:hidden']},
+
+ {name:'shared nested layer rules',css:'@tailwind components; @tailwind utilities; @layer components {.a, .b {@apply p-2 hover:p-3;} .a .b {color:red;} .c {color:blue;}}',classes:['a','b','c','hover:a','hover:b','!a']},
+ {name:'duplicate and fallback declarations',css:'.x { /* keep */ display:-webkit-box;display:flex;height:10px;height:20%;height:20px;height:30%;color:red;color:blue;color:blue;} .x {width:2px;width:3px;} @font-face {font-family:A;} @font-face {font-family:B;}',classes:[]},
+ {name:'unconditional wrapped layer',css:'@tailwind utilities; @layer utilities {@media print {h1 {color:theme(colors.red.500);}}} .empty {} @media screen {.empty-child{}} @unknown custom;',classes:[]},
+
   {name:'layer important',css:'@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4 !important; } } @layer utilities { .heavy { @apply font-bold !important; } }',classes:['card','heavy']},
   {name:'layer screens',css:'@tailwind components; @layer components { @screen sm { .card { @apply flex; } } }',classes:['card']},
   {name:'always layer apply',css:'@tailwind utilities; @layer utilities { h1 { @apply text-xl; } }',classes:[]},

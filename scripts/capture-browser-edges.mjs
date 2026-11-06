@@ -14,6 +14,8 @@ function add(css){
  cases.push(entry)
 }
 const properties={
+ 'transition-property':['backdrop-filter','transform, filter, backdrop-filter','mask-image, user-select, color','-webkit-backdrop-filter, backdrop-filter'],
+
  'backdrop-filter':['blur(1px)','none'], 'user-select':['none','text'],
  'hyphens':['auto','none'], 'box-decoration-break':['clone','slice'],
  'print-color-adjust':['exact','economy'], 'text-size-adjust':['100%','none'],
@@ -40,7 +42,13 @@ for(const [property,values] of Object.entries(properties)){
  for(const value of [...values,'var(--value)','inherit'])add(`.a{${property}:${value}}`)
  add(`.a{${property}:${values[0]}!important}`)
 }
-for(const property of ['width','height','min-width','max-height','inline-size','block-size','min-block-size','flex-basis'])add(`.a{${property}:stretch}`)
+for(const [prefix,property,value] of [['-moz-','tab-size','4'],['-moz-','appearance','textfield'],['-webkit-','backface-visibility','hidden']]) {
+ add(`.a{${prefix}${property}:${value}}`)
+ add(`.a{${prefix}${property}:${value};${property}:${value}}`)
+ add(`.a{${prefix}${property}:${value};${property}:var(--value)}`)
+ add(`.a{${prefix}${property}:${value}!important;${property}:${value}}`)
+}
+for(const property of ['width' ,'height','min-width','max-height','inline-size','block-size','min-block-size','flex-basis'])add(`.a{${property}:stretch}`)
 for(const css of [
  '.a{-webkit-user-select:text;user-select:none}',
  '.a{-webkit-user-select:none;user-select:none}',
