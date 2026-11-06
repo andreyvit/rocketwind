@@ -221,7 +221,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			}
 			continue
 		}
-		for candidate := range b.compiler.Parse(raw) {
+		b.compiler.parseInto(raw, func(candidate Candidate) bool {
 			variants := make([]*parsedVariant, len(candidate.Variants))
 			for i, variant := range candidate.Variants {
 				variants[i] = b.compiledVariant(variant)
@@ -234,7 +234,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			key = slices.CompactFunc(key, func(a, z *parsedVariant) bool { return b.compareParsedVariant(a, z) == 0 })
 			groups := b.candidateGroups(candidate)
 			if b.err != nil {
-				return rules
+				return false
 			}
 			for _, nodes := range groups {
 				v3Order := 1 << 20
@@ -293,6 +293,10 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				}
 				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: key, v3Shared: v3Shared})
 			}
+			return true
+		})
+		if b.err != nil {
+			return rules
 		}
 	}
 	slices.SortStableFunc(rules, b.compareRules)
@@ -340,6 +344,7 @@ type buildContext struct {
 	used              map[string]bool
 	applyStack        []string
 	externalVariables []string
+	v3Colors          map[string]ConfigObject
 }
 
 type compiledRule struct {

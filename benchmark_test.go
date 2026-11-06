@@ -36,6 +36,26 @@ func BenchmarkBuild(b *testing.B) {
 	}
 }
 
+func BenchmarkBuildSourceTokens(b *testing.B) {
+	classes := benchmarkCandidates()
+	for i := range 100000 {
+		classes = append(classes, "applicationIdentifier"+strconv.Itoa(i))
+	}
+	for _, compatibility := range []Compatibility{Tailwind3, Tailwind4} {
+		b.Run(strconv.Itoa(int(compatibility)), func(b *testing.B) {
+			c := New(Config{Compatibility: compatibility})
+			b.ReportAllocs()
+			for b.Loop() {
+				var err error
+				benchmarkCSS, err = c.Build(classes)
+				if err != nil {
+					b.Fatal(err)
+				}
+			}
+		})
+	}
+}
+
 func BenchmarkTemplate(b *testing.B) {
 	c := New(Config{InlineTheme: true})
 	template, err := c.Prepare("flex items-center rounded-lg p-{gap} text-{size} text-{color} hover:bg-{color}", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{"gap": TypeLength, "size": TypeLength, "color": TypeColor})})

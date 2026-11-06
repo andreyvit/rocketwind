@@ -127,9 +127,18 @@ func (b *buildContext) v3Functional(root, value, modifier, hint string, arbitrar
 			if key == "DEFAULT" && d.FilterDefault {
 				continue
 			}
-			namespace := configObject(b.compiler.themeLookup(d.Namespace))
+			var namespace ConfigObject
 			if color {
-				namespace = FlattenColors(namespace)
+				namespace = b.v3Colors[d.Namespace]
+				if namespace == nil {
+					namespace = FlattenColors(configObject(b.compiler.themeLookup(d.Namespace)))
+					if b.v3Colors == nil {
+						b.v3Colors = make(map[string]ConfigObject)
+					}
+					b.v3Colors[d.Namespace] = namespace
+				}
+			} else {
+				namespace = configObject(b.compiler.themeLookup(d.Namespace))
 			}
 			if modifier != "" && !arbitraryModifier {
 				resolved = namespace.Get(key + "/" + modifier)

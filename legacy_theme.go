@@ -45,13 +45,13 @@ func (c *Compiler) initializeLegacyTheme() {
 	if c.legacyTheme != nil {
 		return
 	}
-	c.legacyTheme = configObject(cloneConfigValue(legacyThemeDefaults))
 	c.legacyResolved = map[string]bool{}
 	c.legacyResolving = map[string]bool{}
 	if c.config.Compatibility == Tailwind3 {
 		c.legacyTheme = configObject(cloneConfigValue(v3ThemeDefaults))
 		return
 	}
+	c.legacyTheme = configObject(cloneConfigValue(legacyThemeDefaults))
 	for _, entry := range []NamedValue{{"fontSize", "text"}, {"boxShadow", "shadow"}, {"animation", "animate"}, {"aspectRatio", "aspect"}, {"borderRadius", "radius"}, {"screens", "breakpoint"}, {"letterSpacing", "tracking"}, {"lineHeight", "leading"}, {"maxWidth", "container"}} {
 		c.legacyTheme.set(entry.Name, legacyThemeMerge{c.legacyTheme.Get(entry.Name), ConfigObject{{"\x00theme:" + entry.Value, true}}})
 	}
