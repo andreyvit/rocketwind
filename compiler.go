@@ -43,6 +43,7 @@ type Compiler struct {
 	hasUtilities          bool
 	config                Config
 	input                 []*Node
+	inputCSS              string
 	hasInput, themePlaced bool
 	themeFlags            map[string]string
 	themeOrder            []string
@@ -90,11 +91,18 @@ func New(config Config) *Compiler {
 // Build generates CSS for exactly these candidates. Calls are independent and
 // may run concurrently. Use NewBuilder for incremental, cumulative builds.
 func (c *Compiler) Build(candidates []string) (string, error) {
+	if c.hasInput && c.features == 0 {
+		return c.inputCSS, nil
+	}
 	b := buildContext{compiler: c, used: make(map[string]bool)}
 	if len(c.inlineCandidates) > 0 {
 		candidates = append(slices.Clone(candidates), c.inlineCandidates...)
 	}
-	result := b.renderRules(b.compileRules(candidates))
+	var rules []compiledRule
+	if !c.hasInput || c.hasUtilities {
+		rules = b.compileRules(candidates)
+	}
+	result := b.renderRules(rules)
 	return result, b.err
 }
 
@@ -146,6 +154,17 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			continue
 		}
 		seen[raw] = true
+		if !b.inApply && strings.HasPrefix(raw, "--") {
+			key := raw
+			if prefix := b.compiler.config.Prefix; prefix != "" {
+				key = "--" + key[min(len(key), len(prefix)+3):]
+			}
+			key = Unescape(key)
+			if b.themeValue(key) != "" {
+				b.externalVariables = append(b.externalVariables, key)
+			}
+			continue
+		}
 		for candidate := range b.compiler.Parse(raw) {
 			variants := make([]*parsedVariant, len(candidate.Variants))
 			for i, variant := range candidate.Variants {
@@ -212,13 +231,14 @@ func (b *buildContext) compareRules(a, z compiledRule) int {
 }
 
 type buildContext struct {
-	features   Features
-	err        error
-	inApply    bool
-	standalone bool
-	compiler   *Compiler
-	used       map[string]bool
-	applyStack []string
+	features          Features
+	err               error
+	inApply           bool
+	standalone        bool
+	compiler          *Compiler
+	used              map[string]bool
+	applyStack        []string
+	externalVariables []string
 }
 
 type compiledRule struct {

@@ -107,7 +107,7 @@ func TestIncrementalSourcesAndStaticStylesheet(t *testing.T) {
 	}
 	builder = static.NewBuilder()
 	css, err = builder.Build([]string{"flex"})
-	if err != nil || css != ".card {\n  display: block;\n}\n" {
+	if err != nil || css != ".card {display:block}" {
 		t.Fatalf("%s %v", css, err)
 	}
 	if again, err := builder.Build([]string{"grid"}); err != nil || again != css {

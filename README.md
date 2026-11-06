@@ -133,6 +133,27 @@ mean a font family. Aliases do not change the default Tailwind vocabulary.
 `TemplateOptions.DollarReferences` also accepts `$name` as shorthand for `{name}`.
 
 
+Extract classes from templates
+------------------------------
+
+```go
+source := rocketwind.Preprocess(template, "vue")
+css, err := compiler.Build(rocketwind.Candidates(source))
+```
+
+`Candidates` recognizes complete class names and CSS variable references in
+source text. It follows Tailwind's scanner; it does not execute template code
+or join fragments such as `"text-" + color`. Your template must contain the full
+class name, or your application must supply it to the compiler.
+
+`Preprocess` handles Tailwind's supported template languages, including Vue,
+Svelte, Pug, Haml, Slim, Ruby, Rust, Clojure and Elixir. Plain HTML, GoX and
+unrecognized file extensions pass through unchanged. Processing preserves byte
+offsets. `Extract` returns tokens with their source offsets; `AppendExtracted`
+reuses a caller-owned buffer without allocating. `CSSVariables` extracts only
+`var(...)` references from CSS.
+
+
 Reuse existing CSS
 ------------------
 
@@ -188,7 +209,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,246 syntax, normalization, CSS nesting, configuration and helper calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,246 syntax, normalization, CSS nesting, configuration and helper calls, and 2,968 Rust extraction/preprocessing calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

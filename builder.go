@@ -6,11 +6,12 @@ import "slices"
 // stylesheet or watch session. A Builder is not safe for concurrent use;
 // independent builders can share their immutable Compiler.
 type Builder struct {
-	compiler *Compiler
-	seen     map[string]bool
-	rules    []compiledRule
-	css      string
-	built    bool
+	compiler          *Compiler
+	seen              map[string]bool
+	rules             []compiledRule
+	css               string
+	built             bool
+	externalVariables []string
 }
 
 func (c *Compiler) NewBuilder() *Builder { return &Builder{compiler: c, seen: make(map[string]bool)} }
@@ -19,6 +20,9 @@ func (c *Compiler) NewBuilder() *Builder { return &Builder{compiler: c, seen: ma
 // unchanged candidate set returns the cached CSS without allocating.
 func (builder *Builder) Build(candidates []string) (string, error) {
 	c := builder.compiler
+	if c.hasInput && c.features == 0 {
+		return c.inputCSS, nil
+	}
 	var local [64]string
 	added := local[:0]
 	add := func(candidates []string) {
@@ -48,9 +52,11 @@ func (builder *Builder) Build(candidates []string) (string, error) {
 		}
 		return builder.css, b.err
 	}
-	if len(rules) == 0 && builder.built {
+	if len(rules) == 0 && len(b.externalVariables) == 0 && builder.built {
 		return builder.css, nil
 	}
+	builder.externalVariables = append(builder.externalVariables, b.externalVariables...)
+	b.externalVariables = builder.externalVariables
 	builder.rules = append(builder.rules, rules...)
 	slices.SortStableFunc(builder.rules, b.compareRules)
 	builder.css = b.renderRules(builder.rules)
@@ -63,6 +69,8 @@ func (builder *Builder) Reset() {
 	clear(builder.seen)
 	clear(builder.rules)
 	builder.rules = builder.rules[:0]
+	clear(builder.externalVariables)
+	builder.externalVariables = builder.externalVariables[:0]
 	builder.css = ""
 	builder.built = false
 }

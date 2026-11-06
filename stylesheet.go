@@ -25,6 +25,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 		c.config.Theme = make(map[string]string)
 	}
 	c.input = ast
+	c.inputCSS = input
 	c.hasInput = true
 	c.themeFlags = make(map[string]string)
 	c.custom = make(map[string][]*Node)

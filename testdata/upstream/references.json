@@ -1,0 +1,210 @@
+[
+  {
+    "name": "incremental variables and dependencies",
+    "css": "@theme { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [],
+      [
+        "--unknown"
+      ],
+      [
+        "--color-alias"
+      ],
+      [
+        "flex"
+      ],
+      [
+        "--animate-wave"
+      ],
+      [
+        "--color-alias"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n}\n.flex {\n  display: flex;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n  --animate-wave: wave 1s linear;\n}\n.flex {\n  display: flex;\n}\n@keyframes wave {\n  to {\n    opacity: 0;\n  }\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n  --animate-wave: wave 1s linear;\n}\n.flex {\n  display: flex;\n}\n@keyframes wave {\n  to {\n    opacity: 0;\n  }\n}\n"
+    ]
+  },
+  {
+    "name": "escaped names",
+    "css": "@theme { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [
+        "--color-bran\\64 "
+      ],
+      [
+        "--color-brand"
+      ],
+      [
+        "--"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n}\n"
+    ]
+  },
+  {
+    "name": "prefix",
+    "css": "@theme prefix(tw) { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [
+        "--color-brand"
+      ],
+      [
+        "--tw-color-brand"
+      ],
+      [
+        "tw:flex"
+      ],
+      [
+        "--tw-color-alias"
+      ],
+      [
+        "--tw-animate-wave"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-color-brand: red;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-color-brand: red;\n}\n.tw\\:flex {\n  display: flex;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-color-brand: red;\n  --tw-color-alias: var(--color-brand);\n}\n.tw\\:flex {\n  display: flex;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-color-brand: red;\n  --tw-color-alias: var(--color-brand);\n  --tw-animate-wave: wave 1s linear;\n}\n.tw\\:flex {\n  display: flex;\n}\n@keyframes wave {\n  to {\n    opacity: 0;\n  }\n}\n"
+    ]
+  },
+  {
+    "name": "prefix stripping",
+    "css": "@theme prefix(tw) { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [
+        "--"
+      ],
+      [
+        "--xx-color-brand"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-color-brand: red;\n}\n"
+    ]
+  },
+  {
+    "name": "inline theme",
+    "css": "@theme inline { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [
+        "text-brand"
+      ],
+      [
+        "--color-brand"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.text-brand {\n  color: red;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n}\n.text-brand {\n  color: red;\n}\n"
+    ]
+  },
+  {
+    "name": "reference theme",
+    "css": "@theme reference { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [
+        "--color-brand"
+      ],
+      [
+        "text-brand"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.text-brand {\n  color: var(--color-brand, red);\n}\n"
+    ]
+  },
+  {
+    "name": "excluded variable",
+    "css": "@theme { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @source not inline(\"--color-brand\"); @tailwind utilities;",
+    "steps": [
+      [
+        "--color-brand"
+      ],
+      [
+        "--color-alias"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n}\n"
+    ]
+  },
+  {
+    "name": "static theme",
+    "css": "@theme static { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } @tailwind utilities;",
+    "steps": [
+      [],
+      [
+        "--color-alias"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n  --color-unused: blue;\n  --animate-wave: wave 1s linear;\n}\n@keyframes wave {\n  to {\n    opacity: 0;\n  }\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-brand: red;\n  --color-alias: var(--color-brand);\n  --color-unused: blue;\n  --animate-wave: wave 1s linear;\n}\n@keyframes wave {\n  to {\n    opacity: 0;\n  }\n}\n"
+    ]
+  },
+  {
+    "name": "no utilities",
+    "css": "@theme { --color-brand: red; --color-alias: var(--color-brand); --color-unused: blue; --animate-wave: wave 1s linear; @keyframes wave { to { opacity: 0 } } } .card { display: block }",
+    "steps": [
+      [],
+      [
+        "--color-brand"
+      ],
+      [
+        "flex"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.card {\n  display: block;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.card {\n  display: block;\n}\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.card {\n  display: block;\n}\n"
+    ]
+  },
+  {
+    "name": "static input",
+    "css": ".card { display: block }",
+    "steps": [
+      [],
+      [
+        "--color-brand"
+      ],
+      [
+        "flex"
+      ]
+    ],
+    "results": [
+      ".card { display: block }",
+      ".card { display: block }",
+      ".card { display: block }"
+    ]
+  },
+  {
+    "name": "empty theme",
+    "css": "@tailwind utilities;",
+    "steps": [
+      [
+        "--color-brand"
+      ],
+      [
+        "flex"
+      ]
+    ],
+    "results": [
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n",
+      "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.flex {\n  display: flex;\n}\n"
+    ]
+  }
+]

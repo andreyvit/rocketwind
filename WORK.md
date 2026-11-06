@@ -104,7 +104,27 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   vet pass; statement coverage is 96.4%. Other internal suites and integration
   gates remain open.
 
-## Initial performance measurements
+### Source extraction
+
+- Ported all Rust extraction machines and fourteen language preprocessors from
+  Tailwind 4.3.4. All 97 original Rust tests pass (12 performance tests are
+  already ignored upstream). All 2,968 distinct captured calls pass in Go:
+  2,697 extraction calls and 271 preprocessing calls.
+- Source offsets and invalid UTF-8 behavior match upstream. Added source
+  variable tracking to full and incremental compiler builds, with eleven
+  differential fixtures for dependencies, prefixes, keyframes and exclusions.
+- Reusing an extraction buffer needs zero allocations. Benchmarks cover repeated
+  markup and upstream's separate 27,895-byte example HTML fixture, copied from
+  `crates/oxide/src/fixtures/example.html` under the upstream MIT license.
+- Median extraction time: 759 ns for a short template, 75.2 us for 100 repeated
+  lines, and 135.5 us for the separate upstream HTML file (206 MB/s).
+- Two 15-second fuzz runs passed, including malformed input across thirteen
+  preprocessing paths. Go tests, race detector and vet pass. The whole Go
+  coverage gate remains open.
+- Captured upstream calls checked: 13,759, plus standard plugin and additional
+  variable-reference fixtures. Filesystem scanning and CLI are next.
+
+## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
 

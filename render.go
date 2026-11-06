@@ -17,6 +17,9 @@ const (
 func (b *buildContext) render(nodes []*Node) string {
 	nodes = flattenContexts(nodes, "")
 	clear(b.used)
+	for _, key := range b.externalVariables {
+		b.used[key] = true
+	}
 	animations := make(map[string]bool)
 	markAnimation := func(value string) {
 		for _, word := range strings.FieldsFunc(value, func(r rune) bool { return r == ',' || r == ' ' || r == '\n' || r == '\t' }) {
