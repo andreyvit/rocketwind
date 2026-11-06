@@ -83,8 +83,7 @@ func terminalFile(value any) bool {
 	if !ok {
 		return false
 	}
-	info, err := f.Stat()
-	return err == nil && info.Mode()&os.ModeCharDevice != 0
+	return terminalDescriptor(f.Fd())
 }
 
 func runCanonicalize(ctx context.Context, f canonicalizeFlags, options Options) error {

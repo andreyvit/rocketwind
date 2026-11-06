@@ -258,8 +258,8 @@ func TestCanonicalizeIOFailures(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer dev.Close()
-	if !terminalFile(dev) {
-		t.Fatal("character device")
+	if terminalFile(dev) {
+		t.Fatal("null device is not a terminal")
 	}
 	t.Chdir(root)
 	if err := os.Chmod(root, 0); err != nil {
