@@ -15,27 +15,14 @@ function load(file) {
   return mod.exports
 }
 const styles = load(path.resolve(upstream,'src/styles.js'))
-const {merge,castArray} = load(path.resolve(upstream,'src/utils.js'))
 const q = JSON.stringify
-function nodes(object) {
-  const result = []
-  for (const [key,value] of Object.entries(object)) {
-    if (value == null) continue
-    if (typeof value === 'object' && !Array.isArray(value)) {
-      if (key.startsWith('@')) {
-        const [,name,params=''] = key.trim().match(/^(@[^\s]+)(?:\s+(.*))?$/)
-        result.push(`{Kind:"at-rule",Name:${q(name)},Value:${q(params)},Nodes:${nodes(value)}}`)
-      } else result.push(`{Kind:"rule",Name:${q(key)},Nodes:${nodes(value)}}`)
-    } else {
-      const name = key.startsWith('--') ? key : key.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())
-      for (const v of Array.isArray(value) ? value : [value]) result.push(`{Kind:"declaration",Name:${q(name)},Value:${q(String(v))}}`)
-    }
-  }
-  return '[]*Node{'+result.join(',')+'}'
+function object(value) {
+  if (value === null) return 'nil'
+  if (Array.isArray(value)) return '[]any{'+value.map(object).join(',')+'}'
+  if (typeof value === 'object') return 'ConfigObject{'+Object.entries(value).map(([k,v])=>`{${q(k)},${object(v)}}`).join(',')+'}'
+  return q(value)
 }
-let go = '// Code generated from @tailwindcss/typography v0.5.20 by scripts/typography.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/plugins/typography/LICENSE.\npackage rocketwind\n\nvar typographyStyles = []TypographyStyle{\n'
-for (const [name,config] of Object.entries(styles)) go += `{Name:${q(name)},Nodes:${nodes(merge({},...castArray(config.css || {})))}},\n`
-go += '}\n'
+let go = '// Code generated from @tailwindcss/typography v0.5.20 by scripts/typography.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/plugins/typography/LICENSE.\npackage rocketwind\n\nvar typographyTheme = '+object(styles)+'\n'
 fs.writeFileSync('typography_generated.go',go)
 const target = 'testdata/plugins/typography'
 fs.mkdirSync(target,{recursive:true})

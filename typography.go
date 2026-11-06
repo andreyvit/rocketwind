@@ -19,6 +19,25 @@ type TypographyOptions struct {
 	Extend    []TypographyStyle
 }
 
+var typographyStyles = typographyStylesFromConfig(typographyTheme)
+
+func typographyStylesFromConfig(config ConfigObject) []TypographyStyle {
+	styles := make([]TypographyStyle, 0, len(config))
+	for _, entry := range config {
+		var nodes []*Node
+		css := configObject(entry.Value).Get("css")
+		if array, ok := css.([]any); ok {
+			for _, part := range array {
+				nodes = mergeTypographyNodes(nodes, configStyleNodes(part))
+			}
+		} else {
+			nodes = configStyleNodes(css)
+		}
+		styles = append(styles, TypographyStyle{Name: entry.Key, Nodes: nodes})
+	}
+	return styles
+}
+
 // Typography is the Go port of @tailwindcss/typography v0.5.20.
 func Typography(options TypographyOptions) Plugin {
 	return func(api *PluginAPI) error {
@@ -52,19 +71,7 @@ func Typography(options TypographyOptions) Plugin {
 		if styles == nil {
 			styles = typographyStyles
 			if configured := configObject(api.ThemeValue("typography")); configured != nil {
-				var configuredStyles []TypographyStyle
-				for _, entry := range configured {
-					var nodes []*Node
-					css := configObject(entry.Value).Get("css")
-					if array, ok := css.([]any); ok {
-						for _, part := range array {
-							nodes = mergeTypographyNodes(nodes, configStyleNodes(part))
-						}
-					} else {
-						nodes = configStyleNodes(css)
-					}
-					configuredStyles = append(configuredStyles, TypographyStyle{Name: entry.Key, Nodes: nodes})
-				}
+				configuredStyles := typographyStylesFromConfig(configured)
 				if api.compiler.legacyReplaced["typography"] {
 					styles = configuredStyles
 				} else {

@@ -5,6 +5,61 @@
     "candidates": [
       "prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "maxWidth": "65ch",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "ol[type=\"A\"]": {
+                  "listStyleType": "upper-alpha"
+                },
+                "blockquote p:first-of-type::before": {
+                  "content": "open-quote"
+                },
+                "blockquote p:last-of-type::after": {
+                  "content": "close-quote"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                },
+                "figure > *": {
+                  "margin": 0
+                },
+                "ol > li::marker": {
+                  "fontWeight": "400",
+                  "color": "var(--tw-prose-counters)"
+                },
+                "> ul > li p": {
+                  "marginTop": "16px",
+                  "marginBottom": "16px"
+                },
+                "code::before": {
+                  "content": "\"&#96;\""
+                },
+                "code::after": {
+                  "content": "\"&#96;\""
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -173,6 +228,49 @@
       "hover:prose-lg",
       "lg:prose-lg"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "red",
+                "p": {
+                  "color": "lime"
+                },
+                "> ul > li": {
+                  "color": "purple"
+                }
+              }
+            ]
+          },
+          "lg": {
+            "css": {
+              "color": "green",
+              "p": {
+                "color": "tomato"
+              },
+              "> ul > li": {
+                "color": "blue"
+              }
+            }
+          },
+          "xl": {
+            "css": {
+              "color": "yellow",
+              "> ul > li": {
+                "color": "hotpink"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -274,6 +372,94 @@
       "prose",
       "prose-lg"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "maxWidth": "65ch",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "ol[type=\"A\"]": {
+                  "listStyleType": "upper-alpha"
+                },
+                "blockquote p:first-of-type::before": {
+                  "content": "open-quote"
+                },
+                "blockquote p:last-of-type::after": {
+                  "content": "close-quote"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                },
+                "figure > *": {
+                  "margin": 0
+                },
+                "ol > li::marker": {
+                  "fontWeight": "400",
+                  "color": "var(--tw-prose-counters)"
+                },
+                "code::before": {
+                  "content": "\"&#96;\""
+                },
+                "code::after": {
+                  "content": "\"&#96;\""
+                }
+              }
+            ]
+          },
+          "lg": {
+            "css": [
+              {
+                "fontSize": "18px",
+                "lineHeight": "1.75",
+                "p": {
+                  "marginTop": "24px",
+                  "marginBottom": "24px"
+                },
+                "[class~=\"lead\"]": {
+                  "fontSize": "22px"
+                },
+                "blockquote": {
+                  "marginTop": "40px",
+                  "marginBottom": "40px"
+                },
+                "> ul > li": {
+                  "paddingLeft": "12px"
+                },
+                "h1": {
+                  "fontSize": "48px",
+                  "marginTop": "0",
+                  "marginBottom": "40px"
+                },
+                "h2": {
+                  "fontSize": "30px",
+                  "marginTop": "56px",
+                  "marginBottom": "32px"
+                },
+                "h3": {
+                  "fontSize": "24px",
+                  "marginTop": "40px",
+                  "marginBottom": "16px"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -558,6 +744,57 @@
       "prose-h1:text-center",
       "prose-headings:text-ellipsis"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "maxWidth": "65ch",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "ol[type=\"A\"]": {
+                  "listStyleType": "upper-alpha"
+                },
+                "blockquote p:first-of-type::before": {
+                  "content": "open-quote"
+                },
+                "blockquote p:last-of-type::after": {
+                  "content": "close-quote"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                },
+                "figure > *": {
+                  "margin": 0
+                },
+                "ol > li::marker": {
+                  "fontWeight": "400",
+                  "color": "var(--tw-prose-counters)"
+                },
+                "code::before": {
+                  "content": "\"&#96;\""
+                },
+                "code::after": {
+                  "content": "\"&#96;\""
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": true,
@@ -708,6 +945,57 @@
     "candidates": [
       "markdown"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "maxWidth": "65ch",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "ol[type=\"A\"]": {
+                  "listStyleType": "upper-alpha"
+                },
+                "blockquote p:first-of-type::before": {
+                  "content": "open-quote"
+                },
+                "blockquote p:last-of-type::after": {
+                  "content": "close-quote"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                },
+                "figure > *": {
+                  "margin": 0
+                },
+                "ol > li::marker": {
+                  "fontWeight": "400",
+                  "color": "var(--tw-prose-counters)"
+                },
+                "code::before": {
+                  "content": "\"&#96;\""
+                },
+                "code::after": {
+                  "content": "\"&#96;\""
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "markdown",
       "Legacy": false,
@@ -891,6 +1179,34 @@
       "prose-hr:border-t-2",
       ""
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -983,6 +1299,34 @@
       "markdown-hr:border-t-2",
       ""
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": [
+              {
+                "color": "var(--tw-prose-body)",
+                "[class~=\"lead\"]": {
+                  "color": "var(--tw-prose-lead)"
+                },
+                "strong": {
+                  "color": "var(--tw-prose-bold)",
+                  "fontWeight": "600"
+                },
+                "h4 strong": {
+                  "fontWeight": "700"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "markdown",
       "Legacy": false,
@@ -1046,6 +1390,25 @@
     "candidates": [
       "prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "textAlign": [
+                "-webkit-match-parent",
+                "match-parent"
+              ]
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1076,6 +1439,30 @@
     "candidates": [
       "prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [],
+      "theme": {
+        "extend": {
+          "typography": {
+            "DEFAULT": {
+              "css": {
+                "color": "#000",
+                "a": {
+                  "color": "#888",
+                  "&:hover": {
+                    "color": "#ff0000"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1125,6 +1512,13 @@
       "prose-h5:text-sm",
       "prose-h6:text-xl"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": []
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1139,6 +1533,25 @@
     "candidates": [
       "dark:prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "darkMode": "class",
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "ol li::before, ul li::before": {
+                "color": "red"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1171,6 +1584,25 @@
       "prose",
       "dark:prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "darkMode": "class",
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "ol li::marker::before, ul li::marker::before": {
+                "color": "red"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1203,6 +1635,25 @@
       "prose",
       "dark:prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "darkMode": "class",
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "ol li::before, ul li::after": {
+                "color": "red"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1235,6 +1686,25 @@
       "prose",
       "dark:prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "darkMode": "class",
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "ol li::scroll-thumb::before, ul li::scroll-track::before": {
+                "color": "red"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1267,6 +1737,25 @@
       "prose",
       "dark:prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "darkMode": "class",
+      "content": [],
+      "theme": {
+        "typography": {
+          "DEFAULT": {
+            "css": {
+              "ol li::before::scroll-thumb, ul li::before::scroll-track": {
+                "color": "red"
+              }
+            }
+          }
+        }
+      }
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1298,6 +1787,13 @@
     "candidates": [
       "prose"
     ],
+    "config": {
+      "plugins": [],
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": []
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1346,6 +1842,10 @@
       "prose-h5:text-sm",
       "prose-invert!"
     ],
+    "config": {
+      "plugins": [],
+      "content": []
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1394,6 +1894,10 @@
       "prose-h5:text-sm",
       "prose-invert!"
     ],
+    "config": {
+      "plugins": [],
+      "content": []
+    },
     "options": {
       "ClassName": "",
       "Legacy": true,
@@ -1442,6 +1946,10 @@
       "tw:prose-h5:text-sm",
       "tw:prose-invert!"
     ],
+    "config": {
+      "plugins": [],
+      "content": []
+    },
     "options": {
       "ClassName": "",
       "Legacy": false,
@@ -1490,6 +1998,10 @@
       "markdown-h5:text-sm",
       "markdown-invert!"
     ],
+    "config": {
+      "plugins": [],
+      "content": []
+    },
     "options": {
       "ClassName": "markdown",
       "Legacy": false,

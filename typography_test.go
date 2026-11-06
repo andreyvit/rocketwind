@@ -16,6 +16,7 @@ func TestTypographyAgainstUpstream(t *testing.T) {
 		Name, CSS, Result string
 		Candidates        []string
 		Options           TypographyOptions
+		Config            ConfigObject
 	}
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
@@ -48,6 +49,20 @@ func TestTypographyAgainstUpstream(t *testing.T) {
 		tt.Result = strings.TrimPrefix(tt.Result, "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n")
 		if err != nil || strings.TrimSpace(got) != strings.TrimSpace(tt.Result) {
 			failures = append(failures, map[string]any{"index": i, "name": tt.Name, "got": got, "want": tt.Result, "error": err})
+		}
+		c, err = Compile(tt.CSS, Config{LoadModule: func(id, base, kind string) (Module, error) {
+			if kind == "config" {
+				return Module{Legacy: tt.Config}, nil
+			}
+			module, _ := standardModule(id)
+			return module, nil
+		}})
+		got = ""
+		if err == nil {
+			got, err = c.Build(tt.Candidates)
+		}
+		if err != nil || strings.TrimSpace(got) != strings.TrimSpace(tt.Result) {
+			failures = append(failures, map[string]any{"index": i, "name": tt.Name + " (config loader)", "got": got, "want": tt.Result, "error": err})
 		}
 	}
 	if len(failures) > 0 {
@@ -125,5 +140,33 @@ func TestTypographyConfiguration(t *testing.T) {
 	}
 	if base[0].Value != "red" || base[3].Nodes[0].Value != "blue" {
 		t.Fatal("plugin modified caller styles")
+	}
+}
+
+func TestTypographyThemeReferences(t *testing.T) {
+	c, err := Compile(`@plugin "@tailwindcss/typography"; @config "settings"; @tailwind utilities;`, Config{LoadModule: func(id, base, kind string) (Module, error) {
+		if kind == "plugin" {
+			module, _ := standardModule(id)
+			return module, nil
+		}
+		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"extend", ConfigObject{{"spacing", ThemeFunc(func(theme ThemeResolver) any {
+			return ConfigObject{{"prose", theme("typography.sm.css[0].fontSize")}}
+		})}}}}}}}, nil
+	}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	css, err := c.Build([]string{"p-prose"})
+	if err != nil || css != ".p-prose {\n  padding: 0.875rem;\n}\n" {
+		t.Fatal(css, err)
+	}
+
+	c, err = NewWithPlugins(Config{}, Legacy(ConfigObject{{"theme", ConfigObject{{"extend", ConfigObject{{"typography", ConfigObject{{"DEFAULT", ConfigObject{{"css", []any{ConfigObject{{"color", "red"}}, ConfigObject{{"color", "blue"}}}}}}}}}}}}}), Typography(TypographyOptions{}))
+	if err != nil {
+		t.Fatal(err)
+	}
+	css, err = c.Build([]string{"prose"})
+	if err != nil || !strings.Contains(css, "  color: blue;") || !strings.Contains(css, "  max-width: 65ch;") || strings.Contains(css, "  color: red;") {
+		t.Fatal(css, err)
 	}
 }

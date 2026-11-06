@@ -312,7 +312,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 
 - All four original CLI integration files pass against the pinned release:
   68 tests pass; two source-map cases are already skipped upstream.
-- Captured 1,098 filesystem, process and assertion operations. The Go replay
+- Captured over 1,000 filesystem, process and assertion operations. The Go replay
   passes all 64 applicable cases, including 100 source-map position checks.
   Four named exceptions require JavaScript module formats, JavaScript exports,
   or execution of the third-party tailwindcss-animate plugin.
@@ -328,6 +328,18 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Go tests, race tests and vet pass. Overall statement coverage is 97.4% with
   ordinary package-local instrumentation; whole-project 100% remains open.
   Browser optimization, the v3 profile and Bubblehouse integration remain open.
+
+### Typography configuration
+
+- All 20 latest-Tailwind typography cases now run through both the direct Go
+  options and the legacy configuration loader. The original 16 tests still
+  pass against their exact Tailwind 3.2.2 dependency; the capture checks that
+  version before running instead of accepting a newer caret-range resolution.
+- Preserve the plugin's original theme object, including CSS arrays, so other
+  theme callbacks can refer to its defaults. Theme replacement and extension
+  use the same resolved configuration as the other Go plugins.
+- Go tests pass, including defaults referenced from a spacing callback and
+  multiple CSS objects overriding the same prose declaration.
 
 ## Initial compiler performance measurements
 

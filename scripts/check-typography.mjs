@@ -7,6 +7,8 @@ import {execFileSync} from 'node:child_process'
 const [upstream,tooling,legacyTooling] = process.argv.slice(2)
 if (!legacyTooling) throw new Error('usage: node scripts/check-typography.mjs TYPOGRAPHY TOOLING V3_TOOLING')
 const require = createRequire(path.resolve(tooling,'package.json'))
+const legacyVersion = createRequire(path.resolve(legacyTooling,'package.json'))('tailwindcss/package.json').version
+if (legacyVersion !== '3.2.2') throw new Error(`Typography's original tests require Tailwind 3.2.2, found ${legacyVersion}`)
 const cache = path.resolve('.cache/typography-upstream')
 const output = path.resolve('testdata/plugins/typography')
 fs.mkdirSync(path.join(cache,'src'),{recursive:true})
@@ -63,7 +65,7 @@ async function capture(name, css, candidates, config = {}, options = {}) {
     // adapter rejects v3 raw-content entries, unrelated to plugin behavior.
     loadModule:async(id)=>({module:id==='typography-config' ? {...config,plugins:[],content:[]} : typography,base:'',path:''}),
   })
-  cases.push({name,css,candidates,options:{ClassName:options.className || '',Legacy:options.target==='legacy',Styles:styles(config.theme?.typography),Extend:styles(config.theme?.extend?.typography)},result:result.build(candidates)})
+  cases.push({name,css,candidates,config:{...config,plugins:[],content:[]},options:{ClassName:options.className || '',Legacy:options.target==='legacy',Styles:styles(config.theme?.typography),Extend:styles(config.theme?.extend?.typography)},result:result.build(candidates)})
 }
 for (const tt of original) {
   const config = tt.config

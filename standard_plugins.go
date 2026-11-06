@@ -18,7 +18,7 @@ func standardModule(name string) (Module, bool) {
 	case "@tailwindcss/container-queries":
 		return Module{Plugin: ContainerQueries(ContainerQueriesOptions{})}, true
 	case "@tailwindcss/typography":
-		return Module{Configure: func(options map[string]any) (Plugin, error) {
+		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"typography", typographyTheme}}}}, Configure: func(options map[string]any) (Plugin, error) {
 			className, _ := options["className"].(string)
 			target, _ := options["target"].(string)
 			return Typography(TypographyOptions{ClassName: className, Legacy: target == "legacy"}), nil
