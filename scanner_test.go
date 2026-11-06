@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"runtime"
 	"slices"
 	"strconv"
 	"strings"
@@ -342,5 +343,64 @@ func BenchmarkScannerLegacyBundledJavaScript(b *testing.B) {
 	for b.Loop() {
 		scanner := NewScanner(nil, ScannerOptions{Compatibility: Tailwind3})
 		scanner.ScanContent(input)
+	}
+}
+
+func TestParallelDiskScan(t *testing.T) {
+	root := t.TempDir()
+	var contents []Content
+	for i := range 100 {
+		text := fmt.Sprintf(`<div class="flex hover:w-[%dpx]">%s</div>`, i, strings.Repeat("こんにちは ", i))
+		name := filepath.Join(root, fmt.Sprintf("%03d.html", i))
+		if err := os.WriteFile(name, []byte(text), 0644); err != nil {
+			t.Fatal(err)
+		}
+		contents = append(contents, Content{Text: text, Extension: "html"})
+	}
+	for _, procs := range []int{1, 4} {
+		t.Run(strconv.Itoa(procs), func(t *testing.T) {
+			previous := runtime.GOMAXPROCS(procs)
+			defer runtime.GOMAXPROCS(previous)
+			for _, compat := range []Compatibility{Tailwind3, Tailwind4} {
+				s := NewScanner([]Source{{Base: root, Pattern: "**/*.html"}}, ScannerOptions{Compatibility: compat})
+				want := NewScanner(nil, ScannerOptions{Compatibility: compat}).ScanContent(contents)
+				if got := s.Scan(); !slices.Equal(got, want) {
+					t.Fatalf("compatibility %d: %d != %d candidates", compat, len(got), len(want))
+				}
+				if got := s.Scan(); !slices.Equal(got, want) {
+					t.Fatal("unchanged scan", got)
+				}
+				// A discovered file may disappear before a worker opens it.
+				batch := scanBatch{scanner: s}
+				s.scanDisk(append(contents, Content{Path: filepath.Join(root, "missing.html")}), &batch)
+				batch.finish()
+				if got := s.sortedCandidates(); !slices.Equal(got, want) {
+					t.Fatal("missing input", got)
+				}
+			}
+		})
+	}
+}
+
+func BenchmarkScannerColdSourceTree(b *testing.B) {
+	root := b.TempDir()
+	for i := range 1000 {
+		name := filepath.Join(root, fmt.Sprint(i/50), fmt.Sprint(i)+".go")
+		if err := os.MkdirAll(filepath.Dir(name), 0755); err != nil {
+			b.Fatal(err)
+		}
+		text := fmt.Sprintf("package page\nvar classes%d = `flex p-4 hover:text-red-500 w-[%dpx]`\n", i, i)
+		if err := os.WriteFile(name, []byte(text), 0644); err != nil {
+			b.Fatal(err)
+		}
+	}
+	for _, compat := range []Compatibility{Tailwind3, Tailwind4} {
+		b.Run(strconv.Itoa(int(compat)), func(b *testing.B) {
+			b.ReportAllocs()
+			for b.Loop() {
+				s := NewScanner([]Source{{Base: root, Pattern: "**/*.go"}}, ScannerOptions{Compatibility: compat})
+				s.Scan()
+			}
+		})
 	}
 }

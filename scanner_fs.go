@@ -2,9 +2,7 @@ package rocketwind
 
 import (
 	"io/fs"
-	"maps"
 	"path"
-	"slices"
 	"strings"
 )
 
@@ -19,7 +17,7 @@ func (s *Scanner) ScanFS(filesystems ...fs.FS) ([]string, error) {
 	if err != nil {
 		return nil, err
 	}
-	return slices.Sorted(maps.Keys(s.candidates)), nil
+	return s.sortedCandidates(), nil
 }
 
 func (s *Scanner) scanFS(batch *scanBatch, filesystems []fs.FS) error {

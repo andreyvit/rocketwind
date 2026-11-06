@@ -66,11 +66,21 @@ func (s *Scanner) Scan() []string {
 	s.discovered = false
 	s.scanned = nil
 	batch := scanBatch{scanner: s}
-	for _, content := range s.discover() {
-		s.addContent(content, true, nil, &batch)
-	}
+	s.scanDisk(s.discover(), &batch)
 	batch.finish()
-	return slices.Sorted(maps.Keys(s.candidates))
+	return s.sortedCandidates()
+}
+
+func (s *Scanner) sortedCandidates() []string {
+	if len(s.candidates) == 0 {
+		return nil
+	}
+	names := make([]string, 0, len(s.candidates))
+	for name := range s.candidates {
+		names = append(names, name)
+	}
+	slices.Sort(names)
+	return names
 }
 
 // ScanContent returns only new candidates. Raw text is always scanned. Paths
@@ -114,6 +124,10 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string, bat
 	if !ok {
 		return
 	}
+	s.addText(text, content.Extension, cssOnly, added, batch)
+}
+
+func (s *Scanner) addText(text, extension string, cssOnly bool, added *[]string, batch *scanBatch) {
 	for line := range strings.SplitSeq(text, "\n") {
 		if s.compatibility == Tailwind3 {
 			line = strings.TrimSpace(line)
@@ -140,10 +154,10 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string, bat
 				}
 			}
 		} else if batch != nil {
-			batch.add(line, cssOnly && content.Extension == "css")
+			batch.add(line, cssOnly && extension == "css")
 			s.buffer = s.buffer[:0]
 		} else {
-			s.buffer = extractScanText(s.buffer[:0], scanText{line, s.compatibility, cssOnly && content.Extension == "css"})
+			s.buffer = extractScanText(s.buffer[:0], scanText{line, s.compatibility, cssOnly && extension == "css"})
 		}
 		addScanTokens(s.candidates, s.buffer, added)
 	}
@@ -317,6 +331,12 @@ func (s *Scanner) walkWithStat(visit func(string, string, os.FileInfo), stat fun
 		entries, _ := os.ReadDir(name)
 		for _, entry := range entries {
 			child := filepath.Join(name, entry.Name())
+			// DirEntry already carries the type. Avoid a stat for ordinary
+			// files that cannot match the requested sources (for example, JS
+			// bundles and images during a Go-only manifest scan).
+			if entry.Type().IsRegular() && !s.accepts(child) {
+				continue
+			}
 			childInfo, err := entry.Info()
 			if err != nil {
 				continue
