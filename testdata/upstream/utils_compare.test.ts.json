@@ -111,115 +111,7 @@
     "test": "should sort strings with numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "p-20",
-      "p-1"
-    ],
-    "result": 19
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-12",
-      "p-20"
-    ],
-    "result": -8
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-12",
-      "p-20"
-    ],
-    "result": -8
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-12",
-      "p-1"
-    ],
-    "result": 11
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-1.5",
-      "p-12"
-    ],
-    "result": -11
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-1.5",
-      "p-1"
-    ],
-    "result": 2
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-2",
-      "p-12"
-    ],
-    "result": -10
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-2",
-      "p-1.5"
-    ],
-    "result": 1
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
       "p-0.5",
-      "p-2"
-    ],
-    "result": -2
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-0.5",
-      "p-1.5"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-0.5",
-      "p-1"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-0",
-      "p-2"
-    ],
-    "result": -2
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-0",
       "p-1"
     ],
     "result": -1
@@ -237,26 +129,62 @@
     "test": "should sort strings with numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "p-10",
-      "p-1.5"
+      "p-2",
+      "p-0"
     ],
-    "result": 9
+    "result": 2
   },
   {
     "test": "should sort strings with numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "p-10",
-      "p-12"
+      "p-2",
+      "p-0.5"
     ],
-    "result": -2
+    "result": 2
   },
   {
     "test": "should sort strings with numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "p-10",
+      "p-2",
+      "p-1"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-12",
+      "p-1"
+    ],
+    "result": 11
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-12",
       "p-2"
+    ],
+    "result": 10
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-20",
+      "p-1"
+    ],
+    "result": 19
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-20",
+      "p-12"
     ],
     "result": 8
   },
@@ -274,42 +202,69 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "p-21",
-      "p-12"
-    ],
-    "result": 9
-  },
-  {
-    "test": "should sort strings with numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "p-21",
       "p-20"
     ],
     "result": 1
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "test": "should sort strings with numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500/60",
-      "bg-red-50/70"
+      "p-10",
+      "p-2"
     ],
-    "result": 450
+    "result": 8
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-10",
+      "p-20"
+    ],
+    "result": -10
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-10",
+      "p-12"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-1.5",
+      "p-10"
+    ],
+    "result": -9
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-1.5",
+      "p-1"
+    ],
+    "result": 2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-1.5",
+      "p-2"
+    ],
+    "result": -1
   },
   {
     "test": "should sort strings with modifiers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "text-6xl/loose",
-      "bg-red-500/60"
-    ],
-    "result": 18
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/60",
+      "bg-red-500",
       "text-6xl/loose"
     ],
     "result": -18
@@ -318,28 +273,19 @@
     "test": "should sort strings with modifiers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-50/60",
-      "bg-red-500/60"
-    ],
-    "result": -450
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/60",
-      "bg-red-50/70"
-    ],
-    "result": -10
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-6xl",
-      "bg-red-500/60"
+      "text-6xl/wide",
+      "bg-red-500"
     ],
     "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl/wide",
+      "text-6xl/loose"
+    ],
+    "result": 11
   },
   {
     "test": "should sort strings with modifiers consistently using the `compare` function",
@@ -354,8 +300,143 @@
     "test": "should sort strings with modifiers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500",
-      "bg-red-500/60"
+      "text-6xl",
+      "bg-red-500"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "text-6xl/loose"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "text-6xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "bg-red-500"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/50",
+      "text-6xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/50",
+      "bg-red-500"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "text-6xl"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "bg-red-500"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "bg-red-500/50"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/60",
+      "text-5xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/60",
+      "bg-red-500"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/60",
+      "bg-red-500/50"
+    ],
+    "result": 10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "text-5xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-500/50"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-500"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-50/50"
     ],
     "result": -3
   },
@@ -363,10 +444,91 @@
     "test": "should sort strings with modifiers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500",
-      "bg-red-50/70"
+      "bg-red-50/60",
+      "bg-red-500/60"
     ],
-    "result": 450
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/60",
+      "bg-red-500"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/60",
+      "bg-red-50/50"
+    ],
+    "result": 10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/70",
+      "bg-red-500/60"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/70",
+      "bg-red-50/60"
+    ],
+    "result": 10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/70",
+      "bg-red-500/50"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/70",
+      "bg-red-500"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "bg-red-500/50"
+    ],
+    "result": 20
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "text-6xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "text-5xl"
+    ],
+    "result": -18
   },
   {
     "test": "should sort strings with modifiers consistently using the `compare` function",
@@ -378,247 +540,49 @@
     "result": 10
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500/70",
-      "text-6xl/loose"
+      "foo-123-bar-456-baz-790",
+      "foo-12-bar-34-baz-456"
     ],
-    "result": -18
+    "result": 111
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500/70",
-      "text-6xl"
+      "foo-128-bar-457-baz-789",
+      "foo-123-bar-456-baz-790"
     ],
-    "result": -18
+    "result": 5
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500/50",
-      "bg-red-500/60"
+      "foo-123-bar-457-baz-789",
+      "foo-128-bar-457-baz-789"
     ],
-    "result": -10
+    "result": -5
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "bg-red-500/50",
-      "bg-red-50/70"
-    ],
-    "result": 450
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-500/50",
-      "bg-red-500"
-    ],
-    "result": 3
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50",
-      "bg-red-500/60"
-    ],
-    "result": -450
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50",
-      "bg-red-500"
-    ],
-    "result": -450
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50",
-      "bg-red-50/70"
-    ],
-    "result": -3
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50",
-      "bg-red-50/60"
-    ],
-    "result": -3
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/50",
-      "bg-red-500/50"
-    ],
-    "result": -450
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/50",
-      "bg-red-50/70"
-    ],
-    "result": -20
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/50",
-      "bg-red-50/60"
-    ],
-    "result": -10
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "bg-red-50/50",
-      "bg-red-50"
-    ],
-    "result": 3
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-5xl",
-      "bg-red-500/50"
-    ],
-    "result": 18
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-5xl",
-      "text-6xl"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-5xl",
-      "bg-red-500/70"
-    ],
-    "result": 18
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-6xl/wide",
-      "bg-red-500/50"
-    ],
-    "result": 18
-  },
-  {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-6xl/wide",
-      "text-5xl"
+      "foo-123-bar-457-baz-789",
+      "foo-123-bar-456-baz-790"
     ],
     "result": 1
   },
   {
-    "test": "should sort strings with modifiers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "text-6xl/wide",
-      "text-6xl/loose"
-    ],
-    "result": 11
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-124-bar-456-baz-788",
-      "foo-12-bar-34-baz-45"
-    ],
-    "result": 112
-  },
-  {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-123-bar-457-baz-789",
-      "foo-124-bar-456-baz-788"
+      "foo-128-bar-457-baz-789"
     ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-457-baz-789",
-      "foo-124-bar-456-baz-788"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-457-baz-789",
-      "foo-12-bar-34-baz-45"
-    ],
-    "result": 111
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-789",
-      "foo-123-bar-457-baz-789"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-789",
-      "foo-12-bar-34-baz-45"
-    ],
-    "result": 111
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-127-bar-456-baz-789",
-      "foo-123-bar-457-baz-789"
-    ],
-    "result": 4
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-127-bar-456-baz-789",
-      "foo-124-bar-456-baz-788"
-    ],
-    "result": 3
+    "result": -5
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
@@ -634,25 +598,16 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-125-bar-456-baz-790",
-      "foo-127-bar-456-baz-789"
+      "foo-128-bar-457-baz-789"
     ],
-    "result": -2
+    "result": -3
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-125-bar-456-baz-790",
-      "foo-124-bar-456-baz-788"
-    ],
-    "result": 1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-455-baz-789",
-      "foo-124-bar-456-baz-788"
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-457-baz-789"
     ],
     "result": -1
   },
@@ -660,7 +615,61 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-455-baz-789",
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-12-bar-34-baz-456"
+    ],
+    "result": 111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-128-bar-457-baz-789"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-125-bar-456-baz-790"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-788",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-788",
       "foo-123-bar-456-baz-789"
     ],
     "result": -1
@@ -669,8 +678,8 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-455-baz-789",
-      "foo-12-bar-34-baz-45"
+      "foo-123-bar-456-baz-788",
+      "foo-12-bar-34-baz-456"
     ],
     "result": 111
   },
@@ -688,7 +697,7 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-12-bar-34-baz-4",
-      "foo-123-bar-455-baz-789"
+      "foo-123-bar-456-baz-789"
     ],
     "result": -111
   },
@@ -697,43 +706,25 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-12-bar-34-baz-4",
-      "foo-12-bar-34-baz-45"
+      "foo-123-bar-456-baz-788"
     ],
-    "result": -41
+    "result": -111
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-456-baz-788",
-      "foo-123-bar-457-baz-789"
+      "foo-12-bar-34-baz-4",
+      "foo-12-bar-34-baz-456"
     ],
-    "result": -1
+    "result": -452
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-456-baz-788",
-      "foo-123-bar-455-baz-789"
-    ],
-    "result": 1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-788",
-      "foo-123-bar-456-baz-789"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-790",
-      "foo-123-bar-456-baz-789"
+      "foo-124-bar-456-baz-788",
+      "foo-123-bar-456-baz-790"
     ],
     "result": 1
   },
@@ -741,8 +732,8 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-456-baz-790",
-      "foo-125-bar-456-baz-790"
+      "foo-124-bar-456-baz-788",
+      "foo-126-bar-455-baz-789"
     ],
     "result": -2
   },
@@ -750,35 +741,17 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-456-baz-790",
-      "foo-124-bar-456-baz-788"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-790",
-      "foo-123-bar-457-baz-789"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-126-bar-455-baz-789",
-      "foo-123-bar-456-baz-790"
-    ],
-    "result": 3
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-126-bar-455-baz-789",
+      "foo-124-bar-456-baz-788",
       "foo-125-bar-456-baz-790"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-124-bar-456-baz-788",
+      "foo-123-bar-457-baz-789"
     ],
     "result": 1
   },
@@ -786,8 +759,17 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-126-bar-455-baz-789",
-      "foo-127-bar-456-baz-789"
+      "foo-123-bar-455-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-455-baz-789",
+      "foo-123-bar-456-baz-788"
     ],
     "result": -1
   },
@@ -795,28 +777,37 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-12-bar-34-baz-456",
+      "foo-123-bar-455-baz-789",
+      "foo-12-bar-34-baz-456"
+    ],
+    "result": 111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
       "foo-123-bar-456-baz-790"
     ],
-    "result": -111
+    "result": -1
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-12-bar-34-baz-456",
+      "foo-123-bar-456-baz-789",
       "foo-123-bar-455-baz-789"
     ],
-    "result": -111
+    "result": 1
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-12-bar-34-baz-456",
-      "foo-12-bar-34-baz-45"
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-789"
     ],
-    "result": 411
+    "result": 0
   },
   {
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
@@ -832,7 +823,7 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-1-bar-2-baz-3",
-      "foo-123-bar-455-baz-789"
+      "foo-123-bar-456-baz-788"
     ],
     "result": -122
   },
@@ -841,7 +832,7 @@
     "kind": "internal:utils/compare:compare",
     "args": [
       "foo-1-bar-2-baz-3",
-      "foo-12-bar-34-baz-45"
+      "foo-12-bar-34-baz-456"
     ],
     "result": -11
   },
@@ -894,53 +885,8 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-123-bar-456-baz-789",
+      "foo-127-bar-456-baz-789",
       "foo-123-bar-456-baz-789"
-    ],
-    "result": 0
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-789",
-      "foo-125-bar-456-baz-790"
-    ],
-    "result": -2
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-789",
-      "foo-123-bar-457-baz-789"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-123-bar-456-baz-789",
-      "foo-123-bar-456-baz-790"
-    ],
-    "result": -1
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-128-bar-457-baz-789",
-      "foo-123-bar-456-baz-789"
-    ],
-    "result": 5
-  },
-  {
-    "test": "should sort strings with multiple numbers consistently using the `compare` function",
-    "kind": "internal:utils/compare:compare",
-    "args": [
-      "foo-128-bar-457-baz-789",
-      "foo-124-bar-456-baz-788"
     ],
     "result": 4
   },
@@ -948,8 +894,8 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-128-bar-457-baz-789",
-      "foo-126-bar-455-baz-789"
+      "foo-127-bar-456-baz-789",
+      "foo-125-bar-456-baz-790"
     ],
     "result": 2
   },
@@ -957,10 +903,55 @@
     "test": "should sort strings with multiple numbers consistently using the `compare` function",
     "kind": "internal:utils/compare:compare",
     "args": [
-      "foo-128-bar-457-baz-789",
-      "foo-127-bar-456-baz-789"
+      "foo-127-bar-456-baz-789",
+      "foo-128-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-127-bar-456-baz-789",
+      "foo-126-bar-455-baz-789"
     ],
     "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-45",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-45",
+      "foo-123-bar-455-baz-789"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-45",
+      "foo-12-bar-34-baz-4"
+    ],
+    "result": 41
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-45",
+      "foo-12-bar-34-baz-456"
+    ],
+    "result": -411
   },
   {
     "test": "sort is stable",

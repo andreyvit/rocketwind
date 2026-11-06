@@ -89,8 +89,14 @@ func TestUpstreamCanonicalizeCommand(t *testing.T) {
 				if !strings.Contains(out.String(), "Usage:") {
 					t.Fatal(out.String())
 				}
-			} else if out.String() != tt.Result.Stdout {
-				t.Errorf("stdout:\n%s\nwant:\n%s", out.String(), tt.Result.Stdout)
+			} else {
+				want := tt.Result.Stdout
+				if tt.Kind != "stream" && want != "" {
+					want += "\n"
+				}
+				if out.String() != want {
+					t.Errorf("stdout:\n%s\nwant:\n%s", out.String(), want)
+				}
 			}
 			errors := stderr.String()
 			if strings.Contains(tt.Test, "plugin logs") {
@@ -132,9 +138,9 @@ func TestCanonicalizeCommandOptionsAndErrors(t *testing.T) {
 		{args: []string{"--format=jsonl", "flex", "grid"}, output: "{\"input\":\"flex\",\"output\":\"flex\",\"changed\":false}\n{\"input\":\"grid\",\"output\":\"grid\",\"changed\":false}"},
 		{input: "\r\n flex\r\n  \n grid \n", output: "flex\ngrid"},
 		{args: []string{"--format=yaml"}, error: "Invalid value for --format: yaml"},
-		{args: []string{"--css"}, error: "--css requires a value"},
-		{args: []string{"--stream=perhaps"}, error: "invalid value for --stream"},
-		{args: []string{"--unknown"}, error: "unknown option"},
+		{args: []string{"--css", "--", "flex"}, error: "no such file"},
+		{args: []string{"--stream=perhaps", "flex"}, output: "flex"},
+		{args: []string{"--unknown", "--", "flex"}, output: "flex"},
 		{args: []string{"--css=missing.css", "flex"}, error: "no such file"},
 		{args: []string{"--css=invalid.css", "flex"}, error: "unknown utility"},
 		{args: []string{"--css=broken.css", "broken-x"}, error: "plugin failed"},

@@ -18,7 +18,7 @@ func TestUpstreamSyntax(t *testing.T) {
 	}{
 		{"value-parser", 34}, {"selector-parser", 118}, {"attribute-selector-parser", 21},
 		{"utils_segment", 15}, {"utils_escape", 19}, {"utils_brace-expansion", 164},
-		{"utils_compare", 955}, {"utils_to-key-path", 8}, {"utils_replace-shadow-colors", 1239},
+		{"utils_compare", 954}, {"utils_to-key-path", 8}, {"utils_replace-shadow-colors", 1239},
 	} {
 		t.Run(suite.name, func(t *testing.T) {
 			data, err := os.ReadFile("testdata/upstream/" + suite.name + ".test.ts.json")

@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 97.4%.
+- Core Go suite, race detector and vet pass. Statement coverage: 97.5%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -261,6 +261,29 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   coverage is 97.4%; tests, race tests, vet and a compiled-binary smoke test pass.
   Remaining CLI/internal suites, optimization, v3 compatibility and integration
   gates remain open.
+
+### Complete core suite and CLI helpers
+
+- Ran all 44 original core suites together: 5,188 tests pass, with one test
+  already skipped upstream. All core test files now have Go counterparts.
+- Added all 59 captured walks from 45 traversal tests, including replacements,
+  entry/exit hooks, ancestor paths, sibling identity and mutations. Traversal is
+  iterative; a 100,000-level tree also passes. New traversal code has 100%
+  statement coverage. Ported the seven LRU tests directly; as upstream does,
+  use that bounded cache only in the canonicalization test harness.
+- All 36 original CLI argument, duration and wrapping tests pass upstream;
+  their 43 captured calls pass in Go. Another 812 argument cases match the
+  reference, including numeric overflow, radix values and Unicode whitespace.
+- Aligned duplicate flags, alias priority, short flags, boolean/number unions,
+  terminal help, diagnostic wrapping and the canonicalize command's final
+  newline. CLI argument conversion has 100% statement coverage.
+- Refreshed all core captures. The randomized comparison test made one fewer
+  comparator call this run; its assertions and every captured comparison pass.
+  Total captured original upstream calls checked: 17,895, plus direct ports,
+  standard plugins and the additional differential fixtures.
+- Go tests, race tests and vet pass; overall coverage is 97.5%. CSS optimization,
+  CLI integration suites, the v3 compatibility profile, complete coverage and
+  the final performance/integration gates remain open.
 
 ## Initial compiler performance measurements
 

@@ -8,6 +8,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -22,6 +23,7 @@ type Options struct {
 	Stdout, Stderr          io.Writer
 	Modules                 map[string]rocketwind.Module
 	StdinIsTTY, StdoutIsTTY bool
+	Columns                 int
 }
 
 type flags struct {
@@ -75,7 +77,7 @@ func Run(ctx context.Context, args []string, options Options) int {
 		fmt.Fprintln(options.Stderr, err)
 		return 1
 	}
-	if f.help {
+	if f.help || (len(args) == 0 || len(args) == 1 && args[0] == "build") && (options.StdoutIsTTY || terminalFile(options.Stdout)) {
 		fmt.Fprint(options.Stdout, usage)
 		return 0
 	}
@@ -84,7 +86,7 @@ func Run(ctx context.Context, args []string, options Options) int {
 		return 0
 	}
 	if err := build(ctx, f, options); err != nil {
-		fmt.Fprintln(options.Stderr, err)
+		fmt.Fprintln(options.Stderr, formatError(err, options.Columns))
 		return 1
 	}
 	return 0
@@ -92,101 +94,61 @@ func Run(ctx context.Context, args []string, options Options) int {
 
 func parseFlags(args []string) (flags, error) {
 	f := flags{output: "-", cwd: ".", poll: 250 * time.Millisecond}
-	if len(args) > 0 && args[0] == "build" {
+	explicitBuild := len(args) > 0 && args[0] == "build"
+	if explicitBuild {
 		args = args[1:]
 	}
-	for i := 0; i < len(args); i++ {
-		key, value, hasValue := strings.Cut(args[i], "=")
-		read := func() (string, error) {
-			if hasValue {
-				return value, nil
-			}
-			i++
-			if i >= len(args) {
-				return "", fmt.Errorf("%s requires a value", key)
-			}
-			return args[i], nil
+	raw, positional := rawArguments(args)
+	values := typedArguments(map[string]argDefinition{
+		"--input":   {Type: "string", Alias: "-i"},
+		"--output":  {Type: "string", Alias: "-o", Default: "-", HasDefault: true},
+		"--cwd":     {Type: "string", Default: ".", HasDefault: true},
+		"--watch":   {Type: "boolean | string", Alias: "-w"},
+		"--poll":    {Type: "boolean | number", Default: false, HasDefault: true},
+		"--map":     {Type: "boolean | string", Default: false, HasDefault: true},
+		"--silent":  {Type: "boolean"},
+		"--help":    {Type: "boolean", Alias: "-h"},
+		"--version": {Type: "boolean"},
+		"--config":  {Type: "string"},
+	}, raw, positional)
+	str := func(key string) string { value, _ := values[key].(string); return value }
+	enabled := func(key string) bool { return values[key] == true }
+	f.input, f.output, f.cwd, f.config = str("--input"), str("--output"), str("--cwd"), str("--config")
+	f.silent, f.help, f.version = enabled("--silent"), enabled("--help"), enabled("--version")
+	if !explicitBuild && len(args) > 0 && !strings.HasPrefix(args[0], "-") && !f.help {
+		return f, fmt.Errorf("invalid command %q; use --help", args[0])
+	}
+	if watch := values["--watch"]; watch == true || str("--watch") != "" {
+		f.watch = "stdin"
+		if watch == "always" {
+			f.watch = "always"
 		}
-		switch key {
-		case "-h", "--help":
-			f.help = true
-		case "--version":
-			f.version = true
-		case "--silent":
-			f.silent = true
-		case "--map":
-			if !hasValue && i+1 < len(args) && (!strings.HasPrefix(args[i+1], "-") || args[i+1] == "-") {
-				i++
-				value, hasValue = args[i], true
-			}
-			f.inlineMap, f.sourceMap = true, ""
-			if hasValue {
-				switch value {
-				case "-":
-					return f, errors.New("Use --map without a value to inline the source map.")
-				case "true":
-				case "false":
-					f.inlineMap = false
-				default:
-					f.inlineMap, f.sourceMap = false, value
-				}
-			}
-		case "-w", "--watch":
-			f.watch = "stdin"
-			if !hasValue && i+1 < len(args) && args[i+1] == "always" {
-				i++
-				value = "always"
-				hasValue = true
-			}
-			if hasValue {
-				if value != "always" && value != "true" {
-					return f, fmt.Errorf("invalid watch mode %q", value)
-				}
-				if value == "always" {
-					f.watch = "always"
-				}
-			}
-		case "--poll":
-			if !hasValue && i+1 < len(args) {
-				if _, err := strconv.Atoi(args[i+1]); err == nil {
-					i++
-					value = args[i]
-					hasValue = true
-				}
-			}
-			if hasValue {
-				ms, err := strconv.ParseInt(value, 10, 32)
-				if err != nil || ms <= 0 {
-					return f, errors.New("Specified polling interval must be a positive number.")
-				}
-				f.poll = time.Duration(ms) * time.Millisecond
-			}
-		case "-i", "--input", "-o", "--output", "--cwd", "--config", "--content", "--exclude", "--classes":
-			value, err := read()
-			if err != nil {
-				return f, err
-			}
-			switch key {
-			case "-i", "--input":
-				f.input = value
-			case "-o", "--output":
-				f.output = value
-			case "--cwd":
-				f.cwd = value
-			case "--config":
-				f.config = value
-			case "--content":
-				for pattern := range rocketwind.Segments(value, ',') {
-					f.content = append(f.content, pattern)
-				}
-			case "--exclude":
-				f.exclude = append(f.exclude, value)
-			case "--classes":
-				f.classes = append(f.classes, strings.Fields(value)...)
-			}
-		default:
-			return f, fmt.Errorf("unknown argument %q; use --help", args[i])
+	}
+	switch poll := values["--poll"].(type) {
+	case bool: // The Go watcher polls in either mode.
+	case float64:
+		if poll <= 0 || math.IsInf(poll, 0) || poll >= float64(math.MaxInt64)/float64(time.Millisecond) {
+			return f, errors.New("Specified polling interval must be a positive number.")
 		}
+		f.poll = time.Duration(poll * float64(time.Millisecond))
+	default:
+		return f, errors.New("Use --poll with a non-zero value in milliseconds.")
+	}
+	f.inlineMap = enabled("--map")
+	f.sourceMap = str("--map")
+	if f.sourceMap == "-" {
+		return f, errors.New("Use --map without a value to inline the source map.")
+	}
+	for _, value := range raw["content"] {
+		for pattern := range rocketwind.Segments(argumentString(value), ',') {
+			f.content = append(f.content, pattern)
+		}
+	}
+	for _, value := range raw["exclude"] {
+		f.exclude = append(f.exclude, argumentString(value))
+	}
+	for _, value := range raw["classes"] {
+		f.classes = append(f.classes, strings.Fields(argumentString(value))...)
 	}
 	return f, nil
 }
@@ -234,11 +196,11 @@ func build(ctx context.Context, f flags, options Options) error {
 	if f.input != "" && f.input != "-" {
 		info, err := os.Stat(f.input)
 		if err != nil {
-			return fmt.Errorf("Specified input file %q does not exist.", f.input)
+			return fmt.Errorf("Specified input file `%s` does not exist.", relativePath(f.input, base, true))
 		}
 		outInfo, _ := os.Stat(f.output)
 		if f.input == f.output || outInfo != nil && os.SameFile(info, outInfo) {
-			return fmt.Errorf("Specified input file %q and output file %q are identical.", f.input, f.output)
+			return fmt.Errorf("Specified input file `%s` and output file `%s` are identical.", relativePath(f.input, base, true), relativePath(f.output, base, true))
 		}
 	}
 	input := `@import "tailwindcss";`
@@ -390,7 +352,7 @@ func build(ctx context.Context, f flags, options Options) error {
 		lastCSS, lastMap = css, rawMap
 		written = true
 		if !f.silent {
-			fmt.Fprintf(options.Stderr, "Done in %s\n", time.Since(start).Round(time.Microsecond))
+			fmt.Fprintf(options.Stderr, "Done in %s\n", formatNanoseconds(time.Since(start).Nanoseconds()))
 		}
 		return nil
 	}

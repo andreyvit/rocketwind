@@ -1,0 +1,170 @@
+[
+  {
+    "test": "should format 0 nanoseconds as 0ns",
+    "kind": "formatNanoseconds",
+    "args": [
+      0
+    ],
+    "result": "0ns"
+  },
+  {
+    "test": "should format 1 nanoseconds as 1ns",
+    "kind": "formatNanoseconds",
+    "args": [
+      1
+    ],
+    "result": "1ns"
+  },
+  {
+    "test": "should format 999 nanoseconds as 999ns",
+    "kind": "formatNanoseconds",
+    "args": [
+      999
+    ],
+    "result": "999ns"
+  },
+  {
+    "test": "should format 1000 nanoseconds as 1µs",
+    "kind": "formatNanoseconds",
+    "args": [
+      1000
+    ],
+    "result": "1µs"
+  },
+  {
+    "test": "should format 1001 nanoseconds as 1µs",
+    "kind": "formatNanoseconds",
+    "args": [
+      1001
+    ],
+    "result": "1µs"
+  },
+  {
+    "test": "should format 999999 nanoseconds as 999µs",
+    "kind": "formatNanoseconds",
+    "args": [
+      999999
+    ],
+    "result": "999µs"
+  },
+  {
+    "test": "should format 1000000 nanoseconds as 1ms",
+    "kind": "formatNanoseconds",
+    "args": [
+      1000000
+    ],
+    "result": "1ms"
+  },
+  {
+    "test": "should format 1000001 nanoseconds as 1ms",
+    "kind": "formatNanoseconds",
+    "args": [
+      1000001
+    ],
+    "result": "1ms"
+  },
+  {
+    "test": "should format 999999999 nanoseconds as 999ms",
+    "kind": "formatNanoseconds",
+    "args": [
+      999999999
+    ],
+    "result": "999ms"
+  },
+  {
+    "test": "should format 1000000000 nanoseconds as 1s",
+    "kind": "formatNanoseconds",
+    "args": [
+      1000000000
+    ],
+    "result": "1s"
+  },
+  {
+    "test": "should format 1000000001 nanoseconds as 1s",
+    "kind": "formatNanoseconds",
+    "args": [
+      1000000001
+    ],
+    "result": "1s"
+  },
+  {
+    "test": "should format 59999999999 nanoseconds as 59s",
+    "kind": "formatNanoseconds",
+    "args": [
+      59999999999
+    ],
+    "result": "59s"
+  },
+  {
+    "test": "should format 60000000000 nanoseconds as 1m",
+    "kind": "formatNanoseconds",
+    "args": [
+      60000000000
+    ],
+    "result": "1m"
+  },
+  {
+    "test": "should format 60000000001 nanoseconds as 1m",
+    "kind": "formatNanoseconds",
+    "args": [
+      60000000001
+    ],
+    "result": "1m"
+  },
+  {
+    "test": "should format 3599999999999n nanoseconds as 59m",
+    "kind": "formatNanoseconds",
+    "args": [
+      3599999999999
+    ],
+    "result": "59m"
+  },
+  {
+    "test": "should format 3600000000000n nanoseconds as 1h",
+    "kind": "formatNanoseconds",
+    "args": [
+      3600000000000
+    ],
+    "result": "1h"
+  },
+  {
+    "test": "should format 3600000000001n nanoseconds as 1h",
+    "kind": "formatNanoseconds",
+    "args": [
+      3600000000001
+    ],
+    "result": "1h"
+  },
+  {
+    "test": "should format 86399999999999n nanoseconds as 23h",
+    "kind": "formatNanoseconds",
+    "args": [
+      86399999999999
+    ],
+    "result": "23h"
+  },
+  {
+    "test": "should format 86400000000000n nanoseconds as 1d",
+    "kind": "formatNanoseconds",
+    "args": [
+      86400000000000
+    ],
+    "result": "1d"
+  },
+  {
+    "test": "should format 86400000000001n nanoseconds as 1d",
+    "kind": "formatNanoseconds",
+    "args": [
+      86400000000001
+    ],
+    "result": "1d"
+  },
+  {
+    "test": "should format 8640000000000000n nanoseconds as 100d",
+    "kind": "formatNanoseconds",
+    "args": [
+      8640000000000000
+    ],
+    "result": "100d"
+  }
+]

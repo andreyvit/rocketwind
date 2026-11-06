@@ -1,0 +1,90 @@
+[
+  {
+    "test": "relative > should print an absolute path relative to the current working directory",
+    "kind": "relative",
+    "args": [
+      "/Users/andreyvit/Developer/andreyvit/rocketwind/index.css",
+      "/Users/andreyvit/Developer/andreyvit/rocketwind",
+      null,
+      "/Users/andreyvit/Developer/andreyvit/rocketwind"
+    ],
+    "result": "./index.css"
+  },
+  {
+    "test": "relative > should prefer the shortest value by default",
+    "kind": "relative",
+    "args": [
+      "index.css",
+      "/Users/andreyvit/Developer/andreyvit/rocketwind",
+      null,
+      "/Users/andreyvit/Developer/andreyvit/rocketwind"
+    ],
+    "result": "index.css"
+  },
+  {
+    "test": "relative > should be possible to override the current working directory",
+    "kind": "relative",
+    "args": [
+      "../utils/index.css",
+      "..",
+      null,
+      "/Users/andreyvit/Developer/andreyvit/rocketwind"
+    ],
+    "result": "./utils/index.css"
+  },
+  {
+    "test": "relative > should be possible to always prefer the relative path",
+    "kind": "relative",
+    "args": [
+      "index.css",
+      "/Users/andreyvit/Developer/andreyvit/rocketwind",
+      {
+        "preferAbsoluteIfShorter": false
+      },
+      "/Users/andreyvit/Developer/andreyvit/rocketwind"
+    ],
+    "result": "./index.css"
+  },
+  {
+    "test": "word wrap > should wrap a sentence",
+    "kind": "wordWrap",
+    "args": [
+      "The quick brown fox jumps over the lazy dog",
+      10
+    ],
+    "result": [
+      "The quick",
+      "brown fox",
+      "jumps over",
+      "the lazy",
+      "dog"
+    ]
+  },
+  {
+    "test": "word wrap > should wrap a sentence",
+    "kind": "wordWrap",
+    "args": [
+      "The quick brown fox jumps over the lazy dog",
+      30
+    ],
+    "result": [
+      "The quick brown fox jumps over",
+      "the lazy dog"
+    ]
+  },
+  {
+    "test": "word wrap > should wrap a sentence with ANSI escape codes",
+    "kind": "wordWrap",
+    "args": [
+      "\u001b[31mThe\u001b[39m \u001b[32mquick\u001b[39m \u001b[34mbrown\u001b[39m \u001b[35mfox\u001b[39m jumps over the lazy dog",
+      10
+    ],
+    "result": [
+      "\u001b[31mThe\u001b[39m \u001b[32mquick\u001b[39m",
+      "\u001b[34mbrown\u001b[39m \u001b[35mfox\u001b[39m",
+      "jumps over",
+      "the lazy",
+      "dog"
+    ]
+  }
+]

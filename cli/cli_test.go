@@ -69,7 +69,7 @@ func TestCommandErrors(t *testing.T) {
 	write(t, root, "input.css", `@tailwind utilities;`)
 	write(t, root, "bad.css", `@theme {color:red}`)
 	for _, args := range [][]string{
-		{"--wat"}, {"-i"}, {"--watch=forever"}, {"--poll=0"}, {"--poll=foo"},
+		{"-i"}, {"--poll=0"}, {"--poll=foo"},
 		{"--input", "missing.css"}, {"--input", "input.css", "--output", "./input.css"},
 		{"--input", "bad.css"}, {"--exclude", "missing.css"}, {"--cwd", filepath.Join(root, "missing")},
 		{"--input", "input.css", "--output", "input.css/child"},

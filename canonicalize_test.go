@@ -21,7 +21,7 @@ func TestUpstreamCanonicalize(t *testing.T) {
 		t.Fatal(len(cases))
 	}
 	compilers := map[int]*Compiler{}
-	canonicalizers := map[string]*Canonicalizer{}
+	canonicalizers := fixtureCache[string, *Canonicalizer]{limit: 128}
 	var failures []map[string]any
 	for index, tt := range cases {
 		var got any
@@ -80,11 +80,8 @@ func TestUpstreamCanonicalize(t *testing.T) {
 					json.Unmarshal(tt.Args[2], &options)
 					key += "/" + string(tt.Args[2])
 				}
-				k := canonicalizers[key]
-				if k == nil {
-					k = c.NewCanonicalizer(options)
-					canonicalizers[key] = k
-				}
+				canonicalizers.factory = func(string) *Canonicalizer { return c.NewCanonicalizer(options) }
+				k := canonicalizers.Get(key)
 				got = k.Canonicalize(classes)
 			case "design.order":
 				order := c.ClassOrder(classes)

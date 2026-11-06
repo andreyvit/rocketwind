@@ -1103,10 +1103,10 @@
       {},
       [
         [
+          "pointer-events-none",
+          "px-1",
           "flex",
           "pl-1",
-          "px-1",
-          "pointer-events-none",
           "p-1"
         ]
       ]
@@ -1155,9 +1155,9 @@
       {},
       [
         [
+          "gap-4",
           "space-x-2",
-          "mx-0",
-          "gap-4"
+          "mx-0"
         ]
       ]
     ],
@@ -1180,18 +1180,18 @@
       {},
       [
         [
-          "ps-1",
           "scroll-ms-1",
-          "scroll-pe-2",
-          "scroll-ps-1",
-          "ms-1",
-          "scroll-me-2",
           "me-2",
-          "mx-3",
-          "scroll-mx-3",
+          "scroll-ps-1",
+          "scroll-me-2",
           "scroll-px-3",
-          "px-3",
-          "pe-2"
+          "pe-2",
+          "ps-1",
+          "mx-3",
+          "scroll-pe-2",
+          "scroll-mx-3",
+          "ms-1",
+          "px-3"
         ]
       ]
     ],
@@ -1214,9 +1214,9 @@
       {},
       [
         [
+          "flex",
           "focus:pointer-events-none",
           "pointer-events-none",
-          "flex",
           "hover:flex"
         ]
       ]
@@ -1240,10 +1240,10 @@
       {},
       [
         [
-          "hover:flex",
-          "focus:flex",
           "flex",
+          "hover:flex",
           "hover:focus:flex",
+          "focus:flex",
           "disabled:flex"
         ]
       ]
@@ -1267,19 +1267,19 @@
       {},
       [
         [
-          "peer-focus:group-focus:flex",
-          "peer-hover:group-hover:flex",
-          "peer-hover:flex",
-          "group-hover:peer-hover:flex",
-          "group-hover:flex",
-          "peer-focus:flex",
-          "peer-focus:group-hover:flex",
-          "group-hover:peer-focus:flex",
-          "group-focus:flex",
           "hover:flex",
           "group-focus:peer-hover:flex",
-          "peer-hover:group-focus:flex",
-          "group-focus:peer-focus:flex"
+          "peer-focus:group-hover:flex",
+          "group-hover:flex",
+          "group-focus:flex",
+          "peer-focus:group-focus:flex",
+          "peer-hover:flex",
+          "peer-focus:flex",
+          "group-hover:peer-hover:flex",
+          "group-hover:peer-focus:flex",
+          "group-focus:peer-focus:flex",
+          "peer-hover:group-hover:flex",
+          "peer-hover:group-focus:flex"
         ]
       ]
     ],

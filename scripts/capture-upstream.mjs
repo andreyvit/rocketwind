@@ -49,6 +49,7 @@ globalThis.__rocketwindRecord = (kind, args, result, error) => {
   records.push(JSON.parse(JSON.stringify({ test: expect.getState().currentTestName, kind, args, result, error }, (key,value)=>typeof value === 'bigint' ? Number(value) : typeof value === 'function' ? { $function:value.toString() } : value)))
 }
 afterAll(() => {
+  if (records.length === 0) return
   const name = expect.getState().testPath.replaceAll('\\\\', '/').split('/src/')[1].replaceAll('/', '_')
   fs.writeFileSync(${JSON.stringify(output)} + '/' + name + '.json', JSON.stringify(records, null, 2) + '\\n')
 })
@@ -60,6 +61,33 @@ export default defineConfig({
   plugins: [{
     name: 'rocketwind-record', enforce: 'pre',
     transform(code, id) {
+      if (id.endsWith('/src/walk.ts')) {
+        code = code.replace('export function walk<T extends object>(', 'function originalWalk<T extends object>(')
+        return code + \`
+          export function walk(ast,hooks) {
+            if (globalThis.__rocketwindSuite?.() !== 'walk') return originalWalk(ast,hooks)
+            const clone = value => JSON.parse(JSON.stringify(value))
+            const input=clone(ast),steps=[]
+            const enter=typeof hooks === 'function' ? hooks : hooks.enter
+            const exit=typeof hooks === 'function' ? undefined : hooks.exit
+            const wrap=(phase,fn)=>(node,ctx)=>{
+              const step=clone({phase,before:node,parent:ctx.parent,depth:ctx.depth,index:ctx.index,siblings:ctx.siblings,path:ctx.path()})
+              const action=fn?.(node,ctx)
+              step.after=clone(node)
+              step.action=clone(action ?? {kind:0})
+              steps.push(step)
+              return action
+            }
+            try {
+              originalWalk(ast,{enter:wrap('enter',enter),exit:wrap('exit',exit)})
+              globalThis.__rocketwindRecord?.('internal:walk:walk',[input,steps],ast,undefined)
+            } catch(error) {
+              globalThis.__rocketwindRecord?.('internal:walk:walk',[input,steps],ast,error.message)
+              throw error
+            }
+          }
+        \`
+      }
       const pure = {
         'value-parser': ['parse', 'toCss'],
         'selector-parser': ['parse', 'toCss'],

@@ -91,6 +91,10 @@ stylesheet rules, theme declarations or browser polyfills. Invalid classes
 produce empty strings. `CandidateAST(classes)` returns the same previews as
 editable CSS trees; editing them does not change the compiler.
 
+`Walk(nodes, hooks)` visits and edits those trees. Entry and exit hooks can skip
+children, stop, remove nodes or replace them. The context exposes ancestors and
+sibling positions. Keep the returned root slice when replacing root nodes.
+
 `Canonicalize(classes, options)` rewrites equivalent class names. For example,
 `[display:flex]` becomes `flex`; with `Collapse: true`, `mt-2 mb-2` becomes `my-2`.
 Set `Rem` to the root font size to compare `rem` and pixel values, and opt into
@@ -310,7 +314,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,794 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting, source maps, editor suggestions and canonicalization. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning and CLI helper tests also pass. Optimization and full CLI integration checks remain open, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
@@ -337,3 +341,5 @@ Parts adapted from Tailwind CSS retain Tailwind Labs' MIT license; see
 [the upstream license](testdata/upstream/LICENSE). Plugin sources and the small
 SVG encoder retain their licenses under [testdata/plugins](testdata/plugins).
 Unicode collation data retains its [Unicode license](data/collation/LICENSE).
+CLI helpers retain the [mri](testdata/upstream/MRI-LICENSE) and
+[ansi-regex](testdata/upstream/ANSI-REGEX-LICENSE) MIT licenses.

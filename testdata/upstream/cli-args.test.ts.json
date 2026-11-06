@@ -1,0 +1,318 @@
+[
+  {
+    "test": "should be possible to parse a single argument",
+    "kind": "args",
+    "args": [
+      {
+        "--input": {
+          "type": "string",
+          "description": "Input file"
+        }
+      },
+      [
+        "--input",
+        "input.css"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--input": "input.css"
+    }
+  },
+  {
+    "test": "should only return the last value for duplicate arguments",
+    "kind": "args",
+    "args": [
+      {
+        "--output": {
+          "type": "string",
+          "description": "Output file"
+        }
+      },
+      [
+        "--output",
+        "output.css",
+        "--output",
+        "override.css"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--output": "override.css"
+    }
+  },
+  {
+    "test": "uses last value when flag with \"-\" is supplied multiple times",
+    "kind": "args",
+    "args": [
+      {
+        "--output": {
+          "type": "string",
+          "description": "Output file",
+          "alias": "-o"
+        }
+      },
+      [
+        "--output",
+        "output.css",
+        "--output",
+        "-"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--output": "-"
+    }
+  },
+  {
+    "test": "should fallback to the default value if no flag is passed",
+    "kind": "args",
+    "args": [
+      {
+        "--input": {
+          "type": "string",
+          "description": "Input file",
+          "default": "input.css"
+        }
+      },
+      [
+        "--other"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--input": "input.css"
+    }
+  },
+  {
+    "test": "should fallback to null if no flag is passed and no default value is provided",
+    "kind": "args",
+    "args": [
+      {
+        "--input": {
+          "type": "string",
+          "description": "Input file"
+        }
+      },
+      [
+        "--other"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--input": null
+    }
+  },
+  {
+    "test": "should be possible to parse a single argument using the shorthand alias",
+    "kind": "args",
+    "args": [
+      {
+        "--input": {
+          "type": "string",
+          "description": "Input file",
+          "alias": "-i"
+        }
+      },
+      [
+        "-i",
+        "input.css"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--input": "input.css"
+    }
+  },
+  {
+    "test": "should convert the incoming value to the correct type",
+    "kind": "args",
+    "args": [
+      {
+        "--input": {
+          "type": "string",
+          "description": "Input file"
+        },
+        "--watch": {
+          "type": "boolean",
+          "description": "Watch mode"
+        },
+        "--retries": {
+          "type": "number",
+          "description": "Amount of retries"
+        }
+      },
+      [
+        "--input",
+        "input.css",
+        "--watch",
+        "--retries",
+        "3"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--input": "input.css",
+      "--watch": true,
+      "--retries": 3
+    }
+  },
+  {
+    "test": "should be possible to provide multiple types, and convert the value to that type",
+    "kind": "args",
+    "args": [
+      {
+        "--retries": {
+          "type": "boolean | number | string",
+          "description": "Retries"
+        }
+      },
+      [
+        "--retries"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--retries": true
+    }
+  },
+  {
+    "test": "should be possible to provide multiple types, and convert the value to that type",
+    "kind": "args",
+    "args": [
+      {
+        "--retries": {
+          "type": "boolean | number | string",
+          "description": "Retries"
+        }
+      },
+      [
+        "--retries",
+        "true"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--retries": true
+    }
+  },
+  {
+    "test": "should be possible to provide multiple types, and convert the value to that type",
+    "kind": "args",
+    "args": [
+      {
+        "--retries": {
+          "type": "boolean | number | string",
+          "description": "Retries"
+        }
+      },
+      [
+        "--retries",
+        "false"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--retries": false
+    }
+  },
+  {
+    "test": "should be possible to provide multiple types, and convert the value to that type",
+    "kind": "args",
+    "args": [
+      {
+        "--retries": {
+          "type": "boolean | number | string",
+          "description": "Retries"
+        }
+      },
+      [
+        "--retries",
+        "5"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--retries": 5
+    }
+  },
+  {
+    "test": "should be possible to provide multiple types, and convert the value to that type",
+    "kind": "args",
+    "args": [
+      {
+        "--retries": {
+          "type": "boolean | number | string",
+          "description": "Retries"
+        }
+      },
+      [
+        "--retries",
+        "indefinitely"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--retries": "indefinitely"
+    }
+  },
+  {
+    "test": "should be possible to provide boolean or number arguments",
+    "kind": "args",
+    "args": [
+      {
+        "--poll": {
+          "type": "boolean | number",
+          "description": "Use polling instead of filesystem events when watching",
+          "default": false
+        }
+      },
+      [
+        "--poll"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--poll": true
+    }
+  },
+  {
+    "test": "should be possible to provide boolean or number arguments",
+    "kind": "args",
+    "args": [
+      {
+        "--poll": {
+          "type": "boolean | number",
+          "description": "Use polling instead of filesystem events when watching",
+          "default": false
+        }
+      },
+      [
+        "--poll=50"
+      ]
+    ],
+    "result": {
+      "_": [],
+      "--poll": 50
+    }
+  },
+  {
+    "test": "should be possible to provide boolean or number arguments",
+    "kind": "args",
+    "args": [
+      {
+        "--poll": {
+          "type": "boolean | number",
+          "description": "Use polling instead of filesystem events when watching",
+          "default": false
+        }
+      },
+      [
+        "--poll=foo"
+      ]
+    ],
+    "result": {
+      "_": []
+    }
+  }
+]

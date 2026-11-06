@@ -9,7 +9,6 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"strconv"
 	"strings"
 
 	"github.com/andreyvit/rocketwind"
@@ -60,57 +59,19 @@ func canonicalizeCommand(ctx context.Context, args []string, options Options) in
 }
 
 func parseCanonicalizeFlags(args []string) (canonicalizeFlags, error) {
-	f := canonicalizeFlags{cwd: ".", format: "text"}
-	for i := 0; i < len(args); i++ {
-		key, value, hasValue := strings.Cut(args[i], "=")
-		read := func() (string, error) {
-			if hasValue {
-				return value, nil
-			}
-			i++
-			if i == len(args) {
-				return "", fmt.Errorf("%s requires a value", key)
-			}
-			return args[i], nil
-		}
-		switch key {
-		case "--":
-			f.inputs = append(f.inputs, args[i+1:]...)
-			i = len(args)
-		case "--css", "--cwd", "--format":
-			value, err := read()
-			if err != nil {
-				return f, err
-			}
-			switch key {
-			case "--css":
-				f.css = value
-			case "--cwd":
-				f.cwd = value
-			case "--format":
-				f.format = value
-			}
-		case "--stream", "--help", "-h":
-			enabled := true
-			if hasValue {
-				var err error
-				enabled, err = strconv.ParseBool(value)
-				if err != nil {
-					return f, fmt.Errorf("invalid value for %s: %s", key, value)
-				}
-			}
-			if key == "--stream" {
-				f.stream = enabled
-			} else {
-				f.help = enabled
-			}
-		default:
-			if strings.HasPrefix(key, "--") {
-				return f, fmt.Errorf("unknown option %s", key)
-			}
-			f.inputs = append(f.inputs, args[i])
-		}
-	}
+	raw, positional := rawArguments(args)
+	values := typedArguments(map[string]argDefinition{
+		"--css":    {Type: "string"},
+		"--cwd":    {Type: "string", Default: ".", HasDefault: true},
+		"--format": {Type: "string", Default: "text", HasDefault: true},
+		"--stream": {Type: "boolean"},
+		"--help":   {Type: "boolean", Alias: "-h"},
+	}, raw, positional)
+	f := canonicalizeFlags{inputs: positional}
+	f.css, _ = values["--css"].(string)
+	f.cwd, _ = values["--cwd"].(string)
+	f.format, _ = values["--format"].(string)
+	f.stream, f.help = values["--stream"] == true, values["--help"] == true
 	if f.format != "text" && f.format != "json" && f.format != "jsonl" {
 		return f, fmt.Errorf("Invalid value for --format: %s", f.format)
 	}
@@ -198,6 +159,9 @@ func runCanonicalize(ctx context.Context, f canonicalizeFlags, options Options) 
 		results = append(results, result)
 	}
 	output := formatCandidateResults(results, f.format)
+	if output != "" {
+		output += "\n"
+	}
 	_, err = io.WriteString(options.Stdout, output)
 	return err
 }

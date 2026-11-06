@@ -1,0 +1,8582 @@
+[
+  {
+    "type": "boolean",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "-Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": -1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-1e309"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--no-v"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "18446744073709552000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1e309"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-1e309"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1.2676506002282294e+30"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": "Infinity"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0.5"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--no-v"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "-Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": -1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--no-v"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "-Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": -1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      ""
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "-"
+    ],
+    "result": {
+      "_": [],
+      "--value": "-"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "true"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0x10000000000000000"
+    ],
+    "result": {
+      "_": [],
+      "--value": 18446744073709552000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "-Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "-1e309"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1e-400"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffff"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1.2676506002282294e+30
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "NaN"
+    ],
+    "result": {
+      "_": [],
+      "--value": "NaN"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "+Inf"
+    ],
+    "result": {
+      "_": [],
+      "--value": "+Inf"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "Infinity"
+    ],
+    "result": {
+      "_": [],
+      "--value": {
+        "$number": "Infinity"
+      }
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value= 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      " 1 "
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "﻿1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value= \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      " \t"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": -1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "-1"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1e3"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1000
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "01"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0x1p2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x1p2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1_000"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1_000"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=.5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      ".5"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0.5
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0b2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0b2"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0o8"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0o8"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=--"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": "--no-v"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "--no-v"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "x"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "𝕩"
+    ],
+    "result": {
+      "_": [],
+      "--value": "𝕩"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "0xfffffffffffffffffffffffffg"
+    ],
+    "result": {
+      "_": [],
+      "--value": "0xfffffffffffffffffffffffffg"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value= 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      " 1﻿"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value=1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-abc=7"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "---value=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": "false"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": 0
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--no-value"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--no-value=false"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--=x"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "---"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-"
+    ],
+    "result": {
+      "_": [
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--"
+    ],
+    "result": {
+      "_": [],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value="
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      ""
+    ],
+    "result": {
+      "_": [
+        ""
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": "true"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-vv"
+    ],
+    "result": {
+      "_": [],
+      "--value": true
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "1"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--value",
+      "1",
+      "-v",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 1
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": []
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 2
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "2"
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": "2"
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 2
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 2
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "-v",
+      "1",
+      "--value",
+      "2"
+    ],
+    "result": {
+      "_": [],
+      "--value": 2
+    }
+  },
+  {
+    "type": "boolean",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": false
+    }
+  },
+  {
+    "type": "number",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "string",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | string",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "number | string",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  },
+  {
+    "type": "boolean | number | string",
+    "argv": [
+      "--",
+      "--value",
+      "-"
+    ],
+    "result": {
+      "_": [
+        "--value",
+        "__IO_DEFAULT_VALUE__"
+      ],
+      "--value": null
+    }
+  }
+]
