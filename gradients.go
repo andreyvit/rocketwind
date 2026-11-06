@@ -1,8 +1,16 @@
 package rocketwind
 
-import "strings"
+import (
+	"cmp"
+	"strconv"
+	"strings"
+)
 
 func compareBreakpoints(a, z string) int {
+	return compareBreakpointValues(a, z, false)
+}
+
+func compareBreakpointValues(a, z string, descending bool) int {
 	unit := func(s string) string {
 		if i := strings.IndexByte(s, '('); i >= 0 {
 			return s[:i]
@@ -16,7 +24,23 @@ func compareBreakpoints(a, z string) int {
 	if v := strings.Compare(unit(a), unit(z)); v != 0 {
 		return v
 	}
-	return naturalCompare(a, z)
+	number := func(s string) (float64, error) {
+		i := 0
+		for i < len(s) && (digit(s[i]) || strings.ContainsRune("+-.", rune(s[i]))) {
+			i++
+		}
+		return strconv.ParseFloat(s[:i], 64)
+	}
+	x, err := number(a)
+	y, err2 := number(z)
+	if err != nil || err2 != nil {
+		return strings.Compare(a, z)
+	}
+	v := cmp.Compare(x, y)
+	if descending {
+		v = -v
+	}
+	return v
 }
 
 func (b *buildContext) gradient(root, value, mod, dataType string, arbitrary, modArbitrary bool) []*Node {

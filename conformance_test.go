@@ -9,7 +9,16 @@ import (
 )
 
 func TestUpstreamUtilities(t *testing.T) {
-	data, err := os.ReadFile("testdata/upstream/utilities.test.ts.json")
+	checkCompilerSuite(t, "utilities", 749)
+}
+
+func TestUpstreamVariants(t *testing.T) {
+	checkCompilerSuite(t, "variants", 1009)
+}
+
+func checkCompilerSuite(t *testing.T, suite string, count int) {
+	t.Helper()
+	data, err := os.ReadFile("testdata/upstream/" + suite + ".test.ts.json")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -20,15 +29,23 @@ func TestUpstreamUtilities(t *testing.T) {
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 749 {
-		t.Fatalf("got %d calls, want 749", len(cases))
+	if len(cases) != count {
+		t.Fatalf("got %d calls, want %d", len(cases), count)
 	}
 	var failures []map[string]any
 	passed := 0
 	for i, tt := range cases {
 		var input string
 		json.Unmarshal(tt.Args[0], &input)
-		c, err := Compile(input, Config{})
+		config := Config{}
+		if suite == "variants" && tt.Test == "matchVariant sorts deterministically" {
+			// Port the upstream test's plugin callback to Go; retain its reference CSS.
+			config.Plugins = map[string]Plugin{"./plugin.js": func(api *PluginAPI) error {
+				api.MatchVariant(Variant{Name: "is-data", Values: []NamedValue{{"", "default"}, {"foo", "foo"}, {"bar", "bar"}}, Match: func(value, modifier string) string { return "&:is([data-" + value + "])" }})
+				return nil
+			}}
+		}
+		c, err := Compile(input, config)
 		got := ""
 		if err == nil && tt.Kind == "compile.build" {
 			var builds [][]string
@@ -50,7 +67,7 @@ func TestUpstreamUtilities(t *testing.T) {
 	if len(failures) > 0 {
 		os.MkdirAll(".cache", 0755)
 		report, _ := json.MarshalIndent(failures, "", "  ")
-		os.WriteFile(".cache/utilities-failures.json", report, 0644)
-		t.Fatalf("%d/%d upstream calls match; %d failures in .cache/utilities-failures.json (first: %s)", passed, len(cases), len(failures), failures[0]["test"])
+		os.WriteFile(".cache/"+suite+"-failures.json", report, 0644)
+		t.Fatalf("%d/%d upstream calls match; %d failures in .cache/%s-failures.json (first: %s)", passed, len(cases), len(failures), suite, failures[0]["test"])
 	}
 }

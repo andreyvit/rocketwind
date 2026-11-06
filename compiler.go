@@ -25,6 +25,8 @@ type Config struct {
 	// InlineTheme emits resolved values rather than theme variable references.
 	InlineTheme bool
 	Prefix      string
+	Variants    []Variant
+	Plugins     map[string]Plugin
 }
 
 type Compiler struct {
@@ -37,11 +39,17 @@ type Compiler struct {
 	custom                map[string][]*Node
 	customFunctional      map[string][][]*Node
 	customOrder           []string
+	customVariants        map[string]variantDefinition
+	matchingVariants      map[string]*Variant
 }
 
 func New(config Config) *Compiler {
 	config.Theme = maps.Clone(config.Theme)
-	return &Compiler{config: config}
+	c := &Compiler{config: config, customVariants: map[string]variantDefinition{}, matchingVariants: map[string]*Variant{}}
+	for _, variant := range config.Variants {
+		c.addVariant(variant)
+	}
+	return c
 }
 
 func (c *Compiler) Build(candidates []string) (string, error) {

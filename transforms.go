@@ -282,7 +282,7 @@ func nestSelector(selector, parent string) string {
 		}
 		selectors = append(selectors, s)
 	}
-	return strings.ReplaceAll(strings.Join(selectors, ", "), " *::selection", " ::selection")
+	return normalizeSelector(strings.Join(selectors, ", "))
 }
 
 func deadSelector(s string) bool {

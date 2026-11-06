@@ -52,7 +52,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 749 compiler calls captured from the upstream utility tests match exactly, along with 222 CSS parser calls and 66 arbitrary-value decoding calls. Full compiler compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 749 utility and 1,009 variant compiler calls captured from upstream tests match exactly, along with 222 CSS parser calls and 66 arbitrary-value decoding calls. Full compiler compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

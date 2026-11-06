@@ -21,7 +21,9 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Upstream v4.3.4 checked out for reference.
 - CSS parser: 222 upstream calls passing. Arbitrary value decoder: 66 passing.
 - Utilities: all 749 captured compiler calls from 400 upstream tests match exactly.
+- Variants: all 1,009 captured compiler calls from 104 upstream tests match exactly;
+  the upstream matchVariant test plugin is ported to a Go callback.
 - Core Go suite and race detector pass. Statement coverage: 91.6% at this stage.
-- Remaining: complete variants, stylesheet features, dynamic settings, plugins,
+- Remaining: broader stylesheet features, dynamic settings, standard plugins,
   scanning/CLI, existing-CSS exclusion, coverage/performance and integration gates.
 - Implementation and conformance gates remain open.

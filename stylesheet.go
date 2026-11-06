@@ -77,7 +77,37 @@ func Compile(input string, config Config) (*Compiler, error) {
 					}
 					c.customOrder = append(c.customOrder, name)
 					continue
-				case "@config", "@plugin":
+				case "@custom-variant":
+					name, selector, _ := strings.Cut(n.Value, " ")
+					template := n.Nodes
+					if selector != "" {
+						selector = strings.TrimSpace(selector)
+						if len(selector) < 2 || selector[0] != '(' || selector[len(selector)-1] != ')' {
+							return nil, fmt.Errorf("Invalid custom variant: %s", n.Value)
+						}
+						template = nil
+						for part := range Segments(selector[1:len(selector)-1], ',') {
+							part = strings.TrimSpace(part)
+							if strings.HasPrefix(part, "@") {
+								name, value, _ := strings.Cut(part, " ")
+								template = append(template, &Node{Kind: "at-rule", Name: name, Value: value, Nodes: []*Node{{Kind: "slot"}}})
+							} else {
+								template = append(template, &Node{Kind: "rule", Name: part, Nodes: []*Node{{Kind: "slot"}}})
+							}
+						}
+					}
+					c.customVariants[name] = variantDefinition{Kind: "static", Order: 100 + len(c.customVariants), Compounds: variantCompounds(template), Nodes: template}
+					continue
+				case "@plugin":
+					name := strings.Trim(n.Value, "\"'")
+					if plugin := c.config.Plugins[name]; plugin != nil {
+						if err := plugin(&PluginAPI{compiler: c}); err != nil {
+							return nil, err
+						}
+						continue
+					}
+					return nil, fmt.Errorf("%s requires a Go configuration or plugin", n.Name)
+				case "@config":
 					return nil, fmt.Errorf("%s requires a Go configuration or plugin", n.Name)
 				}
 			}
