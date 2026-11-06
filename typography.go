@@ -48,11 +48,32 @@ func Typography(options TypographyOptions) Plugin {
 			}
 		}
 		styles := options.Styles
+		extraStyles := options.Extend
 		if styles == nil {
 			styles = typographyStyles
+			if configured := configObject(api.ThemeValue("typography")); configured != nil {
+				var configuredStyles []TypographyStyle
+				for _, entry := range configured {
+					var nodes []*Node
+					css := configObject(entry.Value).Get("css")
+					if array, ok := css.([]any); ok {
+						for _, part := range array {
+							nodes = mergeTypographyNodes(nodes, configStyleNodes(part))
+						}
+					} else {
+						nodes = configStyleNodes(css)
+					}
+					configuredStyles = append(configuredStyles, TypographyStyle{Name: entry.Key, Nodes: nodes})
+				}
+				if api.compiler.legacyReplaced["typography"] {
+					styles = configuredStyles
+				} else {
+					extraStyles = append(configuredStyles, extraStyles...)
+				}
+			}
 		}
 		styles = append([]TypographyStyle(nil), styles...)
-		for _, extra := range options.Extend {
+		for _, extra := range extraStyles {
 			found := false
 			for i := range styles {
 				if styles[i].Name == extra.Name {

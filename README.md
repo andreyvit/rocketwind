@@ -9,8 +9,8 @@ class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
 Go plugin API work, along with typed settings, named classes, forms and
-typography and the other standard plugins. The CLI and compatibility profiles
-are still being built.
+typography and the other standard plugins. The CLI works; browser-specific
+optimization, compatibility profiles and the full coverage gate remain open.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -258,8 +258,14 @@ The same operations are available in Go as `Optimize(css, options)` and
 Optimization keeps value precision; it does not choose every shorthand or
 shorter color spelling used by Lightning CSS.
 
-Browser-specific transforms and the full upstream CLI integration suite are
-still being checked.
+All 64 applicable cases from the upstream CLI integration suite pass in Go,
+including watch sequences, plugin callbacks and source-map positions. Four
+cases require JavaScript execution; two others are already skipped upstream.
+Browser-specific optimization transforms are still being checked.
+
+Applications can call `cli.Run` with Go modules registered in `cli.Options`.
+Use `ResolveModule` for configuration that changes on disk; report its dependency
+filenames through the callback so watch mode rebuilds when they change.
 
 For source maps in Go, set `Config.From` to the entry stylesheet's filename,
 then call `BuildWithSourceMap` on the compiler or an incremental builder.

@@ -29,8 +29,16 @@ type Scanner struct {
 	buffer                  []Extracted
 }
 
-func NewScanner(sources []Source) *Scanner {
-	prepared, rules := prepareScanSources(sources)
+// ScannerOptions controls filesystem discovery. Base is the working directory
+// used to bound ancestor ignore rules; an empty Base uses the process directory.
+type ScannerOptions struct{ Base string }
+
+func NewScanner(sources []Source, options ...ScannerOptions) *Scanner {
+	base := ""
+	if len(options) > 0 {
+		base = options[0].Base
+	}
+	prepared, rules := prepareScanSources(sources, base)
 	return &Scanner{sources: prepared, rules: rules, candidates: map[string]bool{}, files: map[string]bool{}, dirs: map[string]bool{}, extensions: map[string]bool{}, mtimes: map[string]time.Time{}}
 }
 
@@ -43,7 +51,7 @@ func (c *Compiler) NewScanner(base string) *Scanner {
 	} else if !c.root.Disabled {
 		sources = append(sources, Source{Base: c.root.Base, Pattern: c.root.Pattern})
 	}
-	return NewScanner(append(sources, c.sources...))
+	return NewScanner(append(sources, c.sources...), ScannerOptions{Base: base})
 }
 
 // Scan discovers files, reads additions and changes, and returns all candidates.

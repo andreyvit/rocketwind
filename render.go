@@ -111,17 +111,6 @@ func (b *buildContext) render(nodes []*Node) string {
 			}
 		}
 	}
-	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
-		if mappings == nil && b.outputAST == nil {
-			out.WriteString("@layer properties;\n")
-		} else {
-			first := propertyDefaults
-			if len(inheritedDefaults) > 0 {
-				first = inheritedDefaults
-			}
-			b.writeOutput(&out, []*Node{withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: "properties"}, location(first[0]))}, mappings)
-		}
-	}
 	var themeNodes []*Node
 	if len(b.used) > 0 {
 		for {
@@ -167,7 +156,7 @@ func (b *buildContext) render(nodes []*Node) string {
 		themeNodes = []*Node{withLocation(&Node{Kind: "rule", Name: ":root, :host", Nodes: themeNodes}, b.compiler.themeSource)}
 	}
 	if !b.compiler.hasInput || b.standalone {
-		b.writeOutput(&out, themeNodes, mappings)
+		nodes = append(themeNodes, nodes...)
 	} else {
 		var expand func([]*Node) []*Node
 		expand = func(input []*Node) []*Node {
@@ -194,6 +183,19 @@ func (b *buildContext) render(nodes []*Node) string {
 		nodes = b.polyfillColors(nodes, false)
 	}
 	nodes = flattenRules(nodes, "")
+	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
+		first := propertyDefaults
+		if len(inheritedDefaults) > 0 {
+			first = inheritedDefaults
+		}
+		// Imports and charset must precede every layer statement. Keep license
+		// comments in place, as Tailwind does when inserting this fallback layer.
+		at := 0
+		for at < len(nodes) && (nodes[at].Kind == "comment" || nodes[at].Name == "@charset" || nodes[at].Name == "@import") {
+			at++
+		}
+		nodes = slices.Insert(nodes, at, withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: "properties"}, location(first[0])))
+	}
 	b.writeOutput(&out, nodes, mappings)
 	b.writeOutput(&out, globals, mappings)
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {

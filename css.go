@@ -40,9 +40,24 @@ type cssParser struct {
 	optimize        bool
 }
 
+// SyntaxError identifies an invalid CSS token. File is empty when source
+// locations were disabled. Line and Column are one-based UTF-16 positions.
+type SyntaxError struct {
+	File         string
+	Line, Column int
+	Message      string
+}
+
+func (e *SyntaxError) Error() string {
+	if e.File == "" {
+		return e.Message
+	}
+	return fmt.Sprintf("%s:%d:%d: %s", e.File, e.Line, e.Column, e.Message)
+}
+
 func (p *cssParser) fail(at int, message string) error {
 	if p.filename == "" {
-		return fmt.Errorf("%s", message)
+		return &SyntaxError{Message: message}
 	}
 	line, col := 1, 1
 	for _, r := range p.input[:at] {
@@ -56,7 +71,7 @@ func (p *cssParser) fail(at int, message string) error {
 			}
 		}
 	}
-	return fmt.Errorf("%s:%d:%d: %s", p.filename, line, col, message)
+	return &SyntaxError{File: p.filename, Line: line, Column: col, Message: message}
 }
 
 func (p *cssParser) span(n *Node, start, end int) *Node {

@@ -308,6 +308,27 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   complete CLI integration checks, whole-project coverage, v3 compatibility and
   the final performance/integration gates remain open.
 
+### Complete CLI integration replay
+
+- All four original CLI integration files pass against the pinned release:
+  68 tests pass; two source-map cases are already skipped upstream.
+- Captured 1,098 filesystem, process and assertion operations. The Go replay
+  passes all 64 applicable cases, including 100 source-map position checks.
+  Four named exceptions require JavaScript module formats, JavaScript exports,
+  or execution of the third-party tailwindcss-animate plugin.
+- Go ports supply the test plugins and file-backed configuration callbacks.
+  `cli.Options.ResolveModule` supports those callbacks and reports dependencies
+  to watch mode. The self-scanning test runs a real instrumented Go binary.
+- Fixed property-layer placement after external imports, ancestor ignore
+  boundaries, typography theme overrides, CLI parse-error filenames, generated
+  license/source-map offsets and failed-watch completion messages.
+- Actual terminal detection now uses the OS terminal API; `/dev/null` is no
+  longer mistaken for a terminal. Darwin and Linux PTY tests cover terminals;
+  Windows and Linux CLI binaries cross-compile.
+- Go tests, race tests and vet pass. Overall statement coverage is 97.4% with
+  ordinary package-local instrumentation; whole-project 100% remains open.
+  Browser optimization, the v3 profile and Bubblehouse integration remain open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

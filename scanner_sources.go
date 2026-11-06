@@ -47,7 +47,7 @@ type scannedSource struct {
 	glob                scanGlob
 }
 
-func normalizeScanSource(source Source) scannedSource {
+func normalizeScanSource(source Source, cwd ...string) scannedSource {
 	base, err := filepath.EvalSymlinks(source.Base)
 	if err != nil {
 		return scannedSource{base: source.Base, pattern: source.Pattern, kind: "pattern", glob: newScanGlob(source.Pattern)}
@@ -94,23 +94,42 @@ func normalizeScanSource(source Source) scannedSource {
 				break
 			}
 		}
-		if kind == "auto" && scanIgnoredSource(base) {
+		if kind == "auto" && scanIgnoredSource(base, cwd...) {
 			kind = "external"
 		}
 	}
 	return scannedSource{base: base, pattern: pattern, kind: kind, glob: newScanGlob(strings.TrimPrefix(pattern, "/"))}
 }
 
-func scanIgnoredSource(base string) bool {
-	for dir := filepath.Dir(base); ; dir = filepath.Dir(dir) {
-		data, _ := os.ReadFile(filepath.Join(dir, ".gitignore"))
-		rules := newScanIgnores(dir, string(data), false)
-		for path := base; path != dir; path = filepath.Dir(path) {
-			if scanIgnoreMatch(rules, path, true) == 1 {
-				return true
-			}
-			if filepath.Dir(path) == path {
-				break
+func scanIgnoredSource(base string, workingDirectory ...string) bool {
+	cwd := ""
+	if len(workingDirectory) > 0 {
+		cwd = workingDirectory[0]
+	}
+	if cwd == "" {
+		cwd, _ = os.Getwd()
+	}
+	if canonical, err := filepath.EvalSymlinks(cwd); err == nil {
+		cwd = canonical
+	}
+	insideRepo := false
+	for dir := base; ; dir = filepath.Dir(dir) {
+		if _, err := os.Stat(filepath.Join(dir, ".git")); err == nil {
+			insideRepo = true
+			break
+		}
+		if dir == filepath.Dir(dir) {
+			break
+		}
+	}
+	for dir := base; ; dir = filepath.Dir(dir) {
+		if dir != base {
+			data, _ := os.ReadFile(filepath.Join(dir, ".gitignore"))
+			rules := newScanIgnores(dir, string(data), false)
+			for path := base; path != dir; path = filepath.Dir(path) {
+				if scanIgnoreMatch(rules, path, true) == 1 {
+					return true
+				}
 			}
 		}
 		if _, err := os.Stat(filepath.Join(dir, ".git")); err == nil {
@@ -119,11 +138,16 @@ func scanIgnoredSource(base string) bool {
 		if filepath.Dir(dir) == dir {
 			break
 		}
+		if !insideRepo {
+			if _, within := scanRelative(dir, cwd); within {
+				break
+			}
+		}
 	}
 	return false
 }
 
-func prepareScanSources(input []Source) ([]scannedSource, []scanIgnore) {
+func prepareScanSources(input []Source, cwd ...string) ([]scannedSource, []scanIgnore) {
 	var sources []scannedSource
 	for _, source := range input {
 		patterns, err := Expand(source.Pattern)
@@ -132,7 +156,7 @@ func prepareScanSources(input []Source) ([]scannedSource, []scanIgnore) {
 		}
 		for _, pattern := range patterns {
 			source.Pattern = pattern
-			sources = append(sources, normalizeScanSource(source))
+			sources = append(sources, normalizeScanSource(source, cwd...))
 		}
 	}
 	sources = restrictScanSources(sources)

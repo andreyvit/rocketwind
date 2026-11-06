@@ -124,7 +124,7 @@ func runCanonicalize(ctx context.Context, f canonicalizeFlags, options Options) 
 		base = filepath.Dir(file)
 	}
 	fs := rocketwind.Filesystem{Root: base, Modules: options.Modules}
-	c, err := rocketwind.Compile(input, rocketwind.Config{Base: base, LoadStylesheet: fs.LoadStylesheet, LoadModule: fs.LoadModule})
+	c, err := rocketwind.Compile(input, rocketwind.Config{Base: base, LoadStylesheet: fs.LoadStylesheet, LoadModule: options.moduleLoader(fs, func(string) {})})
 	if err != nil {
 		return err
 	}

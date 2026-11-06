@@ -24,6 +24,10 @@ type Options struct {
 	Modules                 map[string]rocketwind.Module
 	StdinIsTTY, StdoutIsTTY bool
 	Columns                 int
+	// ResolveModule can load application-specific Go modules and configuration.
+	// Report absolute dependency filenames for watch mode. Returning nil, nil
+	// falls back to Modules, built-in plugins and JSON files.
+	ResolveModule func(id, base, kind string, dependency func(string)) (*rocketwind.Module, error)
 }
 
 type flags struct {
@@ -223,6 +227,8 @@ func build(ctx context.Context, f flags, options Options) error {
 	var lastCSS, lastMap string
 	written := false
 	optimizer := optimizationCache{options: rocketwind.OptimizeOptions{Minify: f.minify, From: f.output}}
+	var banner bannerCache
+	var features rocketwind.Features
 	compile := func() error {
 		deps := map[string]stamp{}
 		dependency := func(path string) { deps[path] = fileStamp(path) }
@@ -254,14 +260,12 @@ func build(ctx context.Context, f flags, options Options) error {
 			return err
 		}
 		fs := rocketwind.Filesystem{Root: entryBase, Modules: options.Modules, OnDependency: dependency}
-		from := ""
-		if f.inlineMap || f.sourceMap != "" {
-			from = f.input
-			if from == "" || from == "-" {
-				from = "<stdin>"
-			}
+		loadModule := options.moduleLoader(fs, dependency)
+		from := f.input
+		if from == "" || from == "-" {
+			from = "<stdin>"
 		}
-		compiled, err := rocketwind.Compile(text, rocketwind.Config{From: from, Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: fs.LoadModule, ExistingClasses: classes})
+		compiled, err := rocketwind.Compile(text, rocketwind.Config{From: from, Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: loadModule, ExistingClasses: classes})
 		if err != nil {
 			return err
 		}
@@ -305,7 +309,8 @@ func build(ctx context.Context, f flags, options Options) error {
 			sources = append(sources, rocketwind.Source{Base: filepath.Dir(executable), Pattern: filepath.Base(executable), Negated: true})
 		}
 		builder = compiled.NewBuilder()
-		scanner = rocketwind.NewScanner(sources)
+		features = compiled.Features()
+		scanner = rocketwind.NewScanner(sources, rocketwind.ScannerOptions{Base: base})
 		dependencies = deps
 		return nil
 	}
@@ -317,6 +322,9 @@ func build(ctx context.Context, f flags, options Options) error {
 		if f.inlineMap || f.sourceMap != "" {
 			var sourceMap *rocketwind.SourceMap
 			css, sourceMap, err = builder.BuildWithSourceMap(classes)
+			if err == nil && features != 0 {
+				css, sourceMap = banner.run(css, sourceMap)
+			}
 			if err == nil && (f.minify || f.optimize) {
 				css, sourceMap, err = optimizer.run(css, sourceMap)
 			}
@@ -337,6 +345,9 @@ func build(ctx context.Context, f flags, options Options) error {
 			}
 		} else {
 			css, err = builder.Build(classes)
+			if err == nil && features != 0 {
+				css, _ = banner.run(css, nil)
+			}
 			if err == nil && (f.minify || f.optimize) {
 				css, _, err = optimizer.run(css, nil)
 			}
@@ -394,6 +405,7 @@ func build(ctx context.Context, f flags, options Options) error {
 		case <-closed:
 			return nil
 		case <-ticker.C:
+			start := time.Now()
 			var err error
 			for name, old := range dependencies {
 				if fileStamp(name) != old {
@@ -406,7 +418,10 @@ func build(ctx context.Context, f flags, options Options) error {
 			}
 			if err != nil {
 				if err.Error() != lastError {
-					fmt.Fprintln(options.Stderr, err)
+					fmt.Fprintln(options.Stderr, formatError(err, options.Columns))
+					if !f.silent {
+						fmt.Fprintf(options.Stderr, "Done in %s\n", formatNanoseconds(time.Since(start).Nanoseconds()))
+					}
 					lastError = err.Error()
 				}
 			} else {

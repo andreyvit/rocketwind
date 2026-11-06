@@ -7,6 +7,8 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+
+	"github.com/andreyvit/rocketwind"
 )
 
 func formatNanoseconds(ns int64) string {
@@ -85,6 +87,9 @@ func wordWrap(text string, width int) []string {
 }
 
 func formatError(err error, columns int) string {
+	if _, ok := err.(*rocketwind.SyntaxError); ok {
+		return "CssSyntaxError: " + err.Error()
+	}
 	if columns <= 0 {
 		columns = int(^uint(0) >> 1)
 	}
