@@ -31,7 +31,8 @@ var v3SimpleRegexps = []*regexp.Regexp{
 func appendExtractedV3(dst []Extracted, input string) []Extracted {
 	start := len(dst)
 	patterns := v3ExtractRegexps
-	if !strings.ContainsAny(input, "[:") && strings.IndexFunc(input, func(r rune) bool { return r >= 128 }) < 0 {
+	ascii := strings.IndexFunc(input, func(r rune) bool { return r >= 128 }) < 0
+	if !strings.ContainsAny(input, "[:") && ascii {
 		dst = appendV3PlainTokens(dst, input)
 		patterns = nil
 	} else if !strings.ContainsRune(input, '[') || !strings.ContainsRune(input, ':') && !strings.Contains(input, "-[") {
@@ -40,14 +41,32 @@ func appendExtractedV3(dst []Extracted, input string) []Extracted {
 		patterns = v3SimpleRegexps[2:]
 	}
 	for _, pattern := range patterns {
+		var dfa *extractDFA
+		if ascii {
+			if pattern == v3ExtractRegexps[0] {
+				dfa = &v3ExtractDFAs[0]
+			} else if pattern == v3ExtractRegexps[1] {
+				dfa = &v3ExtractDFAs[1]
+			}
+		}
 		// Only whole-match offsets are needed. FindAllStringIndex collects
 		// every match and pads unused capture groups in the legacy patterns.
 		for offset := 0; offset < len(input); {
-			span := pattern.FindStringIndex(input[offset:])
-			if span == nil {
+			begin, end, handled := 0, 0, false
+			if dfa != nil {
+				begin, end, handled = dfa.find(input[offset:])
+			}
+			if !handled {
+				span := pattern.FindStringIndex(input[offset:])
+				if span == nil {
+					break
+				}
+				begin, end = span[0], span[1]
+			}
+			if begin < 0 {
 				break
 			}
-			begin, end := offset+span[0], offset+span[1]
+			begin, end = offset+begin, offset+end
 			value := v3ClipCandidate(input[begin:end])
 			dst = append(dst, Extracted{Kind: "candidate", Value: value, Start: begin, End: begin + len(value)})
 			offset = end
@@ -59,7 +78,8 @@ func appendExtractedV3(dst []Extracted, input string) []Extracted {
 		if !strings.ContainsRune(token.Value, '.') {
 			continue
 		}
-		parts := appendSegments(nil, token.Value, '.')
+		var local [8]string
+		parts := appendSegments(local[:0], token.Value, '.')
 		offset := 0
 		for j := 0; j < len(parts); j++ {
 			part := parts[j]
