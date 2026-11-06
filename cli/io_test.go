@@ -108,3 +108,10 @@ func TestCompilerSourceRootGlob(t *testing.T) {
 		t.Fatalf("%d %s\n%s", code, stderr.String(), out.String())
 	}
 }
+
+func TestDiagnosticsAcrossVolumes(t *testing.T) {
+	path := `D:\styles\app.css`
+	if got := displayRelativePath(path, "", errors.New("different volumes"), false); got != path {
+		t.Fatalf("lost original path: %q", got)
+	}
+}

@@ -79,7 +79,8 @@ type Compiler struct {
 	legacyPendingTheme    ConfigObject
 	legacyReplaced        map[string]bool
 	legacyVariantValues   map[string]ConfigObject
-	customGroups          map[string][][]*Node
+	customGroups          map[string][]staticUtilityGroup
+	customErrors          map[string]error
 	customReferences      map[string]bool
 }
 
@@ -356,9 +357,15 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 	}
 	switch candidate.Kind {
 	case "static":
+		if err := b.compiler.customErrors[candidate.Root]; err != nil {
+			b.err = err
+			return nil
+		}
 		var result [][]*Node
 		if groups := b.compiler.customGroups[candidate.Root]; len(groups) > 0 {
-			result = append(result, groups...)
+			for _, group := range groups {
+				result = append(result, group.nodes)
+			}
 		} else if nodes := b.compiler.custom[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
 		}
@@ -382,7 +389,7 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 			}
 		}
 		return [][]*Node{declarations(candidate.Property, value)}
-	case "functional":
+	default: // Parse yields only static, arbitrary, or functional candidates.
 		value, dataType, arbitrary := "", "", false
 		if candidate.Value != nil {
 			value, dataType, arbitrary = candidate.Value.Value, candidate.Value.DataType, candidate.Value.Kind == "arbitrary"
@@ -407,7 +414,6 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 		}
 		return groups
 	}
-	return nil
 }
 
 func (b *buildContext) functionalGroups(root, value, mod, dataType string, arbitrary, modArbitrary bool) [][]*Node {

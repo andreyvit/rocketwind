@@ -9,16 +9,13 @@ type selectorFrame struct {
 	location cssLocation
 }
 
-func flattenRules(input []*Node, parent string) []*Node {
-	return flattenRulesMode(input, parent, false)
+func flattenRules(input []*Node) []*Node {
+	return flattenRulesMode(input, false)
 }
 
-func flattenRulesMode(input []*Node, parent string, lowerAll bool) []*Node {
+func flattenRulesMode(input []*Node, lowerAll bool) []*Node {
 	var result []*Node
 	var selectors []selectorFrame
-	if parent != "" {
-		selectors = append(selectors, selectorFrame{selector: parent})
-	}
 	var atRules []*Node
 	var source string
 	var group *[]*Node
@@ -38,6 +35,9 @@ func flattenRulesMode(input []*Node, parent string, lowerAll bool) []*Node {
 	}
 	scan(input)
 	emit := func(node *Node) {
+		if !lowerAll && node.Kind == "declaration" && node.Name == "--tw-sort" {
+			return
+		}
 		if group != nil {
 			if node.Kind == "declaration" {
 				if seenProperties[node.Name] {
@@ -256,9 +256,6 @@ func flattenRulesMode(input []*Node, parent string, lowerAll bool) []*Node {
 			atRules = atRules[:len(atRules)-1]
 			selectors = saved
 		case "declaration", "comment":
-			if !lowerAll && node.Kind == "declaration" && node.Name == "--tw-sort" {
-				return
-			}
 			if len(selectors) > 0 && selectors[len(selectors)-1].dead {
 				return
 			}
@@ -311,11 +308,6 @@ func wrapScopeDeclarations(nodes []*Node) []*Node {
 			group.Nodes = append(group.Nodes, n)
 		} else {
 			group = nil
-			if n.Kind == "context" {
-				r := *n
-				r.Nodes = wrapScopeDeclarations(n.Nodes)
-				n = &r
-			}
 			result = append(result, n)
 		}
 	}

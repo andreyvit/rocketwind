@@ -10,7 +10,7 @@ class to every visitor.
 **Work in progress.** Core utilities, variants, stylesheet directives and the
 Go plugin API work, along with typed settings, named classes, forms and
 typography and the other standard plugins. The CLI and browser transforms work;
-compatibility profiles and the full coverage gate remain open.
+the Tailwind 3 compatibility profile and application integrations remain open.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -333,7 +333,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full coverage and performance gates remain open. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full Go suite has 100% statement coverage, including the CLI subprocess. Final performance work remains open. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

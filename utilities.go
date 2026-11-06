@@ -245,9 +245,6 @@ func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modA
 	case "fill", "stroke":
 		if arbitrary {
 			if root == "stroke" && (dataType == "length" || dataType == "number" || dataType == "" && (isLength(value) || positiveInteger(value))) {
-				if mod == "" {
-					return declarations("stroke-width", value)
-				}
 				return nil
 			}
 		} else {
@@ -266,10 +263,8 @@ func manualTemplate(root, dataType, value string) []*Node {
 	}
 	i, ok := manualTemplateIndex[root][dataType]
 	if !ok {
-		i, ok = manualTemplateIndex[root][""]
-	}
-	if !ok {
-		return nil
+		// Every root dispatched here has a generated untyped fallback.
+		i = manualTemplateIndex[root][""]
 	}
 	return cloneNodes(manualTemplates[i], value, false)
 }
@@ -288,13 +283,8 @@ func (b *buildContext) container() []*Node {
 		}
 	}
 	slices.SortFunc(keys, func(a, z string) int { return compareBreakpoints(b.themeValue(a), b.themeValue(z)) })
-	seen := map[string]bool{}
 	for _, key := range keys {
 		v := b.themeValue(key)
-		if v == "" || seen[v] {
-			continue
-		}
-		seen[v] = true
 		nodes = append(nodes, &Node{Kind: "at-rule", Name: "@media", Value: "(width >= " + v + ")", Nodes: declarations("max-width", v)})
 	}
 	return nodes

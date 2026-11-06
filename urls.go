@@ -15,6 +15,15 @@ func RewriteURLs(input, base, root string) (string, error) {
 	if !strings.Contains(input, "url(") && !strings.Contains(input, "image-set(") {
 		return input, nil
 	}
+	// Node's path.relative resolves both paths against the working directory.
+	base, err := filepath.Abs(base)
+	if err != nil {
+		return "", err
+	}
+	root, err = filepath.Abs(root)
+	if err != nil {
+		return "", err
+	}
 	nodes, err := ParseCSS(input, "")
 	if err != nil {
 		return "", err

@@ -251,6 +251,12 @@ func (s *Scanner) ignored(name string, dir bool, r scanDiskRules) bool {
 }
 
 func (s *Scanner) walk(visit func(string, string, os.FileInfo)) {
+	s.walkWithStat(visit, os.Stat)
+}
+
+// Separate metadata lookup to test files disappearing between discovery,
+// stat, and symlink resolution without timing-dependent filesystem races.
+func (s *Scanner) walkWithStat(visit func(string, string, os.FileInfo), stat func(string) (os.FileInfo, error)) {
 	roots := map[string]bool{}
 	for _, source := range s.sources {
 		if source.kind != "ignored" {
@@ -287,7 +293,7 @@ func (s *Scanner) walk(visit func(string, string, os.FileInfo)) {
 			}
 			real := child
 			if entry.Type()&os.ModeSymlink != 0 {
-				childInfo, err = os.Stat(child)
+				childInfo, err = stat(child)
 				if err != nil {
 					continue
 				}
@@ -313,7 +319,7 @@ func (s *Scanner) walk(visit func(string, string, os.FileInfo)) {
 		for i := len(parents) - 1; i >= 0; i-- {
 			rules = rules.child(parents[i])
 		}
-		info, err := os.Stat(root)
+		info, err := stat(root)
 		if err != nil {
 			continue
 		}

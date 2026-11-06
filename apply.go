@@ -25,19 +25,8 @@ func (c *Compiler) resolveApplies() error {
 		}
 		path = append(path, name)
 		edges = append(edges, edge)
-		if nodes := c.custom[name]; nodes != nil {
-			resolved, err := expand(nodes, false)
-			if err != nil {
-				return err
-			}
-			c.custom[name] = resolved
-		}
-		for i, nodes := range c.customGroups[name] {
-			resolved, err := expand(nodes, false)
-			if err != nil {
-				return err
-			}
-			c.customGroups[name][i] = resolved
+		if err := c.transformStaticUtility(name, func(nodes []*Node) ([]*Node, error) { return expand(nodes, false) }, true); err != nil {
+			return err
 		}
 		for i, nodes := range c.customFunctional[name] {
 			resolved, err := expand(nodes, false)
@@ -104,6 +93,11 @@ func (c *Compiler) resolveApplies() error {
 					}
 				}
 				rules := b.compileRules(normal)
+				if b.err != nil {
+					err := b.err
+					b.err = nil
+					return nil, err
+				}
 				for _, raw := range normal {
 					found := false
 					for _, r := range rules {

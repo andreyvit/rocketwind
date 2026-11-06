@@ -35,7 +35,7 @@ func TestOrderedConfiguration(t *testing.T) {
 	if _, err := json.Marshal(ConfigObject{{"fn", ThemeFunc(func(ThemeResolver) any { return nil })}}); err == nil {
 		t.Fatal("marshaled a function")
 	}
-	for _, input := range []string{"", "null", "[]", "{", `{"a"`, `{"a":`, `{"a":1`, `{"a":[]`, `{"a":{x}}`, `{"a":1e999}`, `{"a":[1e999]}`, `{} {}`, `{} !`} {
+	for _, input := range []string{"", "null", "[]", "{", "{]", "{\n", `{"a"`, `{"a":`, `{"a":1`, `{"a":[]`, `{"a":{x}}`, `{"a":1e999}`, `{"a":[1e999]}`, `{} {}`, `{} !`} {
 		t.Run(input, func(t *testing.T) {
 			before := cloneConfigValue(config)
 			if err := config.UnmarshalJSON([]byte(input)); err == nil {

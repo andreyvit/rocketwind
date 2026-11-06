@@ -49,7 +49,7 @@ func optimizeCSS(css string, options OptimizeOptions, sourceMap *SourceMap, trac
 		return "", nil, err
 	}
 	groupOpaqueRules(nodes)
-	nodes = flattenRulesMode(nodes, "", true)
+	nodes = flattenRulesMode(nodes, true)
 	nodes, err = optimizeBrowserCSS(nodes)
 	if err != nil {
 		return "", nil, err

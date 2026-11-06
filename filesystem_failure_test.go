@@ -36,6 +36,11 @@ func TestFilesystemUnavailableWorkingDirectory(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer os.Chmod(cwd, 0755)
+	for _, pair := range [][2]string{{".", root}, {root, "."}} {
+		if _, err := RewriteURLs(".a { background:url(a.png) }", pair[0], pair[1]); !os.IsPermission(err) {
+			t.Fatalf("relative URL directories: %v", err)
+		}
+	}
 	if _, err := (Filesystem{}).LoadStylesheet("./theme.css", ""); !os.IsPermission(err) {
 		t.Fatalf("relative load: %v", err)
 	}

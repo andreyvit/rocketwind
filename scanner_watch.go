@@ -76,6 +76,10 @@ func (s *Scanner) watchDirectory(base string) []Glob {
 }
 
 func optimizeScanGlobs(input []Glob) []Glob {
+	return optimizeScanGlobsWithStat(input, os.Stat)
+}
+
+func optimizeScanGlobsWithStat(input []Glob, stat func(string) (os.FileInfo, error)) []Glob {
 	groups := map[string]map[string]bool{}
 	add := func(base, pattern string) {
 		if groups[base] == nil {
@@ -111,7 +115,7 @@ func optimizeScanGlobs(input []Glob) []Glob {
 		if err != nil {
 			continue
 		}
-		info, err := os.Stat(base)
+		info, err := stat(base)
 		if err != nil {
 			continue
 		}

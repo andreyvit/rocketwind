@@ -239,3 +239,44 @@ func (b *buildContext) resolveCustomValue(value customValue, args []*valueNode) 
 	}
 	return customResolution{}
 }
+
+// Resolve each definition once. The combined view is used for parsing and
+// @apply dependency discovery; groups preserve separate plugin registrations.
+type staticUtilityGroup struct {
+	nodes    []*Node
+	deferred bool // addUtilities validates only classes that are used.
+}
+
+func (c *Compiler) transformStaticUtility(name string, transform func([]*Node) ([]*Node, error), applies bool) error {
+	groups := c.customGroups[name]
+	if len(groups) == 0 {
+		nodes, err := transform(c.custom[name])
+		if err != nil {
+			return err
+		}
+		c.custom[name] = nodes
+		return nil
+	}
+	var combined []*Node
+	for i, group := range groups {
+		nodes, err := transform(group.nodes)
+		if err != nil {
+			if !group.deferred {
+				return err
+			}
+			// Invalid plugin variants reject this definition. An invalid
+			// @apply becomes an error only when the utility is requested.
+			if applies {
+				if c.customErrors == nil {
+					c.customErrors = map[string]error{}
+				}
+				c.customErrors[name] = err
+			}
+			nodes = nil
+		}
+		groups[i].nodes = nodes
+		combined = append(combined, nodes...)
+	}
+	c.custom[name] = combined
+	return nil
+}

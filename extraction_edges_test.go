@@ -29,7 +29,7 @@ func TestExtractionEdgesAgainstRust(t *testing.T) {
 	if err := json.NewDecoder(reader).Decode(&cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 780 {
+	if len(cases) != 784 {
 		t.Fatalf("got %d extraction inputs", len(cases))
 	}
 	for _, c := range cases {

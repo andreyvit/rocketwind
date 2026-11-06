@@ -223,9 +223,13 @@ func (api *PluginAPI) AddUtility(name string, nodes []*Node) {
 	}
 	nodes = cloneNodes(nodes, "", false)
 	if c.customGroups == nil {
-		c.customGroups = map[string][][]*Node{}
+		c.customGroups = map[string][]staticUtilityGroup{}
 	}
-	c.customGroups[name] = append(c.customGroups[name], nodes)
+	if len(c.customGroups[name]) == 0 && len(c.custom[name]) > 0 {
+		// Keep stylesheet utilities when a Go plugin adds the same name.
+		c.customGroups[name] = append(c.customGroups[name], staticUtilityGroup{nodes: c.custom[name]})
+	}
+	c.customGroups[name] = append(c.customGroups[name], staticUtilityGroup{nodes: nodes})
 	c.custom[name] = append(c.custom[name], nodes...)
 	c.customOrder = append(c.customOrder, name)
 }

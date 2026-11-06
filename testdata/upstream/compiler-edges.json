@@ -1,5 +1,258 @@
 [
   {
+    "css": "@plugin \"edges\";",
+    "plugin": {
+      ".bad": {
+        "@apply missing": {}
+      }
+    },
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@plugin \"edges\";",
+    "plugin": {
+      ".bad": {
+        "@variant unknown": {
+          "color": "red"
+        }
+      }
+    },
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@plugin \"edges\";@tailwind utilities;.a{@apply flex;}",
+    "plugin": {
+      ".bad": {
+        "@apply missing": {}
+      },
+      ".good": {
+        "display": "block"
+      }
+    },
+    "classes": [
+      "good"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.good {\n  display: block;\n}\n.a {\n  display: flex;\n}\n"
+  },
+  {
+    "css": "@plugin \"edges\";.a{@apply bad;}",
+    "plugin": {
+      ".bad": {
+        "@apply missing": {}
+      }
+    },
+    "error": "Cannot apply unknown utility class `missing`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@tailwind utilities;.a {:is(> .child) {color:red;}}",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.a :is(> .child) {\n  color: red;\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "has-data-foo/50:flex",
+      "group-data-[foo=bar=baz]:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:is(:where(.group)[data-foo=\"bar=baz\"] .group-data-\\[foo\\=bar\\=baz\\]\\:flex) {\n  display: flex;\n}\n"
+  },
+  {
+    "css": "@utility mixed {color:red;} @plugin \"edges\"; @tailwind utilities;",
+    "plugin": {
+      ".mixed": {
+        "display": "flex"
+      }
+    },
+    "classes": [
+      "mixed"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.mixed {\n  display: flex;\n  color: red;\n}\n"
+  },
+  {
+    "css": "@plugin \"edges\";@tailwind utilities;",
+    "plugin": {
+      ".bad": {
+        "@apply missing": {}
+      }
+    },
+    "classes": [
+      "bad"
+    ],
+    "error": "Cannot apply unknown utility class `missing`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@plugin \"edges\";@tailwind utilities;",
+    "plugin": {
+      ".bad": {
+        "@variant unknown": {
+          "color": "red"
+        }
+      }
+    },
+    "classes": [
+      "bad"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@theme {--color-a:red;}@config \"config\";@tailwind utilities;",
+    "config": {
+      "theme": {
+        "extend": {
+          "keyframes": {
+            "demo": {
+              "to": {
+                "--flag": true
+              }
+            }
+          },
+          "animation": {
+            "demo": "demo 1s"
+          }
+        }
+      }
+    },
+    "classes": [
+      "animate-demo"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.animate-demo {\n  animation: demo 1s;\n}\n@keyframes demo {\n  to {\n    --flag: true;\n  }\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "[order:0123]",
+      "[order:123]",
+      "[order:9007199254740992]",
+      "[order:9007199254740993]"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.\\[order\\:0123\\] {\n  order: 0123;\n}\n.\\[order\\:123\\] {\n  order: 123;\n}\n.\\[order\\:9007199254740992\\] {\n  order: 9007199254740992;\n}\n.\\[order\\:9007199254740993\\] {\n  order: 9007199254740993;\n}\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "theme": {
+        "extend": {
+          "keyframes": {
+            "demo": {
+              "to": {
+                "--flag": true
+              }
+            }
+          },
+          "animation": {
+            "demo": "demo 1s"
+          }
+        }
+      }
+    },
+    "classes": [
+      "animate-demo"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.animate-demo {\n  animation: demo 1s;\n}\n"
+  },
+  {
+    "css": "@theme {--color-a:red} .a{@apply missing;}",
+    "error": "Cannot apply unknown utility class `missing`"
+  },
+  {
+    "css": "@custom-variant x x;",
+    "error": "`@custom-variant x ()` selector is invalid."
+  },
+  {
+    "css": "@media prefix(BAD) {@theme {--color-a:red}}",
+    "error": "The prefix \"BAD\" is invalid. Prefixes must be lowercase ASCII letters (a-z) only."
+  },
+  {
+    "css": "@theme {/*! keep */ --color-a:red} @tailwind utilities;",
+    "classes": [
+      "bg-a"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n/*! keep */\n:root, :host {\n  --color-a: red;\n}\n.bg-a {\n  background-color: var(--color-a);\n}\n"
+  },
+  {
+    "css": "@utility demo-* {aspect-ratio:--value(ratio); &:hover {width:--value(integer); color:red;}} @tailwind utilities;",
+    "classes": [
+      "demo-3/4"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.demo-3\\/4 {\n  aspect-ratio: 3 / 4;\n  &:hover {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "css": "@theme {--text-demo:2rem;} @utility demo-* {line-height:--value(--text-*--line-height,integer);} @tailwind utilities;",
+    "classes": [
+      "demo-demo",
+      "demo-2"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.demo-2 {\n  line-height: 2;\n}\n"
+  },
+  {
+    "css": ".a{color:theme(colors[missing, red)}",
+    "error": "Could not resolve value for theme function: `theme(colors[missing, red)`. Consider checking if the path is correct or provide a fallback value to silence this error."
+  },
+  {
+    "css": "@tailwind utilities;@scope (&) { .a {color:red} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@scope (:is(:scope)) {\n  .a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;@scope { --tw-sort:1; .a {color:red} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@scope {\n  .a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "shadow-inherit/50",
+      "shadow-none/50",
+      "inset-shadow-none/50",
+      "text-shadow-none/50",
+      "shadow",
+      "inset-shadow",
+      "text-shadow",
+      "shadow-[0_1px_red]/[.5]",
+      "shadow-[0_1px_red]/[.25]"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@layer properties;\n.shadow-\\[0_1px_red\\]\\/\\[\\.5\\] {\n  --tw-shadow-alpha: .5;\n  --tw-shadow: 0 1px var(--tw-shadow-color, oklab(from red l a b / 50%));\n  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n}\n.shadow-\\[0_1px_red\\]\\/\\[\\.25\\] {\n  --tw-shadow-alpha: .25;\n  --tw-shadow: 0 1px var(--tw-shadow-color, oklab(from red l a b / 25%));\n  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n    }\n  }\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "min:flex",
+      "supports:flex",
+      "group:flex",
+      "peer:flex",
+      "has:flex",
+      "not:flex",
+      "group-min-missing:flex",
+      "peer-aria-invalid/foo:flex",
+      "group-supports-[bad]/foo:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:is(:where(.peer\\/foo)[aria-invalid=\"true\"] ~ .peer-aria-invalid\\/foo\\:flex) {\n  display: flex;\n}\n"
+  },
+  {
+    "css": "@theme {--breakpoint-a:1rem;--breakpoint-b:1rem;--breakpoint-empty:;} @tailwind utilities;",
+    "classes": [
+      "container"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.container {\n  width: 100%;\n  @media (width >= ) {\n    max-width: ;\n  }\n  @media (width >= 1rem) {\n    max-width: 1rem;\n  }\n  @media (width >= 1rem) {\n    max-width: 1rem;\n  }\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;.a { :is() {color:red;} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.a :is() {\n  color: red;\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;.a { :where() {color:red;} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.a :where() {\n  color: red;\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;.a { :is(::before > a,::after > b) {color:red;} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@tailwind utilities;.a { :is(::before > a) > b {color:red;} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@tailwind utilities;.a { > .child {color:red;} }",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.a > .child {\n  color: red;\n}\n"
+  },
+  {
     "css": "@media screen {@import \"card\";}",
     "sheets": {
       "card": ".card {color:red}"

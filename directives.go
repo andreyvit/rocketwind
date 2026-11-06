@@ -46,7 +46,7 @@ func (c *Compiler) registerCustomVariant(n *Node) error {
 		}
 		selector = strings.TrimSpace(selector)
 		if len(selector) < 2 {
-			return fmt.Errorf("`@custom-variant %s %s` selector is invalid.", name, selector)
+			return fmt.Errorf("`@custom-variant %s ()` selector is invalid.", name)
 		}
 		parts := slices.Collect(Segments(selector[1:len(selector)-1], ','))
 		var styles []string
@@ -189,15 +189,8 @@ func (c *Compiler) resolveVariants() error {
 				}
 			}
 		} else {
-			c.custom[name], err = expand(c.custom[name])
-			if err != nil {
+			if err := c.transformStaticUtility(name, expand, false); err != nil {
 				return err
-			}
-			for i, nodes := range c.customGroups[name] {
-				c.customGroups[name][i], err = expand(nodes)
-				if err != nil {
-					return err
-				}
 			}
 		}
 	}

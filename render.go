@@ -149,7 +149,7 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 	}
 	for _, frame := range b.compiler.keyframes {
-		if animations[strings.TrimSpace(frame.Value)] {
+		if animations[strings.TrimSpace(frame.Value)] && (!b.compiler.hasInput || b.compiler.features&FeatureTheme != 0) {
 			globals = append(globals, frame)
 		}
 	}
@@ -183,7 +183,7 @@ func (b *buildContext) render(nodes []*Node) string {
 	if b.compiler.config.DisablePolyfills&PolyfillColorMix == 0 {
 		nodes = b.polyfillColors(nodes, false)
 	}
-	nodes = flattenRules(nodes, "")
+	nodes = flattenRules(nodes)
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
 		first := propertyDefaults
 		if len(inheritedDefaults) > 0 {

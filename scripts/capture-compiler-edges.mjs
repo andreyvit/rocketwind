@@ -6,6 +6,36 @@ if (!tooling) throw Error('usage: node scripts/capture-compiler-edges.mjs TOOLIN
 const require = createRequire(path.resolve(tooling,'package.json'))
 const {compile} = require('tailwindcss')
 const cases = [
+ {css:'@plugin "edges";',plugin:{'.bad':{'@apply missing':{}}}},
+ {css:'@plugin "edges";',plugin:{'.bad':{'@variant unknown':{color:'red'}}}},
+ {css:'@plugin "edges";@tailwind utilities;.a{@apply flex;}',plugin:{'.bad':{'@apply missing':{}},'.good':{display:'block'}},classes:['good']},
+ {css:'@plugin "edges";.a{@apply bad;}',plugin:{'.bad':{'@apply missing':{}}}},
+
+ {css:'@tailwind utilities;.a {:is(> .child) {color:red;}}'},
+ {css:'@tailwind utilities;',classes:['has-data-foo/50:flex','group-data-[foo=bar=baz]:flex']},
+ {css:'@utility mixed {color:red;} @plugin "edges"; @tailwind utilities;',plugin:{'.mixed':{display:'flex'}},classes:['mixed']},
+ {css:'@plugin "edges";@tailwind utilities;',plugin:{'.bad':{'@apply missing':{}}},classes:['bad']},
+ {css:'@plugin "edges";@tailwind utilities;',plugin:{'.bad':{'@variant unknown':{color:'red'}}},classes:['bad']},
+
+ {css:'@theme {--color-a:red;}@config "config";@tailwind utilities;',config:{theme:{extend:{keyframes:{demo:{to:{'--flag':true}}},animation:{demo:'demo 1s'}}}},classes:['animate-demo']},
+
+ {css:'@tailwind utilities;',classes:['[order:0123]','[order:123]','[order:9007199254740992]','[order:9007199254740993]']},
+ {css:'@config "config";@tailwind utilities;',config:{theme:{extend:{keyframes:{demo:{to:{'--flag':true}}},animation:{demo:'demo 1s'}}}},classes:['animate-demo']},
+
+ {css:'@theme {--color-a:red} .a{@apply missing;}'},
+ {css:'@custom-variant x x;'},
+ {css:'@media prefix(BAD) {@theme {--color-a:red}}'},
+ {css:'@theme {/*! keep */ --color-a:red} @tailwind utilities;',classes:['bg-a']},
+ {css:'@utility demo-* {aspect-ratio:--value(ratio); &:hover {width:--value(integer); color:red;}} @tailwind utilities;',classes:['demo-3/4']},
+ {css:'@theme {--text-demo:2rem;} @utility demo-* {line-height:--value(--text-*--line-height,integer);} @tailwind utilities;',classes:['demo-demo','demo-2']},
+ {css:'.a{color:theme(colors[missing, red)}'},
+ {css:'@tailwind utilities;@scope (&) { .a {color:red} }'},
+ {css:'@tailwind utilities;@scope { --tw-sort:1; .a {color:red} }'},
+ {css:'@tailwind utilities;',classes:['shadow-inherit/50','shadow-none/50','inset-shadow-none/50','text-shadow-none/50','shadow','inset-shadow','text-shadow','shadow-[0_1px_red]/[.5]','shadow-[0_1px_red]/[.25]']},
+ {css:'@tailwind utilities;',classes:['min:flex','supports:flex','group:flex','peer:flex','has:flex','not:flex','group-min-missing:flex','peer-aria-invalid/foo:flex','group-supports-[bad]/foo:flex']},
+ {css:'@theme {--breakpoint-a:1rem;--breakpoint-b:1rem;--breakpoint-empty:;} @tailwind utilities;',classes:['container']},
+ ...[':is()',':where()',':is(::before > a,::after > b)',':is(::before > a) > b','> .child'].map(selector=>({css:'@tailwind utilities;.a { '+selector+' {color:red;} }'})),
+
  {css:'@media screen {@import "card";}',sheets:{card:'.card {color:red}'}},
  {css:'@import "missing";'},
  {css:'@import "missing";',loadError:'stylesheet unavailable'},
@@ -58,6 +88,7 @@ const cases = [
 for (const c of cases) {
  const options = {}
  if(c.config)options.loadModule=async()=>({base:'',module:c.config})
+ if(c.plugin)options.loadModule=async()=>({base:'',module:({addUtilities})=>addUtilities(c.plugin)})
  if (c.sheets || c.loadError) options.loadStylesheet = async id => {
   if(c.loadError)throw Error(c.loadError)
   if (!(id in c.sheets))throw Error('missing fixture stylesheet: '+id)

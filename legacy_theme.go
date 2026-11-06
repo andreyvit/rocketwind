@@ -202,9 +202,7 @@ func splitThemeAlpha(path string) (string, string) {
 }
 
 func (c *Compiler) cssThemeObject(path []string) (any, any) {
-	if len(path) == 0 {
-		return nil, 0
-	}
+	// themeKeyPath always returns at least one segment, including for "".
 	b := buildContext{compiler: c}
 	if len(path) == 1 && strings.HasPrefix(path[0], "--") {
 		if value := b.themeValue(path[0]); value != "" {

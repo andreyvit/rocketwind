@@ -34,6 +34,10 @@ func relativePath(to, from string, preferAbsolute bool) string {
 		return to
 	}
 	result, err := filepath.Rel(absFrom, absTo)
+	return displayRelativePath(to, result, err, preferAbsolute)
+}
+
+func displayRelativePath(to, result string, err error, preferAbsolute bool) string {
 	if err != nil {
 		return to
 	}

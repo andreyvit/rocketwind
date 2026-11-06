@@ -1,6 +1,7 @@
 package rocketwind
 
 import (
+	"cmp"
 	"encoding/json"
 	"os"
 	"reflect"
@@ -20,13 +21,20 @@ func TestSyntaxEdgesAgainstUpstream(t *testing.T) {
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 42 {
+	if len(cases) != 44 {
 		t.Fatalf("got %d syntax cases", len(cases))
 	}
 	for _, c := range cases {
 		var got any
 		var err error
 		switch c.Kind {
+		case "variant-order":
+			// Tailwind permits variants in one ordering group. Compare their
+			// names as a tie-breaker, independently of registration order.
+			b := buildContext{compiler: New(Config{})}
+			a := &parsedVariant{root: c.Input, definition: variantDefinition{Kind: "static", Order: 100}}
+			z := &parsedVariant{root: c.Base, definition: a.definition}
+			got = cmp.Compare(b.compareParsedVariant(a, z), 0)
 		case "selector":
 			got = encodeSelectors(parseSelector(c.Input))
 		case "attribute":

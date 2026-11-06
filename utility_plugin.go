@@ -338,6 +338,8 @@ func (api *PluginAPI) AddUtilities(nodes []*Node) error {
 			})
 		}
 		api.AddUtility(name, nodes)
+		groups := c.customGroups[name]
+		groups[len(groups)-1].deferred = true
 		c.customReferences[name] = true
 	}
 	return nil

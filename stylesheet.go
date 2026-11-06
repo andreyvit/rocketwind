@@ -70,9 +70,8 @@ func Compile(input string, config Config) (*Compiler, error) {
 								return nil, err
 							}
 						case strings.HasPrefix(part, "prefix("):
-							if err := annotateTheme(n.Nodes, part, false); err != nil {
-								return nil, err
-							}
+							// Validation is needed only for theme(reference) imports.
+							_ = annotateTheme(n.Nodes, part, false)
 						case strings.HasPrefix(part, "source("):
 							forwardSourceRoot(n.Nodes, part, n.base)
 						default:
@@ -106,9 +105,6 @@ func Compile(input string, config Config) (*Compiler, error) {
 						}
 					}
 					for _, d := range n.Nodes {
-						if d.Kind == "comment" {
-							continue
-						}
 						d.Name = Unescape(d.Name)
 						if d.Kind == "at-rule" && d.Name == "@keyframes" {
 							c.keyframes = append(c.keyframes, d)

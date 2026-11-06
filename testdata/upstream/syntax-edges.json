@@ -1,5 +1,17 @@
 [
   {
+    "kind": "variant-order",
+    "input": "a",
+    "base": "z",
+    "result": -1
+  },
+  {
+    "kind": "variant-order",
+    "input": "z",
+    "base": "a",
+    "result": 1
+  },
+  {
     "kind": "selector",
     "input": "a[foo[bar]]",
     "result": [

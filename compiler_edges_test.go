@@ -18,15 +18,19 @@ func TestCompilerEdgesAgainstUpstream(t *testing.T) {
 		Sheets                        map[string]string
 		Classes                       []string
 		Config                        ConfigObject
+		Plugin                        ConfigObject
 	}
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 60 {
+	if len(cases) != 89 {
 		t.Fatalf("got %d compiler cases", len(cases))
 	}
 	for _, c := range cases {
 		config := Config{}
+		if c.Plugin != nil {
+			config.Plugins = map[string]Plugin{"edges": func(api *PluginAPI) error { return api.AddUtilities(configStyleNodes(c.Plugin)) }}
+		}
 		if c.Config != nil {
 			config.LoadModule = func(id, base, kind string) (Module, error) { return Module{Legacy: c.Config}, nil }
 		}

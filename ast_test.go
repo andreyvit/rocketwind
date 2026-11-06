@@ -32,7 +32,7 @@ func TestUpstreamAST(t *testing.T) {
 		case "internal:ast:print":
 			writeCSS(&out, nodes, 0)
 		case "internal:ast:nesting":
-			writeCSS(&out, flattenRules(nodes, ""), 0)
+			writeCSS(&out, flattenRules(nodes), 0)
 		case "internal:ast:optimize":
 			b := buildContext{compiler: New(Config{NoDefaultTheme: true}), used: map[string]bool{}}
 			out.WriteString(b.render(nodes))

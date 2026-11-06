@@ -35,8 +35,13 @@ import * as attribute from ${JSON.stringify(source+'/tailwindcss/src/attribute-s
 import * as value from ${JSON.stringify(source+'/tailwindcss/src/value-parser')}
 import {rewriteUrls} from ${JSON.stringify(source+'/@tailwindcss-node/src/urls')}
 import {inferDataType} from ${JSON.stringify(source+'/tailwindcss/src/utils/infer-data-type')}
+import {Variants} from ${JSON.stringify(source+'/tailwindcss/src/variants')}
 test('capture parser edges', async()=>{
  const records=[]
+ const variants=new Variants()
+ variants.static('a',()=>{}, {order:100})
+ variants.static('z',()=>{}, {order:100})
+ for(const [a,z] of [['a','z'],['z','a']])records.push({kind:'variant-order',input:a,base:z,result:Math.sign(variants.compare({kind:'static',root:a},{kind:'static',root:z}))})
  for(const [kind,inputs,parse] of [['selector',${JSON.stringify(selectors)},selector.parse],['attribute',${JSON.stringify(attributes)},attribute.parse],['value',${JSON.stringify(values)},value.parse]]) {
   for(const input of inputs) records.push({kind,input,result:parse(input)})
  }

@@ -58,7 +58,7 @@ func (c *Compiler) Parse(class string) iter.Seq[Candidate] {
 
 func (c *Compiler) hasUtility(name, kind string) bool {
 	if kind == "static" {
-		return builtinStatic[name] != nil || c.custom[name] != nil || name == "container"
+		return builtinStatic[name] != nil || c.custom[name] != nil || c.customErrors[name] != nil || name == "container"
 	}
 	if c.customFunctional[name] != nil || c.matchingUtilities[name] != nil || manualTemplateIndex[name] != nil {
 		return true

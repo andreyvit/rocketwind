@@ -211,7 +211,7 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 			name += "-child"
 		}
 		return wrap("&:" + name + "(" + v.value + ")")
-	case "supports":
+	default: // supports is the remaining built-in functional variant.
 		if v.modifier != "" {
 			return nil, false
 		}
@@ -248,7 +248,6 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 		}
 		return at("@supports", value)
 	}
-	return nil, false
 }
 func quoteAttributeValue(input string) string {
 	parts := slices.Collect(Segments(input, '='))
@@ -269,9 +268,7 @@ func quoteAttributeValue(input string) string {
 func validAttributeSelector(s string) bool { return parseAttribute(s) != nil }
 
 func (b *buildContext) compoundVariant(nodes []*Node, v *parsedVariant, depth int) ([]*Node, bool) {
-	if v.modifier != "" && v.root != "group" && v.root != "peer" {
-		return nil, false
-	}
+	// The parser assigns compound modifiers only to group and peer.
 	if v.child.relative && v.root != "has" && v.root != "in" {
 		return nil, false
 	}
@@ -390,12 +387,6 @@ func negateVariant(isolated, content []*Node) ([]*Node, bool) {
 func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 	if a == z {
 		return 0
-	}
-	if a == nil {
-		return -1
-	}
-	if z == nil {
-		return 1
 	}
 	if v := cmp.Compare(a.definition.Order, z.definition.Order); v != 0 {
 		return v

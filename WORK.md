@@ -386,6 +386,26 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   coverage: 10,695/10,797 statements (99.055%). All tests pass; 102 statements
   remain uncovered. Coverage and integration gates remain open.
 
+### Complete statement coverage
+
+- The combined coverage gate passes: 10,786/10,786 statements (100%), including
+  the separately instrumented CLI. The full test suite, race detector and vet
+  pass. No coverage exclusions or Go conformance skips were added.
+- Added filesystem disappearance and failed-output tests with deterministic
+  I/O seams. Failed writes preserve the previous CSS and clean temporary files.
+- Expanded Rust parity to 784 extraction inputs and 10,976 preprocessing cases;
+  syntax edges to 44 cases, and compiler edges to 89 independent reference cases.
+- Fixed container breakpoint duplicates and empty values, malformed variant
+  diagnostics, configuration keyframes without a theme insertion point,
+  plugin/CSS utility collisions, unused plugin errors and empty scope rules.
+- Static plugin definitions are transformed once. Invalid addUtilities variants
+  reject a definition; invalid @apply references fail only when that class is
+  requested. Direct AddUtility remains strict during Go plugin preparation.
+- Relative asset directories now follow Node's working-directory resolution.
+  Removed unused arguments and parser-unreachable fallback branches.
+- Coverage is complete for the current implementation. Performance, the v3
+  compatibility profile, Bubblehouse migration proof and GoX hookup remain open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

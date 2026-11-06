@@ -94,9 +94,7 @@ func (s *scanBrackets) push(ch byte) bool {
 	return true
 }
 func (s *scanBrackets) pop(ch byte) bool {
-	if s.n == 0 {
-		return false
-	}
+	// All callers check n before consuming a closing bracket.
 	s.n--
 	return s.values[s.n] == ch
 }
