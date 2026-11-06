@@ -1,0 +1,98 @@
+[
+  {
+    "test": "`calc(-1 * var(--foo))` → `calc(var(--foo) * -1)` (0)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(-1 * var(--foo))"
+    ],
+    "result": "calc(var(--foo) * -1)"
+  },
+  {
+    "test": "`calc(1rem + var(--foo))` → `calc(var(--foo) + 1rem)` (1)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(1rem + var(--foo))"
+    ],
+    "result": "calc(var(--foo) + 1rem)"
+  },
+  {
+    "test": "`calc(2rem * calc(3px * var(--foo)))` → `calc(calc(var(--foo) * 3px) * 2rem)` (2)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(2rem * calc(3px * var(--foo)))"
+    ],
+    "result": "calc(calc(var(--foo) * 3px) * 2rem)"
+  },
+  {
+    "test": "`calc(var(--b) + var(--a))` → `calc(var(--a) + var(--b))` (3)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(var(--b) + var(--a))"
+    ],
+    "result": "calc(var(--a) + var(--b))"
+  },
+  {
+    "test": "`calc(3px * 2rem)` → `calc(2rem * 3px)` (4)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(3px * 2rem)"
+    ],
+    "result": "calc(2rem * 3px)"
+  },
+  {
+    "test": "`calc(5px * 3px)` → `calc(3px * 5px)` (5)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(5px * 3px)"
+    ],
+    "result": "calc(3px * 5px)"
+  },
+  {
+    "test": "`calc(1 * 1rem)` → `calc(1rem * 1)` (6)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(1 * 1rem)"
+    ],
+    "result": "calc(1rem * 1)"
+  },
+  {
+    "test": "`calc(10 + 2)` → `calc(2 + 10)` (7)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(10 + 2)"
+    ],
+    "result": "calc(2 + 10)"
+  },
+  {
+    "test": "should keep `calc(1rem - var(--foo))` (0)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(1rem - var(--foo))"
+    ],
+    "result": "calc(1rem - var(--foo))"
+  },
+  {
+    "test": "should keep `calc(1rem / 2)` (1)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(1rem / 2)"
+    ],
+    "result": "calc(1rem / 2)"
+  },
+  {
+    "test": "should keep `calc(var(--a) + 1rem)` (2)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(var(--a) + 1rem)"
+    ],
+    "result": "calc(var(--a) + 1rem)"
+  },
+  {
+    "test": "should keep `calc(2rem * 3px)` (3)",
+    "kind": "internal:canonicalize-calc-expressions:canonicalizeCalcExpressions",
+    "args": [
+      "calc(2rem * 3px)"
+    ],
+    "result": "calc(2rem * 3px)"
+  }
+]

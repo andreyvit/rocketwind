@@ -61,6 +61,9 @@ export default defineConfig({
         'utils/to-key-path': ['toKeyPath'],
         'utils/replace-shadow-colors': ['replaceShadowColors'],
         'source-maps/visualize-source-map': ['visualizeSourceMap', 'visualizeSourceMapRanges'],
+        'canonicalize-calc-expressions': ['canonicalizeCalcExpressions'],
+        'constant-fold-declaration': ['constantFoldDeclaration'],
+        'expand-declaration': ['expandDeclaration'],
       }
       for (const [file, names] of Object.entries(pure)) {
         if (!id.endsWith('/src/' + file + '.ts')) continue

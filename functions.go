@@ -2,6 +2,7 @@ package rocketwind
 
 import (
 	"fmt"
+	"math"
 	"slices"
 	"strconv"
 	"strings"
@@ -42,7 +43,7 @@ func dimension(value string) (float64, string, bool) {
 		}
 	}
 	n, err := strconv.ParseFloat(value[:i], 64)
-	return n, value[i:], err == nil
+	return n, value[i:], err == nil || math.IsInf(n, 0)
 }
 
 func (b *buildContext) evaluateFunctions(nodes []*valueNode, atRule bool, depth int) bool {

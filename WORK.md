@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.4%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.6%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -185,6 +185,25 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   These are checkpoint measurements, not the final performance gate.
 - Minification, canonicalization, remaining internal/CLI suites, the v3
   compatibility profile and all Bubblehouse integration remain pending.
+
+### Value normalization
+
+- All 111 original tests in the calculation canonicalization, constant folding
+  and declaration expansion suites pass. Their 135 captured calls pass in Go,
+  along with 274 additional arithmetic, unit and numeric-boundary cases.
+  Total captured upstream calls checked: 14,396.
+- Added pure-Go Unicode 17 collation, matching the reference Node runtime's
+  ICU 78.3 / CLDR 48 data. All 206,298 CLDR conformance inputs and 87,716
+  additional comparison pairs match Node, including canonical decomposition,
+  contraction contexts, combining marks, newer emoji and ICU index markers.
+- Unicode tables are generated from the pinned ICU release's public APIs.
+  Node, Rust and ICU remain development tools; the Go library has zero
+  dependencies and does not execute external code.
+- New normalization, declaration expansion and collation code has 100%
+  statement coverage. Overall coverage is 96.6%; race tests and vet pass.
+- The ASCII comparator's median time fell from 3.14 us to 164 ns with zero
+  allocations. Case-sensitive comparison fell from 5.67 us to 331 ns.
+  Canonical class conversion and the remaining implementation gates are open.
 
 ## Initial compiler performance measurements
 

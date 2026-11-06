@@ -1,0 +1,19 @@
+{
+  "source": "https://raw.githubusercontent.com/unicode-org/cldr/release-48/common/uca/CollationTest_CLDR_NON_IGNORABLE_SHORT.txt",
+  "sha256": "7063c05ad292803f8d4269abc64e2ce50ab96d0038f799670ed325f9a5e20bb8",
+  "node": "v26.4.0",
+  "icu": "78.3",
+  "cldr": "48.0",
+  "unicode": "17.0",
+  "locale": {
+    "locale": "en-US",
+    "usage": "sort",
+    "sensitivity": "variant",
+    "ignorePunctuation": false,
+    "collation": "default",
+    "numeric": false,
+    "caseFirst": "false"
+  },
+  "conformance": 206298,
+  "comparisons": 87716
+}

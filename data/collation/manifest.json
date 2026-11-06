@@ -1,0 +1,12 @@
+{
+  "icu": "78.3",
+  "unicode": "17.0.0",
+  "cldr": "48.0",
+  "locale": "en-US",
+  "source": "https://github.com/unicode-org/icu/tree/release-78.3",
+  "sha256": "b5d3867bf88bc5a75fe7667ddaf9b9211c942f824420eac19bccb4f63ad5f86e",
+  "single": 148696,
+  "contractions": 1153,
+  "normalization": 3045,
+  "bytes": 2397656
+}

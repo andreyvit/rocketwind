@@ -1,0 +1,1580 @@
+[
+  {
+    "test": "expand declarations > inset",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "10px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > inset",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > inset",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px 30px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "30px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > inset",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px 30px 40px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "30px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "40px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > gap",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "gap",
+        "value": "10px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "row-gap",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "column-gap",
+        "value": "10px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > gap",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "gap",
+        "value": "10px 20px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "row-gap",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "column-gap",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-width",
+        "value": "1px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-width",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-width",
+        "value": "1px 2px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-width",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-width",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-width",
+        "value": "1px 2px 3px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-width",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-width",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-width",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-width",
+        "value": "1px 2px 3px 4px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-width",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-width",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-width",
+        "value": "4px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-style",
+        "value": "solid",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-style",
+        "value": "solid",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-style",
+        "value": "solid dashed",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-style",
+        "value": "dashed",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-style",
+        "value": "dashed",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-style",
+        "value": "solid dashed dotted",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-style",
+        "value": "dashed",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-style",
+        "value": "dotted",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-style",
+        "value": "dashed",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-style",
+        "value": "solid dashed dotted double",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-style",
+        "value": "solid",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-style",
+        "value": "dashed",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-style",
+        "value": "dotted",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-style",
+        "value": "double",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-color",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-color",
+        "value": "red",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-color",
+        "value": "red",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-color",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-color",
+        "value": "red green",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-color",
+        "value": "green",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-color",
+        "value": "green",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-color",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-color",
+        "value": "red green blue",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-color",
+        "value": "green",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-color",
+        "value": "blue",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-color",
+        "value": "green",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > border-color",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-color",
+        "value": "red green blue black",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-top-color",
+        "value": "red",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-color",
+        "value": "green",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-bottom-color",
+        "value": "blue",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-left-color",
+        "value": "black",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-margin",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin",
+        "value": "1px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-right",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-bottom",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-left",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-margin",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin",
+        "value": "1px 2px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-bottom",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-left",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-margin",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin",
+        "value": "1px 2px 3px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-bottom",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-left",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-margin",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin",
+        "value": "1px 2px 3px 4px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-bottom",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-left",
+        "value": "4px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-padding",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding",
+        "value": "1px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-right",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-bottom",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-left",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-padding",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding",
+        "value": "1px 2px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-bottom",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-left",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-padding",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding",
+        "value": "1px 2px 3px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-bottom",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-left",
+        "value": "2px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > scroll-padding",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding",
+        "value": "1px 2px 3px 4px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-top",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-right",
+        "value": "2px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-bottom",
+        "value": "3px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-left",
+        "value": "4px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > overflow",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "overflow",
+        "value": "clip",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "overflow-x",
+        "value": "clip",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "overflow-y",
+        "value": "clip",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > overflow",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "overflow",
+        "value": "hidden visible",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "overflow-x",
+        "value": "hidden",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "overflow-y",
+        "value": "visible",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > overscroll-behavior",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior",
+        "value": "none",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior-x",
+        "value": "none",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior-y",
+        "value": "none",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > overscroll-behavior",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior",
+        "value": "auto contain",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior-x",
+        "value": "auto",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "overscroll-behavior-y",
+        "value": "contain",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > expansion with `!important`",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "10px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > expansion with `!important`",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > expansion with `!important`",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px 30px",
+        "important": true
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": true
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": true
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "30px",
+        "important": true
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "20px",
+        "important": true
+      }
+    ]
+  },
+  {
+    "test": "expand declarations > expansion with `!important`",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "inset",
+        "value": "10px 20px 30px 40px",
+        "important": false
+      },
+      1
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "right",
+        "value": "20px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "bottom",
+        "value": "30px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "left",
+        "value": "40px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > margin-inline",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "margin-inline",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "margin-left",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "margin-right",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > margin-block",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "margin-block",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "margin-top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "margin-bottom",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > padding-inline",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "padding-inline",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "padding-left",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "padding-right",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > padding-block",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "padding-block",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "padding-top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "padding-bottom",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > scroll-margin-inline",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-inline",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-left",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-right",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > scroll-margin-block",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-block",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-margin-bottom",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > scroll-padding-inline",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-inline",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-left",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-right",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > scroll-padding-block",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-block",
+        "value": "10px 20px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-top",
+        "value": "10px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "scroll-padding-bottom",
+        "value": "20px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > border-inline-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-inline-width",
+        "value": "1px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-left-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-width",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > border-block-width",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-block-width",
+        "value": "1px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-bottom-width",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-top-width",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > border-inline-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-inline-style",
+        "value": "1px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-left-style",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-right-style",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  },
+  {
+    "test": "expand logical properties > border-block-style",
+    "kind": "internal:expand-declaration:expandDeclaration",
+    "args": [
+      {
+        "kind": "declaration",
+        "property": "border-block-style",
+        "value": "1px",
+        "important": false
+      },
+      3
+    ],
+    "result": [
+      {
+        "kind": "declaration",
+        "property": "border-bottom-style",
+        "value": "1px",
+        "important": false
+      },
+      {
+        "kind": "declaration",
+        "property": "border-top-style",
+        "value": "1px",
+        "important": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,618 @@
+[
+  {
+    "test": "should constant fold `calc(1 + 1)` into `2`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1 + 1)"
+    ],
+    "result": "2"
+  },
+  {
+    "test": "should constant fold `calc(3 - 2)` into `1`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3 - 2)"
+    ],
+    "result": "1"
+  },
+  {
+    "test": "should constant fold `calc(2 * 3)` into `6`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2 * 3)"
+    ],
+    "result": "6"
+  },
+  {
+    "test": "should constant fold `calc(8 / 2)` into `4`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(8 / 2)"
+    ],
+    "result": "4"
+  },
+  {
+    "test": "should constant fold `calc(1 + calc(1 + 1))` into `3`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1 + calc(1 + 1))"
+    ],
+    "result": "3"
+  },
+  {
+    "test": "should constant fold `calc(3 - calc(1 + 2))` into `0`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3 - calc(1 + 2))"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(2 * calc(1 + 3))` into `8`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2 * calc(1 + 3))"
+    ],
+    "result": "8"
+  },
+  {
+    "test": "should constant fold `calc(8 / calc(2 + 2))` into `2`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(8 / calc(2 + 2))"
+    ],
+    "result": "2"
+  },
+  {
+    "test": "should constant fold `calc(1 + (1 + 1))` into `3`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1 + (1 + 1))"
+    ],
+    "result": "3"
+  },
+  {
+    "test": "should constant fold `calc(3 - (1 + 2))` into `0`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3 - (1 + 2))"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(2 * (1 + 3))` into `8`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2 * (1 + 3))"
+    ],
+    "result": "8"
+  },
+  {
+    "test": "should constant fold `calc(8 / (2 + 2))` into `2`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(8 / (2 + 2))"
+    ],
+    "result": "2"
+  },
+  {
+    "test": "should constant fold `calc(1rem * 2)` into `2rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1rem * 2)"
+    ],
+    "result": "2rem"
+  },
+  {
+    "test": "should constant fold `calc(2rem - 0.5rem)` into `1.5rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2rem - 0.5rem)"
+    ],
+    "result": "1.5rem"
+  },
+  {
+    "test": "should constant fold `calc(3rem * 6)` into `18rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3rem * 6)"
+    ],
+    "result": "18rem"
+  },
+  {
+    "test": "should constant fold `calc(5rem / 2)` into `2.5rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(5rem / 2)"
+    ],
+    "result": "2.5rem"
+  },
+  {
+    "test": "should constant fold `calc(2rem * -1)` into `-2rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2rem * -1)"
+    ],
+    "result": "-2rem"
+  },
+  {
+    "test": "should constant fold `calc(-1 * 2rem)` into `-2rem`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-1 * 2rem)"
+    ],
+    "result": "-2rem"
+  },
+  {
+    "test": "should constant fold `calc(calc(1 + 2) + 2rem)` into `calc(3 + 2rem)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(1 + 2) + 2rem)"
+    ],
+    "result": "calc(3 + 2rem)"
+  },
+  {
+    "test": "should constant fold `calc(2 * calc(3 * var(--foo)))` into `calc(6 * var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2 * calc(3 * var(--foo)))"
+    ],
+    "result": "calc(6 * var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(calc(3 * var(--foo)) * 2)` into `calc(6 * var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(3 * var(--foo)) * 2)"
+    ],
+    "result": "calc(6 * var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(2rem * calc(3 * var(--foo)))` into `calc(6rem * var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2rem * calc(3 * var(--foo)))"
+    ],
+    "result": "calc(6rem * var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(1rem + calc(2rem + var(--foo)))` into `calc(3rem + var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1rem + calc(2rem + var(--foo)))"
+    ],
+    "result": "calc(3rem + var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(calc(2rem + var(--foo)) + 1rem)` into `calc(3rem + var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(2rem + var(--foo)) + 1rem)"
+    ],
+    "result": "calc(3rem + var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(-1 * calc(-1 * var(--foo)))` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-1 * calc(-1 * var(--foo)))"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(calc(-1 * var(--foo)) * -1)` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(-1 * var(--foo)) * -1)"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(-1 * calc(var(--foo) * -1))` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-1 * calc(var(--foo) * -1))"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(-1 * (-1 * var(--foo)))` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-1 * (-1 * var(--foo)))"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(1 * var(--foo))` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1 * var(--foo))"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(var(--foo) * 1)` into `var(--foo)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(var(--foo) * 1)"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "should constant fold `calc(1 + 2 + 3)` into `calc(1 + 2 + 3)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1 + 2 + 3)"
+    ],
+    "result": "calc(1 + 2 + 3)"
+  },
+  {
+    "test": "should not constant fold different units `calc(1rem * 2%)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1rem * 2%)"
+    ],
+    "result": "calc(1rem * 2%)"
+  },
+  {
+    "test": "should not constant fold different units `calc(1rem * 2px)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1rem * 2px)"
+    ],
+    "result": "calc(1rem * 2px)"
+  },
+  {
+    "test": "should not constant fold different units `calc(2rem - 6)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2rem - 6)"
+    ],
+    "result": "calc(2rem - 6)"
+  },
+  {
+    "test": "should not constant fold different units `calc(3rem * 3dvw)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3rem * 3dvw)"
+    ],
+    "result": "calc(3rem * 3dvw)"
+  },
+  {
+    "test": "should not constant fold different units `calc(3rem * 2dvh)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(3rem * 2dvh)"
+    ],
+    "result": "calc(3rem * 2dvh)"
+  },
+  {
+    "test": "should not constant fold different units `calc(5rem / 17px)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(5rem / 17px)"
+    ],
+    "result": "calc(5rem / 17px)"
+  },
+  {
+    "test": "should not constant fold different units `calc(2rem * calc(3px * var(--foo)))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(2rem * calc(3px * var(--foo)))"
+    ],
+    "result": "calc(2rem * calc(3px * var(--foo)))"
+  },
+  {
+    "test": "should not constant fold different units `calc(1rem + 0px + var(--foo))`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(1rem + 0px + var(--foo))"
+    ],
+    "result": "calc(1rem + 0px + var(--foo))"
+  },
+  {
+    "test": "should constant fold `calc(0 * 100vw)` to `0` (0)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(0 * 100vw)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(0 * calc(1 * 2))` to `0` (1)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(0 * calc(1 * 2))"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(0 * var(--foo))` to `0` (2)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(0 * var(--foo))"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(0 * calc(var(--spacing) * 32))` to `0` (3)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(0 * calc(var(--spacing) * 32))"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(100vw * 0)` to `0` (4)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(100vw * 0)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(calc(1 * 2) * 0)` to `0` (5)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(1 * 2) * 0)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(var(--foo) * 0)` to `0` (6)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(var(--foo) * 0)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(calc(var(--spacing, 0.25rem) * 32) * 0)` to `0` (7)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(var(--spacing, 0.25rem) * 32) * 0)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(var(--spacing, 0.25rem) * -0)` to `0` (8)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(var(--spacing, 0.25rem) * -0)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `0px` to `0` (9)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0px"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `0rem` to `0` (10)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0rem"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `0em` to `0` (11)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0em"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `0dvh` to `0` (12)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0dvh"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `-0` to `0` (13)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `+0` to `0` (14)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "+0"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `-0.0rem` to `0` (15)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0rem"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `+0.00rem` to `0` (16)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "+0.00rem"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(-0px * -1)` to `0` (17)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-0px * -1)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should constant fold `calc(-1 * -0px)` to `0` (18)",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(-1 * -0px)"
+    ],
+    "result": "0"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `calc(calc(0px * -1) + 1rem)` into `calc(0px + 1rem)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(0px * -1) + 1rem)"
+    ],
+    "result": "calc(0px + 1rem)"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `calc(calc(-1 * 0px) + 1rem)` into `calc(0px + 1rem)`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(calc(-1 * 0px) + 1rem)"
+    ],
+    "result": "calc(0px + 1rem)"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0deg` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0deg"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0rad` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0rad"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0%` into `0%`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0%"
+    ],
+    "result": "0%"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0turn` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0turn"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0fr` into `0fr`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0fr"
+    ],
+    "result": "0fr"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0ms` into `0s`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0ms"
+    ],
+    "result": "0s"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `0s` into `0s`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "0s"
+    ],
+    "result": "0s"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0deg` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0deg"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0rad` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0rad"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0%` into `0%`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0%"
+    ],
+    "result": "0%"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0turn` into `0deg`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0turn"
+    ],
+    "result": "0deg"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0fr` into `0fr`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0fr"
+    ],
+    "result": "0fr"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0ms` into `0s`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0ms"
+    ],
+    "result": "0s"
+  },
+  {
+    "test": "should not fold non-foldable units to `0`. Constant fold `-0.0s` into `0s`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "-0.0s"
+    ],
+    "result": "0s"
+  },
+  {
+    "test": "should not constant fold when dividing by `0`",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(123rem / 0)"
+    ],
+    "result": "calc(123rem / 0)"
+  },
+  {
+    "test": "should not constant fold when a computation has a high-precision result",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(100% / 3.5)"
+    ],
+    "result": "calc(100% / 3.5)"
+  },
+  {
+    "test": "should constant fold division results with floating-point error after scaling",
+    "kind": "internal:constant-fold-declaration:constantFoldDeclaration",
+    "args": [
+      "calc(29% / 100)"
+    ],
+    "result": "0.29%"
+  }
+]

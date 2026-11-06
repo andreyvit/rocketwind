@@ -272,7 +272,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,246 syntax, normalization, CSS nesting, configuration and helper calls, 2,968 Rust extraction/preprocessing calls and 411 filesystem scanner calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 14,396 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting and source maps. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
@@ -285,8 +285,9 @@ styles while adopting Rocketwind. New templates should be able to use the
 current version. Utilities already supplied by another stylesheet must not be
 generated twice.
 
-The library currently has **zero dependencies**. JavaScript tools are used only
-to run upstream tests and capture reference results during development.
+The library currently has **zero dependencies**. Node, Rust and ICU are used
+only to run upstream tests and generate reference data during development.
+The Go compiler does not run external tools.
 
 
 License
@@ -297,3 +298,4 @@ MIT. Copyright (c) 2026, Andrey Tarantsov.
 Parts adapted from Tailwind CSS retain Tailwind Labs' MIT license; see
 [the upstream license](testdata/upstream/LICENSE). Plugin sources and the small
 SVG encoder retain their licenses under [testdata/plugins](testdata/plugins).
+Unicode collation data retains its [Unicode license](data/collation/LICENSE).
