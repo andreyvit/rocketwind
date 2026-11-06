@@ -1,0 +1,3615 @@
+[
+  {
+    "test": "Config files can add content",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n    @config \"./config.js\";\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "content": [
+                  "./file.txt"
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[{\"base\":\"/root\",\"pattern\":\"./file.txt\",\"negated\":false}],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can change dark mode (media)",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": "media"
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can change dark mode (media)",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": "media"
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline"
+        ]
+      ]
+    ],
+    "result": "@media (prefers-color-scheme: dark) {\n  .dark\\:underline {\n    text-decoration-line: underline;\n  }\n}\n"
+  },
+  {
+    "test": "Config files can change dark mode (selector)",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": "selector"
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can change dark mode (selector)",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": "selector"
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline"
+        ]
+      ]
+    ],
+    "result": ".dark\\:underline:where(.dark, .dark *) {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "Config files can change dark mode (variant)",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": [
+                  "variant",
+                  "&:where(:not(.light))"
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can change dark mode (variant)",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": [
+                  "variant",
+                  "&:where(:not(.light))"
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline"
+        ]
+      ]
+    ],
+    "result": ".dark\\:underline:where(:not(.light)) {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "Config files can add plugins",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities }) {\n\t\t\taddUtilities({ \".no-scrollbar\": { \"scrollbar-width\": \"none\" } });\n\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".no-scrollbar": {
+                        "scrollbar-width": "none"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can add plugins",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities }) {\n\t\t\taddUtilities({ \".no-scrollbar\": { \"scrollbar-width\": \"none\" } });\n\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".no-scrollbar": {
+                        "scrollbar-width": "none"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "no-scrollbar"
+        ]
+      ]
+    ],
+    "result": ".no-scrollbar {\n  scrollbar-width: none;\n}\n"
+  },
+  {
+    "test": "Plugins loaded from config files can contribute to the config",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "() => {}"
+                    },
+                    "config": {
+                      "darkMode": [
+                        "variant",
+                        "&:where(:not(.light))"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Plugins loaded from config files can contribute to the config",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "() => {}"
+                    },
+                    "config": {
+                      "darkMode": [
+                        "variant",
+                        "&:where(:not(.light))"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline"
+        ]
+      ]
+    ],
+    "result": ".dark\\:underline:where(:not(.light)) {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "Config file presets can contribute to the config",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "presets": [
+                  {
+                    "darkMode": [
+                      "variant",
+                      "&:where(:not(.light))"
+                    ]
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config file presets can contribute to the config",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "presets": [
+                  {
+                    "darkMode": [
+                      "variant",
+                      "&:where(:not(.light))"
+                    ]
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline"
+        ]
+      ]
+    ],
+    "result": ".dark\\:underline:where(:not(.light)) {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "Config files can affect the theme",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "primary": "#c0ffee"
+                    }
+                  }
+                },
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities, theme }) {\n\t\t\t\taddUtilities({ \".scrollbar-primary\": { scrollbarColor: theme(\"colors.primary\") } });\n\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors.primary"
+                  ],
+                  "calls": [],
+                  "result": "#c0ffee"
+                },
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".scrollbar-primary": {
+                        "scrollbarColor": "#c0ffee"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Config files can affect the theme",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "primary": "#c0ffee"
+                    }
+                  }
+                },
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities, theme }) {\n\t\t\t\taddUtilities({ \".scrollbar-primary\": { scrollbarColor: theme(\"colors.primary\") } });\n\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors.primary"
+                  ],
+                  "calls": [],
+                  "result": "#c0ffee"
+                },
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".scrollbar-primary": {
+                        "scrollbarColor": "#c0ffee"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "bg-primary",
+          "scrollbar-primary"
+        ]
+      ]
+    ],
+    "result": ".scrollbar-primary {\n  scrollbar-color: #c0ffee;\n}\n.bg-primary {\n  background-color: #c0ffee;\n}\n"
+  },
+  {
+    "test": "Accessing a default color if a sub-color exists via CSS should work as expected",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        .example {\n          color: theme('colors.foo-bar');\n          border-color: theme('colors.foo');\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "colors": {
+                    "foo": "var(--foo-foo)",
+                    "foo-bar": "var(--foo-foo-bar)"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":28}"
+  },
+  {
+    "test": "Accessing a default color if a sub-color exists via CSS should work as expected",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        .example {\n          color: theme('colors.foo-bar');\n          border-color: theme('colors.foo');\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "colors": {
+                    "foo": "var(--foo-foo)",
+                    "foo-bar": "var(--foo-foo-bar)"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": ".example {\n  color: var(--foo-foo-bar);\n  border-color: var(--foo-foo);\n}\n"
+  },
+  {
+    "test": "Variants in CSS overwrite variants from plugins",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n        @custom-variant dark (&:is(.my-dark));\n        @custom-variant light (&:is(.my-light));\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": [
+                  "variant",
+                  "&:is(.dark)"
+                ],
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addVariant }) {\n\t\t\t\taddVariant(\"light\", \"&:is(.light)\");\n\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addVariant",
+                  "args": [
+                    "light",
+                    "&:is(.light)"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "Variants in CSS overwrite variants from plugins",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n        @custom-variant dark (&:is(.my-dark));\n        @custom-variant light (&:is(.my-light));\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "darkMode": [
+                  "variant",
+                  "&:is(.dark)"
+                ],
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addVariant }) {\n\t\t\t\taddVariant(\"light\", \"&:is(.light)\");\n\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addVariant",
+                  "args": [
+                    "light",
+                    "&:is(.light)"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "dark:underline",
+          "light:underline"
+        ]
+      ]
+    ],
+    "result": ".dark\\:underline:is(.my-dark) {\n  text-decoration-line: underline;\n}\n.light\\:underline:is(.my-light) {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "theme callbacks > tuple values from the config overwrite `@theme default` tuple-ish values from the CSS theme",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --text-base: 0rem;\n            --text-base--line-height: 1rem;\n            --text-md: 0rem;\n            --text-md--line-height: 1rem;\n            --text-xl: 0rem;\n            --text-xl--line-height: 1rem;\n          }\n          @theme {\n            --text-base: 100rem;\n            --text-md--line-height: 101rem;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "fontSize": {
+                      "base": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ],
+                      "md": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ],
+                      "xl": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ]
+                    },
+                    "lineHeight": {
+                      "$function": "({ theme }) => ({\n\t\t\t\t\t\tbase: theme(\"fontSize.base[1].lineHeight\"),\n\t\t\t\t\t\tmd: theme(\"fontSize.md[1].lineHeight\"),\n\t\t\t\t\t\txl: theme(\"fontSize.xl[1].lineHeight\")\n\t\t\t\t\t})"
+                    },
+                    "typography": {
+                      "$function": "({ theme }) => ({\n\t\t\t\t\t\t\"[class~=lead-base]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.base\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.base\")[1]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"[class~=lead-md]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.md\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.md\")[1]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"[class~=lead-xl]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.xl\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.xl\")[1]\n\t\t\t\t\t\t}\n\t\t\t\t\t})"
+                    }
+                  }
+                },
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities, theme }) {\n\t\t\t\t\taddUtilities({ \".prose\": { ...theme(\"typography\") } });\n\t\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "typography"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "[class~=lead-base]": {
+                      "fontSize": "100rem",
+                      "lineHeight": "201rem"
+                    },
+                    "[class~=lead-md]": {
+                      "fontSize": "200rem",
+                      "lineHeight": "101rem"
+                    },
+                    "[class~=lead-xl]": {
+                      "fontSize": "200rem",
+                      "lineHeight": "201rem"
+                    }
+                  }
+                },
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".prose": {
+                        "[class~=lead-base]": {
+                          "fontSize": "100rem",
+                          "lineHeight": "201rem"
+                        },
+                        "[class~=lead-md]": {
+                          "fontSize": "200rem",
+                          "lineHeight": "101rem"
+                        },
+                        "[class~=lead-xl]": {
+                          "fontSize": "200rem",
+                          "lineHeight": "201rem"
+                        }
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "theme callbacks > tuple values from the config overwrite `@theme default` tuple-ish values from the CSS theme",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --text-base: 0rem;\n            --text-base--line-height: 1rem;\n            --text-md: 0rem;\n            --text-md--line-height: 1rem;\n            --text-xl: 0rem;\n            --text-xl--line-height: 1rem;\n          }\n          @theme {\n            --text-base: 100rem;\n            --text-md--line-height: 101rem;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "fontSize": {
+                      "base": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ],
+                      "md": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ],
+                      "xl": [
+                        "200rem",
+                        {
+                          "lineHeight": "201rem"
+                        }
+                      ]
+                    },
+                    "lineHeight": {
+                      "$function": "({ theme }) => ({\n\t\t\t\t\t\tbase: theme(\"fontSize.base[1].lineHeight\"),\n\t\t\t\t\t\tmd: theme(\"fontSize.md[1].lineHeight\"),\n\t\t\t\t\t\txl: theme(\"fontSize.xl[1].lineHeight\")\n\t\t\t\t\t})"
+                    },
+                    "typography": {
+                      "$function": "({ theme }) => ({\n\t\t\t\t\t\t\"[class~=lead-base]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.base\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.base\")[1]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"[class~=lead-md]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.md\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.md\")[1]\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"[class~=lead-xl]\": {\n\t\t\t\t\t\t\tfontSize: theme(\"fontSize.xl\")[0],\n\t\t\t\t\t\t\t...theme(\"fontSize.xl\")[1]\n\t\t\t\t\t\t}\n\t\t\t\t\t})"
+                    }
+                  }
+                },
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "function({ addUtilities, theme }) {\n\t\t\t\t\taddUtilities({ \".prose\": { ...theme(\"typography\") } });\n\t\t\t\t}"
+                    }
+                  }
+                ]
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "typography"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "[class~=lead-base]": {
+                      "fontSize": "100rem",
+                      "lineHeight": "201rem"
+                    },
+                    "[class~=lead-md]": {
+                      "fontSize": "200rem",
+                      "lineHeight": "101rem"
+                    },
+                    "[class~=lead-xl]": {
+                      "fontSize": "200rem",
+                      "lineHeight": "201rem"
+                    }
+                  }
+                },
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".prose": {
+                        "[class~=lead-base]": {
+                          "fontSize": "100rem",
+                          "lineHeight": "201rem"
+                        },
+                        "[class~=lead-md]": {
+                          "fontSize": "200rem",
+                          "lineHeight": "101rem"
+                        },
+                        "[class~=lead-xl]": {
+                          "fontSize": "200rem",
+                          "lineHeight": "201rem"
+                        }
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "leading-base",
+          "leading-md",
+          "leading-xl",
+          "prose"
+        ]
+      ]
+    ],
+    "result": "@layer properties;\n.prose [class~=lead-base] {\n  font-size: 100rem;\n  line-height: 201rem;\n}\n.prose [class~=lead-md] {\n  font-size: 200rem;\n  line-height: 101rem;\n}\n.prose [class~=lead-xl] {\n  font-size: 200rem;\n  line-height: 201rem;\n}\n.leading-base {\n  --tw-leading: 201rem;\n  line-height: 201rem;\n}\n.leading-md {\n  --tw-leading: 101rem;\n  line-height: 101rem;\n}\n.leading-xl {\n  --tw-leading: 201rem;\n  line-height: 201rem;\n}\n@property --tw-leading {\n  syntax: \"*\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-leading: initial;\n    }\n  }\n}\n"
+  },
+  {
+    "test": "theme overrides order > user theme > js config > default theme",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --color-red: red;\n          }\n          @theme {\n            --color-blue: blue;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "red": "very-red",
+                      "blue": "very-blue"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "theme overrides order > user theme > js config > default theme",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --color-red: red;\n          }\n          @theme {\n            --color-blue: blue;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "red": "very-red",
+                      "blue": "very-blue"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "bg-red",
+          "bg-blue"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --color-blue: blue;\n}\n.bg-blue {\n  background-color: var(--color-blue);\n}\n.bg-red {\n  background-color: very-red;\n}\n"
+  },
+  {
+    "test": "theme overrides order > user theme > js config > default theme (with nested object)",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --color-slate-100: #000100;\n            --color-slate-200: #000200;\n            --color-slate-300: #000300;\n          }\n          @theme {\n            --color-slate-400: #100400;\n            --color-slate-500: #100500;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n          @plugin \"./plugin.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "slate": {
+                        "200": "#200200",
+                        "400": "#200400",
+                        "600": "#200600"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "handler": {
+                  "$function": "({ matchUtilities, theme }) => {\n\t\t\t\t\t\tmatchUtilities({ \"hover-bg\": (value) => {\n\t\t\t\t\t\t\treturn { \"&:hover\": { backgroundColor: value } };\n\t\t\t\t\t\t} }, { values: (0,__vite_ssr_import_4__.default)(theme(\"colors\")) });\n\t\t\t\t\t}"
+                }
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "slate-100": "#000100",
+                    "slate-200": "#000200",
+                    "slate-300": "#000300",
+                    "slate-400": "#100400",
+                    "slate-500": "#100500",
+                    "__CSS_VALUES__": {
+                      "slate-100": 4,
+                      "slate-200": 4,
+                      "slate-300": 4,
+                      "slate-400": 0,
+                      "slate-500": 0
+                    },
+                    "slate": {
+                      "200": "#200200",
+                      "400": "#200400",
+                      "600": "#200600"
+                    }
+                  }
+                },
+                {
+                  "name": "matchUtilities",
+                  "args": [
+                    {
+                      "hover-bg": {
+                        "$function": "(value) => {\n\t\t\t\t\t\t\treturn { \"&:hover\": { backgroundColor: value } };\n\t\t\t\t\t\t}"
+                      }
+                    },
+                    {
+                      "values": {
+                        "slate-100": "#000100",
+                        "slate-200": "#200200",
+                        "slate-300": "#000300",
+                        "slate-400": "#100400",
+                        "slate-500": "#100500",
+                        "slate-600": "#200600"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "theme overrides order > user theme > js config > default theme (with nested object)",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --color-slate-100: #000100;\n            --color-slate-200: #000200;\n            --color-slate-300: #000300;\n          }\n          @theme {\n            --color-slate-400: #100400;\n            --color-slate-500: #100500;\n          }\n          @tailwind utilities;\n          @config \"./config.js\";\n          @plugin \"./plugin.js\";\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "slate": {
+                        "200": "#200200",
+                        "400": "#200400",
+                        "600": "#200600"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "handler": {
+                  "$function": "({ matchUtilities, theme }) => {\n\t\t\t\t\t\tmatchUtilities({ \"hover-bg\": (value) => {\n\t\t\t\t\t\t\treturn { \"&:hover\": { backgroundColor: value } };\n\t\t\t\t\t\t} }, { values: (0,__vite_ssr_import_4__.default)(theme(\"colors\")) });\n\t\t\t\t\t}"
+                }
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "slate-100": "#000100",
+                    "slate-200": "#000200",
+                    "slate-300": "#000300",
+                    "slate-400": "#100400",
+                    "slate-500": "#100500",
+                    "__CSS_VALUES__": {
+                      "slate-100": 4,
+                      "slate-200": 4,
+                      "slate-300": 4,
+                      "slate-400": 0,
+                      "slate-500": 0
+                    },
+                    "slate": {
+                      "200": "#200200",
+                      "400": "#200400",
+                      "600": "#200600"
+                    }
+                  }
+                },
+                {
+                  "name": "matchUtilities",
+                  "args": [
+                    {
+                      "hover-bg": {
+                        "$function": "(value) => {\n\t\t\t\t\t\t\treturn { \"&:hover\": { backgroundColor: value } };\n\t\t\t\t\t\t}"
+                      }
+                    },
+                    {
+                      "values": {
+                        "slate-100": "#000100",
+                        "slate-200": "#200200",
+                        "slate-300": "#000300",
+                        "slate-400": "#100400",
+                        "slate-500": "#100500",
+                        "slate-600": "#200600"
+                      }
+                    }
+                  ],
+                  "calls": [
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#000100",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#000100"
+                        }
+                      }
+                    },
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#200200",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#200200"
+                        }
+                      }
+                    },
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#000300",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#000300"
+                        }
+                      }
+                    },
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#100400",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#100400"
+                        }
+                      }
+                    },
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#100500",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#100500"
+                        }
+                      }
+                    },
+                    {
+                      "name": "hover-bg",
+                      "args": [
+                        "#200600",
+                        {
+                          "modifier": null
+                        }
+                      ],
+                      "result": {
+                        "&:hover": {
+                          "backgroundColor": "#200600"
+                        }
+                      }
+                    }
+                  ],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "bg-slate-100",
+          "bg-slate-200",
+          "bg-slate-300",
+          "bg-slate-400",
+          "bg-slate-500",
+          "bg-slate-600",
+          "hover-bg-slate-100",
+          "hover-bg-slate-200",
+          "hover-bg-slate-300",
+          "hover-bg-slate-400",
+          "hover-bg-slate-500",
+          "hover-bg-slate-600"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --color-slate-100: #000100;\n  --color-slate-300: #000300;\n  --color-slate-400: #100400;\n  --color-slate-500: #100500;\n}\n.bg-slate-100 {\n  background-color: var(--color-slate-100);\n}\n.bg-slate-200 {\n  background-color: #200200;\n}\n.bg-slate-300 {\n  background-color: var(--color-slate-300);\n}\n.bg-slate-400 {\n  background-color: var(--color-slate-400);\n}\n.bg-slate-500 {\n  background-color: var(--color-slate-500);\n}\n.bg-slate-600 {\n  background-color: #200600;\n}\n.hover-bg-slate-100:hover {\n  background-color: #000100;\n}\n.hover-bg-slate-200:hover {\n  background-color: #200200;\n}\n.hover-bg-slate-300:hover {\n  background-color: #000300;\n}\n.hover-bg-slate-400:hover {\n  background-color: #100400;\n}\n.hover-bg-slate-500:hover {\n  background-color: #100500;\n}\n.hover-bg-slate-600:hover {\n  background-color: #200600;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` sets `--default-font-family`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": "Potato Sans"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` sets `--default-font-family`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": "Potato Sans"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ".font-sans {\n  font-family: Potato Sans;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans[1].fontFeatureSettings` sets `--default-font-feature-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontFeatureSettings": "\"cv06\""
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans[1].fontFeatureSettings` sets `--default-font-feature-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontFeatureSettings": "\"cv06\""
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ".font-sans {\n  font-family: Potato Sans;\n  font-feature-settings: \"cv06\";\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans[1].fontVariationSettings` sets `--default-font-variation-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans[1].fontVariationSettings` sets `--default-font-variation-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ".font-sans {\n  font-family: Potato Sans;\n  font-variation-settings: \"XHGT\" 0.7;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFeatureSettings` and `fontVariationSettings` for `fontFamily.sans` sets `--default-font-feature-settings` and `--default-font-variation-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontFeatureSettings": "\"cv06\"",
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFeatureSettings` and `fontVariationSettings` for `fontFamily.sans` sets `--default-font-feature-settings` and `--default-font-variation-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Potato Sans",
+                      {
+                        "fontFeatureSettings": "\"cv06\"",
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ".font-sans {\n  font-family: Potato Sans;\n  font-feature-settings: \"cv06\";\n  font-variation-settings: \"XHGT\" 0.7;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `--font-family-sans` in `@theme` without `default` preserves the original `--default-font-*` values",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @theme {\n            --font-sans: Sandwich Sans;\n          }\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": "Potato Sans"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `--font-family-sans` in `@theme` without `default` preserves the original `--default-font-*` values",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @theme {\n            --font-sans: Sandwich Sans;\n          }\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": "Potato Sans"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --font-sans: Sandwich Sans;\n}\n.font-sans {\n  font-family: var(--font-sans);\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` in a config file with an array sets `--default-font-family`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Inter",
+                      "system-ui",
+                      "sans-serif"
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` in a config file with an array sets `--default-font-family`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": [
+                      "Inter",
+                      "system-ui",
+                      "sans-serif"
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ".font-sans {\n  font-family: Inter, system-ui, sans-serif;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` in a config file with an unexpected type is ignored",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": {
+                      "foo": "bar",
+                      "banana": "sandwich"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.sans` in a config file with an unexpected type is ignored",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-font-family: var(--font-family-sans);\n            --default-font-feature-settings: var(--font-family-sans--font-feature-settings);\n            --default-font-variation-settings: var(--font-family-sans--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "sans": {
+                      "foo": "bar",
+                      "banana": "sandwich"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-sans"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono` sets `--default-mono-font-family`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": "Potato Mono"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono` sets `--default-mono-font-family`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": "Potato Mono"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ".font-mono {\n  font-family: Potato Mono;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono[1].fontFeatureSettings` sets `--default-mono-font-feature-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontFeatureSettings": "\"cv06\""
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono[1].fontFeatureSettings` sets `--default-mono-font-feature-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontFeatureSettings": "\"cv06\""
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ".font-mono {\n  font-family: Potato Mono;\n  font-feature-settings: \"cv06\";\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono[1].fontVariationSettings` sets `--default-mono-font-variation-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono[1].fontVariationSettings` sets `--default-mono-font-variation-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ".font-mono {\n  font-family: Potato Mono;\n  font-variation-settings: \"XHGT\" 0.7;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFeatureSettings` and `fontVariationSettings` for `fontFamily.mono` sets `--default-mono-font-feature-settings` and `--default-mono-font-variation-settings`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-mono);\n            --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontFeatureSettings": "\"cv06\"",
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFeatureSettings` and `fontVariationSettings` for `fontFamily.mono` sets `--default-mono-font-feature-settings` and `--default-mono-font-variation-settings`",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-mono);\n            --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": [
+                      "Potato Mono",
+                      {
+                        "fontFeatureSettings": "\"cv06\"",
+                        "fontVariationSettings": "\"XHGT\" 0.7"
+                      }
+                    ]
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ".font-mono {\n  font-family: Potato Mono;\n  font-feature-settings: \"cv06\";\n  font-variation-settings: \"XHGT\" 0.7;\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `--font-family-mono` in `@theme` without `default` preserves the original `--default-mono-font-*` values",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-mono);\n            --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @theme {\n            --font-mono: Sandwich Mono;\n          }\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": "Potato Mono"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `--font-family-mono` in `@theme` without `default` preserves the original `--default-mono-font-*` values",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-mono);\n            --default-mono-font-feature-settings: var(--font-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(--font-mono--font-variation-settings);\n          }\n          @config \"./config.js\";\n          @theme {\n            --font-mono: Sandwich Mono;\n          }\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": "Potato Mono"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --font-mono: Sandwich Mono;\n}\n.font-mono {\n  font-family: var(--font-mono);\n}\n"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono` in a config file with an unexpected type is ignored",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": {
+                      "foo": "bar",
+                      "banana": "sandwich"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "default font family compatibility > overriding `fontFamily.mono` in a config file with an unexpected type is ignored",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --default-mono-font-family: var(--font-family-mono);\n            --default-mono-font-feature-settings: var(--font-family-mono--font-feature-settings);\n            --default-mono-font-variation-settings: var(\n              --font-family-mono--font-variation-settings\n            );\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "fontFamily": {
+                    "mono": {
+                      "foo": "bar",
+                      "banana": "sandwich"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "font-mono"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "creates variants for `data`, `supports`, and `aria` theme options at the same level as the core utility ",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "aria": {
+                      "polite": "live=\"polite\""
+                    },
+                    "supports": {
+                      "child-combinator": "selector(h2 > p)",
+                      "foo": "bar"
+                    },
+                    "data": {
+                      "checked": "ui~=\"checked\""
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "creates variants for `data`, `supports`, and `aria` theme options at the same level as the core utility ",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "aria": {
+                      "polite": "live=\"polite\""
+                    },
+                    "supports": {
+                      "child-combinator": "selector(h2 > p)",
+                      "foo": "bar"
+                    },
+                    "data": {
+                      "checked": "ui~=\"checked\""
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "aria-polite:underline",
+          "supports-child-combinator:underline",
+          "supports-foo:underline",
+          "data-checked:underline",
+          "aria-hidden:flex",
+          "supports-grid:flex",
+          "data-foo:flex",
+          "print:flex"
+        ]
+      ]
+    ],
+    "result": ".aria-hidden\\:flex[aria-hidden=\"true\"] {\n  display: flex;\n}\n.aria-polite\\:underline[aria-live=\"polite\"] {\n  text-decoration-line: underline;\n}\n.data-checked\\:underline[data-ui~=\"checked\"] {\n  text-decoration-line: underline;\n}\n.data-foo\\:flex[data-foo] {\n  display: flex;\n}\n@supports selector(h2 > p) {\n  .supports-child-combinator\\:underline {\n    text-decoration-line: underline;\n  }\n}\n@supports (bar: var(--tw)) {\n  .supports-foo\\:underline {\n    text-decoration-line: underline;\n  }\n}\n@supports (grid: var(--tw)) {\n  .supports-grid\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "test": "merges css breakpoints with js config screens",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "44rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "merges css breakpoints with js config screens",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "44rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "lg:flex",
+          "min-sm:max-md:underline"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 44rem) {\n  .sm\\:flex {\n    display: flex;\n  }\n  @media (width < 50rem) {\n    .min-sm\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 50rem) {\n  .md\\:flex {\n    display: flex;\n  }\n}\n@media (width >= 64rem) {\n  .lg\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n    @config \"./config.js\";\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n    @tailwind utilities;\n    @config \"./config.js\";\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "tw:underline",
+          "tw:hover:line-through",
+          "tw:custom"
+        ]
+      ]
+    ],
+    "result": ".tw\\:custom {\n  color: red;\n}\n.tw\\:underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n    @config \"./config.js\";\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n    @tailwind utilities;\n    @config \"./config.js\";\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "utilities used in @apply must be prefixed",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @config \"./config.js\";\n\n        .my-underline {\n          @apply tw:underline;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":5}"
+  },
+  {
+    "test": "utilities used in @apply must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n        @config \"./config.js\";\n\n        .my-underline {\n          @apply tw:underline;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": ".my-underline {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "utilities used in @apply must be prefixed",
+    "kind": "compile",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        .my-underline {\n          @apply underline;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "error": "Cannot apply unprefixed utility class `underline`. Did you mean `tw:underline`?"
+  },
+  {
+    "test": "Prefixes configured in CSS take precedence over those defined in JS configs",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme prefix(wat) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @config \"./plugin.js\";\n\n        @tailwind utilities;\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "Prefixes configured in CSS take precedence over those defined in JS configs",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme prefix(wat) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @config \"./plugin.js\";\n\n        @tailwind utilities;\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "tw"
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "wat:custom"
+        ]
+      ]
+    ],
+    "result": ".wat\\:custom {\n  color: red;\n}\n"
+  },
+  {
+    "test": "a prefix must be letters only",
+    "kind": "compile",
+    "args": [
+      "\n        @config \"./plugin.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "prefix": "__"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "error": "The prefix \"__\" is invalid. Prefixes must be lowercase ASCII letters (a-z) only."
+  },
+  {
+    "test": "important: `#app`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "important": "#app"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "important: `#app`",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "important": "#app"
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": "#app .custom {\n  color: red;\n}\n#app .underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  #app .hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "important: true",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "important": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "important: true",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @config \"./config.js\";\n\n        @utility custom {\n          color: red;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "important": true
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": ".custom {\n  color: red !important;\n}\n.underline {\n  text-decoration-line: underline !important;\n}\n@media (hover: hover) {\n  .hover\\:line-through:hover {\n    text-decoration-line: line-through !important;\n  }\n}\n"
+  },
+  {
+    "test": "blocklisted candidates are not generated",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @theme reference {\n      --color-white: #fff;\n      --breakpoint-md: 48rem;\n    }\n    @tailwind utilities;\n    @config \"./config.js\";\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "blocklist": [
+                  "bg-white"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "blocklisted candidates are not generated",
+    "kind": "compile.build",
+    "args": [
+      "\n    @theme reference {\n      --color-white: #fff;\n      --breakpoint-md: 48rem;\n    }\n    @tailwind utilities;\n    @config \"./config.js\";\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "blocklist": [
+                  "bg-white"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "bg-white"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "blocklisted candidates are not generated",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @theme reference {\n      --color-white: #fff;\n      --breakpoint-md: 48rem;\n    }\n    @tailwind utilities;\n    @config \"./config.js\";\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "blocklist": [
+                  "bg-white"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "blocklisted candidates are not generated",
+    "kind": "compile.build",
+    "args": [
+      "\n    @theme reference {\n      --color-white: #fff;\n      --breakpoint-md: 48rem;\n    }\n    @tailwind utilities;\n    @config \"./config.js\";\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "blocklist": [
+                  "bg-white"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "bg-white",
+          "md:bg-white"
+        ]
+      ]
+    ],
+    "result": ".underline {\n  text-decoration-line: underline;\n}\n@media (width >= 48rem) {\n  .md\\:bg-white {\n    background-color: var(--color-white, #fff);\n  }\n}\n"
+  },
+  {
+    "test": "blocklisted candidates cannot be used with `@apply`",
+    "kind": "compile",
+    "args": [
+      "\n        @theme reference {\n          --color-white: #fff;\n          --breakpoint-md: 48rem;\n        }\n        @tailwind utilities;\n        @config \"./config.js\";\n        .foo {\n          @apply bg-white;\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "blocklist": [
+                  "bg-white"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "error": "Cannot apply utility class `bg-white` because it has been explicitly disabled: https://tailwindcss.com/docs/detecting-classes-in-source-files#explicitly-excluding-classes"
+  },
+  {
+    "test": "old theme values are merged with their renamed counterparts in the CSS theme",
+    "kind": "compile.metadata",
+    "args": [
+      "\n      @theme reference {\n        --breakpoint-a: 1;\n        --breakpoint-b: 2;\n\n        --color-a: 1;\n        --color-b: 2;\n\n        --radius-a: 1;\n        --radius-b: 2;\n\n        --shadow-a: 1;\n        --shadow-b: 2;\n\n        --animate-a: 1;\n        --animate-b: 2;\n\n        --aspect-a: 1;\n        --aspect-b: 2;\n\n        --container-a: 1;\n        --container-b: 2;\n\n        --tracking-a: 1;\n        --tracking-b: 2;\n\n        --leading-a: 1;\n        --leading-b: 2;\n      }\n\n      @plugin \"./plugin.js\";\n    ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "handler": {
+                  "$function": "function({ theme }) {\n\t\t\t\t\tdidCallPluginFn();\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"screens\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"screens.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"screens.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"colors\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"colors.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"colors.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"borderRadius\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"borderRadius.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"borderRadius.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"animation\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"animation.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"animation.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"aspectRatio\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"aspectRatio.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"aspectRatio.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"boxShadow\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"boxShadow.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"boxShadow.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"maxWidth\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"maxWidth.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"maxWidth.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"letterSpacing.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"letterSpacing.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"letterSpacing\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"lineHeight.a\")).toEqual(\"1\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"lineHeight.b\")).toEqual(\"2\");\n\t\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"lineHeight\")).toMatchObject({\n\t\t\t\t\t\ta: \"1\",\n\t\t\t\t\t\tb: \"2\"\n\t\t\t\t\t});\n\t\t\t\t}"
+                }
+              }
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "screens"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "sm": "40rem",
+                    "md": "48rem",
+                    "lg": "64rem",
+                    "xl": "80rem",
+                    "2xl": "96rem",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "screens.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "screens.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "colors.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "borderRadius"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "none": "0px",
+                    "sm": "0.125rem",
+                    "DEFAULT": "0.25rem",
+                    "md": "0.375rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "borderRadius.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "borderRadius.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "animation"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "none": "none",
+                    "spin": "spin 1s linear infinite",
+                    "ping": "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
+                    "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                    "bounce": "bounce 1s infinite",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "animation.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "animation.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "aspectRatio"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "auto": "auto",
+                    "square": "1 / 1",
+                    "video": "16 / 9",
+                    "__BARE_VALUE__": {
+                      "$function": "(value) => {\n\tif (value.fraction === null) return;\n\tlet [lhs, rhs] = (0,__vite_ssr_import_1__.segment)(value.fraction, \"/\");\n\tif (!(0,__vite_ssr_import_0__.isPositiveInteger)(lhs) || !(0,__vite_ssr_import_0__.isPositiveInteger)(rhs)) return;\n\treturn value.fraction;\n}"
+                    },
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "aspectRatio.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "aspectRatio.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "boxShadow"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+                    "DEFAULT": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+                    "md": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+                    "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                    "xl": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+                    "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+                    "inner": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+                    "none": "none",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "boxShadow.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "boxShadow.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "maxWidth"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "0": "0px",
+                    "1": "0.25rem",
+                    "2": "0.5rem",
+                    "3": "0.75rem",
+                    "4": "1rem",
+                    "5": "1.25rem",
+                    "6": "1.5rem",
+                    "7": "1.75rem",
+                    "8": "2rem",
+                    "9": "2.25rem",
+                    "10": "2.5rem",
+                    "11": "2.75rem",
+                    "12": "3rem",
+                    "14": "3.5rem",
+                    "16": "4rem",
+                    "20": "5rem",
+                    "24": "6rem",
+                    "28": "7rem",
+                    "32": "8rem",
+                    "36": "9rem",
+                    "40": "10rem",
+                    "44": "11rem",
+                    "48": "12rem",
+                    "52": "13rem",
+                    "56": "14rem",
+                    "60": "15rem",
+                    "64": "16rem",
+                    "72": "18rem",
+                    "80": "20rem",
+                    "96": "24rem",
+                    "none": "none",
+                    "xs": "20rem",
+                    "sm": "24rem",
+                    "md": "28rem",
+                    "lg": "32rem",
+                    "xl": "36rem",
+                    "2xl": "42rem",
+                    "3xl": "48rem",
+                    "4xl": "56rem",
+                    "5xl": "64rem",
+                    "6xl": "72rem",
+                    "7xl": "80rem",
+                    "full": "100%",
+                    "min": "min-content",
+                    "max": "max-content",
+                    "fit": "fit-content",
+                    "prose": "65ch",
+                    "px": "1px",
+                    "0.5": "0.125rem",
+                    "1.5": "0.375rem",
+                    "2.5": "0.625rem",
+                    "3.5": "0.875rem",
+                    "a": "1",
+                    "b": "2"
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "maxWidth.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "maxWidth.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "letterSpacing.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "letterSpacing.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "letterSpacing"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "tighter": "-0.05em",
+                    "tight": "-0.025em",
+                    "normal": "0em",
+                    "wide": "0.025em",
+                    "wider": "0.05em",
+                    "widest": "0.1em",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "lineHeight.a"
+                  ],
+                  "calls": [],
+                  "result": "1"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "lineHeight.b"
+                  ],
+                  "calls": [],
+                  "result": "2"
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "lineHeight"
+                  ],
+                  "calls": [],
+                  "result": {
+                    "3": ".75rem",
+                    "4": "1rem",
+                    "5": "1.25rem",
+                    "6": "1.5rem",
+                    "7": "1.75rem",
+                    "8": "2rem",
+                    "9": "2.25rem",
+                    "10": "2.5rem",
+                    "none": "1",
+                    "tight": "1.25",
+                    "snug": "1.375",
+                    "normal": "1.5",
+                    "relaxed": "1.625",
+                    "loose": "2",
+                    "a": "1",
+                    "b": "2",
+                    "__CSS_VALUES__": {
+                      "a": 2,
+                      "b": 2
+                    }
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":68}"
+  },
+  {
+    "test": "handles setting theme keys to null",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --color-red-50: oklch(0.971 0.013 17.38);\n          --color-red-100: oklch(0.936 0.032 17.717);\n        }\n        @config \"./my-config.js\";\n        @tailwind utilities;\n        @theme {\n          --color-red-100: oklch(0.936 0.032 17.717);\n          --color-red-200: oklch(0.885 0.062 18.334);\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./my-config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "red": null
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "handles setting theme keys to null",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --color-red-50: oklch(0.971 0.013 17.38);\n          --color-red-100: oklch(0.936 0.032 17.717);\n        }\n        @config \"./my-config.js\";\n        @tailwind utilities;\n        @theme {\n          --color-red-100: oklch(0.936 0.032 17.717);\n          --color-red-200: oklch(0.885 0.062 18.334);\n        }\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./my-config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "colors": {
+                      "red": null
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "bg-red-50",
+          "bg-red-100",
+          "bg-red-200"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --color-red-50: oklch(0.971 0.013 17.38);\n  --color-red-100: oklch(0.936 0.032 17.717);\n  --color-red-200: oklch(0.885 0.062 18.334);\n}\n.bg-red-50 {\n  background-color: var(--color-red-50);\n}\n.bg-red-100 {\n  background-color: var(--color-red-100);\n}\n.bg-red-200 {\n  background-color: var(--color-red-200);\n}\n"
+  },
+  {
+    "test": "The theme() function does not try indexing into strings",
+    "kind": "compile.metadata",
+    "args": [
+      "\n      @theme default {\n        --color-what-50: #f00;\n        --color-what-950: #f00;\n      }\n\n      @theme {\n        /*\n       * The value of this theme variable is > 50 chars because colors.what.50 was previously\n       * indexing the string: \"light-dark(theme(colors.what.950), theme(colors.what.50))\"\n       * because the resolved config contained an object with a \"what\" key that was that string\n       */\n        --color-what: light-dark(theme(colors.what.950), theme(colors.what.50));\n      }\n\n      @source inline(\"text-what\");\n\n      @tailwind utilities;\n    ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":88}"
+  },
+  {
+    "test": "The theme() function does not try indexing into strings",
+    "kind": "compile.build",
+    "args": [
+      "\n      @theme default {\n        --color-what-50: #f00;\n        --color-what-950: #f00;\n      }\n\n      @theme {\n        /*\n       * The value of this theme variable is > 50 chars because colors.what.50 was previously\n       * indexing the string: \"light-dark(theme(colors.what.950), theme(colors.what.50))\"\n       * because the resolved config contained an object with a \"what\" key that was that string\n       */\n        --color-what: light-dark(theme(colors.what.950), theme(colors.what.50));\n      }\n\n      @source inline(\"text-what\");\n\n      @tailwind utilities;\n    ",
+      {},
+      [
+        []
+      ]
+    ],
+    "result": ":root, :host {\n  --color-what: light-dark(#f00, #f00);\n}\n.text-what {\n  color: var(--color-what);\n}\n"
+  },
+  {
+    "test": "camel case keys are preserved",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @tailwind utilities;\n        @theme {\n          --color-blue-green: slate;\n        }\n        @config \"./plugin.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "base": "/",
+              "path": "",
+              "module": {
+                "theme": {
+                  "extend": {
+                    "backgroundColor": {
+                      "lightGreen": "#c0ffee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "camel case keys are preserved",
+    "kind": "compile.build",
+    "args": [
+      "\n        @tailwind utilities;\n        @theme {\n          --color-blue-green: slate;\n        }\n        @config \"./plugin.js\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "base": "/",
+              "path": "",
+              "module": {
+                "theme": {
+                  "extend": {
+                    "backgroundColor": {
+                      "lightGreen": "#c0ffee"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      [
+        [
+          "bg-blue-green",
+          "bg-blueGreen",
+          "bg-light-green",
+          "bg-lightGreen"
+        ]
+      ]
+    ],
+    "result": ".bg-blue-green {\n  background-color: var(--color-blue-green);\n}\n.bg-lightGreen {\n  background-color: #c0ffee;\n}\n:root, :host {\n  --color-blue-green: slate;\n}\n"
+  }
+]

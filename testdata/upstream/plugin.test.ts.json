@@ -1,6 +1,52 @@
 [
   {
     "test": "plugin",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @plugin \"my-plugin\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "my-plugin",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "handler": {
+                  "$function": "function({ addBase }) {\n\t\t\taddBase({ body: { margin: \"0\" } });\n\t\t}"
+                }
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addBase",
+                  "args": [
+                    {
+                      "body": {
+                        "margin": "0"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":4}"
+  },
+  {
+    "test": "plugin",
     "kind": "compile.build",
     "args": [
       "\n        @plugin \"my-plugin\";\n      ",
@@ -31,7 +77,11 @@
                         "margin": "0"
                       }
                     }
-                  ]
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
                 }
               ]
             ]
@@ -43,6 +93,50 @@
       ]
     ],
     "result": "@layer base {\n  body {\n    margin: 0;\n  }\n}\n"
+  },
+  {
+    "test": "plugin.withOptions",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @plugin \"my-plugin\";\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "my-plugin",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "$function": "function optionsFunction(options) {\n\t\treturn {\n\t\t\thandler: pluginFunction(options),\n\t\t\tconfig: configFunction(options)\n\t\t};\n\t}"
+              },
+              "base": "/root",
+              "path": ""
+            },
+            "plugins": [
+              [
+                {
+                  "name": "addBase",
+                  "args": [
+                    {
+                      "body": {
+                        "margin": "1px"
+                      }
+                    }
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":4}"
   },
   {
     "test": "plugin.withOptions",
@@ -74,7 +168,11 @@
                         "margin": "1px"
                       }
                     }
-                  ]
+                  ],
+                  "calls": [],
+                  "result": {
+                    "$undefined": true
+                  }
                 }
               ]
             ]

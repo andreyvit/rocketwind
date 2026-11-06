@@ -49,6 +49,9 @@ func (c *Compiler) variantDefinition(name string) (variantDefinition, bool) {
 		return d, true
 	}
 	if d, ok := builtinVariants[name]; ok {
+		if d.Order > builtinVariants["min"].Order {
+			d.Order += c.legacyScreenCount
+		}
 		return d, true
 	}
 	if c.breakpointVariants != nil {
@@ -100,6 +103,14 @@ func slotNodes(template, content []*Node) []*Node {
 	return result
 }
 func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth int) ([]*Node, bool) {
+	if !v.arbitrary {
+		if value := b.compiler.legacyVariantValues[v.root].Get(v.value); value != nil {
+			copy := *v
+			copy.arbitrary = true
+			copy.value = themeString(value)
+			v = &copy
+		}
+	}
 	wrap := func(selector string) ([]*Node, bool) {
 		return []*Node{{Kind: "rule", Name: selector, Nodes: nodes}}, true
 	}
@@ -140,15 +151,12 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 				return nil, false
 			}
 		}
-		selector := v.matcher.Match(value, v.modifier)
-		if selector == "" {
+		result, err := pluginVariantFormats(variantFormats(v.matcher, value, v.modifier), nodes)
+		if err != nil {
+			b.err = err
 			return nil, false
 		}
-		if strings.HasPrefix(selector, "@") {
-			name, query, _ := strings.Cut(selector, " ")
-			return at(name, strings.TrimSpace(query))
-		}
-		return wrap(selector)
+		return result, len(result) > 0
 	}
 	if v.value == "" {
 		return nil, false
@@ -380,6 +388,9 @@ func negateVariant(isolated, content []*Node) ([]*Node, bool) {
 	return result, len(result) > 0
 }
 func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
+	if a == z {
+		return 0
+	}
 	if a == nil {
 		if z == nil {
 			return 0
@@ -399,7 +410,7 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 		return strings.Compare(a.modifier, z.modifier)
 	}
 	order := a.definition.Order
-	if order == builtinVariants["min"].Order || order == builtinVariants["max"].Order || order == builtinVariants["@"].Order || order == builtinVariants["@max"].Order {
+	if order == builtinVariants["min"].Order || order == builtinVariants["max"].Order || order == builtinVariants["@"].Order+b.compiler.legacyScreenCount || order == builtinVariants["@max"].Order+b.compiler.legacyScreenCount {
 		value := func(v *parsedVariant) string {
 			if v.arbitrary {
 				return v.value
@@ -413,12 +424,15 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 			}
 			return b.themeValue(namespace + v.value)
 		}
-		return compareBreakpointValues(value(a), value(z), order == builtinVariants["max"].Order || order == builtinVariants["@max"].Order)
+		return compareBreakpointValues(value(a), value(z), order == builtinVariants["max"].Order || order == builtinVariants["@max"].Order+b.compiler.legacyScreenCount)
 	}
 	if v := strings.Compare(a.root, z.root); v != 0 {
 		return v
 	}
 	if a.matcher != nil && a.matcher.Sort != nil {
+		if a.root == z.root && a.value == z.value && a.modifier == z.modifier && a.arbitrary == z.arbitrary {
+			return 0
+		}
 		resolve := func(v *parsedVariant) VariantValue {
 			value := v.value
 			if value == "" {
@@ -447,6 +461,9 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 			return -1
 		}
 		return cmp.Compare(rank(a.value), rank(z.value))
+	}
+	if a.matcher != nil && a.value == z.value && a.modifier != z.modifier {
+		return 1
 	}
 	return strings.Compare(a.value, z.value)
 }

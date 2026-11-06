@@ -9,18 +9,29 @@ import (
 )
 
 func TestUpstreamUtilities(t *testing.T) {
-	checkCompilerSuite(t, "utilities", 749)
+	checkCompilerSuite(t, "utilities", 1492)
 }
 
 func TestUpstreamVariants(t *testing.T) {
-	checkCompilerSuite(t, "variants", 1009)
+	checkCompilerSuite(t, "variants", 2018)
 }
 
 func TestUpstreamStylesheets(t *testing.T) {
 	for _, suite := range []struct {
 		name  string
 		count int
-	}{{"index", 252}, {"prefix", 14}, {"important", 4}, {"css-functions", 75}, {"at-import", 27}, {"compiler-lifetime", 1}, {"plugin", 2}, {"compat_legacy-utilities", 13}} {
+	}{{"index", 473}, {"prefix", 26}, {"important", 8}, {"css-functions", 141}, {"at-import", 55}, {"compiler-lifetime", 2}, {"plugin", 4}, {"compat_legacy-utilities", 26}} {
+		t.Run(suite.name, func(t *testing.T) { checkCompilerSuite(t, suite.name, suite.count) })
+	}
+}
+
+func TestUpstreamPluginCompatibility(t *testing.T) {
+	for _, suite := range []struct {
+		name  string
+		count int
+	}{
+		{"compat_plugin-api", 183}, {"compat_config", 81}, {"compat_screens-config", 20}, {"compat_container-config", 16},
+	} {
 		t.Run(suite.name, func(t *testing.T) { checkCompilerSuite(t, suite.name, suite.count) })
 	}
 }
@@ -91,6 +102,30 @@ func checkCompilerSuite(t *testing.T, suite string, count int) {
 		}
 		c, err := Compile(input, config)
 		got := ""
+		if err == nil && tt.Kind == "compile.metadata" {
+			var sources []map[string]any
+			for _, source := range c.Sources() {
+				sources = append(sources, map[string]any{"base": source.Base, "pattern": source.Pattern, "negated": source.Negated})
+			}
+			if sources == nil {
+				sources = []map[string]any{}
+			}
+			var root any
+			if value := c.Root(); value != nil {
+				if value.Disabled {
+					root = "none"
+				} else {
+					root = map[string]any{"base": value.Base, "pattern": value.Pattern}
+				}
+			}
+			metadata := map[string]any{"sources": sources, "root": root, "features": c.Features()}
+			data, _ := json.Marshal(metadata)
+			got = string(data)
+			var want any
+			json.Unmarshal([]byte(tt.Result), &want)
+			data, _ = json.Marshal(want)
+			tt.Result = string(data)
+		}
 		if err == nil && tt.Kind == "compile.build" {
 			var builds [][]string
 			json.Unmarshal(tt.Args[2], &builds)
@@ -101,6 +136,9 @@ func checkCompilerSuite(t *testing.T, suite string, count int) {
 					break
 				}
 			}
+		}
+		if err == nil && c != nil && c.legacyErr != nil {
+			err = c.legacyErr
 		}
 		ok := err == nil && tt.Error == "" && strings.TrimSpace(got) == strings.TrimSpace(tt.Result) || err != nil && err.Error() == tt.Error
 		if !ok {

@@ -32,6 +32,13 @@ func (c *Compiler) resolveApplies() error {
 			}
 			c.custom[name] = resolved
 		}
+		for i, nodes := range c.customGroups[name] {
+			resolved, err := expand(nodes, false)
+			if err != nil {
+				return err
+			}
+			c.customGroups[name][i] = resolved
+		}
 		for i, nodes := range c.customFunctional[name] {
 			resolved, err := expand(nodes, false)
 			if err != nil {
@@ -101,6 +108,9 @@ func (c *Compiler) resolveApplies() error {
 						}
 					}
 					if !found {
+						if c.blocklist[raw] {
+							return nil, fmt.Errorf("Cannot apply utility class `%s` because it has been explicitly disabled: https://tailwindcss.com/docs/detecting-classes-in-source-files#explicitly-excluding-classes", raw)
+						}
 						_, variants, _, _ := parseClass(raw, c.config.Prefix)
 						var unknown []string
 						for _, variant := range variants {
@@ -150,6 +160,9 @@ func (c *Compiler) resolveApplies() error {
 		}
 	}
 	var err error
+	if hasNode(c.input, "@apply") {
+		c.features |= FeatureApply
+	}
 	c.input, err = expand(c.input, false)
 	return err
 }

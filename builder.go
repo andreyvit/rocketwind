@@ -42,6 +42,12 @@ func (builder *Builder) Build(candidates []string) (string, error) {
 	if !c.hasInput || c.hasUtilities {
 		rules = b.compileRules(added)
 	}
+	if b.err != nil {
+		for _, class := range added {
+			delete(builder.seen, class)
+		}
+		return builder.css, b.err
+	}
 	if len(rules) == 0 && builder.built {
 		return builder.css, nil
 	}

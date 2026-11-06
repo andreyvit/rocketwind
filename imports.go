@@ -26,6 +26,21 @@ func loadBuiltinStylesheet(id string) (Stylesheet, bool) {
 	}
 	return Stylesheet{}, false
 }
+
+func importFeatures(nodes []*Node) Features {
+	for _, n := range nodes {
+		if n.Kind == "at-rule" && (n.Name == "@import" || n.Name == "@reference") {
+			_, _, _, _, valid, _ := parseImportParams(n.Value)
+			if valid {
+				return FeatureImport
+			}
+		}
+		if importFeatures(n.Nodes) != 0 {
+			return FeatureImport
+		}
+	}
+	return 0
+}
 func resolveImports(nodes []*Node, config Config, base string, depth int) ([]*Node, error) {
 	var result []*Node
 	for _, n := range nodes {
@@ -70,7 +85,7 @@ func resolveImports(nodes []*Node, config Config, base string, depth int) ([]*No
 				ast = []*Node{{Kind: "at-rule", Name: "@layer", Value: *layer, Nodes: ast}}
 			}
 			if media != "" {
-				ast = []*Node{{Kind: "at-rule", Name: "@media", Value: media, Nodes: ast}}
+				ast = []*Node{{Kind: "at-rule", Name: "@media", Value: media, Nodes: ast, base: base}}
 			}
 			if supports != "" {
 				if !strings.HasPrefix(supports, "(") {

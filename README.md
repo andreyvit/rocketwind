@@ -55,6 +55,28 @@ plugin callbacks before returning the compiler. `PluginAPI` registers base
 styles, component selectors, static utilities, variants and typed functional
 utilities with named values, fractions, modifiers and negative values.
 
+Existing object-style Tailwind configuration has a Go equivalent too:
+
+```go
+compiler, err := rocketwind.NewWithPlugins(rocketwind.Config{},
+    rocketwind.Legacy(rocketwind.ConfigObject{
+        {Key: "theme", Value: map[string]any{
+            "extend": map[string]any{
+                "colors": map[string]string{"brand": "#663399"},
+            },
+        }},
+    }),
+)
+```
+
+`Legacy` supports theme replacements and extensions, presets, typed Go theme
+callbacks, breakpoints, container settings, dark mode, prefixes and blocklists.
+Use `ConfigObject` when field order matters, or ordinary maps for nested values.
+`ThemeFunc` receives a resolver for references to other settings. Plugin callbacks
+can read scalar values with `Theme`, or objects and tuples with `ThemeValue`.
+This is Tailwind 4's compatibility API; it does not yet reproduce Tailwind 3's
+generated CSS.
+
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
 
@@ -166,7 +188,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 2,146 compiler calls captured from ten upstream suites match exactly, plus 6,151 syntax, normalization, CSS nesting and helper calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,151 syntax, normalization, CSS nesting and helper calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

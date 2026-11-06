@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.2%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.3%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -69,6 +69,29 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   scanning/CLI, coverage/performance
   and integration gates.
 - Implementation and conformance gates remain open.
+
+### Legacy configuration and expanded compiler checks
+
+- Ported the object-style compatibility API: ordered configuration, theme
+  replacement/extension and Go callbacks, presets, font tuples, dark mode,
+  prefixes, blocklists, screens and container overrides. Generated defaults
+  come from pinned source, not expected test results.
+- Added typed utility fallbacks, parallel plugin variants, independent static
+  utility registrations, and dynamic plugin `@apply`/`@variant` expansion.
+  Expansion detects cycles and excessive depth; failed incremental builds
+  retain their previous CSS and can be retried.
+- Captured all 149 original tests in the four plugin/configuration suites.
+  The harness now checks successful compile-only calls too, including complete
+  plugin theme/config lookups, content paths and source roots.
+- Re-ran ten original compiler suites: all 874 tests pass. Across fourteen
+  compiler suites, 4,545 checks pass: 2,225 CSS builds, 68 errors and 2,252
+  metadata results. With the existing helper suites, 10,696 captured calls pass.
+- Added programmatic configuration, JSON ordering/errors, source discovery,
+  concurrent build and dynamic plugin failure tests.
+- Go tests, race detector and vet pass; statement coverage is 96.3%. The 100%
+  coverage gate remains open.
+- This extends the Tailwind 4 compatibility API. Tailwind 3 output parity and
+  Bubblehouse integration remain pending.
 
 ## Initial performance measurements
 

@@ -38,6 +38,8 @@ type Config struct {
 }
 
 type Compiler struct {
+	features              Features
+	root                  *SourceRoot
 	hasUtilities          bool
 	config                Config
 	input                 []*Node
@@ -57,6 +59,19 @@ type Compiler struct {
 	excludedCandidates    map[string]bool
 	matchingVariants      map[string]*Variant
 	matchingUtilities     map[string][]*utilityMatcher
+	legacyTheme           ConfigObject
+	legacyResolved        map[string]bool
+	legacyResolving       map[string]bool
+	legacyErr             error
+	legacyConfig          ConfigObject
+	legacyScreenCount     int
+	blocklist             map[string]bool
+	importantSelector     string
+	legacyPending         bool
+	legacyPendingTheme    ConfigObject
+	legacyReplaced        map[string]bool
+	legacyVariantValues   map[string]ConfigObject
+	customGroups          map[string][][]*Node
 	customReferences      map[string]bool
 }
 
@@ -79,7 +94,8 @@ func (c *Compiler) Build(candidates []string) (string, error) {
 	if len(c.inlineCandidates) > 0 {
 		candidates = append(slices.Clone(candidates), c.inlineCandidates...)
 	}
-	return b.renderRules(b.compileRules(candidates)), nil
+	result := b.renderRules(b.compileRules(candidates))
+	return result, b.err
 }
 
 func (b *buildContext) renderRules(rules []compiledRule) string {
@@ -87,6 +103,9 @@ func (b *buildContext) renderRules(rules []compiledRule) string {
 	var nodes []*Node
 	for _, r := range rules {
 		nodes = append(nodes, r.node)
+	}
+	if c.importantSelector != "" && len(nodes) > 0 {
+		nodes = []*Node{{Kind: "rule", Name: c.importantSelector, Nodes: nodes}}
 	}
 	if !c.hasInput && len(c.pluginBase) > 0 {
 		nodes = append(slices.Clone(c.pluginBase), nodes...)
@@ -117,6 +136,9 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 	seen := make(map[string]bool, len(candidates))
 	var rules []compiledRule
 	for _, raw := range candidates {
+		if b.compiler.blocklist[raw] {
+			continue
+		}
 		if !b.inApply && (b.compiler.excludedCandidates[raw] || b.compiler.config.ExistingClasses.Contains(raw)) {
 			continue
 		}
@@ -132,8 +154,16 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			key := slices.Clone(variants)
 			slices.SortFunc(key, func(a, z *parsedVariant) int { return -b.compareParsedVariant(a, z) })
 			key = slices.CompactFunc(key, func(a, z *parsedVariant) bool { return b.compareParsedVariant(a, z) == 0 })
-			for _, nodes := range b.candidateGroups(candidate) {
+			groups := b.candidateGroups(candidate)
+			if b.err != nil {
+				return rules
+			}
+			for _, nodes := range groups {
 				nodes = b.evaluateNodes(nodes)
+				if b.err != nil {
+					b.err = nil
+					continue
+				}
 				if len(nodes) == 0 {
 					continue
 				}
@@ -182,11 +212,13 @@ func (b *buildContext) compareRules(a, z compiledRule) int {
 }
 
 type buildContext struct {
+	features   Features
 	err        error
 	inApply    bool
 	standalone bool
 	compiler   *Compiler
 	used       map[string]bool
+	applyStack []string
 }
 
 type compiledRule struct {
@@ -277,7 +309,9 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 	switch candidate.Kind {
 	case "static":
 		var result [][]*Node
-		if nodes := b.compiler.custom[candidate.Root]; len(nodes) > 0 {
+		if groups := b.compiler.customGroups[candidate.Root]; len(groups) > 0 {
+			result = append(result, groups...)
+		} else if nodes := b.compiler.custom[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
 		}
 		if candidate.Root == "container" {
@@ -306,13 +340,21 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 			value, dataType, arbitrary = candidate.Value.Value, candidate.Value.DataType, candidate.Value.Kind == "arbitrary"
 		}
 		groups := b.functionalGroups(candidate.Root, value, modifier, dataType, arbitrary, modifierArbitrary)
-		for _, matcher := range b.compiler.matchingUtilities[candidate.Root] {
-			nodes, stop := b.matchUtility(matcher, candidate)
-			if stop {
-				return nil
+		for _, fallback := range []bool{false, true} {
+			if fallback && len(groups) > 0 {
+				break
 			}
-			if len(nodes) > 0 {
-				groups = append(groups, nodes)
+			for _, matcher := range b.compiler.matchingUtilities[candidate.Root] {
+				if (len(matcher.Types) > 1 && slices.Contains(matcher.Types, TypeAny)) != fallback {
+					continue
+				}
+				nodes, stop := b.matchUtility(matcher, candidate)
+				if stop {
+					return groups
+				}
+				if len(nodes) > 0 {
+					groups = append(groups, nodes)
+				}
 			}
 		}
 		return groups

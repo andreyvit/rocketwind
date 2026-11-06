@@ -1,6 +1,49 @@
 [
   {
     "test": "compiler releases loader callbacks after compilation",
+    "kind": "compile.metadata",
+    "args": [
+      "@import \"utilities\"; @plugin \"fixture\";",
+      {
+        "from": "input.css",
+        "stylesheets": [
+          {
+            "args": [
+              "utilities",
+              ""
+            ],
+            "result": {
+              "path": "utilities.css",
+              "base": ".",
+              "content": "@tailwind utilities;"
+            }
+          }
+        ],
+        "modules": [
+          {
+            "args": [
+              "fixture",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "path": "plugin.js",
+              "base": ".",
+              "module": {
+                "$function": "() => {}"
+              }
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":22}"
+  },
+  {
+    "test": "compiler releases loader callbacks after compilation",
     "kind": "compile.build",
     "args": [
       "@import \"utilities\"; @plugin \"fixture\";",

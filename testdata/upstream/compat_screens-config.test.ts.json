@@ -1,0 +1,847 @@
+[
+  {
+    "test": "CSS `--breakpoint-*` merge with JS config `screens`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "44rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "CSS `--breakpoint-*` merge with JS config `screens`",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "44rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "lg:flex",
+          "min-sm:max-md:underline",
+          "min-md:max-lg:underline",
+          "max-w-screen-sm",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": ".max-w-screen-sm {\n  max-width: 44rem;\n}\n@media (width >= 44rem) {\n  .sm\\:flex {\n    display: flex;\n  }\n  @media (width < 50rem) {\n    .min-sm\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 50rem) {\n  .md\\:flex {\n    display: flex;\n  }\n  @media (width < 64rem) {\n    .min-md\\:max-lg\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 64rem) {\n  .lg\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "JS config `screens` extend CSS `--breakpoint-*`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-xs: 39rem;\n          --breakpoint-md: 49rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "xs": "30rem",
+                      "sm": "40rem",
+                      "md": "48rem",
+                      "lg": "60rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "JS config `screens` extend CSS `--breakpoint-*`",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-xs: 39rem;\n          --breakpoint-md: 49rem;\n        }\n        @theme {\n          --breakpoint-md: 50rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "xs": "30rem",
+                      "sm": "40rem",
+                      "md": "48rem",
+                      "lg": "60rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "md:flex",
+          "sm:flex",
+          "lg:flex",
+          "xs:flex",
+          "min-md:max-lg:underline",
+          "min-sm:max-md:underline",
+          "min-xs:flex",
+          "min-xs:max-md:underline",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 30rem) {\n  .min-xs\\:flex {\n    display: flex;\n  }\n  .xs\\:flex {\n    display: flex;\n  }\n  @media (width < 50rem) {\n    .min-xs\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 40rem) {\n  .sm\\:flex {\n    display: flex;\n  }\n  @media (width < 50rem) {\n    .min-sm\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 50rem) {\n  .md\\:flex {\n    display: flex;\n  }\n  @media (width < 60rem) {\n    .min-md\\:max-lg\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 60rem) {\n  .lg\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "JS config `screens` only setup, even if those match the default-theme export",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "screens": {
+                    "sm": "40rem",
+                    "md": "48rem",
+                    "lg": "64rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "JS config `screens` only setup, even if those match the default-theme export",
+    "kind": "compile.build",
+    "args": [
+      "\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "screens": {
+                    "sm": "40rem",
+                    "md": "48rem",
+                    "lg": "64rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "md:flex",
+          "sm:flex",
+          "lg:flex",
+          "min-md:max-lg:underline",
+          "min-sm:max-md:underline",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 40rem) {\n  .sm\\:flex {\n    display: flex;\n  }\n  @media (width < 48rem) {\n    .min-sm\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 48rem) {\n  .md\\:flex {\n    display: flex;\n  }\n  @media (width < 64rem) {\n    .min-md\\:max-lg\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 64rem) {\n  .lg\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "JS config `screens` overwrite CSS `--breakpoint-*`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "JS config `screens` overwrite CSS `--breakpoint-*`",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "mini:flex",
+          "midi:flex",
+          "maxi:flex",
+          "min-md:max-lg:underline",
+          "min-sm:max-md:underline",
+          "min-midi:max-maxi:underline",
+          "min-mini:max-midi:underline",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 40rem) {\n  .mini\\:flex {\n    display: flex;\n  }\n  .sm\\:flex {\n    display: flex;\n  }\n  @media (width < 48rem) {\n    .min-mini\\:max-midi\\:underline {\n      text-decoration-line: underline;\n    }\n    .min-sm\\:max-md\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 48rem) {\n  .md\\:flex {\n    display: flex;\n  }\n  .midi\\:flex {\n    display: flex;\n  }\n  @media (width < 64rem) {\n    .min-md\\:max-lg\\:underline {\n      text-decoration-line: underline;\n    }\n    .min-midi\\:max-maxi\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 64rem) {\n  .maxi\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "JS config with `theme: { extends }` should not include the `default-config` values",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @config \"./config.js\";\n    @tailwind utilities;\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "JS config with `theme: { extends }` should not include the `default-config` values",
+    "kind": "compile.build",
+    "args": [
+      "\n    @config \"./config.js\";\n    @tailwind utilities;\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "min-md:max-lg:underline",
+          "min-sm:max-md:underline"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "JS config with `theme: { extends }` should not include the `default-config` values",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @config \"./config.js\";\n    @tailwind utilities;\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "JS config with `theme: { extends }` should not include the `default-config` values",
+    "kind": "compile.build",
+    "args": [
+      "\n    @config \"./config.js\";\n    @tailwind utilities;\n  ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "mini": "40rem",
+                      "midi": "48rem",
+                      "maxi": "64rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "mini:flex",
+          "midi:flex",
+          "maxi:flex",
+          "min-midi:max-maxi:underline",
+          "min-mini:max-midi:underline",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 40rem) {\n  .mini\\:flex {\n    display: flex;\n  }\n  @media (width < 48rem) {\n    .min-mini\\:max-midi\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 48rem) {\n  .midi\\:flex {\n    display: flex;\n  }\n  @media (width < 64rem) {\n    .min-midi\\:max-maxi\\:underline {\n      text-decoration-line: underline;\n    }\n  }\n}\n@media (width >= 64rem) {\n  .maxi\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "complex screen configs > generates utilities",
+    "kind": "compile.metadata",
+    "args": [
+      "\n      @config \"./config.js\";\n      @tailwind utilities;\n    ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": {
+                        "max": "639px"
+                      },
+                      "md": [
+                        {
+                          "min": "668px",
+                          "max": "767px"
+                        },
+                        "868px"
+                      ],
+                      "lg": {
+                        "min": "868px"
+                      },
+                      "xl": {
+                        "min": "1024px",
+                        "max": "1279px"
+                      },
+                      "tall": {
+                        "raw": "(min-height: 800px)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "complex screen configs > generates utilities",
+    "kind": "compile.build",
+    "args": [
+      "\n      @config \"./config.js\";\n      @tailwind utilities;\n    ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": {
+                        "max": "639px"
+                      },
+                      "md": [
+                        {
+                          "min": "668px",
+                          "max": "767px"
+                        },
+                        "868px"
+                      ],
+                      "lg": {
+                        "min": "868px"
+                      },
+                      "xl": {
+                        "min": "1024px",
+                        "max": "1279px"
+                      },
+                      "tall": {
+                        "raw": "(min-height: 800px)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "min-sm:flex",
+          "min-md:flex",
+          "min-xl:flex",
+          "min-tall:flex"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "complex screen configs > generates utilities",
+    "kind": "compile.metadata",
+    "args": [
+      "\n      @config \"./config.js\";\n      @tailwind utilities;\n    ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": {
+                        "max": "639px"
+                      },
+                      "md": [
+                        {
+                          "min": "668px",
+                          "max": "767px"
+                        },
+                        "868px"
+                      ],
+                      "lg": {
+                        "min": "868px"
+                      },
+                      "xl": {
+                        "min": "1024px",
+                        "max": "1279px"
+                      },
+                      "tall": {
+                        "raw": "(min-height: 800px)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":20}"
+  },
+  {
+    "test": "complex screen configs > generates utilities",
+    "kind": "compile.build",
+    "args": [
+      "\n      @config \"./config.js\";\n      @tailwind utilities;\n    ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": {
+                        "max": "639px"
+                      },
+                      "md": [
+                        {
+                          "min": "668px",
+                          "max": "767px"
+                        },
+                        "868px"
+                      ],
+                      "lg": {
+                        "min": "868px"
+                      },
+                      "xl": {
+                        "min": "1024px",
+                        "max": "1279px"
+                      },
+                      "tall": {
+                        "raw": "(min-height: 800px)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "lg:flex",
+          "min-lg:flex",
+          "xl:flex",
+          "tall:flex",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 868px) {\n  .lg\\:flex {\n    display: flex;\n  }\n  .min-lg\\:flex {\n    display: flex;\n  }\n}\n@media (639px >= width) {\n  .sm\\:flex {\n    display: flex;\n  }\n}\n@media (767px >= width >= 668px), (width >= 868px) {\n  .md\\:flex {\n    display: flex;\n  }\n}\n@media (1279px >= width >= 1024px) {\n  .xl\\:flex {\n    display: flex;\n  }\n}\n@media (min-height: 800px) {\n  .tall\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "complex screen configs > don't interfere with `min-*` and `max-*` variants of non-complex screen configs",
+    "kind": "compile.metadata",
+    "args": [
+      "\n          @theme default {\n            --breakpoint-sm: 39rem;\n            --breakpoint-md: 48rem;\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "40rem",
+                      "portrait": {
+                        "raw": "screen and (orientation: portrait)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "complex screen configs > don't interfere with `min-*` and `max-*` variants of non-complex screen configs",
+    "kind": "compile.build",
+    "args": [
+      "\n          @theme default {\n            --breakpoint-sm: 39rem;\n            --breakpoint-md: 48rem;\n          }\n          @config \"./config.js\";\n          @tailwind utilities;\n        ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "extend": {
+                    "screens": {
+                      "sm": "40rem",
+                      "portrait": {
+                        "raw": "screen and (orientation: portrait)"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "sm:flex",
+          "md:flex",
+          "portrait:flex",
+          "min-sm:flex",
+          "min-md:flex",
+          "min-portrait:flex",
+          "print:items-end"
+        ]
+      ]
+    ],
+    "result": "@media (width >= 40rem) {\n  .min-sm\\:flex {\n    display: flex;\n  }\n  .sm\\:flex {\n    display: flex;\n  }\n}\n@media (width >= 48rem) {\n  .md\\:flex {\n    display: flex;\n  }\n  .min-md\\:flex {\n    display: flex;\n  }\n}\n@media screen and (orientation: portrait) {\n  .portrait\\:flex {\n    display: flex;\n  }\n}\n@media print {\n  .print\\:items-end {\n    align-items: flex-end;\n  }\n}\n"
+  },
+  {
+    "test": "JS config `screens` can overwrite default CSS `--breakpoint-*`",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "screens": {
+                    "mini": "40rem",
+                    "midi": "48rem",
+                    "maxi": "64rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "JS config `screens` can overwrite default CSS `--breakpoint-*`",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "screens": {
+                    "mini": "40rem",
+                    "midi": "48rem",
+                    "maxi": "64rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "min-sm:flex",
+          "min-md:flex",
+          "min-lg:flex",
+          "min-xl:flex",
+          "min-2xl:flex"
+        ]
+      ]
+    ],
+    "result": ""
+  }
+]

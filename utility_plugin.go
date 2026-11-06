@@ -37,6 +37,12 @@ func NewWithPlugins(config Config, plugins ...Plugin) (*Compiler, error) {
 			return nil, err
 		}
 	}
+	if err := c.resolveAllLegacyTheme(); err != nil {
+		return nil, err
+	}
+	if err := c.finishLegacy(); err != nil {
+		return nil, err
+	}
 	c.input = c.pluginBase
 	c.pluginBase = nil
 	if err := c.resolveVariants(); err != nil {
@@ -162,7 +168,101 @@ func (b *buildContext) matchUtility(m *utilityMatcher, candidate Candidate) ([]*
 		value = "calc(" + value + " * -1)"
 	}
 	nodes := m.Compile(value, modifier)
+	if hasNode(nodes, "@apply") || hasNode(nodes, "@variant") {
+		if slices.Contains(b.applyStack, candidate.Raw) {
+			b.err = fmt.Errorf("You cannot `@apply` the `%s` utility here because it creates a circular dependency.", candidate.Raw)
+			return nil, true
+		}
+		if len(b.applyStack) >= 100 {
+			b.err = fmt.Errorf("Plugin utility expansion is too deeply nested")
+			return nil, true
+		}
+		nested := *b
+		nested.applyStack = append(slices.Clone(b.applyStack), candidate.Raw)
+		nodes = nested.expandPluginDirectives(nodes, false)
+		if nested.err != nil {
+			b.err = nested.err
+			return nil, true
+		}
+	}
 	return replaceUtilityReferences(nodes, m.Name, candidate.Raw), false
+}
+
+func (b *buildContext) expandPluginDirectives(nodes []*Node, keyframes bool) []*Node {
+	var result []*Node
+	for _, node := range nodes {
+		if node.Kind == "at-rule" && node.Name == "@apply" {
+			if keyframes {
+				b.err = fmt.Errorf("You cannot use `@apply` inside `@keyframes`.")
+				return nil
+			}
+			classes := strings.Fields(node.Value)
+			important := false
+			if len(classes) > 0 && classes[len(classes)-1] == "!important" {
+				important = true
+				classes = classes[:len(classes)-1]
+			}
+			if len(node.Nodes) > 0 {
+				b.err = fmt.Errorf("The rule `@apply %s` must not have a body.", strings.Join(classes, " "))
+				return nil
+			}
+			nested := *b
+			nested.inApply = true
+			rules := nested.compileRules(classes)
+			if nested.err != nil {
+				b.err = nested.err
+				return nil
+			}
+			for _, class := range classes {
+				found := false
+				for _, rule := range rules {
+					if rule.raw == class {
+						found = true
+						break
+					}
+				}
+				if !found {
+					b.err = fmt.Errorf("Cannot apply unknown utility class `%s`", class)
+					return nil
+				}
+			}
+			for _, rule := range rules {
+				content := rule.node.Nodes
+				if important {
+					content = cloneNodes(content, "", true)
+				}
+				result = append(result, content...)
+			}
+			continue
+		}
+		copy := *node
+		if len(node.Nodes) > 0 {
+			copy.Nodes = b.expandPluginDirectives(node.Nodes, keyframes || node.Name == "@keyframes")
+		}
+		if node.Kind == "at-rule" && node.Name == "@variant" {
+			for group := range Segments(node.Value, ',') {
+				variants := slices.Collect(Segments(strings.TrimSpace(group), ':'))
+				content := copy.Nodes
+				for i := len(variants) - 1; i >= 0; i-- {
+					variant := b.parseVariant(variants[i])
+					if variant == nil {
+						b.err = fmt.Errorf("Cannot apply unknown variant `%s`.", variants[i])
+						return nil
+					}
+					var ok bool
+					content, ok = b.applyParsedVariant(content, variant, 0)
+					if !ok {
+						b.err = fmt.Errorf("Cannot apply variant `%s`.", variants[i])
+						return nil
+					}
+				}
+				result = append(result, content...)
+			}
+			continue
+		}
+		result = append(result, &copy)
+	}
+	return result
 }
 
 // AddUtilities registers complete selector rules, splitting selector lists and

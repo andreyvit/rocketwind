@@ -2,6 +2,7 @@ package rocketwind
 
 import (
 	"fmt"
+	"maps"
 	"strings"
 )
 
@@ -11,12 +12,14 @@ func Compile(input string, config Config) (*Compiler, error) {
 	if err != nil {
 		return nil, err
 	}
+	features := importFeatures(ast)
 	ast, err = resolveImports(ast, config, config.Base, 0)
 	if err != nil {
 		return nil, err
 	}
 	config.NoDefaultTheme = true
 	c := New(config)
+	c.features = features
 	c.breakpointVariants = nil
 	if c.config.Theme == nil {
 		c.config.Theme = make(map[string]string)
@@ -65,6 +68,8 @@ func Compile(input string, config Config) (*Compiler, error) {
 							if err := annotateTheme(n.Nodes, part, false); err != nil {
 								return nil, err
 							}
+						case strings.HasPrefix(part, "source("):
+							forwardSourceRoot(n.Nodes, part, n.base)
 						default:
 							unknown = append(unknown, part)
 						}
@@ -80,6 +85,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 					n.Value = strings.Join(unknown, " ")
 
 				case "@theme":
+					c.features |= FeatureTheme
 					if reference {
 						n.Value += " reference"
 					}
@@ -150,10 +156,21 @@ func Compile(input string, config Config) (*Compiler, error) {
 							continue
 						}
 						c.hasUtilities = true
+						c.features |= FeatureUtilities
+						base := n.base
+						if n.context != nil {
+							if sourceBase, ok := n.context["sourceBase"].(string); ok {
+								base = sourceBase
+							}
+						}
+						if err := c.setSourceRoot(n.Value, base); err != nil {
+							return nil, err
+						}
 
 						n = &Node{Kind: "utilities"}
 					}
 				case "@utility":
+					c.features |= directiveFeatures(n.Nodes)
 					if nested {
 						return nil, fmt.Errorf("`@utility` cannot be nested.")
 					}
@@ -187,6 +204,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 					}
 					continue
 				case "@plugin", "@config":
+					c.features |= FeaturePlugin
 					if nested {
 						return nil, fmt.Errorf("`%s` cannot be nested.", n.Name)
 					}
@@ -214,8 +232,12 @@ func Compile(input string, config Config) (*Compiler, error) {
 	if err != nil {
 		return nil, err
 	}
+	cssVariants := maps.Clone(c.customVariants)
 	if err := c.loadModules(modules); err != nil {
 		return nil, err
+	}
+	for name, variant := range cssVariants {
+		c.customVariants[name] = variant
 	}
 	c.input = append(c.input, c.pluginBase...)
 	c.pluginBase = nil
@@ -232,6 +254,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 		c.config.Theme[key] = valueCSS(value)
 	}
 	c.input = b.evaluateNodes(c.input)
+	c.features |= b.features
 	if b.err != nil {
 		return nil, b.err
 	}

@@ -78,6 +78,9 @@ func (c *Compiler) registerCustomVariant(n *Node) error {
 }
 
 func (c *Compiler) resolveVariants() error {
+	if hasNode(c.input, "@variant") {
+		c.features |= FeatureVariants
+	}
 	b := buildContext{compiler: c, used: map[string]bool{}}
 	state := map[string]uint8{}
 	var path []string
@@ -185,6 +188,12 @@ func (c *Compiler) resolveVariants() error {
 			c.custom[name], err = expand(c.custom[name])
 			if err != nil {
 				return err
+			}
+			for i, nodes := range c.customGroups[name] {
+				c.customGroups[name][i], err = expand(nodes)
+				if err != nil {
+					return err
+				}
 			}
 		}
 	}

@@ -157,8 +157,42 @@ export function \${name}(...args) {
                 const original = target[key]
                 if (typeof original !== 'function') return original
                 return (...args) => {
+                  const clone = value => JSON.parse(JSON.stringify(value, (key, value) => typeof value === 'function' ? {$function:value.toString()} : value === undefined ? {$undefined:true} : value))
+                  const op = {name:key, args:clone(args), calls:[]}
+                  operations.push(op)
+                  const capture = (name, fn) => (...values) => {
+                    try {
+                      const result = fn(...values)
+                      op.calls.push({name,args:clone(values),result:clone(result)})
+                      return result
+                    } catch (error) {
+                      op.calls.push({name,args:clone(values),error:error.message})
+                      throw error
+                    }
+                  }
+                  if (key === 'matchUtilities' || key === 'matchComponents') {
+                    args[0] = Object.fromEntries(Object.entries(args[0]).map(([name,fn])=>[name,capture(name,fn)]))
+                    if (typeof args[1]?.values?.__BARE_VALUE__ === 'function') args[1] = {...args[1],values:{...args[1].values,__BARE_VALUE__:capture('__BARE_VALUE__',args[1].values.__BARE_VALUE__)}}
+                  } else if (key === 'matchVariant') {
+                    args[1] = capture('variant',args[1])
+                    if (typeof args[2]?.sort === 'function') {
+                      const sort = args[2].sort
+                      const values = new Map()
+                      const seen = new Set()
+                      args[2] = {...args[2],sort(a,b) {
+                        values.set(JSON.stringify(a),a); values.set(JSON.stringify(b),b)
+                        for (const x of values.values()) for (const y of values.values()) {
+                          const key = JSON.stringify([x,y])
+                          if (seen.has(key)) continue
+                          seen.add(key)
+                          ;(op.sortCases ??= []).push({args:clone([x,y]),result:sort(x,y)})
+                        }
+                        return sort(a,b)
+                      }}
+                    }
+                  }
                   const result = original(...args)
-                  operations.push(JSON.parse(JSON.stringify({name:key, args, result}, (key, value) => typeof value === 'function' ? {$function:value.toString()} : value)))
+                  op.result = clone(result)
                   return result
                 }
               }}))
@@ -185,6 +219,7 @@ export function \${name}(...args) {
             if (options.loadModule) recordedOptions.loadModule = recordLoader(options.loadModule, metadata.modules = [])
             try {
               const api = await compileOriginal(css, recordedOptions)
+              globalThis.__rocketwindRecord?.('compile.metadata', [css, metadata], JSON.stringify({sources:api.sources,root:api.root,features:api.features}), undefined)
               const builds = []
               return {...api, build(candidates) {
                 builds.push([...candidates])

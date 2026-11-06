@@ -1,6 +1,30 @@
 [
   {
     "test": "can resolve relative @imports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './foo/bar.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": ".foo {\n  color: red;\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "can resolve relative @imports",
     "kind": "compile.build",
     "args": [
       "@import './foo/bar.css';",
@@ -25,6 +49,41 @@
       ]
     ],
     "result": ".foo {\n  color: red;\n}\n"
+  },
+  {
+    "test": "can recursively resolve relative @imports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './foo/bar.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import './bar/baz.css';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "./bar/baz.css",
+              "/root/foo"
+            ],
+            "result": {
+              "content": ".baz {\n  color: blue;\n}",
+              "base": "/root/foo/bar",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "can recursively resolve relative @imports",
@@ -66,6 +125,30 @@
   },
   {
     "test": "extracts path from @import nodes",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "extracts path from @import nodes",
     "kind": "compile.build",
     "args": [
       "@import 'example.css';",
@@ -90,6 +173,30 @@
       ]
     ],
     "result": "a {\n  color: red;\n}\n"
+  },
+  {
+    "test": "extracts path from @import nodes",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "extracts path from @import nodes",
@@ -120,6 +227,30 @@
   },
   {
     "test": "extracts path from @import nodes",
+    "kind": "compile.metadata",
+    "args": [
+      "@import '/example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "/example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "extracts path from @import nodes",
     "kind": "compile.build",
     "args": [
       "@import '/example.css';",
@@ -147,6 +278,18 @@
   },
   {
     "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url('example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
+  },
+  {
+    "test": "url() imports are passed-through",
     "kind": "compile.build",
     "args": [
       "@import url('example.css');",
@@ -159,6 +302,18 @@
       ]
     ],
     "result": "@import url('example.css');"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url('./example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
   },
   {
     "test": "url() imports are passed-through",
@@ -177,6 +332,18 @@
   },
   {
     "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url('/example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
+  },
+  {
+    "test": "url() imports are passed-through",
     "kind": "compile.build",
     "args": [
       "@import url('/example.css');",
@@ -189,6 +356,18 @@
       ]
     ],
     "result": "@import url('/example.css');"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url(example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
   },
   {
     "test": "url() imports are passed-through",
@@ -207,6 +386,18 @@
   },
   {
     "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url(./example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
+  },
+  {
+    "test": "url() imports are passed-through",
     "kind": "compile.build",
     "args": [
       "@import url(./example.css);",
@@ -222,6 +413,18 @@
   },
   {
     "test": "url() imports are passed-through",
+    "kind": "compile.metadata",
+    "args": [
+      "@import url(/example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":0}"
+  },
+  {
+    "test": "url() imports are passed-through",
     "kind": "compile.build",
     "args": [
       "@import url(/example.css);",
@@ -234,6 +437,30 @@
       ]
     ],
     "result": "@import url(/example.css);"
+  },
+  {
+    "test": "handles case-insensitive @import directive",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "handles case-insensitive @import directive",
@@ -264,6 +491,30 @@
   },
   {
     "test": "@media",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' print;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "@media",
     "kind": "compile.build",
     "args": [
       "@import 'example.css' print;",
@@ -288,6 +539,30 @@
       ]
     ],
     "result": "@media print {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' print, screen;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "@media",
@@ -318,6 +593,30 @@
   },
   {
     "test": "@media",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' screen and (orientation: landscape);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "@media",
     "kind": "compile.build",
     "args": [
       "@import 'example.css' screen and (orientation: landscape);",
@@ -342,6 +641,30 @@
       ]
     ],
     "result": "@media screen and (orientation: landscape) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' foo(bar);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "@media",
@@ -372,6 +695,30 @@
   },
   {
     "test": "@supports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' supports(display: grid);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "@supports",
     "kind": "compile.build",
     "args": [
       "@import 'example.css' supports(display: grid);",
@@ -396,6 +743,30 @@
       ]
     ],
     "result": "@supports (display: grid) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' supports(display: grid) screen and (max-width: 400px);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "@supports",
@@ -426,6 +797,30 @@
   },
   {
     "test": "@supports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' supports((not (display: grid)) and (display: flex)) screen and\n  (max-width: 400px);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "@supports",
     "kind": "compile.build",
     "args": [
       "@import 'example.css' supports((not (display: grid)) and (display: flex)) screen and\n  (max-width: 400px);",
@@ -450,6 +845,30 @@
       ]
     ],
     "result": "@supports (not (display: grid)) and (display: flex) {\n  @media screen and (max-width: 400px) {\n    a {\n      color: red;\n    }\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css'\nsupports((selector(h2 > p)) and (font-tech(color-COLRv1)));",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "@supports",
@@ -480,6 +899,30 @@
   },
   {
     "test": "@layer",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' layer(utilities);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "@layer",
     "kind": "compile.build",
     "args": [
       "@import 'example.css' layer(utilities);",
@@ -504,6 +947,30 @@
       ]
     ],
     "result": "@layer utilities {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@layer",
+    "kind": "compile.metadata",
+    "args": [
+      "@import 'example.css' layer();",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":2}"
   },
   {
     "test": "@layer",
@@ -534,6 +1001,30 @@
   },
   {
     "test": "supports theme(reference) imports",
+    "kind": "compile.metadata",
+    "args": [
+      "@tailwind utilities;\n@import 'example.css' theme(reference);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@theme {\n  --color-red-500: red;\n}",
+              "base": "",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":82}"
+  },
+  {
+    "test": "supports theme(reference) imports",
     "kind": "compile.build",
     "args": [
       "@tailwind utilities;\n@import 'example.css' theme(reference);",
@@ -560,6 +1051,94 @@
       ]
     ],
     "result": ".text-red-500 {\n  color: var(--color-red-500, red);\n}\n"
+  },
+  {
+    "test": "updates the base when loading modules inside nested files",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './foo/bar.css';\n@config './root-config.js';\n@plugin './root-plugin.js';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@config './nested-config.js';\n@plugin './nested-plugin.js';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ],
+        "modules": [
+          {
+            "args": [
+              "./nested-config.js",
+              "/root/foo",
+              "config"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            }
+          },
+          {
+            "args": [
+              "./root-config.js",
+              "/root",
+              "config"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            }
+          },
+          {
+            "args": [
+              "./nested-plugin.js",
+              "/root/foo",
+              "plugin"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            },
+            "plugins": [
+              []
+            ]
+          },
+          {
+            "args": [
+              "./root-plugin.js",
+              "/root",
+              "plugin"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":6}"
   },
   {
     "test": "updates the base when loading modules inside nested files",
@@ -651,6 +1230,166 @@
       ]
     ],
     "result": ""
+  },
+  {
+    "test": "emits the right base for @source directives inside nested files",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './foo/bar.css';\n@source './root/**/*.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@source './nested/**/*.css';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[{\"base\":\"/root/foo\",\"pattern\":\"./nested/**/*.css\",\"negated\":false},{\"base\":\"/root\",\"pattern\":\"./root/**/*.css\",\"negated\":false}],\"root\":null,\"features\":2}"
+  },
+  {
+    "test": "emits the right base for @source found inside JS configs and plugins from nested imports",
+    "kind": "compile.metadata",
+    "args": [
+      "@import './foo/bar.css';\n@config './root-config.js';\n@plugin './root-plugin.js';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@config './nested-config.js';\n@plugin './nested-plugin.js';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ],
+        "modules": [
+          {
+            "args": [
+              "./nested-config.js",
+              "/root/foo",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "content": [
+                  "./nested-config/*.html"
+                ],
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "() => {}"
+                    },
+                    "config": {
+                      "content": [
+                        "./nested-config-plugin/*.html"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "base": "/root/foo-config",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          },
+          {
+            "args": [
+              "./root-config.js",
+              "/root",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "content": [
+                  "./root-config/*.html"
+                ],
+                "plugins": [
+                  {
+                    "handler": {
+                      "$function": "() => {}"
+                    },
+                    "config": {
+                      "content": [
+                        "./root-config-plugin/*.html"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "base": "/root-config",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          },
+          {
+            "args": [
+              "./nested-plugin.js",
+              "/root/foo",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "handler": {
+                  "$function": "() => {}"
+                },
+                "config": {
+                  "content": [
+                    "./nested-plugin/*.html"
+                  ]
+                }
+              },
+              "base": "/root/foo-plugin",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          },
+          {
+            "args": [
+              "./root-plugin.js",
+              "/root",
+              "plugin"
+            ],
+            "result": {
+              "module": {
+                "handler": {
+                  "$function": "() => {}"
+                },
+                "config": {
+                  "content": [
+                    "./root-plugin/*.html"
+                  ]
+                }
+              },
+              "base": "/root-plugin",
+              "path": ""
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[{\"base\":\"/root/foo-plugin\",\"pattern\":\"./nested-plugin/*.html\",\"negated\":false},{\"base\":\"/root-plugin\",\"pattern\":\"./root-plugin/*.html\",\"negated\":false},{\"base\":\"/root/foo-config\",\"pattern\":\"./nested-config-plugin/*.html\",\"negated\":false},{\"base\":\"/root/foo-config\",\"pattern\":\"./nested-config/*.html\",\"negated\":false},{\"base\":\"/root-config\",\"pattern\":\"./root-config-plugin/*.html\",\"negated\":false},{\"base\":\"/root-config\",\"pattern\":\"./root-config/*.html\",\"negated\":false}],\"root\":null,\"features\":6}"
   },
   {
     "test": "it crashes when inside a cycle",
@@ -1778,6 +2517,30 @@
   },
   {
     "test": "resolves @reference as `@import \"…\" reference`",
+    "kind": "compile.metadata",
+    "args": [
+      "@reference './foo/bar.css';\n@tailwind utilities;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@theme {\n  --color-red-500: red;\n}\n.foo {\n  color: red;\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":82}"
+  },
+  {
+    "test": "resolves @reference as `@import \"…\" reference`",
     "kind": "compile.build",
     "args": [
       "@reference './foo/bar.css';\n@tailwind utilities;",
@@ -1804,6 +2567,30 @@
       ]
     ],
     "result": ".text-red-500 {\n  color: var(--color-red-500, red);\n}\n"
+  },
+  {
+    "test": "resolves `@variant` used as `@custom-variant` inside `@reference`",
+    "kind": "compile.metadata",
+    "args": [
+      "@reference './foo/bar.css';\n@tailwind utilities;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@variant dark {\n  &:where([data-theme='dark'] *) {\n    @slot;\n  }\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":18}"
   },
   {
     "test": "resolves `@variant` used as `@custom-variant` inside `@reference`",

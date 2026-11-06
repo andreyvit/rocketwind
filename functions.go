@@ -56,6 +56,7 @@ func (b *buildContext) evaluateFunctions(nodes []*valueNode, atRule bool, depth 
 		}
 		switch n.value {
 		case "--spacing", "--alpha", "--theme", "theme":
+			b.features |= FeatureThemeFunction
 			args := slices.Collect(Segments(strings.TrimSpace(valueCSS(n.nodes)), ','))
 			for i := range args {
 				args[i] = strings.TrimSpace(args[i])
@@ -149,9 +150,13 @@ func (b *buildContext) evaluateFunction(name string, args []string, atRule bool)
 		value = b.theme(key)
 	}
 	if name == "theme" && !strings.HasPrefix(path, "--") {
-		if value == "" || strings.Contains(b.compiler.themeFlags[key], "default") {
-			if legacy := b.legacyThemeValue(path, key); legacy != "" {
-				value = legacy
+		if b.compiler.legacyTheme != nil {
+			value = themeString(b.compiler.themeLookup(path))
+		} else {
+			if value == "" || strings.Contains(b.compiler.themeFlags[key], "default") {
+				if legacy := b.legacyThemeValue(path, key); legacy != "" {
+					value = legacy
+				}
 			}
 		}
 	}

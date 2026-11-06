@@ -1,0 +1,621 @@
+[
+  {
+    "test": "creates a custom utility to extend the built-in container",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": "2rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "creates a custom utility to extend the built-in container",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": "2rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n  margin-inline: auto;\n  padding-inline: 2rem;\n}\n"
+  },
+  {
+    "test": "allows padding to be defined at custom breakpoints",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "2xl": "3rem",
+                      "DEFAULT": "1rem",
+                      "lg": "2rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "allows padding to be defined at custom breakpoints",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "2xl": "3rem",
+                      "DEFAULT": "1rem",
+                      "lg": "2rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n  padding-inline: 1rem;\n  @media (width >= 64rem) {\n    padding-inline: 2rem;\n  }\n  @media (width >= 96rem) {\n    padding-inline: 3rem;\n  }\n}\n"
+  },
+  {
+    "test": "allows breakpoints to be overwritten",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "screens": {
+                      "xl": "1280px",
+                      "2xl": "1536px"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "allows breakpoints to be overwritten",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "screens": {
+                      "xl": "1280px",
+                      "2xl": "1536px"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n}\n@media (width >= 40rem) {\n  .container {\n    max-width: none;\n  }\n}\n@media (width >= 1280px) {\n  .container {\n    max-width: 1280px;\n  }\n}\n@media (width >= 1536px) {\n  .container {\n    max-width: 1536px;\n  }\n}\n"
+  },
+  {
+    "test": "padding applies to custom `container` screens",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "sm": "2rem",
+                      "md": "3rem"
+                    },
+                    "screens": {
+                      "md": "48rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "padding applies to custom `container` screens",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "sm": "2rem",
+                      "md": "3rem"
+                    },
+                    "screens": {
+                      "md": "48rem"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n}\n@media (width >= 40rem) {\n  .container {\n    max-width: none;\n  }\n}\n@media (width >= 48rem) {\n  .container {\n    max-width: 48rem;\n    padding-inline: 3rem;\n  }\n}\n"
+  },
+  {
+    "test": "an empty `screen` config will undo all custom media screens and won't apply any breakpoint-specific padding",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "DEFAULT": "1rem",
+                      "sm": "2rem",
+                      "md": "3rem"
+                    },
+                    "screens": {}
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "an empty `screen` config will undo all custom media screens and won't apply any breakpoint-specific padding",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "padding": {
+                      "DEFAULT": "1rem",
+                      "sm": "2rem",
+                      "md": "3rem"
+                    },
+                    "screens": {}
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n  padding-inline: 1rem;\n  @media (width >= 40rem) {\n    max-width: none;\n  }\n}\n"
+  },
+  {
+    "test": "legacy container component does not interfere with new --container variables",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --container-3xs: 16rem;\n          --container-2xs: 18rem;\n          --container-xs: 20rem;\n          --container-sm: 24rem;\n          --container-md: 28rem;\n          --container-lg: 32rem;\n          --container-xl: 36rem;\n          --container-2xl: 42rem;\n          --container-3xl: 48rem;\n          --container-4xl: 56rem;\n          --container-5xl: 64rem;\n          --container-6xl: 72rem;\n          --container-7xl: 80rem;\n          --container-prose: 65ch;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": "2rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "legacy container component does not interfere with new --container variables",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --container-3xs: 16rem;\n          --container-2xs: 18rem;\n          --container-xs: 20rem;\n          --container-sm: 24rem;\n          --container-md: 28rem;\n          --container-lg: 32rem;\n          --container-xl: 36rem;\n          --container-2xl: 42rem;\n          --container-3xl: 48rem;\n          --container-4xl: 56rem;\n          --container-5xl: 64rem;\n          --container-6xl: 72rem;\n          --container-7xl: 80rem;\n          --container-prose: 65ch;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": "2rem"
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "max-w-sm"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --container-sm: 24rem;\n}\n.max-w-sm {\n  max-width: var(--container-sm);\n}\n"
+  },
+  {
+    "test": "combines custom padding and screen overwrites",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": {
+                      "DEFAULT": "2rem",
+                      "2xl": "4rem"
+                    },
+                    "screens": {
+                      "md": "48rem",
+                      "xl": "1280px",
+                      "2xl": "1536px"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "combines custom padding and screen overwrites",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": {
+                      "DEFAULT": "2rem",
+                      "2xl": "4rem"
+                    },
+                    "screens": {
+                      "md": "48rem",
+                      "xl": "1280px",
+                      "2xl": "1536px"
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container",
+          "!container"
+        ]
+      ]
+    ],
+    "result": ".\\!container {\n  width: 100% !important;\n  @media (width >= 40rem) {\n    max-width: 40rem !important;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem !important;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem !important;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem !important;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem !important;\n  }\n}\n.container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n}\n.\\!container {\n  margin-inline: auto !important;\n  padding-inline: 2rem !important;\n  @media (width >= 40rem) {\n    max-width: none !important;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem !important;\n  }\n  @media (width >= 1280px) {\n    max-width: 1280px !important;\n  }\n  @media (width >= 1536px) {\n    max-width: 1536px !important;\n    padding-inline: 4rem !important;\n  }\n}\n.container {\n  margin-inline: auto;\n  padding-inline: 2rem;\n  @media (width >= 40rem) {\n    max-width: none;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 1280px) {\n    max-width: 1280px;\n  }\n  @media (width >= 1536px) {\n    max-width: 1536px;\n    padding-inline: 4rem;\n  }\n}\n"
+  },
+  {
+    "test": "filters out complex breakpoints",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": {
+                      "DEFAULT": "2rem",
+                      "2xl": "4rem"
+                    },
+                    "screens": {
+                      "sm": "20px",
+                      "md": {
+                        "min": "100px"
+                      },
+                      "lg": {
+                        "max": "200px"
+                      },
+                      "xl": {
+                        "min": "300px",
+                        "max": "400px"
+                      },
+                      "2xl": {
+                        "raw": "print"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":84}"
+  },
+  {
+    "test": "filters out complex breakpoints",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme default {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @config \"./config.js\";\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./config.js",
+              "",
+              "config"
+            ],
+            "result": {
+              "module": {
+                "theme": {
+                  "container": {
+                    "center": true,
+                    "padding": {
+                      "DEFAULT": "2rem",
+                      "2xl": "4rem"
+                    },
+                    "screens": {
+                      "sm": "20px",
+                      "md": {
+                        "min": "100px"
+                      },
+                      "lg": {
+                        "max": "200px"
+                      },
+                      "xl": {
+                        "min": "300px",
+                        "max": "400px"
+                      },
+                      "2xl": {
+                        "raw": "print"
+                      }
+                    }
+                  }
+                }
+              },
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "container"
+        ]
+      ]
+    ],
+    "result": ".container {\n  width: 100%;\n  @media (width >= 40rem) {\n    max-width: 40rem;\n  }\n  @media (width >= 48rem) {\n    max-width: 48rem;\n  }\n  @media (width >= 64rem) {\n    max-width: 64rem;\n  }\n  @media (width >= 80rem) {\n    max-width: 80rem;\n  }\n  @media (width >= 96rem) {\n    max-width: 96rem;\n  }\n  margin-inline: auto;\n  padding-inline: 2rem;\n  @media (width >= 40rem) {\n    max-width: none;\n  }\n  @media (width >= 20px) {\n    max-width: 20px;\n  }\n  @media (width >= 100px) {\n    max-width: 100px;\n  }\n  @media (width >= 300px) {\n    max-width: 300px;\n  }\n}\n"
+  }
+]

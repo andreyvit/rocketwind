@@ -1,6 +1,15 @@
 [
   {
     "test": "bg-gradient-*",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "bg-gradient-*",
     "kind": "compile.build",
     "args": [
       "\n    @tailwind utilities;\n  ",
@@ -22,6 +31,15 @@
   },
   {
     "test": "max-w-screen",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
+  },
+  {
+    "test": "max-w-screen",
     "kind": "compile.build",
     "args": [
       "\n        @theme {\n          --breakpoint-sm: 40rem;\n          --breakpoint-md: 48rem;\n          --breakpoint-lg: 64rem;\n          --breakpoint-xl: 80rem;\n          --breakpoint-2xl: 96rem;\n        }\n        @tailwind utilities;\n      ",
@@ -37,6 +55,15 @@
       ]
     ],
     "result": ":root, :host {\n  --breakpoint-sm: 40rem;\n  --breakpoint-md: 48rem;\n  --breakpoint-lg: 64rem;\n  --breakpoint-xl: 80rem;\n  --breakpoint-2xl: 96rem;\n}\n.max-w-screen-2xl {\n  max-width: var(--breakpoint-2xl);\n}\n.max-w-screen-lg {\n  max-width: var(--breakpoint-lg);\n}\n.max-w-screen-md {\n  max-width: var(--breakpoint-md);\n}\n.max-w-screen-sm {\n  max-width: var(--breakpoint-sm);\n}\n.max-w-screen-xl {\n  max-width: var(--breakpoint-xl);\n}\n"
+  },
+  {
+    "test": "max-w-screen",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
   },
   {
     "test": "max-w-screen",
@@ -66,6 +93,15 @@
   },
   {
     "test": "box-decoration",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "box-decoration",
     "kind": "compile.build",
     "args": [
       "\n    @tailwind utilities;\n  ",
@@ -78,6 +114,15 @@
       ]
     ],
     "result": ".decoration-clone {\n  -webkit-box-decoration-break: clone;\n  box-decoration-break: clone;\n}\n.decoration-slice {\n  -webkit-box-decoration-break: slice;\n  box-decoration-break: slice;\n}\n"
+  },
+  {
+    "test": "overflow-ellipsis",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
   },
   {
     "test": "overflow-ellipsis",
@@ -95,6 +140,15 @@
   },
   {
     "test": "flex-grow",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "flex-grow",
     "kind": "compile.build",
     "args": [
       "\n    @tailwind utilities;\n  ",
@@ -108,6 +162,15 @@
       ]
     ],
     "result": ".flex-grow {\n  flex-grow: 1;\n}\n.flex-grow-0 {\n  flex-grow: 0;\n}\n.flex-grow-\\[123\\] {\n  flex-grow: 123;\n}\n"
+  },
+  {
+    "test": "flex-grow",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
   },
   {
     "test": "flex-grow",
@@ -133,6 +196,15 @@
   },
   {
     "test": "flex-shrink",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "flex-shrink",
     "kind": "compile.build",
     "args": [
       "\n    @tailwind utilities;\n  ",
@@ -146,6 +218,15 @@
       ]
     ],
     "result": ".flex-shrink {\n  flex-shrink: 1;\n}\n.flex-shrink-0 {\n  flex-shrink: 0;\n}\n.flex-shrink-\\[123\\] {\n  flex-shrink: 123;\n}\n"
+  },
+  {
+    "test": "flex-shrink",
+    "kind": "compile.metadata",
+    "args": [
+      "\n    @tailwind utilities;\n  ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
   },
   {
     "test": "flex-shrink",
@@ -171,6 +252,15 @@
   },
   {
     "test": "start",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme {\n          --spacing: 0.25rem;\n          --inset-shadowned: 1940px;\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
+  },
+  {
+    "test": "start",
     "kind": "compile.build",
     "args": [
       "\n        @theme {\n          --spacing: 0.25rem;\n          --inset-shadowned: 1940px;\n        }\n        @tailwind utilities;\n      ",
@@ -189,6 +279,15 @@
       ]
     ],
     "result": ":root, :host {\n  --spacing: 0.25rem;\n  --inset-shadowned: 1940px;\n}\n.-start-4 {\n  inset-inline-start: calc(var(--spacing) * -4);\n}\n.-start-full {\n  inset-inline-start: -100%;\n}\n.start-3\\/4 {\n  inset-inline-start: calc(3/4 * 100%);\n}\n.start-4 {\n  inset-inline-start: calc(var(--spacing) * 4);\n}\n.start-\\[4px\\] {\n  inset-inline-start: 4px;\n}\n.start-auto {\n  inset-inline-start: auto;\n}\n.start-full {\n  inset-inline-start: 100%;\n}\n.start-shadowned {\n  inset-inline-start: var(--inset-shadowned);\n}\n"
+  },
+  {
+    "test": "start",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme reference {\n          --spacing: 0.25rem;\n          --inset-shadow-sm: inset 0 1px 1px rgb(0 0 0 / 0.05);\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
   },
   {
     "test": "start",
@@ -218,6 +317,15 @@
   },
   {
     "test": "end",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme {\n          --spacing: 0.25rem;\n          --inset-shadowned: 1940px;\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
+  },
+  {
+    "test": "end",
     "kind": "compile.build",
     "args": [
       "\n        @theme {\n          --spacing: 0.25rem;\n          --inset-shadowned: 1940px;\n        }\n        @tailwind utilities;\n      ",
@@ -236,6 +344,15 @@
       ]
     ],
     "result": ":root, :host {\n  --spacing: 0.25rem;\n  --inset-shadowned: 1940px;\n}\n.-end-4 {\n  inset-inline-end: calc(var(--spacing) * -4);\n}\n.-end-full {\n  inset-inline-end: -100%;\n}\n.end-3\\/4 {\n  inset-inline-end: calc(3/4 * 100%);\n}\n.end-4 {\n  inset-inline-end: calc(var(--spacing) * 4);\n}\n.end-\\[4px\\] {\n  inset-inline-end: 4px;\n}\n.end-auto {\n  inset-inline-end: auto;\n}\n.end-full {\n  inset-inline-end: 100%;\n}\n.end-shadowned {\n  inset-inline-end: var(--inset-shadowned);\n}\n"
+  },
+  {
+    "test": "end",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme reference {\n          --spacing: 0.25rem;\n          --inset-shadow-sm: inset 0 1px 1px rgb(0 0 0 / 0.05);\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
   },
   {
     "test": "end",

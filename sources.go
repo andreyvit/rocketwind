@@ -15,6 +15,93 @@ type Source struct {
 
 func (c *Compiler) Sources() []Source { return slices.Clone(c.sources) }
 
+// SourceRoot controls automatic file discovery. Disabled corresponds to
+// source(none); otherwise Pattern is relative to Base.
+type SourceRoot struct {
+	Base, Pattern string
+	Disabled      bool
+}
+
+// Root returns nil when the stylesheet leaves automatic discovery unspecified.
+func (c *Compiler) Root() *SourceRoot {
+	if c.root == nil {
+		return nil
+	}
+	root := *c.root
+	return &root
+}
+
+// Features identifies Tailwind directives used by a compiled stylesheet.
+type Features uint32
+
+const (
+	FeatureApply Features = 1 << iota
+	FeatureImport
+	FeaturePlugin
+	FeatureThemeFunction
+	FeatureUtilities
+	FeatureVariants
+	FeatureTheme
+)
+
+func (c *Compiler) Features() Features { return c.features }
+
+func directiveFeatures(nodes []*Node) Features {
+	var features Features
+	for _, node := range nodes {
+		if node.Kind == "at-rule" {
+			switch node.Name {
+			case "@apply":
+				features |= FeatureApply
+			case "@variant":
+				features |= FeatureVariants
+			}
+		}
+		if node.Kind == "declaration" || node.Name == "@media" || node.Name == "@custom-media" || node.Name == "@container" || node.Name == "@supports" {
+			for _, name := range []string{"theme(", "--spacing(", "--alpha("} {
+				if strings.Contains(node.Value, name) {
+					features |= FeatureThemeFunction
+					break
+				}
+			}
+		}
+		features |= directiveFeatures(node.Nodes)
+	}
+	return features
+}
+
+func (c *Compiler) setSourceRoot(value, base string) error {
+	for part := range Segments(value, ' ') {
+		if !strings.HasPrefix(part, "source(") {
+			continue
+		}
+		path := part[7 : len(part)-1]
+		if path == "none" {
+			c.root = &SourceRoot{Disabled: true}
+			continue
+		}
+		if len(path) < 2 || path[0] != '"' && path[0] != '\'' || path[len(path)-1] != path[0] {
+			return fmt.Errorf("`source(…)` paths must be quoted.")
+		}
+		c.root = &SourceRoot{Base: base, Pattern: path[1 : len(path)-1]}
+	}
+	return nil
+}
+
+func forwardSourceRoot(nodes []*Node, source, base string) {
+	for _, n := range nodes {
+		if n.Kind == "at-rule" && n.Name == "@tailwind" && n.Value == "utilities" {
+			n.Value += " " + source
+			if n.context == nil {
+				n.context = map[string]any{}
+			}
+			n.context["sourceBase"] = base
+		} else {
+			forwardSourceRoot(n.Nodes, source, base)
+		}
+	}
+}
+
 func (c *Compiler) addSource(node *Node) error {
 	path := node.Value
 	negated := strings.HasPrefix(path, "not ")

@@ -1,6 +1,15 @@
 [
   {
     "test": "Utilities can be wrapped in a selector",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        #app {\n          @tailwind utilities;\n        }\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "Utilities can be wrapped in a selector",
     "kind": "compile.build",
     "args": [
       "\n        #app {\n          @tailwind utilities;\n        }\n      ",
@@ -13,6 +22,29 @@
       ]
     ],
     "result": "#app .underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  #app .hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "Utilities can be marked with important",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @import 'tailwindcss/utilities' important;\n      ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss/utilities",
+              ""
+            ],
+            "result": {
+              "base": "",
+              "content": "@tailwind utilities;",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":18}"
   },
   {
     "test": "Utilities can be marked with important",
@@ -45,6 +77,15 @@
   },
   {
     "test": "Utilities can be wrapped with a selector and marked as important",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @media important {\n          #app {\n            @tailwind utilities;\n          }\n        }\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":16}"
+  },
+  {
+    "test": "Utilities can be wrapped with a selector and marked as important",
     "kind": "compile.build",
     "args": [
       "\n        @media important {\n          #app {\n            @tailwind utilities;\n          }\n        }\n      ",
@@ -57,6 +98,15 @@
       ]
     ],
     "result": "#app .underline {\n  text-decoration-line: underline !important;\n}\n@media (hover: hover) {\n  #app .hover\\:line-through:hover {\n    text-decoration-line: line-through !important;\n  }\n}\n"
+  },
+  {
+    "test": "variables in utilities should not be marked as important",
+    "kind": "compile.metadata",
+    "args": [
+      "\n        @theme {\n          --ease-out: cubic-bezier(0, 0, 0.2, 1);\n        }\n        @tailwind utilities;\n      ",
+      {}
+    ],
+    "result": "{\"sources\":[],\"root\":null,\"features\":80}"
   },
   {
     "test": "variables in utilities should not be marked as important",
