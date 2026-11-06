@@ -30,6 +30,22 @@ imports, configuration and standard Go plugins directly from `embed.FS`.
 preserves relative asset paths across imports. Compile the stylesheet, then call `compiler.Build(strings.Split(classList, "\n"))`.
 No source tree, Node installation or temporary files are needed at runtime.
 
+If templates and JavaScript already ship in your binary, scan them at runtime
+instead of putting their classes in the manifest. Reserve the manifest for
+source code that the binary does not contain, such as Go files:
+
+```go
+scanner := rocketwind.NewScanner(nil)
+classes, err := scanner.ScanFS(embeddedViews, embeddedScripts)
+// Handle err, then combine these with your Go-source manifest.
+css, err := compiler.Build(append(classes, strings.Split(classList, "\n")...))
+```
+
+`ScanFS` accepts any `fs.FS`, reads text assets, and skips binary files, CSS,
+lockfiles and dependency directories. CSS goes through the stylesheet loader.
+For development, use a disk scanner over those frontend directories so edits
+can regenerate CSS without rebuilding your binary or its class manifest.
+
 `scan` accepts the same source patterns, compatibility profile, safelists,
 inline sources, exclusions and watch options as `build`. It keeps potential
 class names that the current configuration doesn't recognize; the compiler

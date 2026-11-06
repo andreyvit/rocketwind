@@ -95,7 +95,7 @@ func (c *Compiler) configureLegacy(sources []legacyConfigSource) error {
 			for _, path := range paths {
 				if pattern, ok := path.(string); ok {
 					files = append(files, ConfigObject{{"base", source.base}, {"pattern", pattern}})
-					c.sources = append(c.sources, Source{Base: source.base, Pattern: pattern})
+					c.sources = append(c.sources, Source{Base: source.base, Pattern: strings.TrimPrefix(pattern, "!"), Negated: strings.HasPrefix(pattern, "!")})
 				} else {
 					object := configObject(path)
 					if object.Get("raw") != nil {
@@ -107,7 +107,7 @@ func (c *Compiler) configureLegacy(sources []legacyConfigSource) error {
 						return fmt.Errorf("Error in the config file/plugin/preset. The `content` key contains a `raw` entry:\n\n%s\nThis feature is not currently supported.", detail.String())
 					}
 					base, pattern := themeString(object.Get("base")), themeString(object.Get("pattern"))
-					c.sources = append(c.sources, Source{Base: base, Pattern: pattern})
+					c.sources = append(c.sources, Source{Base: base, Pattern: strings.TrimPrefix(pattern, "!"), Negated: strings.HasPrefix(pattern, "!")})
 					files = append(files, cloneConfigValue(path))
 				}
 			}

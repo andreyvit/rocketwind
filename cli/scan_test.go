@@ -109,3 +109,19 @@ func TestScanWatch(t *testing.T) {
 		return slices.Contains(names, "overline") && !slices.Contains(names, "underline")
 	})
 }
+
+func TestLegacyContentNegativeGlobs(t *testing.T) {
+	for _, compat := range []string{"3", "4"} {
+		root := t.TempDir()
+		write(t, root, "views/page.html", `<div class="flex"></div>`)
+		write(t, root, "assets/unused.css", `.w-7 {width:1.75rem}`)
+		write(t, root, "views/skip.html", `<div class="z-50"></div>`)
+		write(t, root, "theme.json", `{"content":["./views/**/*","./assets/**/*","!**/*.css",{"base":"`+filepath.ToSlash(root)+`","pattern":"!views/skip.html"}]}`)
+		write(t, root, "input.css", `@tailwind utilities;`)
+		var out, stderr bytes.Buffer
+		args := []string{"scan", "--known", "--cwd", root, "--compat", compat, "--config", "theme.json", "-i", "input.css"}
+		if code := Run(context.Background(), args, Options{Stdout: &out, Stderr: &stderr}); code != 0 || out.String() != "flex\n" {
+			t.Fatal(compat, code, out.String(), stderr.String())
+		}
+	}
+}
