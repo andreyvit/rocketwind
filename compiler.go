@@ -253,6 +253,7 @@ func (b *buildContext) compareRules(a, z compiledRule) int {
 }
 
 type buildContext struct {
+	outputAST         *[]*Node
 	track             bool
 	mappings          []cssMapping
 	features          Features
@@ -695,6 +696,7 @@ func naturalCompare(a, z string) int {
 			if v := strings.Compare(a[i:aEnd], z[i:zEnd]); v != 0 {
 				return v
 			}
+			i = aEnd - 1
 		} else if v := cmp.Compare(a[i], z[i]); v != 0 {
 			return v
 		}

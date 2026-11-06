@@ -112,14 +112,14 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 	}
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
-		if mappings == nil {
+		if mappings == nil && b.outputAST == nil {
 			out.WriteString("@layer properties;\n")
 		} else {
 			first := propertyDefaults
 			if len(inheritedDefaults) > 0 {
 				first = inheritedDefaults
 			}
-			writeMappedCSS(&out, []*Node{withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: "properties"}, location(first[0]))}, 0, mappings)
+			b.writeOutput(&out, []*Node{withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: "properties"}, location(first[0]))}, mappings)
 		}
 	}
 	var themeNodes []*Node
@@ -167,7 +167,7 @@ func (b *buildContext) render(nodes []*Node) string {
 		themeNodes = []*Node{withLocation(&Node{Kind: "rule", Name: ":root, :host", Nodes: themeNodes}, b.compiler.themeSource)}
 	}
 	if !b.compiler.hasInput || b.standalone {
-		writeMappedCSS(&out, themeNodes, 0, mappings)
+		b.writeOutput(&out, themeNodes, mappings)
 	} else {
 		var expand func([]*Node) []*Node
 		expand = func(input []*Node) []*Node {
@@ -194,8 +194,8 @@ func (b *buildContext) render(nodes []*Node) string {
 		nodes = b.polyfillColors(nodes, false)
 	}
 	nodes = flattenRules(nodes, "")
-	writeMappedCSS(&out, nodes, 0, mappings)
-	writeMappedCSS(&out, globals, 0, mappings)
+	b.writeOutput(&out, nodes, mappings)
+	b.writeOutput(&out, globals, mappings)
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
 		var defaults []*Node
 		if len(inheritedDefaults) > 0 {
@@ -207,9 +207,17 @@ func (b *buildContext) render(nodes []*Node) string {
 		fallback := []*Node{{Kind: "at-rule", Name: "@layer", Value: "properties", Nodes: []*Node{{Kind: "at-rule", Name: "@supports", Value: "((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))", Nodes: defaults}}}}
 		withLocation(fallback[0], location(defaults[0]))
 		withLocation(fallback[0].Nodes[0], location(defaults[0]))
-		writeMappedCSS(&out, fallback, 0, mappings)
+		b.writeOutput(&out, fallback, mappings)
 	}
 	return out.String()
+}
+
+func (b *buildContext) writeOutput(out *strings.Builder, nodes []*Node, mappings *[]cssMapping) {
+	if b.outputAST != nil {
+		*b.outputAST = append(*b.outputAST, nodes...)
+	} else {
+		writeMappedCSS(out, nodes, 0, mappings)
+	}
 }
 
 func writeCSS(out *strings.Builder, nodes []*Node, depth int) {

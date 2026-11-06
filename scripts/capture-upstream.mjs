@@ -297,6 +297,28 @@ export function \${name}(...args) {
             if (options.loadStylesheet) recordedOptions.loadStylesheet = recordLoader(options.loadStylesheet, metadata.stylesheets = [])
             if (options.loadModule) recordedOptions.loadModule = recordLoader(options.loadModule, metadata.modules = [])
             const design = await loadDesignOriginal(css,recordedOptions)
+            if (globalThis.__rocketwindSuite?.() === 'intellisense') {
+              const state = () => ({theme:[...design.theme.values],invalid:[...design.invalidCandidates]})
+              for (const name of ['getClassList','candidatesToCss','candidatesToAst']) {
+                const original = design[name].bind(design)
+                design[name] = (...args) => {
+                  const before = state()
+                  const result = original(...args)
+                  globalThis.__rocketwindRecord?.('design.'+name,[css,metadata,before,...args],result,undefined)
+                  return result
+                }
+              }
+              const original = design.getVariants.bind(design)
+              design.getVariants = () => {
+                const result = original()
+                globalThis.__rocketwindRecord?.('design.getVariants',[css,metadata,state()],result.map(({selectors,...rest})=>rest),undefined)
+                return result.map(({selectors,...rest})=>({...rest,selectors:(...args)=>{
+                  const result = selectors(...args)
+                  globalThis.__rocketwindRecord?.('design.selectors',[css,metadata,state(),rest.name,...args],result,undefined)
+                  return result
+                }}))
+              }
+            }
             const getClassOrder = design.getClassOrder.bind(design)
             design.getClassOrder = (classes) => {
               const result = getClassOrder(classes)

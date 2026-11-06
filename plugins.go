@@ -334,7 +334,8 @@ func (c *Compiler) addVariant(v Variant) {
 	if existing, ok := c.variantDefinition(v.Name); ok {
 		order = existing.Order
 	}
-	c.customVariants[v.Name] = variantDefinition{Kind: "functional", Order: order, Compounds: 3}
+	c.customVariants[v.Name] = variantDefinition{Kind: "functional", Order: order, Compounds: 2}
+	c.variantOrder = appendUnique(c.variantOrder, v.Name)
 }
 
 func variantCompounds(nodes []*Node) int {

@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.6%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.7%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -204,6 +204,24 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - The ASCII comparator's median time fell from 3.14 us to 164 ns with zero
   allocations. Case-sensitive comparison fell from 5.67 us to 331 ns.
   Canonical class conversion and the remaining implementation gates are open.
+
+### Editor suggestions and previews
+
+- All 21 original IntelliSense tests pass upstream; all 33 captured calls pass
+  in Go. Total captured upstream calls checked: 14,429.
+- Added class and modifier suggestions, variant arguments and selector previews,
+  plus individual CSS/AST previews. Suggestion tables come from the pinned
+  source registrations. Custom utilities and Go plugins extend the lists.
+- Fixed plugin variant discovery and suggestion registration order. Returned
+  trees are independently editable; concurrent previews and suggestions pass
+  the race detector. The new editor API code has 100% statement coverage.
+- Profiling the full default theme's 23,286 classes reduced suggestion time from
+  25.2 ms to 12.4 ms, allocations from 145,883 to 32,746 and allocated memory from
+  21.4 MB to 15.4 MB. Returned lists own their modifier storage. Numeric sorting
+  now skips digit runs it has already compared.
+- Overall coverage is 96.7%; tests, race tests and vet pass. Canonical class
+  conversion, CLI optimization, remaining suites and integration gates remain
+  open.
 
 ## Initial compiler performance measurements
 

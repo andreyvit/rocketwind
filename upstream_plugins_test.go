@@ -402,6 +402,10 @@ func replayUtilityCallbacks(api *PluginAPI, op upstreamOperation) error {
 		}
 		u.SupportsNegative, _ = options.Get("supportsNegativeValues").(bool)
 		for _, entry := range configObject(options.Get("values")) {
+			if entry.Key == "DEFAULT" && entry.Value == nil {
+				u.Values = append(u.Values, NamedValue{entry.Key, ""})
+				continue
+			}
 			if entry.Key == "__BARE_VALUE__" {
 				u.Bare = func(value, fraction string) (string, bool) {
 					var ratio any

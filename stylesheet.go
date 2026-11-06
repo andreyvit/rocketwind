@@ -33,6 +33,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 	}
 	c.custom = make(map[string][]*Node)
 	c.customFunctional = make(map[string][][]*Node)
+	configuredVariantCount := len(c.variantOrder)
 	var modules []moduleRequest
 	var walk func([]*Node, bool, bool) ([]*Node, error)
 	walk = func(nodes []*Node, nested, reference bool) ([]*Node, error) {
@@ -242,12 +243,15 @@ func Compile(input string, config Config) (*Compiler, error) {
 		return nil, err
 	}
 	cssVariants := maps.Clone(c.customVariants)
+	cssVariantOrder := c.variantOrder[configuredVariantCount:]
+	c.variantOrder = c.variantOrder[:configuredVariantCount:configuredVariantCount]
 	if err := c.loadModules(modules); err != nil {
 		return nil, err
 	}
 	for name, variant := range cssVariants {
 		c.customVariants[name] = variant
 	}
+	c.variantOrder = appendUnique(c.variantOrder, cssVariantOrder...)
 	c.input = append(c.input, c.pluginBase...)
 	c.pluginBase = nil
 	c.config.LoadModule, c.config.LoadStylesheet = nil, nil

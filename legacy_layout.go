@@ -37,6 +37,7 @@ func (c *Compiler) registerLegacyScreens(screens ConfigObject) {
 			order += deferred
 		}
 		c.customVariants[screen.name] = variantDefinition{Kind: "static", Order: order, Compounds: 1, Nodes: []*Node{{Kind: "at-rule", Name: "@media", Value: screen.query, Nodes: []*Node{{Kind: "slot"}}}}}
+		c.variantOrder = appendUnique(c.variantOrder, screen.name)
 	}
 }
 

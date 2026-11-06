@@ -80,6 +80,17 @@ generated CSS.
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
 
+For an editor, `ClassList()` returns named class suggestions and slash modifiers;
+`VariantList()` returns available variants and their named arguments. Both
+include the configured theme, Go plugins and custom stylesheet definitions.
+`VariantSelectors("group-hover/sidebar")` shows a variant's selector structure.
+Cache these lists while the compiler's configuration stays the same.
+
+`CandidateCSS(classes)` returns a CSS preview for each class, without unrelated
+stylesheet rules, theme declarations or browser polyfills. Invalid classes
+produce empty strings. `CandidateAST(classes)` returns the same previews as
+editable CSS trees; editing them does not change the compiler.
+
 `Build` compiles exactly the classes passed to it; separate accounts do not
 accumulate each other's classes. For a file watcher or a growing template set,
 use `compiler.NewBuilder()`. Its `Build` method accumulates candidates, compiles
@@ -272,7 +283,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 14,396 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting and source maps. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 14,429 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting, source maps and editor suggestions. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
