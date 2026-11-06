@@ -60,6 +60,7 @@ export default defineConfig({
         'utils/compare': ['compare'],
         'utils/to-key-path': ['toKeyPath'],
         'utils/replace-shadow-colors': ['replaceShadowColors'],
+        'source-maps/visualize-source-map': ['visualizeSourceMap', 'visualizeSourceMapRanges'],
       }
       for (const [file, names] of Object.entries(pure)) {
         if (!id.endsWith('/src/' + file + '.ts')) continue
@@ -78,6 +79,32 @@ export function \${name}(...args) {
           }\`
         }
         return code
+      }
+      if (id.endsWith('/src/source-maps/line-table.ts')) {
+        code = code.replace('export function createLineTable(', 'function originalCreateLineTable(')
+        return code + \`
+          export function createLineTable(source) {
+            const table = originalCreateLineTable(source)
+            return Object.fromEntries(Object.entries(table).map(([name,fn])=>[name,(...args)=>{
+              const result = fn(...args)
+              globalThis.__rocketwindRecord?.('internal:source-maps/line-table:'+name,[source,...args],result,undefined)
+              return result
+            }]))
+          }
+        \`
+      }
+      if (id.endsWith('/src/source-maps/source-map.ts')) {
+        code = code.replace('export function createTranslationMap(', 'function originalCreateTranslationMap(')
+        return code + \`
+          export function createTranslationMap(options) {
+            const translate = originalCreateTranslationMap(options)
+            return (node) => {
+              const result = translate(node)
+              globalThis.__rocketwindRecord?.('internal:source-maps/translation-map:translate',[options,node],result,undefined)
+              return result
+            }
+          }
+        \`
       }
       if (id.endsWith('/src/compat/config/create-compat-config.ts')) {
         code = code.replace('export function createCompatConfig(', 'function originalCreateCompatConfig(')
@@ -294,6 +321,10 @@ export function \${name}(...args) {
                   globalThis.__rocketwindRecord?.('compile.build', [css, metadata, builds.slice()], undefined, error.message)
                   throw error
                 }
+              }, buildSourceMap() {
+                const result = api.buildSourceMap()
+                globalThis.__rocketwindRecord?.('compile.map', [css, metadata, builds.slice()], result, undefined)
+                return result
               }}
             } catch (error) {
               globalThis.__rocketwindRecord?.('compile', [css, metadata], undefined, error.message)

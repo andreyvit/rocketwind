@@ -12,6 +12,7 @@ import (
 // Name holds a selector, at-rule name or property; Value holds parameters or a
 // declaration/comment value. Source spans use UTF-8 byte offsets.
 type Node struct {
+	source     *cssSource
 	base       string
 	variant    bool
 	context    map[string]any
@@ -27,11 +28,15 @@ type Node struct {
 // source locations in diagnostics and nodes.
 func ParseCSS(input string, filename string) ([]*Node, error) {
 	p := cssParser{input: input, filename: filename}
+	if filename != "" {
+		p.source = &cssSource{file: filename, code: input}
+	}
 	return p.parse()
 }
 
 type cssParser struct {
 	input, filename string
+	source          *cssSource
 }
 
 func (p *cssParser) fail(at int, message string) error {
@@ -55,6 +60,7 @@ func (p *cssParser) fail(at int, message string) error {
 
 func (p *cssParser) span(n *Node, start, end int) *Node {
 	if p.filename != "" {
+		n.source = p.source
 		n.Start = start
 		n.End = end
 	}

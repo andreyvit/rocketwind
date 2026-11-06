@@ -161,6 +161,31 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   suite remain pending. This is a usable compiler checkpoint, not completion of
   the CLI or compatibility gates. No Bubblehouse files have been integrated.
 
+### Source maps
+
+- All 29 original tests in the four core source-map suites pass upstream;
+  all 89 captured calls now pass in Go. Also ported the node adapter's source-map
+  comment assertion. Total captured upstream calls checked: 14,261.
+- Added byte-to-UTF-16 mapping, ECMA-426 encoding, diagnostic visualization and
+  full/incremental map APIs. Eight original maps match source-map-js encoding;
+  twelve additional differential cases cover Unicode, CRLF/BOM, custom
+  variants, property fallbacks and repeated or overlapping `@apply` tokens.
+- Fixed plugin execution order, color-fallback locations and `@apply` token
+  positions exposed by these tests. Mapping preserves immutable compiler
+  state and passes concurrent-build checks. Unchanged incremental map builds
+  use zero allocations; new map builds render once.
+- Added CLI inline/file maps, imported-source tracking, write protection and
+  map-only watch updates. Outputs are excluded from subsequent scans.
+- Source-map implementation files have 100% statement coverage. Overall Go
+  coverage is 96.4%; the project-wide 100% gate remains open. Race tests and
+  vet pass. A 15-second decoder fuzz run passed 1.74 million executions.
+- Quiet benchmark medians: 586 classes without maps, 1.25 ms; a complete
+  imported stylesheet with retained locations, 1.86 ms without map generation
+  and 2.16 ms with maps. Cached unchanged builds remain at zero allocations.
+  These are checkpoint measurements, not the final performance gate.
+- Minification, canonicalization, remaining internal/CLI suites, the v3
+  compatibility profile and all Bubblehouse integration remain pending.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

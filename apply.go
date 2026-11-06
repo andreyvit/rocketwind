@@ -59,6 +59,16 @@ func (c *Compiler) resolveApplies() error {
 					return nil, fmt.Errorf("You cannot use `@apply` inside `@keyframes`.")
 				}
 				candidates := strings.Fields(n.Value)
+				var offsets map[string]int
+				if n.source != nil {
+					offsets = make(map[string]int, len(candidates))
+					cursor := 0
+					for _, raw := range candidates {
+						offset := cursor + strings.Index(n.Value[cursor:], raw)
+						offsets[raw] = offset
+						cursor = offset + len(raw)
+					}
+				}
 				var normal, mixins []string
 				important := false
 				for _, raw := range candidates {
@@ -135,8 +145,14 @@ func (c *Compiler) resolveApplies() error {
 				}
 				for _, r := range rules {
 					content := r.node.Nodes
-					if important {
-						content = cloneNodes(content, "", true)
+					if important || n.source != nil {
+						content = cloneNodes(content, "", important)
+					}
+					if n.source != nil {
+						src := location(n)
+						src.start += 7 + offsets[r.raw]
+						src.end = src.start + len(r.raw)
+						setLocations(content, src, true)
 					}
 					result = append(result, content...)
 				}

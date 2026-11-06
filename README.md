@@ -201,8 +201,20 @@ Watch mode polls for changes, keeps the last valid CSS after an error, and
 avoids rewriting unchanged output. `--poll=100` sets the interval in
 milliseconds; `--watch=always` keeps running after stdin closes.
 
-Minification, source maps and the `canonicalize` command are still pending.
+Use `--map` for an inline source map, or `--map public/app.css.map` for a separate
+file. Source maps include imported stylesheets and trace generated utilities
+back to their definitions or `@apply` uses. Watch mode updates a changed map
+without rewriting identical CSS.
+
+Minification and the `canonicalize` command are still pending.
 The CLI has not yet passed the full upstream CLI integration suite.
+
+For source maps in Go, set `Config.From` to the entry stylesheet's filename,
+then call `BuildWithSourceMap` on the compiler or an incremental builder.
+It returns CSS and a `SourceMap`, which you can marshal with `encoding/json`.
+`sourceMap.Inline()` returns a comment with an embedded map; `Comment(url)` links
+to a separate file. `Visualize(css)` shows mappings beside the original source
+for debugging. Leave `From` empty when you do not need source locations.
 
 
 Reuse existing CSS

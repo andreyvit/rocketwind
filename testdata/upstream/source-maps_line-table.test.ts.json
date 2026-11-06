@@ -1,0 +1,554 @@
+[
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      0
+    ],
+    "result": {
+      "line": 1,
+      "column": 0
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      1
+    ],
+    "result": {
+      "line": 1,
+      "column": 1
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      2
+    ],
+    "result": {
+      "line": 1,
+      "column": 2
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      3
+    ],
+    "result": {
+      "line": 1,
+      "column": 3
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      4
+    ],
+    "result": {
+      "line": 1,
+      "column": 4
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      5
+    ],
+    "result": {
+      "line": 1,
+      "column": 5
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      6
+    ],
+    "result": {
+      "line": 1,
+      "column": 6
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      7
+    ],
+    "result": {
+      "line": 2,
+      "column": 0
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      8
+    ],
+    "result": {
+      "line": 2,
+      "column": 1
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      9
+    ],
+    "result": {
+      "line": 2,
+      "column": 2
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      10
+    ],
+    "result": {
+      "line": 2,
+      "column": 3
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      11
+    ],
+    "result": {
+      "line": 2,
+      "column": 4
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      12
+    ],
+    "result": {
+      "line": 2,
+      "column": 5
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      13
+    ],
+    "result": {
+      "line": 2,
+      "column": 6
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      14
+    ],
+    "result": {
+      "line": 2,
+      "column": 7
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      15
+    ],
+    "result": {
+      "line": 2,
+      "column": 8
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      16
+    ],
+    "result": {
+      "line": 2,
+      "column": 9
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      17
+    ],
+    "result": {
+      "line": 2,
+      "column": 10
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      18
+    ],
+    "result": {
+      "line": 2,
+      "column": 11
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      19
+    ],
+    "result": {
+      "line": 2,
+      "column": 12
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      21
+    ],
+    "result": {
+      "line": 3,
+      "column": 0
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      22
+    ],
+    "result": {
+      "line": 3,
+      "column": 1
+    }
+  },
+  {
+    "test": "line tables",
+    "kind": "internal:source-maps/line-table:find",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      23
+    ],
+    "result": {
+      "line": 4,
+      "column": 0
+    }
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 0
+      }
+    ],
+    "result": 0
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 1
+      }
+    ],
+    "result": 1
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 2
+      }
+    ],
+    "result": 2
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 3
+      }
+    ],
+    "result": 3
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 4
+      }
+    ],
+    "result": 4
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 5
+      }
+    ],
+    "result": 5
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 1,
+        "column": 6
+      }
+    ],
+    "result": 6
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 0
+      }
+    ],
+    "result": 7
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 1
+      }
+    ],
+    "result": 8
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 2
+      }
+    ],
+    "result": 9
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 3
+      }
+    ],
+    "result": 10
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 4
+      }
+    ],
+    "result": 11
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 5
+      }
+    ],
+    "result": 12
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 6
+      }
+    ],
+    "result": 13
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 7
+      }
+    ],
+    "result": 14
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 8
+      }
+    ],
+    "result": 15
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 9
+      }
+    ],
+    "result": 16
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 10
+      }
+    ],
+    "result": 17
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 11
+      }
+    ],
+    "result": 18
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 2,
+        "column": 12
+      }
+    ],
+    "result": 19
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 3,
+        "column": 0
+      }
+    ],
+    "result": 21
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 3,
+        "column": 1
+      }
+    ],
+    "result": 22
+  },
+  {
+    "test": "line tables findOffset",
+    "kind": "internal:source-maps/line-table:findOffset",
+    "args": [
+      ".foo {\n  color: red;\n}\n",
+      {
+        "line": 4,
+        "column": 0
+      }
+    ],
+    "result": 23
+  }
+]

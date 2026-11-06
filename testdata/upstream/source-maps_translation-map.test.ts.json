@@ -1,0 +1,712 @@
+[
+  {
+    "test": "comment, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "/*! foo */",
+        "generated": "/*! foo */\n"
+      },
+      {
+        "kind": "comment",
+        "value": "! foo ",
+        "src": [
+          {
+            "file": "input.css",
+            "code": "/*! foo */"
+          },
+          0,
+          10
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "/*! foo */\n"
+          },
+          0,
+          10
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 10
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 10
+        }
+      ]
+    ]
+  },
+  {
+    "test": "comment, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "/*! foo \n bar */",
+        "generated": "/*! foo \n bar */\n"
+      },
+      {
+        "kind": "comment",
+        "value": "! foo \n bar ",
+        "src": [
+          {
+            "file": "input.css",
+            "code": "/*! foo \n bar */"
+          },
+          0,
+          16
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "/*! foo \n bar */\n"
+          },
+          0,
+          16
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 2,
+          "column": 7
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 2,
+          "column": 7
+        }
+      ]
+    ]
+  },
+  {
+    "test": "declaration, normal property, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo { color: red; }",
+        "generated": ".foo {\n  color: red;\n}\n"
+      },
+      {
+        "kind": "declaration",
+        "property": "color",
+        "value": "red",
+        "important": false,
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo { color: red; }"
+          },
+          7,
+          17
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo {\n  color: red;\n}\n"
+          },
+          9,
+          19
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 7
+        },
+        {
+          "line": 1,
+          "column": 17
+        },
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 2,
+          "column": 12
+        }
+      ]
+    ]
+  },
+  {
+    "test": "declaration, normal property, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo {\n  grid-template-areas:\n    \"a b c\"\n    \"d e f\"\n    \"g h i\";\n}",
+        "generated": ".foo {\n  grid-template-areas: \"a b c\" \"d e f\" \"g h i\";\n}\n"
+      },
+      {
+        "kind": "declaration",
+        "property": "grid-template-areas",
+        "value": "\"a b c\" \"d e f\" \"g h i\"",
+        "important": false,
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo {\n  grid-template-areas:\n    \"a b c\"\n    \"d e f\"\n    \"g h i\";\n}"
+          },
+          9,
+          65
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo {\n  grid-template-areas: \"a b c\" \"d e f\" \"g h i\";\n}\n"
+          },
+          9,
+          53
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 5,
+          "column": 11
+        },
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 2,
+          "column": 46
+        }
+      ]
+    ]
+  },
+  {
+    "test": "declaration, custom property, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo { --foo: bar; }",
+        "generated": ".foo {\n  --foo: bar;\n}\n"
+      },
+      {
+        "kind": "declaration",
+        "property": "--foo",
+        "value": "bar",
+        "important": false,
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo { --foo: bar; }"
+          },
+          7,
+          17
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo {\n  --foo: bar;\n}\n"
+          },
+          9,
+          19
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 7
+        },
+        {
+          "line": 1,
+          "column": 17
+        },
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 2,
+          "column": 12
+        }
+      ]
+    ]
+  },
+  {
+    "test": "declaration, custom property, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo {\n  --foo: bar\nbaz;\n}",
+        "generated": ".foo {\n  --foo: bar\nbaz;\n}\n"
+      },
+      {
+        "kind": "declaration",
+        "property": "--foo",
+        "value": "bar\nbaz",
+        "important": false,
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo {\n  --foo: bar\nbaz;\n}"
+          },
+          9,
+          23
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo {\n  --foo: bar\nbaz;\n}\n"
+          },
+          9,
+          23
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 3,
+          "column": 3
+        },
+        {
+          "line": 2,
+          "column": 2
+        },
+        {
+          "line": 3,
+          "column": 3
+        }
+      ]
+    ]
+  },
+  {
+    "test": "at rules, bodyless, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "@layer foo,     bar;",
+        "generated": "@layer foo, bar;\n"
+      },
+      {
+        "kind": "at-rule",
+        "name": "@layer",
+        "params": "foo, bar",
+        "nodes": [],
+        "src": [
+          {
+            "file": "input.css",
+            "code": "@layer foo,     bar;"
+          },
+          0,
+          19
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "@layer foo, bar;\n"
+          },
+          0,
+          15
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 19
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 15
+        }
+      ]
+    ]
+  },
+  {
+    "test": "at rules, bodyless, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "@layer\n  foo,\n  bar\n;",
+        "generated": "@layer foo, bar;\n"
+      },
+      {
+        "kind": "at-rule",
+        "name": "@layer",
+        "params": "foo, bar",
+        "nodes": [],
+        "src": [
+          {
+            "file": "input.css",
+            "code": "@layer\n  foo,\n  bar\n;"
+          },
+          0,
+          20
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "@layer foo, bar;\n"
+          },
+          0,
+          15
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 4,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 15
+        }
+      ]
+    ]
+  },
+  {
+    "test": "at rules, body, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "@layer foo { color: red; }",
+        "generated": "@layer foo {\n  color: red;\n}\n"
+      },
+      {
+        "kind": "at-rule",
+        "name": "@layer",
+        "params": "foo",
+        "nodes": [
+          {
+            "kind": "declaration",
+            "property": "color",
+            "value": "red",
+            "important": false,
+            "src": [
+              {
+                "file": "input.css",
+                "code": "@layer foo { color: red; }"
+              },
+              13,
+              23
+            ],
+            "dst": [
+              {
+                "file": null,
+                "code": "@layer foo {\n  color: red;\n}\n"
+              },
+              15,
+              25
+            ]
+          }
+        ],
+        "src": [
+          {
+            "file": "input.css",
+            "code": "@layer foo { color: red; }"
+          },
+          0,
+          11
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "@layer foo {\n  color: red;\n}\n"
+          },
+          0,
+          11
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 11
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 11
+        }
+      ]
+    ]
+  },
+  {
+    "test": "at rules, body, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": "@layer\n  foo\n{\n  color: baz;\n}",
+        "generated": "@layer foo {\n  color: baz;\n}\n"
+      },
+      {
+        "kind": "at-rule",
+        "name": "@layer",
+        "params": "foo",
+        "nodes": [
+          {
+            "kind": "declaration",
+            "property": "color",
+            "value": "baz",
+            "important": false,
+            "src": [
+              {
+                "file": "input.css",
+                "code": "@layer\n  foo\n{\n  color: baz;\n}"
+              },
+              17,
+              27
+            ],
+            "dst": [
+              {
+                "file": null,
+                "code": "@layer foo {\n  color: baz;\n}\n"
+              },
+              15,
+              25
+            ]
+          }
+        ],
+        "src": [
+          {
+            "file": "input.css",
+            "code": "@layer\n  foo\n{\n  color: baz;\n}"
+          },
+          0,
+          13
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": "@layer foo {\n  color: baz;\n}\n"
+          },
+          0,
+          11
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 3,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 11
+        }
+      ]
+    ]
+  },
+  {
+    "test": "style rules, body, single line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo:is(.bar) { color: red; }",
+        "generated": ".foo:is(.bar) {\n  color: red;\n}\n"
+      },
+      {
+        "kind": "rule",
+        "selector": ".foo:is(.bar)",
+        "nodes": [
+          {
+            "kind": "declaration",
+            "property": "color",
+            "value": "red",
+            "important": false,
+            "src": [
+              {
+                "file": "input.css",
+                "code": ".foo:is(.bar) { color: red; }"
+              },
+              16,
+              26
+            ],
+            "dst": [
+              {
+                "file": null,
+                "code": ".foo:is(.bar) {\n  color: red;\n}\n"
+              },
+              18,
+              28
+            ]
+          }
+        ],
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo:is(.bar) { color: red; }"
+          },
+          0,
+          14
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo:is(.bar) {\n  color: red;\n}\n"
+          },
+          0,
+          14
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 14
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 14
+        }
+      ]
+    ]
+  },
+  {
+    "test": "style rules, body, multi line",
+    "kind": "internal:source-maps/translation-map:translate",
+    "args": [
+      {
+        "original": ".foo:is(\n  .bar\n) {\n  color: red;\n}",
+        "generated": ".foo:is( .bar ) {\n  color: red;\n}\n"
+      },
+      {
+        "kind": "rule",
+        "selector": ".foo:is( .bar )",
+        "nodes": [
+          {
+            "kind": "declaration",
+            "property": "color",
+            "value": "red",
+            "important": false,
+            "src": [
+              {
+                "file": "input.css",
+                "code": ".foo:is(\n  .bar\n) {\n  color: red;\n}"
+              },
+              22,
+              32
+            ],
+            "dst": [
+              {
+                "file": null,
+                "code": ".foo:is( .bar ) {\n  color: red;\n}\n"
+              },
+              20,
+              30
+            ]
+          }
+        ],
+        "src": [
+          {
+            "file": "input.css",
+            "code": ".foo:is(\n  .bar\n) {\n  color: red;\n}"
+          },
+          0,
+          18
+        ],
+        "dst": [
+          {
+            "file": null,
+            "code": ".foo:is( .bar ) {\n  color: red;\n}\n"
+          },
+          0,
+          16
+        ]
+      }
+    ],
+    "result": [
+      [
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 3,
+          "column": 2
+        },
+        {
+          "line": 1,
+          "column": 0
+        },
+        {
+          "line": 1,
+          "column": 16
+        }
+      ]
+    ]
+  }
+]

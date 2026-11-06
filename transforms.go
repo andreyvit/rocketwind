@@ -147,7 +147,7 @@ func (b *buildContext) polyfillColors(nodes []*Node, inside bool) []*Node {
 				}
 				r := *n
 				r.Value = fallback
-				result = append(result, &r, &Node{Kind: "at-rule", Name: "@supports", Value: "(color: color-mix(in lab, red, red))", Nodes: []*Node{n}})
+				result = append(result, &r, withLocation(&Node{Kind: "at-rule", Name: "@supports", Value: "(color: color-mix(in lab, red, red))", Nodes: []*Node{n}}, location(n)))
 				continue
 			}
 		}

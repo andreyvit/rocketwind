@@ -83,6 +83,9 @@ func convertUpstreamNodes(nodes []upstreamNode, input string) []*Node {
 			v.Nodes = convertUpstreamNodes(n.Nodes, input)
 		}
 		if len(n.Src) > 0 {
+			var source struct{ File, Code string }
+			json.Unmarshal(n.Src[0], &source)
+			v.source = &cssSource{file: source.File, code: source.Code}
 			var start, end int
 			json.Unmarshal(n.Src[1], &start)
 			json.Unmarshal(n.Src[2], &end)

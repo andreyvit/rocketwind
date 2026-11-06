@@ -19,10 +19,13 @@ type utilityDefinition struct {
 
 type Config struct {
 	DisablePolyfills Polyfills
-	Base             string
-	LoadStylesheet   StylesheetLoader
-	LoadModule       ModuleLoader
-	Important        bool
+	// From identifies the input stylesheet in diagnostics and source maps.
+	// Leave empty to avoid retaining source text when maps are not needed.
+	From           string
+	Base           string
+	LoadStylesheet StylesheetLoader
+	LoadModule     ModuleLoader
+	Important      bool
 	// Theme contains CSS theme variables, for example --color-brand: #663399.
 	Theme map[string]string
 	// NoDefaultTheme starts with an empty theme, like @tailwind utilities alone.
@@ -46,6 +49,9 @@ type Compiler struct {
 	inputCSS              string
 	hasInput, themePlaced bool
 	themeFlags            map[string]string
+	themeSources          map[string]cssLocation
+	themeSource           cssLocation
+	utilitiesSource       cssLocation
 	themeOrder            []string
 	keyframes             []*Node
 	custom                map[string][]*Node
@@ -91,10 +97,18 @@ func New(config Config) *Compiler {
 // Build generates CSS for exactly these candidates. Calls are independent and
 // may run concurrently. Use NewBuilder for incremental, cumulative builds.
 func (c *Compiler) Build(candidates []string) (string, error) {
+	css, _, err := c.build(candidates, false)
+	return css, err
+}
+
+func (c *Compiler) build(candidates []string, track bool) (string, *decodedSourceMap, error) {
 	if c.hasInput && c.features == 0 {
-		return c.inputCSS, nil
+		if track {
+			return c.inputCSS, c.identitySourceMap(), nil
+		}
+		return c.inputCSS, nil, nil
 	}
-	b := buildContext{compiler: c, used: make(map[string]bool)}
+	b := buildContext{compiler: c, used: make(map[string]bool), track: track}
 	if len(c.inlineCandidates) > 0 {
 		candidates = append(slices.Clone(candidates), c.inlineCandidates...)
 	}
@@ -103,7 +117,11 @@ func (c *Compiler) Build(candidates []string) (string, error) {
 		rules = b.compileRules(candidates)
 	}
 	result := b.renderRules(rules)
-	return result, b.err
+	var sourceMap *decodedSourceMap
+	if track {
+		sourceMap = createSourceMap(result, b.mappings)
+	}
+	return result, sourceMap, b.err
 }
 
 func (b *buildContext) renderRules(rules []compiledRule) string {
@@ -201,6 +219,10 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				if !valid {
 					continue
 				}
+				if b.compiler.utilitiesSource.source != nil {
+					n = cloneNode(n, "", false)
+					setLocations([]*Node{n}, b.compiler.utilitiesSource, false)
+				}
 				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: key})
 			}
 		}
@@ -231,6 +253,8 @@ func (b *buildContext) compareRules(a, z compiledRule) int {
 }
 
 type buildContext struct {
+	track             bool
+	mappings          []cssMapping
 	features          Features
 	err               error
 	inApply           bool

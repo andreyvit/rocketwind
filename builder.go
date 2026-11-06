@@ -10,6 +10,7 @@ type Builder struct {
 	seen              map[string]bool
 	rules             []compiledRule
 	css               string
+	sourceMap         *SourceMap
 	built             bool
 	externalVariables []string
 }
@@ -19,6 +20,10 @@ func (c *Compiler) NewBuilder() *Builder { return &Builder{compiler: c, seen: ma
 // Build adds candidates and returns the complete stylesheet. Repeating an
 // unchanged candidate set returns the cached CSS without allocating.
 func (builder *Builder) Build(candidates []string) (string, error) {
+	return builder.build(candidates, false)
+}
+
+func (builder *Builder) build(candidates []string, track bool) (string, error) {
 	c := builder.compiler
 	if c.hasInput && c.features == 0 {
 		return c.inputCSS, nil
@@ -41,7 +46,7 @@ func (builder *Builder) Build(candidates []string) (string, error) {
 	if len(added) == 0 && builder.built {
 		return builder.css, nil
 	}
-	b := buildContext{compiler: c, used: map[string]bool{}}
+	b := buildContext{compiler: c, used: map[string]bool{}, track: track}
 	var rules []compiledRule
 	if !c.hasInput || c.hasUtilities {
 		rules = b.compileRules(added)
@@ -60,6 +65,10 @@ func (builder *Builder) Build(candidates []string) (string, error) {
 	builder.rules = append(builder.rules, rules...)
 	slices.SortStableFunc(builder.rules, b.compareRules)
 	builder.css = b.renderRules(builder.rules)
+	builder.sourceMap = nil
+	if track {
+		builder.sourceMap = createSourceMap(builder.css, b.mappings).encode()
+	}
 	builder.built = true
 	return builder.css, nil
 }
@@ -72,6 +81,7 @@ func (builder *Builder) Reset() {
 	clear(builder.externalVariables)
 	builder.externalVariables = builder.externalVariables[:0]
 	builder.css = ""
+	builder.sourceMap = nil
 	builder.built = false
 }
 

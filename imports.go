@@ -17,12 +17,12 @@ func loadBuiltinStylesheet(id string) (Stylesheet, bool) {
 	name := strings.TrimSuffix(id, ".css")
 	switch name {
 	case "tailwindcss":
-		return Stylesheet{Base: "rocketwind:tailwindcss", Content: "@layer theme, base, components, utilities;\n@import 'tailwindcss/theme' layer(theme);\n@import 'tailwindcss/preflight' layer(base);\n@import 'tailwindcss/utilities' layer(utilities);"}, true
+		return Stylesheet{Path: "rocketwind:tailwindcss/index.css", Base: "rocketwind:tailwindcss", Content: "@layer theme, base, components, utilities;\n@import 'tailwindcss/theme' layer(theme);\n@import 'tailwindcss/preflight' layer(base);\n@import 'tailwindcss/utilities' layer(utilities);"}, true
 	case "tailwindcss/theme", "tailwindcss/preflight":
 		data, _ := builtins.ReadFile("data/" + strings.TrimPrefix(name, "tailwindcss/") + ".css")
-		return Stylesheet{Base: "rocketwind:tailwindcss", Content: string(data)}, true
+		return Stylesheet{Path: "rocketwind:" + name + ".css", Base: "rocketwind:tailwindcss", Content: string(data)}, true
 	case "tailwindcss/utilities":
-		return Stylesheet{Content: "@tailwind utilities;"}, true
+		return Stylesheet{Path: "rocketwind:tailwindcss/utilities.css", Content: "@tailwind utilities;"}, true
 	}
 	return Stylesheet{}, false
 }
@@ -73,7 +73,11 @@ func resolveImports(nodes []*Node, config Config, base string, depth int) ([]*No
 			if err != nil {
 				return nil, err
 			}
-			ast, err := ParseCSS(source.Content, "")
+			from := ""
+			if config.From != "" {
+				from = source.Path
+			}
+			ast, err := ParseCSS(source.Content, from)
 			if err != nil {
 				return nil, err
 			}
@@ -82,16 +86,16 @@ func resolveImports(nodes []*Node, config Config, base string, depth int) ([]*No
 				return nil, err
 			}
 			if layer != nil {
-				ast = []*Node{{Kind: "at-rule", Name: "@layer", Value: *layer, Nodes: ast}}
+				ast = []*Node{withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: *layer, Nodes: ast}, location(n))}
 			}
 			if media != "" {
-				ast = []*Node{{Kind: "at-rule", Name: "@media", Value: media, Nodes: ast, base: base}}
+				ast = []*Node{withLocation(&Node{Kind: "at-rule", Name: "@media", Value: media, Nodes: ast, base: base}, location(n))}
 			}
 			if supports != "" {
 				if !strings.HasPrefix(supports, "(") {
 					supports = "(" + supports + ")"
 				}
-				ast = []*Node{{Kind: "at-rule", Name: "@supports", Value: supports, Nodes: ast}}
+				ast = []*Node{withLocation(&Node{Kind: "at-rule", Name: "@supports", Value: supports, Nodes: ast}, location(n))}
 			}
 			result = append(result, ast...)
 			continue

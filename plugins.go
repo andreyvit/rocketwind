@@ -32,6 +32,7 @@ type Plugin func(*PluginAPI) error
 type PluginAPI struct {
 	compiler  *Compiler
 	reference bool
+	source    cssLocation
 }
 
 // Prefix preserves Tailwind 4's legacy plugin helper, which returns its input.
@@ -63,8 +64,9 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 	type pendingPlugin struct {
 		fn        Plugin
 		reference bool
+		source    cssLocation
 	}
-	var pending []pendingPlugin
+	var pending, configPending []pendingPlugin
 	var pluginConfigs, userConfigs []legacyConfigSource
 	for _, kind := range []string{"@config", "@plugin"} {
 		for _, request := range requests {
@@ -138,13 +140,24 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 				return fmt.Errorf("The plugin %q does not accept options", request.name)
 			}
 			for _, fn := range module.Plugins {
-				pending = append(pending, pendingPlugin{fn, request.reference})
+				p := pendingPlugin{fn, request.reference, location(n)}
+				if kind == "@config" {
+					configPending = append(configPending, p)
+				} else {
+					pending = append(pending, p)
+				}
 			}
 			if plugin != nil {
-				pending = append(pending, pendingPlugin{plugin, request.reference})
+				p := pendingPlugin{plugin, request.reference, location(n)}
+				if kind == "@config" {
+					configPending = append(configPending, p)
+				} else {
+					pending = append(pending, p)
+				}
 			}
 		}
 	}
+	pending = append(pending, configPending...)
 	sources := append(pluginConfigs, userConfigs...)
 	if len(sources) == 0 && len(pending) > 0 {
 		sources = []legacyConfigSource{{}}
@@ -163,7 +176,7 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 		c.legacyConfig.set("plugins", plugins)
 	}
 	for _, p := range pending {
-		if err := p.fn(&PluginAPI{compiler: c, reference: p.reference}); err != nil {
+		if err := p.fn(&PluginAPI{compiler: c, reference: p.reference, source: p.source}); err != nil {
 			return err
 		}
 	}
@@ -195,7 +208,9 @@ func pluginOption(value string) any {
 // AddBase appends styles to the base layer, unless the plugin is only referenced.
 func (api *PluginAPI) AddBase(nodes []*Node) {
 	if !api.reference {
-		api.compiler.pluginBase = append(api.compiler.pluginBase, &Node{Kind: "at-rule", Name: "@layer", Value: "base", Nodes: cloneNodes(nodes, "", false)})
+		base := &Node{Kind: "at-rule", Name: "@layer", Value: "base", Nodes: cloneNodes(nodes, "", false)}
+		setLocations([]*Node{base}, api.source, true)
+		api.compiler.pluginBase = append(api.compiler.pluginBase, base)
 	}
 }
 

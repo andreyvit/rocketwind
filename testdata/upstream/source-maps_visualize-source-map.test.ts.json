@@ -1,0 +1,241 @@
+[
+  {
+    "test": "visualizes single-line ranges",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMapRanges",
+    "args": [
+      {
+        "input.css": ".foo { color: red; }"
+      },
+      ".foo {\n  color: red;\n}",
+      [
+        {
+          "original": {
+            "source": "input.css",
+            "start": [
+              1,
+              7
+            ],
+            "end": [
+              1,
+              17
+            ]
+          },
+          "generated": {
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              12
+            ]
+          }
+        }
+      ]
+    ],
+    "result": "\n   output.css              |    input.css\n                           | \n1  .foo {                  | \n2    color: red;           | 1  .foo { color: red; }\n     ^^^^^^^^^^ A @ 2:2-12 |           ^^^^^^^^^^ A @ 1:7-17\n3  }                       | \n"
+  },
+  {
+    "test": "visualizes multi-line ranges",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMapRanges",
+    "args": [
+      {
+        "input.css": "/*! foo\n bar */"
+      },
+      "/*! foo\n bar */",
+      [
+        {
+          "original": {
+            "source": "input.css",
+            "start": [
+              1,
+              0
+            ],
+            "end": [
+              2,
+              7
+            ]
+          },
+          "generated": {
+            "start": [
+              1,
+              0
+            ],
+            "end": [
+              2,
+              7
+            ]
+          }
+        }
+      ]
+    ],
+    "result": "\n   output.css          |    input.css\n                       | \n1  /*! foo             | 1  /*! foo\n   ^^^^^^^ A @ 1:0-2:7 |    ^^^^^^^ A @ 1:0-2:7\n2   bar */             | 2   bar */\n   ^^^^^^^ A           |    ^^^^^^^ A\n"
+  },
+  {
+    "test": "visualizes multiple sources",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMapRanges",
+    "args": [
+      {
+        "utilities.css": "@tailwind utilities;",
+        "input.css": "@utility custom {\n  color: red;\n}"
+      },
+      ".flex {\n  display: flex;\n}\n.custom {\n  color: red;\n}",
+      [
+        {
+          "original": {
+            "source": "utilities.css",
+            "start": [
+              1,
+              0
+            ],
+            "end": [
+              1,
+              19
+            ]
+          },
+          "generated": {
+            "start": [
+              1,
+              0
+            ],
+            "end": [
+              1,
+              6
+            ]
+          }
+        },
+        {
+          "original": {
+            "source": "utilities.css",
+            "start": [
+              1,
+              0
+            ],
+            "end": [
+              1,
+              19
+            ]
+          },
+          "generated": {
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              15
+            ]
+          }
+        },
+        {
+          "original": {
+            "source": "input.css",
+            "start": [
+              2,
+              2
+            ],
+            "end": [
+              2,
+              12
+            ]
+          },
+          "generated": {
+            "start": [
+              5,
+              2
+            ],
+            "end": [
+              5,
+              12
+            ]
+          }
+        }
+      ]
+    ],
+    "result": "\n   output.css                 |    original\n                              | \n                              |    --- utilities.css ---\n1  .flex {                    | 1  @tailwind utilities;\n   ^^^^^^ A @ 1:0-6           |    ^^^^^^^^^^^^^^^^^^^ A @ 1:0-19\n2    display: flex;           | \n     ^^^^^^^^^^^^^ A @ 2:2-15 | \n3  }                          | \n4  .custom {                  | \n                              |    --- input.css ---\n5    color: red;              | 2    color: red;\n     ^^^^^^^^^^ B @ 5:2-12    |      ^^^^^^^^^^ B @ 2:2-12\n                              | 3  }\n6  }                          | \n"
+  },
+  {
+    "test": "visualizes unmapped source ranges",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMapRanges",
+    "args": [
+      {
+        "input.css": ".foo { color: red; }"
+      },
+      ".foo {\n  color: red;\n}",
+      [
+        {
+          "original": {
+            "source": "input.css",
+            "start": [
+              1,
+              7
+            ],
+            "end": [
+              1,
+              17
+            ]
+          },
+          "generated": null
+        }
+      ]
+    ],
+    "result": "\n   output.css |    input.css\n              | \n   unmapped A | 1  .foo { color: red; }\n              |           ^^^^^^^^^^ A @ 1:7-17\n1  .foo {     | \n2    color... | \n3  }          | \n"
+  },
+  {
+    "test": "visualizes source-map points as generated segments",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMap",
+    "args": [
+      {
+        "version": 3,
+        "sources": [
+          "input.css"
+        ],
+        "names": [],
+        "mappings": "AAAA;AACA,OAAO",
+        "sourcesContent": [
+          "/*! foo\n bar */"
+        ]
+      },
+      "/*! foo\n bar */"
+    ],
+    "result": "\n   output.css          |    input.css\n                       | \n1  /*! foo             | 1  /*! foo\n   ^^^^^^^ A @ 1:0-2:0 |    ^^^^^^^ A @ 1:0-2:0\n2   bar */             | 2   bar */\n   ^^^^^^^ B @ 2:0-7   |    ^^^^^^^ B @ 2:0-7\n"
+  },
+  {
+    "test": "visualizes final source-map point through end of line",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMap",
+    "args": [
+      {
+        "version": 3,
+        "sources": [
+          "input.css"
+        ],
+        "names": [],
+        "mappings": "AAAA",
+        "sourcesContent": [
+          "aaaa"
+        ]
+      },
+      "aaaa"
+    ],
+    "result": "\n   output.css       |    input.css\n                    | \n1  aaaa             | 1  aaaa\n   ^^^^ A @ 1:0-2:0 |    ^ A @ 1:0\n"
+  },
+  {
+    "test": "visualizes duplicate source-map points without hiding them",
+    "kind": "internal:source-maps/visualize-source-map:visualizeSourceMap",
+    "args": [
+      {
+        "version": 3,
+        "sources": [
+          "input.css"
+        ],
+        "names": [],
+        "mappings": "AAAA,AACA,IAAI",
+        "sourcesContent": [
+          "aaaa\nbbbb"
+        ]
+      },
+      "bbbb"
+    ],
+    "result": "\n   output.css     |    input.css\n                  | \n1  bbbb           | 1  aaaa\n   ^ A @ 1:0      |    ^ A @ 1:0\n1  bbbb           | 2  bbbb\n   ^^^^ B @ 1:0-4 |    ^^^^ B @ 2:0-4\n"
+  }
+]

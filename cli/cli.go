@@ -4,6 +4,7 @@ package cli
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -24,6 +25,8 @@ type Options struct {
 
 type flags struct {
 	input, output, cwd, config, watch string
+	sourceMap                         string
+	inlineMap                         bool
 	content, exclude, classes         []string
 	poll                              time.Duration
 	silent, help, version             bool
@@ -42,6 +45,7 @@ Usage: rocketwind [build] [options]
       --content GLOB  Explicit source pattern; may be repeated
       --exclude FILE  Omit helpers already defined in this CSS; may be repeated
       --classes LIST  Additional complete class names; may be repeated
+      --map[=FILE]    Generate an inline source map, or write one to FILE
       --silent        Suppress progress messages
   -h, --help          Show this help
       --version       Show supported Tailwind version
@@ -106,6 +110,23 @@ func parseFlags(args []string) (flags, error) {
 			f.version = true
 		case "--silent":
 			f.silent = true
+		case "--map":
+			if !hasValue && i+1 < len(args) && (!strings.HasPrefix(args[i+1], "-") || args[i+1] == "-") {
+				i++
+				value, hasValue = args[i], true
+			}
+			f.inlineMap, f.sourceMap = true, ""
+			if hasValue {
+				switch value {
+				case "-":
+					return f, errors.New("Use --map without a value to inline the source map.")
+				case "true":
+				case "false":
+					f.inlineMap = false
+				default:
+					f.inlineMap, f.sourceMap = false, value
+				}
+			}
 		case "-w", "--watch":
 			f.watch = "stdin"
 			if !hasValue && i+1 < len(args) && args[i+1] == "always" {
@@ -195,8 +216,16 @@ func build(ctx context.Context, f flags, options Options) error {
 		return filepath.Join(base, name)
 	}
 	f.input, f.output, f.config = resolve(f.input), resolve(f.output), resolve(f.config)
+	f.sourceMap = resolve(f.sourceMap)
 	for i := range f.exclude {
 		f.exclude[i] = resolve(f.exclude[i])
+	}
+	if f.sourceMap != "" {
+		for _, name := range append([]string{f.input, f.output, f.config}, f.exclude...) {
+			if samePath(f.sourceMap, name) {
+				return fmt.Errorf("source map file %q must differ from CSS and configuration files", f.sourceMap)
+			}
+		}
 	}
 	if f.input != "" && f.input != "-" {
 		info, err := os.Stat(f.input)
@@ -219,7 +248,7 @@ func build(ctx context.Context, f flags, options Options) error {
 	var builder *rocketwind.Builder
 	var scanner *rocketwind.Scanner
 	dependencies := map[string]stamp{}
-	var lastCSS string
+	var lastCSS, lastMap string
 	written := false
 	compile := func() error {
 		deps := map[string]stamp{}
@@ -252,9 +281,21 @@ func build(ctx context.Context, f flags, options Options) error {
 			return err
 		}
 		fs := rocketwind.Filesystem{Root: entryBase, Modules: options.Modules, OnDependency: dependency}
-		compiled, err := rocketwind.Compile(text, rocketwind.Config{Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: fs.LoadModule, ExistingClasses: classes})
+		from := ""
+		if f.inlineMap || f.sourceMap != "" {
+			from = f.input
+			if from == "" || from == "-" {
+				from = "<stdin>"
+			}
+		}
+		compiled, err := rocketwind.Compile(text, rocketwind.Config{From: from, Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: fs.LoadModule, ExistingClasses: classes})
 		if err != nil {
 			return err
+		}
+		for name := range deps {
+			if samePath(f.sourceMap, name) {
+				return fmt.Errorf("source map file %q would overwrite an input dependency", f.sourceMap)
+			}
 		}
 		var sources []rocketwind.Source
 		root := compiled.Root()
@@ -279,6 +320,11 @@ func build(ctx context.Context, f flags, options Options) error {
 			sources = append(sources, rocketwind.Source{Base: root.Base, Pattern: root.Pattern})
 		}
 		sources = append(sources, compiled.Sources()...)
+		for _, output := range []string{f.output, f.sourceMap} {
+			if output != "" && output != "-" {
+				sources = append(sources, rocketwind.Source{Base: filepath.Dir(output), Pattern: filepath.Base(output), Negated: true})
+			}
+		}
 		if f.input != "" && f.input != "-" {
 			sources = append(sources, rocketwind.Source{Base: filepath.Dir(f.input), Pattern: filepath.Base(f.input)})
 		}
@@ -293,22 +339,51 @@ func build(ctx context.Context, f flags, options Options) error {
 	emit := func() error {
 		start := time.Now()
 		classes := append(scanner.Scan(), f.classes...)
-		css, err := builder.Build(classes)
+		var css, rawMap string
+		var err error
+		if f.inlineMap || f.sourceMap != "" {
+			var sourceMap *rocketwind.SourceMap
+			css, sourceMap, err = builder.BuildWithSourceMap(classes)
+			if err == nil {
+				if f.inlineMap {
+					css += "\n" + sourceMap.Inline()
+				} else {
+					data, _ := json.Marshal(sourceMap)
+					rawMap = string(data)
+					outputBase := base
+					if f.output != "-" {
+						outputBase = filepath.Dir(f.output)
+					}
+					var url string
+					url, err = filepath.Rel(outputBase, f.sourceMap)
+					css += "\n" + sourceMap.Comment(filepath.ToSlash(url))
+				}
+			}
+		} else {
+			css, err = builder.Build(classes)
+		}
 		if err != nil {
 			return err
 		}
-		if written && css == lastCSS {
+		if written && css == lastCSS && rawMap == lastMap {
 			return nil
 		}
-		if f.output == "-" {
-			_, err = io.WriteString(options.Stdout, css)
-		} else {
-			err = outputFile(f.output, css)
+		if f.sourceMap != "" && (!written || rawMap != lastMap) {
+			if err := outputFile(f.sourceMap, rawMap); err != nil {
+				return err
+			}
+		}
+		if !written || css != lastCSS {
+			if f.output == "-" {
+				_, err = io.WriteString(options.Stdout, css)
+			} else {
+				err = outputFile(f.output, css)
+			}
 		}
 		if err != nil {
 			return err
 		}
-		lastCSS = css
+		lastCSS, lastMap = css, rawMap
 		written = true
 		if !f.silent {
 			fmt.Fprintf(options.Stderr, "Done in %s\n", time.Since(start).Round(time.Microsecond))
@@ -360,6 +435,18 @@ func build(ctx context.Context, f flags, options Options) error {
 			}
 		}
 	}
+}
+
+func samePath(a, b string) bool {
+	if a == "" || a == "-" || b == "" || b == "-" {
+		return false
+	}
+	if a == b {
+		return true
+	}
+	ai, ae := os.Stat(a)
+	bi, be := os.Stat(b)
+	return ae == nil && be == nil && os.SameFile(ai, bi)
 }
 
 func outputFile(name, css string) error {

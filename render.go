@@ -15,6 +15,10 @@ const (
 )
 
 func (b *buildContext) render(nodes []*Node) string {
+	var mappings *[]cssMapping
+	if b.track {
+		mappings = &b.mappings
+	}
 	nodes = flattenContexts(nodes, "")
 	clear(b.used)
 	for _, key := range b.externalVariables {
@@ -99,7 +103,7 @@ func (b *buildContext) render(nodes []*Node) string {
 					initial = d.Value
 				}
 			}
-			fallback := &Node{Kind: "declaration", Name: n.Value, Value: initial}
+			fallback := withLocation(&Node{Kind: "declaration", Name: n.Value, Value: initial}, location(n))
 			if inherits {
 				inheritedDefaults = append(inheritedDefaults, fallback)
 			} else {
@@ -108,7 +112,15 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 	}
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
-		out.WriteString("@layer properties;\n")
+		if mappings == nil {
+			out.WriteString("@layer properties;\n")
+		} else {
+			first := propertyDefaults
+			if len(inheritedDefaults) > 0 {
+				first = inheritedDefaults
+			}
+			writeMappedCSS(&out, []*Node{withLocation(&Node{Kind: "at-rule", Name: "@layer", Value: "properties"}, location(first[0]))}, 0, mappings)
+		}
 	}
 	var themeNodes []*Node
 	if len(b.used) > 0 {
@@ -140,7 +152,7 @@ func (b *buildContext) render(nodes []*Node) string {
 			if p := b.compiler.config.Prefix; p != "" {
 				name = "--" + p + "-" + key[2:]
 			}
-			themeNodes = append(themeNodes, &Node{Kind: "declaration", Name: Escape(name), Value: b.themeValue(key)})
+			themeNodes = append(themeNodes, withLocation(&Node{Kind: "declaration", Name: Escape(name), Value: b.themeValue(key)}, b.compiler.themeSources[key]))
 			if strings.HasPrefix(key, "--animate-") {
 				markAnimation(b.themeValue(key))
 			}
@@ -152,10 +164,10 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 	}
 	if len(themeNodes) > 0 {
-		themeNodes = []*Node{{Kind: "rule", Name: ":root, :host", Nodes: themeNodes}}
+		themeNodes = []*Node{withLocation(&Node{Kind: "rule", Name: ":root, :host", Nodes: themeNodes}, b.compiler.themeSource)}
 	}
 	if !b.compiler.hasInput || b.standalone {
-		writeCSS(&out, themeNodes, 0)
+		writeMappedCSS(&out, themeNodes, 0, mappings)
 	} else {
 		var expand func([]*Node) []*Node
 		expand = func(input []*Node) []*Node {
@@ -182,29 +194,36 @@ func (b *buildContext) render(nodes []*Node) string {
 		nodes = b.polyfillColors(nodes, false)
 	}
 	nodes = flattenRules(nodes, "")
-	writeCSS(&out, nodes, 0)
-	writeCSS(&out, globals, 0)
+	writeMappedCSS(&out, nodes, 0, mappings)
+	writeMappedCSS(&out, globals, 0, mappings)
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
 		var defaults []*Node
 		if len(inheritedDefaults) > 0 {
-			defaults = append(defaults, &Node{Kind: "rule", Name: ":root, :host", Nodes: inheritedDefaults})
+			defaults = append(defaults, withLocation(&Node{Kind: "rule", Name: ":root, :host", Nodes: inheritedDefaults}, location(inheritedDefaults[0])))
 		}
 		if len(propertyDefaults) > 0 {
-			defaults = append(defaults, &Node{Kind: "rule", Name: "*, ::before, ::after, ::backdrop", Nodes: propertyDefaults})
+			defaults = append(defaults, withLocation(&Node{Kind: "rule", Name: "*, ::before, ::after, ::backdrop", Nodes: propertyDefaults}, location(propertyDefaults[0])))
 		}
 		fallback := []*Node{{Kind: "at-rule", Name: "@layer", Value: "properties", Nodes: []*Node{{Kind: "at-rule", Name: "@supports", Value: "((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))", Nodes: defaults}}}}
-		writeCSS(&out, fallback, 0)
+		withLocation(fallback[0], location(defaults[0]))
+		withLocation(fallback[0].Nodes[0], location(defaults[0]))
+		writeMappedCSS(&out, fallback, 0, mappings)
 	}
 	return out.String()
 }
 
 func writeCSS(out *strings.Builder, nodes []*Node, depth int) {
+	writeMappedCSS(out, nodes, depth, nil)
+}
+
+func writeMappedCSS(out *strings.Builder, nodes []*Node, depth int, mappings *[]cssMapping) {
 	indent := strings.Repeat("  ", depth)
 	for _, n := range nodes {
 		if n.Kind == "at-root" || n.Kind == "context" || n.Kind == "declaration" && n.Name == "--tw-sort" {
 			continue
 		}
 		out.WriteString(indent)
+		start, end := out.Len(), 0
 		switch n.Kind {
 		case "declaration":
 			out.WriteString(n.Name)
@@ -213,23 +232,34 @@ func writeCSS(out *strings.Builder, nodes []*Node, depth int) {
 			if n.Important {
 				out.WriteString(" !important")
 			}
+			end = out.Len()
 			out.WriteString(";\n")
 		case "comment":
 			out.WriteString("/*" + n.Value + "*/\n")
+			end = out.Len() - 1
 		default:
 			out.WriteString(n.Name)
-			if n.Kind == "at-rule" && n.Value != "" {
+			if n.Kind == "at-rule" && (n.Value != "" || len(n.Nodes) == 0) {
 				out.WriteByte(' ')
 				out.WriteString(n.Value)
 			}
 			if len(n.Nodes) == 0 && n.Kind == "at-rule" {
+				end = out.Len()
 				out.WriteString(";\n")
-				continue
+				break
 			}
 			out.WriteString(" {\n")
-			writeCSS(out, n.Nodes, depth+1)
+			end = out.Len() - 2
+			if mappings != nil && n.source != nil {
+				*mappings = append(*mappings, cssMapping{location(n), start, end})
+			}
+			writeMappedCSS(out, n.Nodes, depth+1, mappings)
 			out.WriteString(indent)
 			out.WriteString("}\n")
+			continue
+		}
+		if mappings != nil && n.source != nil {
+			*mappings = append(*mappings, cssMapping{location(n), start, end})
 		}
 	}
 }

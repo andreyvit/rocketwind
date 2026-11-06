@@ -1,0 +1,4630 @@
+[
+  {
+    "name": "unicode",
+    "input": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+    "candidates": [
+      "[--é:😀]",
+      "before:content-[\"😃\"]"
+    ],
+    "css": "@layer properties;\n.\\[--é\\:😀\\] {\n  --é: 😀;\n}\n.before\\:content-\\[\\\"😃\\\"\\]::before {\n  --tw-content: \"😃\";\n  content: var(--tw-content);\n}\n.😀 {\n  content: \"😃\";\n  color: red;\n}\n@property --tw-content {\n  syntax: \"*\";\n  initial-value: \"\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-content: \"\";\n    }\n  }\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": "@layer properties;\n.\\[--é\\:😀\\] {\n  --é: 😀;\n}\n.before\\:content-\\[\\\"😃\\\"\\]::before {\n  --tw-content: \"😃\";\n  content: var(--tw-content);\n}\n.😀 {\n  content: \"😃\";\n  color: red;\n}\n@property --tw-content {\n  syntax: \"*\";\n  initial-value: \"\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-content: \"\";\n    }\n  }\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 9
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 36
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 28
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 21
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 27
+          },
+          "generatedPosition": {
+            "line": 10,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 40
+          },
+          "generatedPosition": {
+            "line": 10,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 49
+          },
+          "generatedPosition": {
+            "line": 11,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 59
+          },
+          "generatedPosition": {
+            "line": 11,
+            "column": 12
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 23
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 14,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 14,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 19
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 18
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 19,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 19,
+            "column": 134
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 37
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 22
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,iBAAmB;AAAnB,aAAmB;EAAnB,OAAmB;;AAAnB,oCAAmB;EAAnB,kBAAmB;EAAnB,0BAAmB;;AAAE,IAAI;EAAE,aAAa;EAAS,UAAU;;AAA3D,uBAAmB;EAAnB,WAAmB;EAAnB,iBAAmB;EAAnB,eAAmB;;AAAnB,kBAAmB;EAAnB,oIAAmB;IAAnB,iCAAmB;MAAnB,gBAAmB",
+      "sourcesContent": [
+        "@tailwind utilities; .😀 { content: \"😃\"; @apply text-[red]; }"
+      ]
+    }
+  },
+  {
+    "name": "CRLF and BOM",
+    "input": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+    "candidates": [
+      "grid"
+    ],
+    "css": ".grid {\n  display: grid;\n}\n.😀 {\n  color: red;\n  display: flex;\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".grid {\n  display: grid;\n}\n.😀 {\n  color: red;\n  display: flex;\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 1
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 20
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 1
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 20
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 4
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 3,
+            "column": 1
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 3,
+            "column": 11
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 12
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 4,
+            "column": 8
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}",
+              "ignore": false
+            },
+            "line": 4,
+            "column": 12
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 15
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAC,MAAmB;EAAnB,aAAmB;;AACpB,IAAI;EACH,UAAU;EACH,aAAI",
+      "sourcesContent": [
+        "﻿@tailwind utilities;\r\n.😀 {\r\n color: red;\r\n @apply flex;\r\n}"
+      ]
+    }
+  },
+  {
+    "name": "apply token boundaries",
+    "input": ".card { @apply hover:flex flex; }",
+    "candidates": [],
+    "css": ".card {\n  display: flex;\n  &:hover {\n    @media (hover: hover) {\n      display: flex;\n    }\n  }\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": ".card { @apply hover:flex flex; }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".card {\n  display: flex;\n  &:hover {\n    @media (hover: hover) {\n      display: flex;\n    }\n  }\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 6
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 26
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 30
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 10
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply hover:flex flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 19
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,MAAM;EAAoB,aAAI;EAAf,QAAU;IAAV,sBAAU;MAAV,aAAU",
+      "sourcesContent": [
+        ".card { @apply hover:flex flex; }"
+      ]
+    }
+  },
+  {
+    "name": "apply whitespace",
+    "input": ".card { @apply  hover:flex\n flex; }",
+    "candidates": [],
+    "css": ".card {\n  display: flex;\n  &:hover {\n    @media (hover: hover) {\n      display: flex;\n    }\n  }\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": ".card { @apply  hover:flex\n flex; }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".card {\n  display: flex;\n  &:hover {\n    @media (hover: hover) {\n      display: flex;\n    }\n  }\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 6
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 3
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 10
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 15
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply  hover:flex\n flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 19
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,MAAM;EACN,aAAG;EADY,QAAU;IAAV,sBAAU;MAAV,aAAU",
+      "sourcesContent": [
+        ".card { @apply  hover:flex\n flex; }"
+      ]
+    }
+  },
+  {
+    "name": "custom variant",
+    "input": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+    "candidates": [
+      "hocus:underline"
+    ],
+    "css": ".hocus\\:underline:hover, .hocus\\:underline:focus {\n  text-decoration-line: underline;\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".hocus\\:underline:hover, .hocus\\:underline:focus {\n  text-decoration-line: underline;\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 45
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 62
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 49
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 33
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAA6C,iDAAiB;EAA9D,+BAAmB",
+      "sourcesContent": [
+        "@tailwind utilities; @custom-variant hocus { &:hover, &:focus { @slot; } }"
+      ]
+    }
+  },
+  {
+    "name": "custom variant shorthand",
+    "input": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+    "candidates": [
+      "mode:underline"
+    ],
+    "css": ".mode\\:underline:is(.mode *) {\n  text-decoration-line: underline;\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".mode\\:underline:is(.mode *) {\n  text-decoration-line: underline;\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @custom-variant mode (&:is(.mode *));",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 33
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,6BAAmB;EAAnB,+BAAmB",
+      "sourcesContent": [
+        "@tailwind utilities; @custom-variant mode (&:is(.mode *));"
+      ]
+    }
+  },
+  {
+    "name": "functional utility",
+    "input": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+    "candidates": [
+      "gapper-2"
+    ],
+    "css": ".gapper-2 {\n  gap: 2;\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".gapper-2 {\n  gap: 2;\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 41
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities; @utility gapper-* { gap: --value(integer); }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 62
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 8
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,UAAmB;EAAsB,MAAqB",
+      "sourcesContent": [
+        "@tailwind utilities; @utility gapper-* { gap: --value(integer); }"
+      ]
+    }
+  },
+  {
+    "name": "properties",
+    "input": "@tailwind utilities;",
+    "candidates": [
+      "shadow-sm",
+      "ring-2",
+      "translate-x-2",
+      "font-bold"
+    ],
+    "css": "@layer properties;\n.ring-2 {\n  --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);\n  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n    }\n  }\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@tailwind utilities;",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": "@layer properties;\n.ring-2 {\n  --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);\n  box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);\n}\n@property --tw-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-inset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-shadow-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-shadow-alpha {\n  syntax: \"<percentage>\";\n  inherits: false;\n  initial-value: 100%;\n}\n@property --tw-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-inset-ring-color {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-inset-ring-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@property --tw-ring-inset {\n  syntax: \"*\";\n  inherits: false;\n}\n@property --tw-ring-offset-width {\n  syntax: \"<length>\";\n  inherits: false;\n  initial-value: 0px;\n}\n@property --tw-ring-offset-color {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: #fff;\n}\n@property --tw-ring-offset-shadow {\n  syntax: \"*\";\n  inherits: false;\n  initial-value: 0 0 #0000;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-shadow: 0 0 #0000;\n      --tw-shadow-color: initial;\n      --tw-shadow-alpha: 100%;\n      --tw-inset-shadow: 0 0 #0000;\n      --tw-inset-shadow-color: initial;\n      --tw-inset-shadow-alpha: 100%;\n      --tw-ring-color: initial;\n      --tw-ring-shadow: 0 0 #0000;\n      --tw-inset-ring-color: initial;\n      --tw-inset-ring-shadow: 0 0 #0000;\n      --tw-ring-inset: initial;\n      --tw-ring-offset-width: 0px;\n      --tw-ring-offset-color: #fff;\n      --tw-ring-offset-shadow: 0 0 #0000;\n    }\n  }\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 8
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 123
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 136
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 6,
+            "column": 22
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 8,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 8,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 11,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 11,
+            "column": 28
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 12,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 12,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 28
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 24
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 17,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 17,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 21
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 28
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 22,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 22,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 23,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 23,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 25,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 25,
+            "column": 34
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 26,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 26,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 27,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 27,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 29,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 29,
+            "column": 34
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 30,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 30,
+            "column": 24
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 31,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 31,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 32,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 32,
+            "column": 21
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 34,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 34,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 35,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 35,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 36,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 36,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 38,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 38,
+            "column": 27
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 39,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 39,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 40,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 40,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 41,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 41,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 43,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 43,
+            "column": 32
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 44,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 44,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 45,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 45,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 47,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 47,
+            "column": 33
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 48,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 48,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 49,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 49,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 50,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 50,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 52,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 52,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 53,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 53,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 54,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 54,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 56,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 56,
+            "column": 33
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 57,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 57,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 58,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 58,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 59,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 59,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 61,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 61,
+            "column": 33
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 62,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 62,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 63,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 63,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 64,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 64,
+            "column": 21
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 66,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 66,
+            "column": 34
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 67,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 67,
+            "column": 13
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 68,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 68,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 69,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 69,
+            "column": 26
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 71,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 71,
+            "column": 18
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 72,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 72,
+            "column": 134
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 73,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 73,
+            "column": 37
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 74,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 74,
+            "column": 28
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 75,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 75,
+            "column": 32
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 76,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 76,
+            "column": 29
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 77,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 77,
+            "column": 34
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 78,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 78,
+            "column": 38
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 79,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 79,
+            "column": 35
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 80,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 80,
+            "column": 30
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 81,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 81,
+            "column": 33
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 82,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 82,
+            "column": 36
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 83,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 83,
+            "column": 39
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 84,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 84,
+            "column": 30
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 85,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 85,
+            "column": 33
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 86,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 86,
+            "column": 34
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 87,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 19
+          },
+          "generatedPosition": {
+            "line": 87,
+            "column": 40
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,iBAAmB;AAAnB,QAAmB;EAAnB,yHAAmB;EAAnB,sIAAmB;;AAAnB,sBAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,wBAAmB;;AAAnB,4BAAmB;EAAnB,WAAmB;EAAnB,eAAmB;;AAAnB,4BAAmB;EAAnB,sBAAmB;EAAnB,eAAmB;EAAnB,mBAAmB;;AAAnB,4BAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,wBAAmB;;AAAnB,kCAAmB;EAAnB,WAAmB;EAAnB,eAAmB;;AAAnB,kCAAmB;EAAnB,sBAAmB;EAAnB,eAAmB;EAAnB,mBAAmB;;AAAnB,0BAAmB;EAAnB,WAAmB;EAAnB,eAAmB;;AAAnB,2BAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,wBAAmB;;AAAnB,gCAAmB;EAAnB,WAAmB;EAAnB,eAAmB;;AAAnB,iCAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,wBAAmB;;AAAnB,0BAAmB;EAAnB,WAAmB;EAAnB,eAAmB;;AAAnB,iCAAmB;EAAnB,kBAAmB;EAAnB,eAAmB;EAAnB,kBAAmB;;AAAnB,iCAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,mBAAmB;;AAAnB,kCAAmB;EAAnB,WAAmB;EAAnB,eAAmB;EAAnB,wBAAmB;;AAAnB,kBAAmB;EAAnB,oIAAmB;IAAnB,iCAAmB;MAAnB,sBAAmB;MAAnB,0BAAmB;MAAnB,uBAAmB;MAAnB,4BAAmB;MAAnB,gCAAmB;MAAnB,6BAAmB;MAAnB,wBAAmB;MAAnB,2BAAmB;MAAnB,8BAAmB;MAAnB,iCAAmB;MAAnB,wBAAmB;MAAnB,2BAAmB;MAAnB,4BAAmB;MAAnB,kCAAmB",
+      "sourcesContent": [
+        "@tailwind utilities;"
+      ]
+    }
+  },
+  {
+    "name": "custom properties",
+    "input": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+    "candidates": [
+      "flex"
+    ],
+    "css": "@layer properties;\n@property --foo {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n@property --bar {\n  syntax: \"<color>\";\n  inherits: false;\n  initial-value: red;\n}\n.flex {\n  display: flex;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    :root, :host {\n      --foo: 0px;\n    }\n    *, ::before, ::after, ::backdrop {\n      --bar: red;\n    }\n  }\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": "@layer properties;\n@property --foo {\n  syntax: \"<length>\";\n  inherits: true;\n  initial-value: 0px;\n}\n@property --bar {\n  syntax: \"<color>\";\n  inherits: false;\n  initial-value: red;\n}\n.flex {\n  display: flex;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    :root, :host {\n      --foo: 0px;\n    }\n    *, ::before, ::after, ::backdrop {\n      --bar: red;\n    }\n  }\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 16
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 17
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 34
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 35
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 48
+          },
+          "generatedPosition": {
+            "line": 4,
+            "column": 16
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 49
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 66
+          },
+          "generatedPosition": {
+            "line": 5,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 68
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 84
+          },
+          "generatedPosition": {
+            "line": 7,
+            "column": 16
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 85
+          },
+          "generatedPosition": {
+            "line": 8,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 101
+          },
+          "generatedPosition": {
+            "line": 8,
+            "column": 19
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 102
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 116
+          },
+          "generatedPosition": {
+            "line": 9,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 117
+          },
+          "generatedPosition": {
+            "line": 10,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 134
+          },
+          "generatedPosition": {
+            "line": 10,
+            "column": 20
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 136
+          },
+          "generatedPosition": {
+            "line": 12,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 155
+          },
+          "generatedPosition": {
+            "line": 12,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 136
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 155
+          },
+          "generatedPosition": {
+            "line": 13,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 15,
+            "column": 18
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 16,
+            "column": 134
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 17,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 17,
+            "column": 17
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 16
+          },
+          "generatedPosition": {
+            "line": 18,
+            "column": 16
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 68
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 4
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 84
+          },
+          "generatedPosition": {
+            "line": 20,
+            "column": 37
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 68
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 84
+          },
+          "generatedPosition": {
+            "line": 21,
+            "column": 16
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,iBAAgB;AAAhB,gBAAgB;EAAC,kBAAiB;EAAC,cAAa;EAAC,kBAAiB;;AAAE,gBAAgB;EAAC,iBAAgB;EAAC,eAAc;EAAC,kBAAiB;;AAAE,MAAmB;EAAnB,aAAmB;;AAA3J,kBAAgB;EAAhB,oIAAgB;IAAhB,aAAgB;MAAhB,UAAgB;;IAAoD,iCAAgB;MAAhB,UAAgB",
+      "sourcesContent": [
+        "@property --foo {syntax:\"<length>\";inherits:true;initial-value:0px} @property --bar {syntax:\"<color>\";inherits:false;initial-value:red} @tailwind utilities;"
+      ]
+    }
+  },
+  {
+    "name": "untransformed input",
+    "input": "\n.foo { color: red; }\n",
+    "candidates": [],
+    "css": "\n.foo { color: red; }\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": "\n.foo { color: red; }\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "\n.foo { color: red; }\n",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "\n.foo { color: red; }\n",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 5
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "\n.foo { color: red; }\n",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 7
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 7
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": "\n.foo { color: red; }\n",
+              "ignore": false
+            },
+            "line": 2,
+            "column": 17
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 17
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": ";AACA,KAAK,EAAE,UAAU",
+      "sourcesContent": [
+        "\n.foo { color: red; }\n"
+      ]
+    }
+  },
+  {
+    "name": "empty source",
+    "input": "",
+    "candidates": [],
+    "css": "",
+    "decoded": {
+      "file": null,
+      "sources": [],
+      "mappings": []
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [],
+      "names": [],
+      "mappings": ""
+    }
+  },
+  {
+    "name": "duplicate apply tokens",
+    "input": ".card { @apply flex grid flex; }",
+    "candidates": [],
+    "css": ".card {\n  display: flex;\n  display: grid;\n}\n",
+    "decoded": {
+      "file": null,
+      "sources": [
+        {
+          "url": "input.css",
+          "content": ".card { @apply flex grid flex; }",
+          "ignore": false
+        },
+        {
+          "url": null,
+          "content": ".card {\n  display: flex;\n  display: grid;\n}\n",
+          "ignore": false
+        }
+      ],
+      "mappings": [
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 0
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 0
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 6
+          },
+          "generatedPosition": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 25
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 29
+          },
+          "generatedPosition": {
+            "line": 2,
+            "column": 15
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 20
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 2
+          }
+        },
+        {
+          "name": null,
+          "originalPosition": {
+            "source": {
+              "url": "input.css",
+              "content": ".card { @apply flex grid flex; }",
+              "ignore": false
+            },
+            "line": 1,
+            "column": 24
+          },
+          "generatedPosition": {
+            "line": 3,
+            "column": 15
+          }
+        }
+      ]
+    },
+    "encoded": {
+      "version": 3,
+      "sources": [
+        "input.css"
+      ],
+      "names": [],
+      "mappings": "AAAA,MAAM;EAAmB,aAAI;EAAT,aAAI",
+      "sourcesContent": [
+        ".card { @apply flex grid flex; }"
+      ]
+    }
+  }
+]

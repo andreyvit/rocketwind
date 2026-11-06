@@ -8,7 +8,7 @@ import (
 
 // Compile prepares a stylesheet, its theme and its utility definitions.
 func Compile(input string, config Config) (*Compiler, error) {
-	ast, err := ParseCSS(input, "")
+	ast, err := ParseCSS(input, config.From)
 	if err != nil {
 		return nil, err
 	}
@@ -28,6 +28,9 @@ func Compile(input string, config Config) (*Compiler, error) {
 	c.inputCSS = input
 	c.hasInput = true
 	c.themeFlags = make(map[string]string)
+	if config.From != "" {
+		c.themeSources = make(map[string]cssLocation)
+	}
 	c.custom = make(map[string][]*Node)
 	c.customFunctional = make(map[string][][]*Node)
 	var modules []moduleRequest
@@ -143,12 +146,16 @@ func Compile(input string, config Config) (*Compiler, error) {
 							continue
 						}
 						c.config.Theme[d.Name] = d.Value
+						if c.themeSources != nil {
+							c.themeSources[d.Name] = location(d)
+						}
 						c.themeFlags[d.Name] = n.Value
 						c.themeOrder = append(c.themeOrder, d.Name)
 					}
 					if !c.themePlaced && !strings.Contains(n.Value, "reference") {
 						result = append(result, &Node{Kind: "theme"})
 						c.themePlaced = true
+						c.themeSource = location(n)
 					}
 					continue
 				case "@tailwind":
@@ -157,6 +164,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 							continue
 						}
 						c.hasUtilities = true
+						c.utilitiesSource = location(n)
 						c.features |= FeatureUtilities
 						base := n.base
 						if n.context != nil {

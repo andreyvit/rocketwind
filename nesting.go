@@ -6,6 +6,7 @@ import "strings"
 type selectorFrame struct {
 	selector string
 	dead     bool
+	location cssLocation
 }
 
 func flattenRules(input []*Node, parent string) []*Node {
@@ -83,7 +84,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 					return
 				}
 			}
-			root = &Node{Kind: "rule", Name: selector, Nodes: []*Node{node}}
+			root = withLocation(&Node{Kind: "rule", Name: selector, Nodes: []*Node{node}}, selectors[len(selectors)-1].location)
 			group = &root.Nodes
 		}
 		for i := len(atRules) - 1; i >= offset; i-- {
@@ -146,7 +147,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 					selector = strings.Join(live, ", ")
 				}
 			}
-			selectors = append(selectors, selectorFrame{selector, dead})
+			selectors = append(selectors, selectorFrame{selector, dead, location(node)})
 			fast := false
 			if !dead && !scopes[node] {
 				for _, child := range node.Nodes {
