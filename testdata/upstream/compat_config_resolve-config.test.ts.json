@@ -1,0 +1,428 @@
+[
+  {
+    "test": "top level theme keys are replaced",
+    "kind": "internal:compat/config/resolve-config:resolve",
+    "args": [
+      [
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "red": "red"
+              },
+              "fontFamily": {
+                "sans": "SF Pro Display"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "green": "green"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "blue": "blue"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        }
+      ],
+      {
+        "theme": [],
+        "prefix": null
+      }
+    ],
+    "result": {
+      "config": {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "blue": "blue"
+          },
+          "fontFamily": {
+            "sans": "SF Pro Display"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      "replaced": [
+        "colors",
+        "fontFamily"
+      ]
+    }
+  },
+  {
+    "test": "theme can be extended",
+    "kind": "internal:compat/config/resolve-config:resolve",
+    "args": [
+      [
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "red": "red"
+              },
+              "fontFamily": {
+                "sans": "SF Pro Display"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "extend": {
+                "colors": {
+                  "blue": "blue"
+                }
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        }
+      ],
+      {
+        "theme": [],
+        "prefix": null
+      }
+    ],
+    "result": {
+      "config": {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "red": "red",
+            "blue": "blue"
+          },
+          "fontFamily": {
+            "sans": "SF Pro Display"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      "replaced": [
+        "colors",
+        "fontFamily"
+      ]
+    }
+  },
+  {
+    "test": "theme keys can reference other theme keys using the theme function regardless of order",
+    "kind": "internal:compat/config/resolve-config:resolve",
+    "args": [
+      [
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "red": "red"
+              },
+              "placeholderColor": {
+                "green": "green"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "extend": {
+                "colors": {
+                  "$function": "({ theme }) => ({\n\t\t\t\t...theme(\"placeholderColor\"),\n\t\t\t\tblue: \"blue\"\n\t\t\t})"
+                }
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "extend": {
+                "caretColor": {
+                  "$function": "({ theme }) => theme(\"accentColor\")"
+                },
+                "accentColor": {
+                  "$function": "({ theme }) => theme(\"backgroundColor\")"
+                },
+                "backgroundColor": {
+                  "$function": "({ theme }) => theme(\"colors\")"
+                }
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        }
+      ],
+      {
+        "theme": [],
+        "prefix": null
+      }
+    ],
+    "result": {
+      "config": {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "red": "red",
+            "green": "green",
+            "blue": "blue"
+          },
+          "placeholderColor": {
+            "green": "green"
+          },
+          "caretColor": {
+            "red": "red",
+            "green": "green",
+            "blue": "blue"
+          },
+          "accentColor": {
+            "red": "red",
+            "green": "green",
+            "blue": "blue"
+          },
+          "backgroundColor": {
+            "red": "red",
+            "green": "green",
+            "blue": "blue"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      "replaced": [
+        "colors",
+        "placeholderColor"
+      ]
+    }
+  },
+  {
+    "test": "theme keys can read from the CSS theme",
+    "kind": "internal:compat/config/resolve-config:resolve",
+    "args": [
+      [
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "$function": "({ theme }) => ({\n\t\t\t\t// Reads from the --color-* namespace\n\t\t\t\t...theme(\"color\"),\n\t\t\t\tred: \"red\"\n\t\t\t})"
+              },
+              "accentColor": {
+                "$function": "({ theme }) => ({ \n\t\t\t// Reads from the --color-* namespace through `colors`\n...theme(\"colors\") })"
+              },
+              "placeholderColor": {
+                "$function": "({ theme }) => ({\n\t\t\t\t// Reads from the --color-* namespace through `colors`\n\t\t\t\tprimary: theme(\"colors.green\"),\n\t\t\t\t// Reads from the --color-* namespace directly\n\t\t\t\tsecondary: theme(\"color.green\")\n\t\t\t})"
+              },
+              "caretColor": {
+                "$function": "({ colors }) => ({ \n\t\t\t// Gives access to the colors object directly\nprimary: colors.green })"
+              },
+              "transitionColor": {
+                "$function": "(theme) => ({ \n\t\t\t// The parameter object is also the theme function\n...theme(\"colors\") })"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        }
+      ],
+      {
+        "theme": [
+          [
+            "--color-green",
+            {
+              "value": "green",
+              "options": 0
+            }
+          ]
+        ],
+        "prefix": null
+      }
+    ],
+    "result": {
+      "config": {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "green": "green",
+            "__CSS_VALUES__": {
+              "green": 0
+            },
+            "red": "red"
+          },
+          "accentColor": {
+            "green": "green",
+            "__CSS_VALUES__": {
+              "green": 0
+            },
+            "red": "red"
+          },
+          "placeholderColor": {
+            "primary": "green",
+            "secondary": "green"
+          },
+          "caretColor": {
+            "primary": {
+              "50": "oklch(98.2% 0.018 155.826)",
+              "100": "oklch(96.2% 0.044 156.743)",
+              "200": "oklch(92.5% 0.084 155.995)",
+              "300": "oklch(87.1% 0.15 154.449)",
+              "400": "oklch(79.2% 0.209 151.711)",
+              "500": "oklch(72.3% 0.219 149.579)",
+              "600": "oklch(62.7% 0.194 149.214)",
+              "700": "oklch(52.7% 0.154 150.069)",
+              "800": "oklch(44.8% 0.119 151.328)",
+              "900": "oklch(39.3% 0.095 152.535)",
+              "950": "oklch(26.6% 0.065 152.934)"
+            }
+          },
+          "transitionColor": {
+            "green": "green",
+            "__CSS_VALUES__": {
+              "green": 0
+            },
+            "red": "red"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      "replaced": [
+        "colors",
+        "accentColor",
+        "placeholderColor",
+        "caretColor",
+        "transitionColor"
+      ]
+    }
+  },
+  {
+    "test": "handles null as theme values",
+    "kind": "internal:compat/config/resolve-config:resolve",
+    "args": [
+      [
+        {
+          "config": {
+            "theme": {
+              "colors": {
+                "$function": "({ theme }) => ({ \n\t\t// Reads from the --color-* namespace\n...theme(\"color\") })"
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        },
+        {
+          "config": {
+            "theme": {
+              "extend": {
+                "colors": {
+                  "red": null
+                }
+              }
+            }
+          },
+          "base": "/root",
+          "reference": false
+        }
+      ],
+      {
+        "theme": [
+          [
+            "--color-red-50",
+            {
+              "value": "red",
+              "options": 0
+            }
+          ],
+          [
+            "--color-red-100",
+            {
+              "value": "red",
+              "options": 0
+            }
+          ]
+        ],
+        "prefix": null
+      }
+    ],
+    "result": {
+      "config": {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "red-50": "red",
+            "red-100": "red",
+            "__CSS_VALUES__": {
+              "red-50": 0,
+              "red-100": 0
+            },
+            "red": null
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      "replaced": [
+        "colors"
+      ]
+    }
+  }
+]

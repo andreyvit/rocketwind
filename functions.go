@@ -229,14 +229,28 @@ var legacyNamespaces = map[string]string{
 }
 
 func legacyThemeKey(path string) string {
-	parts := themeKeyPath(path)
+	return legacyThemeProperty(themeKeyPath(path))
+}
+
+func legacyThemeProperty(parts []string) string {
 	if len(parts) == 0 || parts[0] == "container" {
 		return ""
 	}
-	if len(parts) == 2 && parts[1] == "DEFAULT" {
+	parts = slices.Clone(parts)
+	if len(parts) > 1 && parts[1] == "DEFAULT" {
 		switch parts[0] {
 		case "borderWidth", "outlineWidth", "ringColor", "ringWidth", "transitionDuration", "transitionTimingFunction":
 			return "--default-" + kebabCase(parts[0])
+		}
+	}
+	for _, part := range parts {
+		if part == "" {
+			return ""
+		}
+		for _, ch := range part {
+			if ch > 127 || !asciiLetter(byte(ch)) && !digit(byte(ch)) && !strings.ContainsRune("-_%/.", ch) {
+				return ""
+			}
 		}
 	}
 	if ns := legacyNamespaces[parts[0]]; ns != "" {

@@ -1,0 +1,333 @@
+[
+  {
+    "test": "keyframes can be merged into the theme",
+    "kind": "internal:compat/apply-keyframes-to-theme:apply",
+    "args": [
+      [],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "keyframes": {
+            "fade-in": {
+              "0%": {
+                "opacity": "0"
+              },
+              "100%": {
+                "opacity": "1"
+              }
+            },
+            "fade-out": {
+              "0%": {
+                "opacity": "1"
+              },
+              "100%": {
+                "opacity": "0"
+              }
+            }
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      }
+    ],
+    "result": [
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "fade-in",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "0%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "0",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "100%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "1",
+                "important": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "fade-out",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "0%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "1",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "100%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "0",
+                "important": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "will append to the default keyframes with new keyframes",
+    "kind": "internal:compat/apply-keyframes-to-theme:apply",
+    "args": [
+      [
+        {
+          "kind": "at-rule",
+          "name": "@keyframes",
+          "params": "slide-in",
+          "nodes": [
+            {
+              "kind": "rule",
+              "selector": "from",
+              "nodes": [
+                {
+                  "kind": "declaration",
+                  "property": "opacity",
+                  "value": "translateX(0%)",
+                  "important": false
+                }
+              ]
+            },
+            {
+              "kind": "rule",
+              "selector": "to",
+              "nodes": [
+                {
+                  "kind": "declaration",
+                  "property": "opacity",
+                  "value": "translateX(100%)",
+                  "important": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "at-rule",
+          "name": "@keyframes",
+          "params": "slide-out",
+          "nodes": [
+            {
+              "kind": "rule",
+              "selector": "from",
+              "nodes": [
+                {
+                  "kind": "declaration",
+                  "property": "opacity",
+                  "value": "translateX(100%)",
+                  "important": false
+                }
+              ]
+            },
+            {
+              "kind": "rule",
+              "selector": "to",
+              "nodes": [
+                {
+                  "kind": "declaration",
+                  "property": "opacity",
+                  "value": "translateX(0%)",
+                  "important": false
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "keyframes": {
+            "fade-in": {
+              "0%": {
+                "opacity": "0"
+              },
+              "100%": {
+                "opacity": "1"
+              }
+            },
+            "fade-out": {
+              "0%": {
+                "opacity": "1"
+              },
+              "100%": {
+                "opacity": "0"
+              }
+            }
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      }
+    ],
+    "result": [
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "slide-in",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "from",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "translateX(0%)",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "to",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "translateX(100%)",
+                "important": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "slide-out",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "from",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "translateX(100%)",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "to",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "translateX(0%)",
+                "important": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "fade-in",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "0%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "0",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "100%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "1",
+                "important": false
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "at-rule",
+        "name": "@keyframes",
+        "params": "fade-out",
+        "nodes": [
+          {
+            "kind": "rule",
+            "selector": "0%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "1",
+                "important": false
+              }
+            ]
+          },
+          {
+            "kind": "rule",
+            "selector": "100%",
+            "nodes": [
+              {
+                "kind": "declaration",
+                "property": "opacity",
+                "value": "0",
+                "important": false
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.3%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.4%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -92,6 +92,17 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   coverage gate remains open.
 - This extends the Tailwind 4 compatibility API. Tailwind 3 output parity and
   Bubblehouse integration remain pending.
+
+### Remaining compatibility internals
+
+- All 31 original tests in the five remaining compatibility suites pass.
+  Their 95 captured calls now pass in Go: configuration resolution, CSS-to-legacy
+  namespace mappings, configuration-to-CSS mappings, keyframes and color palettes.
+- Fixed the order of replaced default theme variables and rejected invalid
+  configuration keys. Added `FlattenColors` for Go utility plugins.
+- Total captured upstream calls checked: 10,791. Go tests, race detector and
+  vet pass; statement coverage is 96.4%. Other internal suites and integration
+  gates remain open.
 
 ## Initial performance measurements
 

@@ -1,0 +1,52 @@
+[
+  {
+    "test": "it should handle private __CSS_VALUES__ to resolve to the right value",
+    "kind": "internal:compat/flatten-color-palette:flatten",
+    "args": [
+      {
+        "200": "#200200",
+        "400": "#200400",
+        "600": "#200600"
+      }
+    ],
+    "result": {
+      "200": "#200200",
+      "400": "#200400",
+      "600": "#200600"
+    }
+  },
+  {
+    "test": "it should handle private __CSS_VALUES__ to resolve to the right value",
+    "kind": "internal:compat/flatten-color-palette:flatten",
+    "args": [
+      {
+        "slate-100": "#000100",
+        "slate-200": "#000200",
+        "slate-300": "#000300",
+        "slate-400": "#100400",
+        "slate-500": "#100500",
+        "__CSS_VALUES__": {
+          "slate-100": 4,
+          "slate-200": 4,
+          "slate-300": 4,
+          "slate-400": 0,
+          "slate-500": 0
+        },
+        "slate": {
+          "200": "#200200",
+          "400": "#200400",
+          "600": "#200600"
+        },
+        "slate-600": "#200600"
+      }
+    ],
+    "result": {
+      "slate-100": "#000100",
+      "slate-200": "#200200",
+      "slate-300": "#000300",
+      "slate-400": "#100400",
+      "slate-500": "#100500",
+      "slate-600": "#200600"
+    }
+  }
+]

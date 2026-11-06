@@ -159,6 +159,7 @@ func (c *Compiler) finishLegacy() error {
 	if c.themeFlags == nil {
 		c.themeFlags = map[string]string{}
 	}
+	removed := map[string]bool{}
 	for name := range replaced {
 		namespace := legacyThemeKey(name)
 		if namespace == "" {
@@ -167,8 +168,12 @@ func (c *Compiler) finishLegacy() error {
 		for _, key := range c.themeKeys() {
 			if (key == namespace || strings.HasPrefix(key, namespace+"-")) && c.themeOptionBits(key)&4 != 0 {
 				c.config.Theme[key] = ""
+				removed[key] = true
 			}
 		}
+	}
+	if len(removed) > 0 {
+		c.themeOrder = slices.DeleteFunc(c.themeOrder, func(key string) bool { return removed[key] })
 	}
 	for _, entry := range userTheme {
 		if entry.Key == "keyframes" {
@@ -278,17 +283,7 @@ func (c *Compiler) applyLegacyTheme(path []string, value any) {
 	if text == "" {
 		return
 	}
-	for _, part := range path {
-		for _, ch := range part {
-			if !asciiLetter(byte(ch)) && !digit(byte(ch)) && !strings.ContainsRune("-_%/.", ch) {
-				return
-			}
-		}
-	}
-	key := legacyThemeKey(path[0] + "[" + strings.Join(path[1:], "][") + "]")
-	if len(path) == 1 {
-		key = legacyThemeKey(path[0])
-	}
+	key := legacyThemeProperty(path)
 	if key == "" {
 		return
 	}

@@ -1,0 +1,1384 @@
+[
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors"
+      ]
+    ],
+    "result": "color"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "screens"
+      ]
+    ],
+    "result": "breakpoint"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "aspectRatio"
+      ]
+    ],
+    "result": "aspect"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "boxShadow"
+      ]
+    ],
+    "result": "shadow"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "borderWidth"
+      ]
+    ],
+    "result": "border-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "outlineWidth"
+      ]
+    ],
+    "result": "outline-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "ringWidth"
+      ]
+    ],
+    "result": "ring-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "borderRadius"
+      ]
+    ],
+    "result": "radius"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "animation"
+      ]
+    ],
+    "result": "animate"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontFamily"
+      ]
+    ],
+    "result": "font"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize"
+      ]
+    ],
+    "result": "text"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "ringColor"
+      ]
+    ],
+    "result": "ring-color"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "letterSpacing"
+      ]
+    ],
+    "result": "tracking"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "lineHeight"
+      ]
+    ],
+    "result": "leading"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "width"
+      ]
+    ],
+    "result": "width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "maxWidth"
+      ]
+    ],
+    "result": "container"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "transitionTimingFunction"
+      ]
+    ],
+    "result": "ease"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "transitionDuration"
+      ]
+    ],
+    "result": "transition-duration"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "primary"
+      ]
+    ],
+    "result": "color-primary"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "red",
+        "500"
+      ]
+    ],
+    "result": "color-red-500"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "screens",
+        "sm"
+      ]
+    ],
+    "result": "breakpoint-sm"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "aspectRatio",
+        "retro"
+      ]
+    ],
+    "result": "aspect-retro"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "boxShadow",
+        "normal"
+      ]
+    ],
+    "result": "shadow-normal"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "borderWidth",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-border-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "outlineWidth",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-outline-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "ringWidth",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-ring-width"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "borderRadius",
+        "sm"
+      ]
+    ],
+    "result": "radius-sm"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "animation",
+        "blink"
+      ]
+    ],
+    "result": "animate-blink"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontFamily",
+        "sans"
+      ]
+    ],
+    "result": "font-sans"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontFamily",
+        "mono"
+      ]
+    ],
+    "result": "font-mono"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontFamily",
+        "mono",
+        "-fontVariationSettings"
+      ]
+    ],
+    "result": "font-mono--font-variation-settings"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "sm"
+      ]
+    ],
+    "result": "text-sm"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "base"
+      ]
+    ],
+    "result": "text-base"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "base",
+        "-lineHeight"
+      ]
+    ],
+    "result": "text-base--line-height"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "lg"
+      ]
+    ],
+    "result": "text-lg"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "lg",
+        "-line-height"
+      ]
+    ],
+    "result": "text-lg--line-height"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "xl"
+      ]
+    ],
+    "result": "text-xl"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "xl",
+        "-line-height"
+      ]
+    ],
+    "result": "text-xl--line-height"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "fontSize",
+        "2xl"
+      ]
+    ],
+    "result": "text-2xl"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "ringColor",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-ring-color"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "letterSpacing",
+        "superWide"
+      ]
+    ],
+    "result": "tracking-superWide"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "lineHeight",
+        "superLoose"
+      ]
+    ],
+    "result": "leading-superLoose"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "width",
+        "1/2"
+      ]
+    ],
+    "result": "width-1/2"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "width",
+        "0.5"
+      ]
+    ],
+    "result": "width-0_5"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "width",
+        "100%"
+      ]
+    ],
+    "result": "width-100%"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "maxWidth",
+        "9xs"
+      ]
+    ],
+    "result": "container-9xs"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "transitionTimingFunction",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-transition-timing-function"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "transitionTimingFunction",
+        "fast"
+      ]
+    ],
+    "result": "ease-fast"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "transitionDuration",
+        "DEFAULT"
+      ]
+    ],
+    "result": "default-transition-duration"
+  },
+  {
+    "test": "config values can be merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:apply",
+    "args": [
+      [],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "primary": "#c0ffee",
+            "red": {
+              "500": "red"
+            }
+          },
+          "screens": {
+            "sm": "1234px"
+          },
+          "aspectRatio": {
+            "retro": "4 / 3"
+          },
+          "boxShadow": {
+            "normal": "0 1px 3px black"
+          },
+          "borderWidth": {
+            "DEFAULT": "1.5px"
+          },
+          "outlineWidth": {
+            "DEFAULT": "2.5px"
+          },
+          "ringWidth": {
+            "DEFAULT": "3.5px"
+          },
+          "borderRadius": {
+            "sm": "0.33rem"
+          },
+          "animation": {
+            "blink": "blink 1s linear infinite"
+          },
+          "fontFamily": {
+            "sans": [
+              "Inter",
+              "system-ui",
+              "sans-serif"
+            ],
+            "mono": [
+              "Potato Mono",
+              {
+                "fontVariationSettings": "\"XHGT\" 0.7"
+              }
+            ]
+          },
+          "fontSize": {
+            "sm": "0.875rem",
+            "base": [
+              "1rem",
+              {
+                "lineHeight": "1.5"
+              }
+            ],
+            "lg": [
+              "1.125rem",
+              "2"
+            ],
+            "xl": [
+              "1.5rem",
+              "3rem",
+              "invalid"
+            ],
+            "2xl": [
+              "2rem"
+            ]
+          },
+          "ringColor": {
+            "DEFAULT": "#fff"
+          },
+          "letterSpacing": {
+            "superWide": "0.25em"
+          },
+          "lineHeight": {
+            "superLoose": "3"
+          },
+          "width": {
+            "1/2": "60%",
+            "0.5": "60%",
+            "100%": "100%"
+          },
+          "maxWidth": {
+            "9xs": "6rem"
+          },
+          "transitionTimingFunction": {
+            "DEFAULT": "ease-in-out",
+            "fast": "cubic-bezier(0, 0.55, 0.45, 1)"
+          },
+          "transitionDuration": {
+            "DEFAULT": "1234ms"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      [
+        "colors",
+        "screens",
+        "aspectRatio",
+        "boxShadow",
+        "borderWidth",
+        "outlineWidth",
+        "ringWidth",
+        "borderRadius",
+        "animation",
+        "fontFamily",
+        "fontSize",
+        "ringColor",
+        "letterSpacing",
+        "lineHeight",
+        "width",
+        "maxWidth",
+        "transitionTimingFunction",
+        "transitionDuration"
+      ]
+    ],
+    "result": [
+      [
+        "--color-primary",
+        {
+          "value": "#c0ffee",
+          "options": 7
+        }
+      ],
+      [
+        "--color-red-500",
+        {
+          "value": "red",
+          "options": 7
+        }
+      ],
+      [
+        "--breakpoint-sm",
+        {
+          "value": "1234px",
+          "options": 7
+        }
+      ],
+      [
+        "--aspect-retro",
+        {
+          "value": "4 / 3",
+          "options": 7
+        }
+      ],
+      [
+        "--shadow-normal",
+        {
+          "value": "0 1px 3px black",
+          "options": 7
+        }
+      ],
+      [
+        "--default-border-width",
+        {
+          "value": "1.5px",
+          "options": 7
+        }
+      ],
+      [
+        "--default-outline-width",
+        {
+          "value": "2.5px",
+          "options": 7
+        }
+      ],
+      [
+        "--default-ring-width",
+        {
+          "value": "3.5px",
+          "options": 7
+        }
+      ],
+      [
+        "--radius-sm",
+        {
+          "value": "0.33rem",
+          "options": 7
+        }
+      ],
+      [
+        "--animate-blink",
+        {
+          "value": "blink 1s linear infinite",
+          "options": 7
+        }
+      ],
+      [
+        "--font-sans",
+        {
+          "value": "Inter, system-ui, sans-serif",
+          "options": 7
+        }
+      ],
+      [
+        "--font-mono",
+        {
+          "value": "Potato Mono",
+          "options": 7
+        }
+      ],
+      [
+        "--font-mono--font-variation-settings",
+        {
+          "value": "\"XHGT\" 0.7",
+          "options": 7
+        }
+      ],
+      [
+        "--text-sm",
+        {
+          "value": "0.875rem",
+          "options": 7
+        }
+      ],
+      [
+        "--text-base",
+        {
+          "value": "1rem",
+          "options": 7
+        }
+      ],
+      [
+        "--text-base--line-height",
+        {
+          "value": "1.5",
+          "options": 7
+        }
+      ],
+      [
+        "--text-lg",
+        {
+          "value": "1.125rem",
+          "options": 7
+        }
+      ],
+      [
+        "--text-lg--line-height",
+        {
+          "value": "2",
+          "options": 7
+        }
+      ],
+      [
+        "--text-xl",
+        {
+          "value": "1.5rem",
+          "options": 7
+        }
+      ],
+      [
+        "--text-xl--line-height",
+        {
+          "value": "3rem",
+          "options": 7
+        }
+      ],
+      [
+        "--text-2xl",
+        {
+          "value": "2rem",
+          "options": 7
+        }
+      ],
+      [
+        "--default-ring-color",
+        {
+          "value": "#fff",
+          "options": 7
+        }
+      ],
+      [
+        "--tracking-superWide",
+        {
+          "value": "0.25em",
+          "options": 7
+        }
+      ],
+      [
+        "--leading-superLoose",
+        {
+          "value": "3",
+          "options": 7
+        }
+      ],
+      [
+        "--width-1/2",
+        {
+          "value": "60%",
+          "options": 7
+        }
+      ],
+      [
+        "--width-0_5",
+        {
+          "value": "60%",
+          "options": 7
+        }
+      ],
+      [
+        "--width-100%",
+        {
+          "value": "100%",
+          "options": 7
+        }
+      ],
+      [
+        "--container-9xs",
+        {
+          "value": "6rem",
+          "options": 7
+        }
+      ],
+      [
+        "--default-transition-timing-function",
+        {
+          "value": "ease-in-out",
+          "options": 7
+        }
+      ],
+      [
+        "--ease-fast",
+        {
+          "value": "cubic-bezier(0, 0.55, 0.45, 1)",
+          "options": 7
+        }
+      ],
+      [
+        "--default-transition-duration",
+        {
+          "value": "1234ms",
+          "options": 7
+        }
+      ],
+      [
+        "--default-font-family",
+        {
+          "value": "Inter, system-ui, sans-serif",
+          "options": 5
+        }
+      ],
+      [
+        "--default-font-feature-settings",
+        {
+          "value": "normal",
+          "options": 5
+        }
+      ],
+      [
+        "--default-font-variation-settings",
+        {
+          "value": "normal",
+          "options": 5
+        }
+      ],
+      [
+        "--default-mono-font-family",
+        {
+          "value": "Potato Mono",
+          "options": 5
+        }
+      ],
+      [
+        "--default-mono-font-feature-settings",
+        {
+          "value": "normal",
+          "options": 5
+        }
+      ],
+      [
+        "--default-mono-font-variation-settings",
+        {
+          "value": "\"XHGT\" 0.7",
+          "options": 5
+        }
+      ]
+    ]
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors"
+      ]
+    ],
+    "result": "color"
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "blue",
+        "500"
+      ]
+    ],
+    "result": "color-blue-500"
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "blue",
+        "600"
+      ]
+    ],
+    "result": "color-blue-600"
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "red",
+        "500"
+      ]
+    ],
+    "result": "color-red-500"
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "red",
+        "600"
+      ]
+    ],
+    "result": "color-red-600"
+  },
+  {
+    "test": "will reset default theme values with overwriting theme values",
+    "kind": "internal:compat/apply-config-to-theme:apply",
+    "args": [
+      [
+        [
+          "--color-blue-400",
+          {
+            "value": "lightblue",
+            "options": 4
+          }
+        ],
+        [
+          "--color-blue-500",
+          {
+            "value": "blue",
+            "options": 4
+          }
+        ],
+        [
+          "--color-red-400",
+          {
+            "value": "#f87171",
+            "options": 0
+          }
+        ],
+        [
+          "--color-red-500",
+          {
+            "value": "#ef4444",
+            "options": 0
+          }
+        ]
+      ],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "blue": {
+              "500": "#3b82f6",
+              "600": "#2563eb"
+            },
+            "red": {
+              "500": "red",
+              "600": "#dc2626"
+            }
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      [
+        "colors"
+      ]
+    ],
+    "result": [
+      [
+        "--color-red-400",
+        {
+          "value": "#f87171",
+          "options": 0
+        }
+      ],
+      [
+        "--color-red-500",
+        {
+          "value": "#ef4444",
+          "options": 0
+        }
+      ],
+      [
+        "--color-blue-500",
+        {
+          "value": "#3b82f6",
+          "options": 7
+        }
+      ],
+      [
+        "--color-blue-600",
+        {
+          "value": "#2563eb",
+          "options": 7
+        }
+      ],
+      [
+        "--color-red-600",
+        {
+          "value": "#dc2626",
+          "options": 7
+        }
+      ]
+    ]
+  },
+  {
+    "test": "invalid keys are not merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors"
+      ]
+    ],
+    "result": "color"
+  },
+  {
+    "test": "invalid keys are not merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "colors",
+        "primary color"
+      ]
+    ],
+    "result": null
+  },
+  {
+    "test": "invalid keys are not merged into the theme",
+    "kind": "internal:compat/apply-config-to-theme:apply",
+    "args": [
+      [],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "primary color": "#86753099"
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      [
+        "colors"
+      ]
+    ],
+    "result": []
+  },
+  {
+    "test": "keyPathToCssProperty > converts width,40,2/5 to --width-40-2/5",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "width",
+        "40",
+        "2/5"
+      ]
+    ],
+    "result": "width-40-2/5"
+  },
+  {
+    "test": "keyPathToCssProperty > converts spacing,0.5 to --spacing-0_5",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "spacing",
+        "0.5"
+      ]
+    ],
+    "result": "spacing-0_5"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity"
+      ]
+    ],
+    "result": "opacity"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "0"
+      ]
+    ],
+    "result": "opacity-0"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "5"
+      ]
+    ],
+    "result": "opacity-5"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "10"
+      ]
+    ],
+    "result": "opacity-10"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "15"
+      ]
+    ],
+    "result": "opacity-15"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "20"
+      ]
+    ],
+    "result": "opacity-20"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:key",
+    "args": [
+      [
+        "opacity",
+        "25"
+      ]
+    ],
+    "result": "opacity-25"
+  },
+  {
+    "test": "converts opacity modifiers from decimal to percentage values",
+    "kind": "internal:compat/apply-config-to-theme:apply",
+    "args": [
+      [],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "opacity": {
+            "0": "0",
+            "5": "0.05",
+            "10": "0.1",
+            "15": "0.15",
+            "20": 0.2,
+            "25": 0.25
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      [
+        "opacity"
+      ]
+    ],
+    "result": [
+      [
+        "--opacity-0",
+        {
+          "value": "0%",
+          "options": 7
+        }
+      ],
+      [
+        "--opacity-5",
+        {
+          "value": "5%",
+          "options": 7
+        }
+      ],
+      [
+        "--opacity-10",
+        {
+          "value": "10%",
+          "options": 7
+        }
+      ],
+      [
+        "--opacity-15",
+        {
+          "value": "15%",
+          "options": 7
+        }
+      ],
+      [
+        "--opacity-20",
+        {
+          "value": "20%",
+          "options": 7
+        }
+      ],
+      [
+        "--opacity-25",
+        {
+          "value": "25%",
+          "options": 7
+        }
+      ]
+    ]
+  },
+  {
+    "test": "handles setting theme keys to null",
+    "kind": "internal:compat/apply-config-to-theme:apply",
+    "args": [
+      [
+        [
+          "--color-blue-400",
+          {
+            "value": "blue",
+            "options": 4
+          }
+        ],
+        [
+          "--color-blue-500",
+          {
+            "value": "#3b82f6",
+            "options": 0
+          }
+        ],
+        [
+          "--color-red-400",
+          {
+            "value": "red",
+            "options": 4
+          }
+        ],
+        [
+          "--color-red-500",
+          {
+            "value": "#ef4444",
+            "options": 0
+          }
+        ]
+      ],
+      {
+        "blocklist": [],
+        "future": {},
+        "experimental": {},
+        "prefix": "",
+        "important": false,
+        "darkMode": null,
+        "theme": {
+          "colors": {
+            "blue": null
+          }
+        },
+        "plugins": [],
+        "content": {
+          "files": []
+        }
+      },
+      []
+    ],
+    "result": [
+      [
+        "--color-blue-400",
+        {
+          "value": "blue",
+          "options": 4
+        }
+      ],
+      [
+        "--color-blue-500",
+        {
+          "value": "#3b82f6",
+          "options": 0
+        }
+      ],
+      [
+        "--color-red-400",
+        {
+          "value": "red",
+          "options": 4
+        }
+      ],
+      [
+        "--color-red-500",
+        {
+          "value": "#ef4444",
+          "options": 0
+        }
+      ]
+    ]
+  }
+]

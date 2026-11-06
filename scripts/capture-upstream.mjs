@@ -24,6 +24,7 @@ import fs from 'node:fs'
 import { afterAll, expect } from 'vitest'
 const records = []
 const candidateRegistries = new Map()
+globalThis.__rocketwindSuite = () => expect.getState().testPath.replaceAll('\\\\', '/').split('/src/')[1].replace(/\\.test\\.ts$/, '')
 globalThis.__rocketwindRecord = (kind, args, result, error) => {
   const testPath = expect.getState().testPath
   if (kind === 'css.parse' && !testPath.endsWith('/css-parser.test.ts')) return
@@ -77,6 +78,68 @@ export function \${name}(...args) {
           }\`
         }
         return code
+      }
+      if (id.endsWith('/src/compat/config/create-compat-config.ts')) {
+        code = code.replace('export function createCompatConfig(', 'function originalCreateCompatConfig(')
+        return code + \`
+          export function createCompatConfig(...args) {
+            const result = originalCreateCompatConfig(...args)
+            Object.defineProperty(result, '__rocketwindCompat', {value:true})
+            return result
+          }
+        \`
+      }
+      if (id.endsWith('/src/compat/config/resolve-config.ts')) {
+        code = code.replace('export function resolveConfig(', 'function originalResolveConfig(')
+        return code + \`
+          export function resolveConfig(design, files) {
+            const input = files.map(file=>({...file,config:file.config.__rocketwindCompat ? {$compat:true} : file.config}))
+            const result = originalResolveConfig(design,files)
+            const suite = globalThis.__rocketwindSuite?.()
+            if (suite === 'compat/config/resolve-config' || suite === 'compat/config/create-compat-config') {
+              globalThis.__rocketwindRecord?.('internal:'+suite+':resolve', [input,{theme:[...design.theme.values],prefix:design.theme.prefix}], {config:result.resolvedConfig,replaced:[...result.replacedThemeKeys]}, undefined)
+            }
+            return result
+          }
+        \`
+      }
+      if (id.endsWith('/src/compat/apply-config-to-theme.ts')) {
+        code = code.replace('export function applyConfigToTheme(', 'function originalApplyConfigToTheme(')
+        code = code.replace('export function keyPathToCssProperty(', 'function originalKeyPathToCssProperty(')
+        return code + \`
+          export function applyConfigToTheme(design,config,replaced) {
+            const before = [...design.theme.values].map(([key,value])=>[key,{...value}])
+            const result = originalApplyConfigToTheme(design,config,replaced)
+            globalThis.__rocketwindRecord?.('internal:compat/apply-config-to-theme:apply',[before,config,[...replaced]],[...design.theme.values],undefined)
+            return result
+          }
+          export function keyPathToCssProperty(path) {
+            const result = originalKeyPathToCssProperty(path)
+            globalThis.__rocketwindRecord?.('internal:compat/apply-config-to-theme:key',[path],result,undefined)
+            return result
+          }
+        \`
+      }
+      if (id.endsWith('/src/compat/apply-keyframes-to-theme.ts')) {
+        code = code.replace('export function applyKeyframesToTheme(', 'function originalApplyKeyframesToTheme(')
+        return code + \`
+          export function applyKeyframesToTheme(design,config) {
+            const before = JSON.parse(JSON.stringify(design.theme.getKeyframes()))
+            const result = originalApplyKeyframesToTheme(design,config)
+            globalThis.__rocketwindRecord?.('internal:compat/apply-keyframes-to-theme:apply',[before,config],design.theme.getKeyframes(),undefined)
+            return result
+          }
+        \`
+      }
+      if (id.endsWith('/src/compat/flatten-color-palette.ts')) {
+        code = code.replace('export default function flattenColorPalette(', 'function originalFlattenColorPalette(')
+        return code + \`
+          export default function flattenColorPalette(colors) {
+            const result = originalFlattenColorPalette(colors)
+            globalThis.__rocketwindRecord?.('internal:compat/flatten-color-palette:flatten',[colors],result,undefined)
+            return result
+          }
+        \`
       }
       if (id.endsWith('/src/ast.ts')) {
         code = code.replace('export function optimizeAst(', 'function originalOptimizeAst(')

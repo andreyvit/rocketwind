@@ -92,6 +92,30 @@ func portLegacyFixtureConfig(config ConfigObject) (ConfigObject, error) {
 	convert = func(value any) (any, error) {
 		object := configObject(value)
 		if source, ok := object.Get("$function").(string); ok {
+			if strings.Contains(source, "rootWithDefault =") {
+				return ThemeFunc(func(theme ThemeResolver) any {
+					if configObject(theme("text")).Get("DEFAULT") != "1rem" || configObject(theme("text", ConfigObject{})).Get("DEFAULT") != "1rem" || theme("animate.spin") != "spin 1s linear infinite" {
+						return ConfigObject{{"badNamespaceLookup", true}}
+					}
+					return ConfigObject{}
+				}), nil
+			}
+			if strings.Contains(source, "colors.green") && !strings.Contains(source, "theme(") {
+				return ThemeFunc(func(ThemeResolver) any {
+					var green ConfigObject
+					for key, value := range builtinTheme {
+						if shade, ok := strings.CutPrefix(key, "--color-green-"); ok {
+							green.set(shade, value)
+						}
+					}
+					return ConfigObject{{"primary", green}}
+				}), nil
+			}
+			if strings.Contains(source, `primary: theme("colors.green")`) {
+				return ThemeFunc(func(theme ThemeResolver) any {
+					return ConfigObject{{"primary", theme("colors.green")}, {"secondary", theme("color.green")}}
+				}), nil
+			}
 			if strings.Contains(source, "[class~=lead-base]") {
 				return ThemeFunc(func(theme ThemeResolver) any {
 					var result ConfigObject
@@ -109,10 +133,23 @@ func portLegacyFixtureConfig(config ConfigObject) (ConfigObject, error) {
 					return result
 				}), nil
 			}
-			matches := regexp.MustCompile(`theme\("([^"]+)"\)`).FindAllStringSubmatch(source, -1)
+			matches := regexp.MustCompile(`theme\("([^"]+)"(?:, \{\})?\)`).FindAllStringSubmatch(source, -1)
 			if len(matches) == 1 {
 				path := matches[0][1]
-				return ThemeFunc(func(theme ThemeResolver) any { return theme(path) }), nil
+				return ThemeFunc(func(theme ThemeResolver) any {
+					value := theme(path)
+					if strings.Contains(source, "spin: theme(") {
+						return ConfigObject{{"spin", value}}
+					}
+					for _, name := range []string{"red", "blue"} {
+						if strings.Contains(source, name+`: "`+name+`"`) {
+							object := configObject(cloneConfigValue(value))
+							object.set(name, name)
+							return object
+						}
+					}
+					return value
+				}), nil
 			}
 			if strings.Contains(source, "fontSize.base[1].lineHeight") {
 				return ThemeFunc(func(theme ThemeResolver) any {
