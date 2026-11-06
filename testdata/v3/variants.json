@@ -1,0 +1,3366 @@
+[
+  {
+    "candidate": "*:flex",
+    "css": ".\\*\\:flex > * {\n    display: flex\n}"
+  },
+  {
+    "candidate": "*:bg-black",
+    "css": ".\\*\\:bg-black > * {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "*:text-black",
+    "css": ".\\*\\:text-black > * {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "*:border-black",
+    "css": ".\\*\\:border-black > * {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "*:content-[\"hi\"]",
+    "css": ".\\*\\:content-\\[\\\"hi\\\"\\] > * {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "first-letter:flex",
+    "css": ".first-letter\\:flex::first-letter {\n    display: flex\n}"
+  },
+  {
+    "candidate": "first-letter:bg-black",
+    "css": ".first-letter\\:bg-black::first-letter {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-letter:text-black",
+    "css": ".first-letter\\:text-black::first-letter {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-letter:border-black",
+    "css": ".first-letter\\:border-black::first-letter {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-letter:content-[\"hi\"]",
+    "css": ".first-letter\\:content-\\[\\\"hi\\\"\\]::first-letter {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "first-line:flex",
+    "css": ".first-line\\:flex::first-line {\n    display: flex\n}"
+  },
+  {
+    "candidate": "first-line:bg-black",
+    "css": ".first-line\\:bg-black::first-line {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-line:text-black",
+    "css": ".first-line\\:text-black::first-line {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-line:border-black",
+    "css": ".first-line\\:border-black::first-line {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-line:content-[\"hi\"]",
+    "css": ".first-line\\:content-\\[\\\"hi\\\"\\]::first-line {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "marker:flex",
+    "css": ".marker\\:flex *::marker {\n    display: flex\n}\n.marker\\:flex::marker {\n    display: flex\n}"
+  },
+  {
+    "candidate": "marker:bg-black",
+    "css": ".marker\\:bg-black *::marker {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}\n.marker\\:bg-black::marker {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "marker:text-black",
+    "css": ".marker\\:text-black *::marker {\n    color: rgb(0 0 0 )\n}\n.marker\\:text-black::marker {\n    color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "marker:border-black",
+    "css": ".marker\\:border-black *::marker {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}\n.marker\\:border-black::marker {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "marker:content-[\"hi\"]",
+    "css": ".marker\\:content-\\[\\\"hi\\\"\\] *::marker {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}\n.marker\\:content-\\[\\\"hi\\\"\\]::marker {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "selection:flex",
+    "css": ".selection\\:flex *::selection {\n    display: flex\n}\n.selection\\:flex::selection {\n    display: flex\n}"
+  },
+  {
+    "candidate": "selection:bg-black",
+    "css": ".selection\\:bg-black *::selection {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}\n.selection\\:bg-black::selection {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "selection:text-black",
+    "css": ".selection\\:text-black *::selection {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}\n.selection\\:text-black::selection {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "selection:border-black",
+    "css": ".selection\\:border-black *::selection {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}\n.selection\\:border-black::selection {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "selection:content-[\"hi\"]",
+    "css": ".selection\\:content-\\[\\\"hi\\\"\\] *::selection {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}\n.selection\\:content-\\[\\\"hi\\\"\\]::selection {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "file:flex",
+    "css": ".file\\:flex::file-selector-button {\n    display: flex\n}"
+  },
+  {
+    "candidate": "file:bg-black",
+    "css": ".file\\:bg-black::file-selector-button {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "file:text-black",
+    "css": ".file\\:text-black::file-selector-button {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "file:border-black",
+    "css": ".file\\:border-black::file-selector-button {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "file:content-[\"hi\"]",
+    "css": ".file\\:content-\\[\\\"hi\\\"\\]::file-selector-button {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "placeholder:flex",
+    "css": ".placeholder\\:flex::placeholder {\n    display: flex\n}"
+  },
+  {
+    "candidate": "placeholder:bg-black",
+    "css": ".placeholder\\:bg-black::placeholder {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder:text-black",
+    "css": ".placeholder\\:text-black::placeholder {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder:border-black",
+    "css": ".placeholder\\:border-black::placeholder {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder:content-[\"hi\"]",
+    "css": ".placeholder\\:content-\\[\\\"hi\\\"\\]::placeholder {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "backdrop:flex",
+    "css": ".backdrop\\:flex::backdrop {\n    display: flex\n}"
+  },
+  {
+    "candidate": "backdrop:bg-black",
+    "css": ".backdrop\\:bg-black::backdrop {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "backdrop:text-black",
+    "css": ".backdrop\\:text-black::backdrop {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "backdrop:border-black",
+    "css": ".backdrop\\:border-black::backdrop {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "backdrop:content-[\"hi\"]",
+    "css": ".backdrop\\:content-\\[\\\"hi\\\"\\]::backdrop {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "before:flex",
+    "css": ".before\\:flex::before {\n    content: var(--tw-content);\n    display: flex\n}"
+  },
+  {
+    "candidate": "before:bg-black",
+    "css": ".before\\:bg-black::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "before:text-black",
+    "css": ".before\\:text-black::before {\n    content: var(--tw-content);\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "before:border-black",
+    "css": ".before\\:border-black::before {\n    content: var(--tw-content);\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "before:content-[\"hi\"]",
+    "css": ".before\\:content-\\[\\\"hi\\\"\\]::before {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "after:flex",
+    "css": ".after\\:flex::after {\n    content: var(--tw-content);\n    display: flex\n}"
+  },
+  {
+    "candidate": "after:bg-black",
+    "css": ".after\\:bg-black::after {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "after:text-black",
+    "css": ".after\\:text-black::after {\n    content: var(--tw-content);\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "after:border-black",
+    "css": ".after\\:border-black::after {\n    content: var(--tw-content);\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "after:content-[\"hi\"]",
+    "css": ".after\\:content-\\[\\\"hi\\\"\\]::after {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "first:flex",
+    "css": ".first\\:flex:first-child {\n    display: flex\n}"
+  },
+  {
+    "candidate": "first:bg-black",
+    "css": ".first\\:bg-black:first-child {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first:text-black",
+    "css": ".first\\:text-black:first-child {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first:border-black",
+    "css": ".first\\:border-black:first-child {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first:content-[\"hi\"]",
+    "css": ".first\\:content-\\[\\\"hi\\\"\\]:first-child {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "last:flex",
+    "css": ".last\\:flex:last-child {\n    display: flex\n}"
+  },
+  {
+    "candidate": "last:bg-black",
+    "css": ".last\\:bg-black:last-child {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last:text-black",
+    "css": ".last\\:text-black:last-child {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last:border-black",
+    "css": ".last\\:border-black:last-child {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last:content-[\"hi\"]",
+    "css": ".last\\:content-\\[\\\"hi\\\"\\]:last-child {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "only:flex",
+    "css": ".only\\:flex:only-child {\n    display: flex\n}"
+  },
+  {
+    "candidate": "only:bg-black",
+    "css": ".only\\:bg-black:only-child {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only:text-black",
+    "css": ".only\\:text-black:only-child {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only:border-black",
+    "css": ".only\\:border-black:only-child {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only:content-[\"hi\"]",
+    "css": ".only\\:content-\\[\\\"hi\\\"\\]:only-child {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "odd:flex",
+    "css": ".odd\\:flex:nth-child(odd) {\n    display: flex\n}"
+  },
+  {
+    "candidate": "odd:bg-black",
+    "css": ".odd\\:bg-black:nth-child(odd) {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "odd:text-black",
+    "css": ".odd\\:text-black:nth-child(odd) {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "odd:border-black",
+    "css": ".odd\\:border-black:nth-child(odd) {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "odd:content-[\"hi\"]",
+    "css": ".odd\\:content-\\[\\\"hi\\\"\\]:nth-child(odd) {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "even:flex",
+    "css": ".even\\:flex:nth-child(even) {\n    display: flex\n}"
+  },
+  {
+    "candidate": "even:bg-black",
+    "css": ".even\\:bg-black:nth-child(even) {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "even:text-black",
+    "css": ".even\\:text-black:nth-child(even) {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "even:border-black",
+    "css": ".even\\:border-black:nth-child(even) {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "even:content-[\"hi\"]",
+    "css": ".even\\:content-\\[\\\"hi\\\"\\]:nth-child(even) {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "first-of-type:flex",
+    "css": ".first-of-type\\:flex:first-of-type {\n    display: flex\n}"
+  },
+  {
+    "candidate": "first-of-type:bg-black",
+    "css": ".first-of-type\\:bg-black:first-of-type {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-of-type:text-black",
+    "css": ".first-of-type\\:text-black:first-of-type {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-of-type:border-black",
+    "css": ".first-of-type\\:border-black:first-of-type {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "first-of-type:content-[\"hi\"]",
+    "css": ".first-of-type\\:content-\\[\\\"hi\\\"\\]:first-of-type {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "last-of-type:flex",
+    "css": ".last-of-type\\:flex:last-of-type {\n    display: flex\n}"
+  },
+  {
+    "candidate": "last-of-type:bg-black",
+    "css": ".last-of-type\\:bg-black:last-of-type {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last-of-type:text-black",
+    "css": ".last-of-type\\:text-black:last-of-type {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last-of-type:border-black",
+    "css": ".last-of-type\\:border-black:last-of-type {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "last-of-type:content-[\"hi\"]",
+    "css": ".last-of-type\\:content-\\[\\\"hi\\\"\\]:last-of-type {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "only-of-type:flex",
+    "css": ".only-of-type\\:flex:only-of-type {\n    display: flex\n}"
+  },
+  {
+    "candidate": "only-of-type:bg-black",
+    "css": ".only-of-type\\:bg-black:only-of-type {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only-of-type:text-black",
+    "css": ".only-of-type\\:text-black:only-of-type {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only-of-type:border-black",
+    "css": ".only-of-type\\:border-black:only-of-type {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "only-of-type:content-[\"hi\"]",
+    "css": ".only-of-type\\:content-\\[\\\"hi\\\"\\]:only-of-type {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "visited:flex",
+    "css": ".visited\\:flex:visited {\n    display: flex\n}"
+  },
+  {
+    "candidate": "visited:bg-black",
+    "css": ".visited\\:bg-black:visited {\n    background-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "visited:text-black",
+    "css": ".visited\\:text-black:visited {\n    color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "visited:border-black",
+    "css": ".visited\\:border-black:visited {\n    border-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "visited:content-[\"hi\"]",
+    "css": ".visited\\:content-\\[\\\"hi\\\"\\]:visited {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "target:flex",
+    "css": ".target\\:flex:target {\n    display: flex\n}"
+  },
+  {
+    "candidate": "target:bg-black",
+    "css": ".target\\:bg-black:target {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "target:text-black",
+    "css": ".target\\:text-black:target {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "target:border-black",
+    "css": ".target\\:border-black:target {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "target:content-[\"hi\"]",
+    "css": ".target\\:content-\\[\\\"hi\\\"\\]:target {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "open:flex",
+    "css": ".open\\:flex[open] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "open:bg-black",
+    "css": ".open\\:bg-black[open] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "open:text-black",
+    "css": ".open\\:text-black[open] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "open:border-black",
+    "css": ".open\\:border-black[open] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "open:content-[\"hi\"]",
+    "css": ".open\\:content-\\[\\\"hi\\\"\\][open] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "default:flex",
+    "css": ".default\\:flex:default {\n    display: flex\n}"
+  },
+  {
+    "candidate": "default:bg-black",
+    "css": ".default\\:bg-black:default {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "default:text-black",
+    "css": ".default\\:text-black:default {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "default:border-black",
+    "css": ".default\\:border-black:default {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "default:content-[\"hi\"]",
+    "css": ".default\\:content-\\[\\\"hi\\\"\\]:default {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "checked:flex",
+    "css": ".checked\\:flex:checked {\n    display: flex\n}"
+  },
+  {
+    "candidate": "checked:bg-black",
+    "css": ".checked\\:bg-black:checked {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "checked:text-black",
+    "css": ".checked\\:text-black:checked {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "checked:border-black",
+    "css": ".checked\\:border-black:checked {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "checked:content-[\"hi\"]",
+    "css": ".checked\\:content-\\[\\\"hi\\\"\\]:checked {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "indeterminate:flex",
+    "css": ".indeterminate\\:flex:indeterminate {\n    display: flex\n}"
+  },
+  {
+    "candidate": "indeterminate:bg-black",
+    "css": ".indeterminate\\:bg-black:indeterminate {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "indeterminate:text-black",
+    "css": ".indeterminate\\:text-black:indeterminate {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "indeterminate:border-black",
+    "css": ".indeterminate\\:border-black:indeterminate {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "indeterminate:content-[\"hi\"]",
+    "css": ".indeterminate\\:content-\\[\\\"hi\\\"\\]:indeterminate {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "placeholder-shown:flex",
+    "css": ".placeholder-shown\\:flex:placeholder-shown {\n    display: flex\n}"
+  },
+  {
+    "candidate": "placeholder-shown:bg-black",
+    "css": ".placeholder-shown\\:bg-black:placeholder-shown {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder-shown:text-black",
+    "css": ".placeholder-shown\\:text-black:placeholder-shown {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder-shown:border-black",
+    "css": ".placeholder-shown\\:border-black:placeholder-shown {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "placeholder-shown:content-[\"hi\"]",
+    "css": ".placeholder-shown\\:content-\\[\\\"hi\\\"\\]:placeholder-shown {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "autofill:flex",
+    "css": ".autofill\\:flex:autofill {\n    display: flex\n}"
+  },
+  {
+    "candidate": "autofill:bg-black",
+    "css": ".autofill\\:bg-black:autofill {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "autofill:text-black",
+    "css": ".autofill\\:text-black:autofill {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "autofill:border-black",
+    "css": ".autofill\\:border-black:autofill {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "autofill:content-[\"hi\"]",
+    "css": ".autofill\\:content-\\[\\\"hi\\\"\\]:autofill {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "optional:flex",
+    "css": ".optional\\:flex:optional {\n    display: flex\n}"
+  },
+  {
+    "candidate": "optional:bg-black",
+    "css": ".optional\\:bg-black:optional {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "optional:text-black",
+    "css": ".optional\\:text-black:optional {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "optional:border-black",
+    "css": ".optional\\:border-black:optional {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "optional:content-[\"hi\"]",
+    "css": ".optional\\:content-\\[\\\"hi\\\"\\]:optional {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "required:flex",
+    "css": ".required\\:flex:required {\n    display: flex\n}"
+  },
+  {
+    "candidate": "required:bg-black",
+    "css": ".required\\:bg-black:required {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "required:text-black",
+    "css": ".required\\:text-black:required {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "required:border-black",
+    "css": ".required\\:border-black:required {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "required:content-[\"hi\"]",
+    "css": ".required\\:content-\\[\\\"hi\\\"\\]:required {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "valid:flex",
+    "css": ".valid\\:flex:valid {\n    display: flex\n}"
+  },
+  {
+    "candidate": "valid:bg-black",
+    "css": ".valid\\:bg-black:valid {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "valid:text-black",
+    "css": ".valid\\:text-black:valid {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "valid:border-black",
+    "css": ".valid\\:border-black:valid {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "valid:content-[\"hi\"]",
+    "css": ".valid\\:content-\\[\\\"hi\\\"\\]:valid {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "invalid:flex",
+    "css": ".invalid\\:flex:invalid {\n    display: flex\n}"
+  },
+  {
+    "candidate": "invalid:bg-black",
+    "css": ".invalid\\:bg-black:invalid {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "invalid:text-black",
+    "css": ".invalid\\:text-black:invalid {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "invalid:border-black",
+    "css": ".invalid\\:border-black:invalid {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "invalid:content-[\"hi\"]",
+    "css": ".invalid\\:content-\\[\\\"hi\\\"\\]:invalid {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "in-range:flex",
+    "css": ".in-range\\:flex:in-range {\n    display: flex\n}"
+  },
+  {
+    "candidate": "in-range:bg-black",
+    "css": ".in-range\\:bg-black:in-range {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "in-range:text-black",
+    "css": ".in-range\\:text-black:in-range {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "in-range:border-black",
+    "css": ".in-range\\:border-black:in-range {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "in-range:content-[\"hi\"]",
+    "css": ".in-range\\:content-\\[\\\"hi\\\"\\]:in-range {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "out-of-range:flex",
+    "css": ".out-of-range\\:flex:out-of-range {\n    display: flex\n}"
+  },
+  {
+    "candidate": "out-of-range:bg-black",
+    "css": ".out-of-range\\:bg-black:out-of-range {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "out-of-range:text-black",
+    "css": ".out-of-range\\:text-black:out-of-range {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "out-of-range:border-black",
+    "css": ".out-of-range\\:border-black:out-of-range {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "out-of-range:content-[\"hi\"]",
+    "css": ".out-of-range\\:content-\\[\\\"hi\\\"\\]:out-of-range {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "read-only:flex",
+    "css": ".read-only\\:flex:read-only {\n    display: flex\n}"
+  },
+  {
+    "candidate": "read-only:bg-black",
+    "css": ".read-only\\:bg-black:read-only {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "read-only:text-black",
+    "css": ".read-only\\:text-black:read-only {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "read-only:border-black",
+    "css": ".read-only\\:border-black:read-only {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "read-only:content-[\"hi\"]",
+    "css": ".read-only\\:content-\\[\\\"hi\\\"\\]:read-only {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "empty:flex",
+    "css": ".empty\\:flex:empty {\n    display: flex\n}"
+  },
+  {
+    "candidate": "empty:bg-black",
+    "css": ".empty\\:bg-black:empty {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "empty:text-black",
+    "css": ".empty\\:text-black:empty {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "empty:border-black",
+    "css": ".empty\\:border-black:empty {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "empty:content-[\"hi\"]",
+    "css": ".empty\\:content-\\[\\\"hi\\\"\\]:empty {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "focus-within:flex",
+    "css": ".focus-within\\:flex:focus-within {\n    display: flex\n}"
+  },
+  {
+    "candidate": "focus-within:bg-black",
+    "css": ".focus-within\\:bg-black:focus-within {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-within:text-black",
+    "css": ".focus-within\\:text-black:focus-within {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-within:border-black",
+    "css": ".focus-within\\:border-black:focus-within {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-within:content-[\"hi\"]",
+    "css": ".focus-within\\:content-\\[\\\"hi\\\"\\]:focus-within {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "hover:flex",
+    "css": ".hover\\:flex:hover {\n    display: flex\n}"
+  },
+  {
+    "candidate": "hover:bg-black",
+    "css": ".hover\\:bg-black:hover {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "hover:text-black",
+    "css": ".hover\\:text-black:hover {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "hover:border-black",
+    "css": ".hover\\:border-black:hover {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "hover:content-[\"hi\"]",
+    "css": ".hover\\:content-\\[\\\"hi\\\"\\]:hover {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "focus:flex",
+    "css": ".focus\\:flex:focus {\n    display: flex\n}"
+  },
+  {
+    "candidate": "focus:bg-black",
+    "css": ".focus\\:bg-black:focus {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus:text-black",
+    "css": ".focus\\:text-black:focus {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus:border-black",
+    "css": ".focus\\:border-black:focus {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus:content-[\"hi\"]",
+    "css": ".focus\\:content-\\[\\\"hi\\\"\\]:focus {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "focus-visible:flex",
+    "css": ".focus-visible\\:flex:focus-visible {\n    display: flex\n}"
+  },
+  {
+    "candidate": "focus-visible:bg-black",
+    "css": ".focus-visible\\:bg-black:focus-visible {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-visible:text-black",
+    "css": ".focus-visible\\:text-black:focus-visible {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-visible:border-black",
+    "css": ".focus-visible\\:border-black:focus-visible {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "focus-visible:content-[\"hi\"]",
+    "css": ".focus-visible\\:content-\\[\\\"hi\\\"\\]:focus-visible {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "active:flex",
+    "css": ".active\\:flex:active {\n    display: flex\n}"
+  },
+  {
+    "candidate": "active:bg-black",
+    "css": ".active\\:bg-black:active {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "active:text-black",
+    "css": ".active\\:text-black:active {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "active:border-black",
+    "css": ".active\\:border-black:active {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "active:content-[\"hi\"]",
+    "css": ".active\\:content-\\[\\\"hi\\\"\\]:active {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "enabled:flex",
+    "css": ".enabled\\:flex:enabled {\n    display: flex\n}"
+  },
+  {
+    "candidate": "enabled:bg-black",
+    "css": ".enabled\\:bg-black:enabled {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "enabled:text-black",
+    "css": ".enabled\\:text-black:enabled {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "enabled:border-black",
+    "css": ".enabled\\:border-black:enabled {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "enabled:content-[\"hi\"]",
+    "css": ".enabled\\:content-\\[\\\"hi\\\"\\]:enabled {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "disabled:flex",
+    "css": ".disabled\\:flex:disabled {\n    display: flex\n}"
+  },
+  {
+    "candidate": "disabled:bg-black",
+    "css": ".disabled\\:bg-black:disabled {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "disabled:text-black",
+    "css": ".disabled\\:text-black:disabled {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "disabled:border-black",
+    "css": ".disabled\\:border-black:disabled {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "disabled:content-[\"hi\"]",
+    "css": ".disabled\\:content-\\[\\\"hi\\\"\\]:disabled {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-first:flex",
+    "css": ".group:first-child .group-first\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-first:bg-black",
+    "css": ".group:first-child .group-first\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first:text-black",
+    "css": ".group:first-child .group-first\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first:border-black",
+    "css": ".group:first-child .group-first\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first:content-[\"hi\"]",
+    "css": ".group:first-child .group-first\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-last:flex",
+    "css": ".group:last-child .group-last\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-last:bg-black",
+    "css": ".group:last-child .group-last\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last:text-black",
+    "css": ".group:last-child .group-last\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last:border-black",
+    "css": ".group:last-child .group-last\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last:content-[\"hi\"]",
+    "css": ".group:last-child .group-last\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-only:flex",
+    "css": ".group:only-child .group-only\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-only:bg-black",
+    "css": ".group:only-child .group-only\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only:text-black",
+    "css": ".group:only-child .group-only\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only:border-black",
+    "css": ".group:only-child .group-only\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only:content-[\"hi\"]",
+    "css": ".group:only-child .group-only\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-odd:flex",
+    "css": ".group:nth-child(odd) .group-odd\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-odd:bg-black",
+    "css": ".group:nth-child(odd) .group-odd\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-odd:text-black",
+    "css": ".group:nth-child(odd) .group-odd\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-odd:border-black",
+    "css": ".group:nth-child(odd) .group-odd\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-odd:content-[\"hi\"]",
+    "css": ".group:nth-child(odd) .group-odd\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-even:flex",
+    "css": ".group:nth-child(even) .group-even\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-even:bg-black",
+    "css": ".group:nth-child(even) .group-even\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-even:text-black",
+    "css": ".group:nth-child(even) .group-even\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-even:border-black",
+    "css": ".group:nth-child(even) .group-even\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-even:content-[\"hi\"]",
+    "css": ".group:nth-child(even) .group-even\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-first-of-type:flex",
+    "css": ".group:first-of-type .group-first-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-first-of-type:bg-black",
+    "css": ".group:first-of-type .group-first-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first-of-type:text-black",
+    "css": ".group:first-of-type .group-first-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first-of-type:border-black",
+    "css": ".group:first-of-type .group-first-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-first-of-type:content-[\"hi\"]",
+    "css": ".group:first-of-type .group-first-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-last-of-type:flex",
+    "css": ".group:last-of-type .group-last-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-last-of-type:bg-black",
+    "css": ".group:last-of-type .group-last-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last-of-type:text-black",
+    "css": ".group:last-of-type .group-last-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last-of-type:border-black",
+    "css": ".group:last-of-type .group-last-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-last-of-type:content-[\"hi\"]",
+    "css": ".group:last-of-type .group-last-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-only-of-type:flex",
+    "css": ".group:only-of-type .group-only-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-only-of-type:bg-black",
+    "css": ".group:only-of-type .group-only-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only-of-type:text-black",
+    "css": ".group:only-of-type .group-only-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only-of-type:border-black",
+    "css": ".group:only-of-type .group-only-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-only-of-type:content-[\"hi\"]",
+    "css": ".group:only-of-type .group-only-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-visited:flex",
+    "css": ".group:visited .group-visited\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-visited:bg-black",
+    "css": ".group:visited .group-visited\\:bg-black {\n    background-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "group-visited:text-black",
+    "css": ".group:visited .group-visited\\:text-black {\n    color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "group-visited:border-black",
+    "css": ".group:visited .group-visited\\:border-black {\n    border-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "group-visited:content-[\"hi\"]",
+    "css": ".group:visited .group-visited\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-target:flex",
+    "css": ".group:target .group-target\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-target:bg-black",
+    "css": ".group:target .group-target\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-target:text-black",
+    "css": ".group:target .group-target\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-target:border-black",
+    "css": ".group:target .group-target\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-target:content-[\"hi\"]",
+    "css": ".group:target .group-target\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-open:flex",
+    "css": ".group[open] .group-open\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-open:bg-black",
+    "css": ".group[open] .group-open\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-open:text-black",
+    "css": ".group[open] .group-open\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-open:border-black",
+    "css": ".group[open] .group-open\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-open:content-[\"hi\"]",
+    "css": ".group[open] .group-open\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-default:flex",
+    "css": ".group:default .group-default\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-default:bg-black",
+    "css": ".group:default .group-default\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-default:text-black",
+    "css": ".group:default .group-default\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-default:border-black",
+    "css": ".group:default .group-default\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-default:content-[\"hi\"]",
+    "css": ".group:default .group-default\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-checked:flex",
+    "css": ".group:checked .group-checked\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-checked:bg-black",
+    "css": ".group:checked .group-checked\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-checked:text-black",
+    "css": ".group:checked .group-checked\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-checked:border-black",
+    "css": ".group:checked .group-checked\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-checked:content-[\"hi\"]",
+    "css": ".group:checked .group-checked\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-indeterminate:flex",
+    "css": ".group:indeterminate .group-indeterminate\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-indeterminate:bg-black",
+    "css": ".group:indeterminate .group-indeterminate\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-indeterminate:text-black",
+    "css": ".group:indeterminate .group-indeterminate\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-indeterminate:border-black",
+    "css": ".group:indeterminate .group-indeterminate\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-indeterminate:content-[\"hi\"]",
+    "css": ".group:indeterminate .group-indeterminate\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-placeholder-shown:flex",
+    "css": ".group:placeholder-shown .group-placeholder-shown\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-placeholder-shown:bg-black",
+    "css": ".group:placeholder-shown .group-placeholder-shown\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-placeholder-shown:text-black",
+    "css": ".group:placeholder-shown .group-placeholder-shown\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-placeholder-shown:border-black",
+    "css": ".group:placeholder-shown .group-placeholder-shown\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-placeholder-shown:content-[\"hi\"]",
+    "css": ".group:placeholder-shown .group-placeholder-shown\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-autofill:flex",
+    "css": ".group:autofill .group-autofill\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-autofill:bg-black",
+    "css": ".group:autofill .group-autofill\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-autofill:text-black",
+    "css": ".group:autofill .group-autofill\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-autofill:border-black",
+    "css": ".group:autofill .group-autofill\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-autofill:content-[\"hi\"]",
+    "css": ".group:autofill .group-autofill\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-optional:flex",
+    "css": ".group:optional .group-optional\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-optional:bg-black",
+    "css": ".group:optional .group-optional\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-optional:text-black",
+    "css": ".group:optional .group-optional\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-optional:border-black",
+    "css": ".group:optional .group-optional\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-optional:content-[\"hi\"]",
+    "css": ".group:optional .group-optional\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-required:flex",
+    "css": ".group:required .group-required\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-required:bg-black",
+    "css": ".group:required .group-required\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-required:text-black",
+    "css": ".group:required .group-required\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-required:border-black",
+    "css": ".group:required .group-required\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-required:content-[\"hi\"]",
+    "css": ".group:required .group-required\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-valid:flex",
+    "css": ".group:valid .group-valid\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-valid:bg-black",
+    "css": ".group:valid .group-valid\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-valid:text-black",
+    "css": ".group:valid .group-valid\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-valid:border-black",
+    "css": ".group:valid .group-valid\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-valid:content-[\"hi\"]",
+    "css": ".group:valid .group-valid\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-invalid:flex",
+    "css": ".group:invalid .group-invalid\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-invalid:bg-black",
+    "css": ".group:invalid .group-invalid\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-invalid:text-black",
+    "css": ".group:invalid .group-invalid\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-invalid:border-black",
+    "css": ".group:invalid .group-invalid\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-invalid:content-[\"hi\"]",
+    "css": ".group:invalid .group-invalid\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-in-range:flex",
+    "css": ".group:in-range .group-in-range\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-in-range:bg-black",
+    "css": ".group:in-range .group-in-range\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-in-range:text-black",
+    "css": ".group:in-range .group-in-range\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-in-range:border-black",
+    "css": ".group:in-range .group-in-range\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-in-range:content-[\"hi\"]",
+    "css": ".group:in-range .group-in-range\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-out-of-range:flex",
+    "css": ".group:out-of-range .group-out-of-range\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-out-of-range:bg-black",
+    "css": ".group:out-of-range .group-out-of-range\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-out-of-range:text-black",
+    "css": ".group:out-of-range .group-out-of-range\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-out-of-range:border-black",
+    "css": ".group:out-of-range .group-out-of-range\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-out-of-range:content-[\"hi\"]",
+    "css": ".group:out-of-range .group-out-of-range\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-read-only:flex",
+    "css": ".group:read-only .group-read-only\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-read-only:bg-black",
+    "css": ".group:read-only .group-read-only\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-read-only:text-black",
+    "css": ".group:read-only .group-read-only\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-read-only:border-black",
+    "css": ".group:read-only .group-read-only\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-read-only:content-[\"hi\"]",
+    "css": ".group:read-only .group-read-only\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-empty:flex",
+    "css": ".group:empty .group-empty\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-empty:bg-black",
+    "css": ".group:empty .group-empty\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-empty:text-black",
+    "css": ".group:empty .group-empty\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-empty:border-black",
+    "css": ".group:empty .group-empty\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-empty:content-[\"hi\"]",
+    "css": ".group:empty .group-empty\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-focus-within:flex",
+    "css": ".group:focus-within .group-focus-within\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-focus-within:bg-black",
+    "css": ".group:focus-within .group-focus-within\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-within:text-black",
+    "css": ".group:focus-within .group-focus-within\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-within:border-black",
+    "css": ".group:focus-within .group-focus-within\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-within:content-[\"hi\"]",
+    "css": ".group:focus-within .group-focus-within\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-hover:flex",
+    "css": ".group:hover .group-hover\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-hover:bg-black",
+    "css": ".group:hover .group-hover\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-hover:text-black",
+    "css": ".group:hover .group-hover\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-hover:border-black",
+    "css": ".group:hover .group-hover\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-hover:content-[\"hi\"]",
+    "css": ".group:hover .group-hover\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-focus:flex",
+    "css": ".group:focus .group-focus\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-focus:bg-black",
+    "css": ".group:focus .group-focus\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus:text-black",
+    "css": ".group:focus .group-focus\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus:border-black",
+    "css": ".group:focus .group-focus\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus:content-[\"hi\"]",
+    "css": ".group:focus .group-focus\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-focus-visible:flex",
+    "css": ".group:focus-visible .group-focus-visible\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-focus-visible:bg-black",
+    "css": ".group:focus-visible .group-focus-visible\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-visible:text-black",
+    "css": ".group:focus-visible .group-focus-visible\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-visible:border-black",
+    "css": ".group:focus-visible .group-focus-visible\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-focus-visible:content-[\"hi\"]",
+    "css": ".group:focus-visible .group-focus-visible\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-active:flex",
+    "css": ".group:active .group-active\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-active:bg-black",
+    "css": ".group:active .group-active\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-active:text-black",
+    "css": ".group:active .group-active\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-active:border-black",
+    "css": ".group:active .group-active\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-active:content-[\"hi\"]",
+    "css": ".group:active .group-active\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-enabled:flex",
+    "css": ".group:enabled .group-enabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-enabled:bg-black",
+    "css": ".group:enabled .group-enabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-enabled:text-black",
+    "css": ".group:enabled .group-enabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-enabled:border-black",
+    "css": ".group:enabled .group-enabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-enabled:content-[\"hi\"]",
+    "css": ".group:enabled .group-enabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-disabled:flex",
+    "css": ".group:disabled .group-disabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-disabled:bg-black",
+    "css": ".group:disabled .group-disabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-disabled:text-black",
+    "css": ".group:disabled .group-disabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-disabled:border-black",
+    "css": ".group:disabled .group-disabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-disabled:content-[\"hi\"]",
+    "css": ".group:disabled .group-disabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group:flex",
+    "css": ""
+  },
+  {
+    "candidate": "group:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "group:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "group:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "group:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "peer-first:flex",
+    "css": ".peer:first-child ~ .peer-first\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-first:bg-black",
+    "css": ".peer:first-child ~ .peer-first\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first:text-black",
+    "css": ".peer:first-child ~ .peer-first\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first:border-black",
+    "css": ".peer:first-child ~ .peer-first\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first:content-[\"hi\"]",
+    "css": ".peer:first-child ~ .peer-first\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-last:flex",
+    "css": ".peer:last-child ~ .peer-last\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-last:bg-black",
+    "css": ".peer:last-child ~ .peer-last\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last:text-black",
+    "css": ".peer:last-child ~ .peer-last\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last:border-black",
+    "css": ".peer:last-child ~ .peer-last\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last:content-[\"hi\"]",
+    "css": ".peer:last-child ~ .peer-last\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-only:flex",
+    "css": ".peer:only-child ~ .peer-only\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-only:bg-black",
+    "css": ".peer:only-child ~ .peer-only\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only:text-black",
+    "css": ".peer:only-child ~ .peer-only\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only:border-black",
+    "css": ".peer:only-child ~ .peer-only\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only:content-[\"hi\"]",
+    "css": ".peer:only-child ~ .peer-only\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-odd:flex",
+    "css": ".peer:nth-child(odd) ~ .peer-odd\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-odd:bg-black",
+    "css": ".peer:nth-child(odd) ~ .peer-odd\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-odd:text-black",
+    "css": ".peer:nth-child(odd) ~ .peer-odd\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-odd:border-black",
+    "css": ".peer:nth-child(odd) ~ .peer-odd\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-odd:content-[\"hi\"]",
+    "css": ".peer:nth-child(odd) ~ .peer-odd\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-even:flex",
+    "css": ".peer:nth-child(even) ~ .peer-even\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-even:bg-black",
+    "css": ".peer:nth-child(even) ~ .peer-even\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-even:text-black",
+    "css": ".peer:nth-child(even) ~ .peer-even\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-even:border-black",
+    "css": ".peer:nth-child(even) ~ .peer-even\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-even:content-[\"hi\"]",
+    "css": ".peer:nth-child(even) ~ .peer-even\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-first-of-type:flex",
+    "css": ".peer:first-of-type ~ .peer-first-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-first-of-type:bg-black",
+    "css": ".peer:first-of-type ~ .peer-first-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first-of-type:text-black",
+    "css": ".peer:first-of-type ~ .peer-first-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first-of-type:border-black",
+    "css": ".peer:first-of-type ~ .peer-first-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-first-of-type:content-[\"hi\"]",
+    "css": ".peer:first-of-type ~ .peer-first-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-last-of-type:flex",
+    "css": ".peer:last-of-type ~ .peer-last-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-last-of-type:bg-black",
+    "css": ".peer:last-of-type ~ .peer-last-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last-of-type:text-black",
+    "css": ".peer:last-of-type ~ .peer-last-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last-of-type:border-black",
+    "css": ".peer:last-of-type ~ .peer-last-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-last-of-type:content-[\"hi\"]",
+    "css": ".peer:last-of-type ~ .peer-last-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-only-of-type:flex",
+    "css": ".peer:only-of-type ~ .peer-only-of-type\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-only-of-type:bg-black",
+    "css": ".peer:only-of-type ~ .peer-only-of-type\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only-of-type:text-black",
+    "css": ".peer:only-of-type ~ .peer-only-of-type\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only-of-type:border-black",
+    "css": ".peer:only-of-type ~ .peer-only-of-type\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-only-of-type:content-[\"hi\"]",
+    "css": ".peer:only-of-type ~ .peer-only-of-type\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-visited:flex",
+    "css": ".peer:visited ~ .peer-visited\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-visited:bg-black",
+    "css": ".peer:visited ~ .peer-visited\\:bg-black {\n    background-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "peer-visited:text-black",
+    "css": ".peer:visited ~ .peer-visited\\:text-black {\n    color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "peer-visited:border-black",
+    "css": ".peer:visited ~ .peer-visited\\:border-black {\n    border-color: rgb(0 0 0 )\n}"
+  },
+  {
+    "candidate": "peer-visited:content-[\"hi\"]",
+    "css": ".peer:visited ~ .peer-visited\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-target:flex",
+    "css": ".peer:target ~ .peer-target\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-target:bg-black",
+    "css": ".peer:target ~ .peer-target\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-target:text-black",
+    "css": ".peer:target ~ .peer-target\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-target:border-black",
+    "css": ".peer:target ~ .peer-target\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-target:content-[\"hi\"]",
+    "css": ".peer:target ~ .peer-target\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-open:flex",
+    "css": ".peer[open] ~ .peer-open\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-open:bg-black",
+    "css": ".peer[open] ~ .peer-open\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-open:text-black",
+    "css": ".peer[open] ~ .peer-open\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-open:border-black",
+    "css": ".peer[open] ~ .peer-open\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-open:content-[\"hi\"]",
+    "css": ".peer[open] ~ .peer-open\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-default:flex",
+    "css": ".peer:default ~ .peer-default\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-default:bg-black",
+    "css": ".peer:default ~ .peer-default\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-default:text-black",
+    "css": ".peer:default ~ .peer-default\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-default:border-black",
+    "css": ".peer:default ~ .peer-default\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-default:content-[\"hi\"]",
+    "css": ".peer:default ~ .peer-default\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-checked:flex",
+    "css": ".peer:checked ~ .peer-checked\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-checked:bg-black",
+    "css": ".peer:checked ~ .peer-checked\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-checked:text-black",
+    "css": ".peer:checked ~ .peer-checked\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-checked:border-black",
+    "css": ".peer:checked ~ .peer-checked\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-checked:content-[\"hi\"]",
+    "css": ".peer:checked ~ .peer-checked\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-indeterminate:flex",
+    "css": ".peer:indeterminate ~ .peer-indeterminate\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-indeterminate:bg-black",
+    "css": ".peer:indeterminate ~ .peer-indeterminate\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-indeterminate:text-black",
+    "css": ".peer:indeterminate ~ .peer-indeterminate\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-indeterminate:border-black",
+    "css": ".peer:indeterminate ~ .peer-indeterminate\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-indeterminate:content-[\"hi\"]",
+    "css": ".peer:indeterminate ~ .peer-indeterminate\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-placeholder-shown:flex",
+    "css": ".peer:placeholder-shown ~ .peer-placeholder-shown\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-placeholder-shown:bg-black",
+    "css": ".peer:placeholder-shown ~ .peer-placeholder-shown\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-placeholder-shown:text-black",
+    "css": ".peer:placeholder-shown ~ .peer-placeholder-shown\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-placeholder-shown:border-black",
+    "css": ".peer:placeholder-shown ~ .peer-placeholder-shown\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-placeholder-shown:content-[\"hi\"]",
+    "css": ".peer:placeholder-shown ~ .peer-placeholder-shown\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-autofill:flex",
+    "css": ".peer:autofill ~ .peer-autofill\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-autofill:bg-black",
+    "css": ".peer:autofill ~ .peer-autofill\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-autofill:text-black",
+    "css": ".peer:autofill ~ .peer-autofill\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-autofill:border-black",
+    "css": ".peer:autofill ~ .peer-autofill\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-autofill:content-[\"hi\"]",
+    "css": ".peer:autofill ~ .peer-autofill\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-optional:flex",
+    "css": ".peer:optional ~ .peer-optional\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-optional:bg-black",
+    "css": ".peer:optional ~ .peer-optional\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-optional:text-black",
+    "css": ".peer:optional ~ .peer-optional\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-optional:border-black",
+    "css": ".peer:optional ~ .peer-optional\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-optional:content-[\"hi\"]",
+    "css": ".peer:optional ~ .peer-optional\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-required:flex",
+    "css": ".peer:required ~ .peer-required\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-required:bg-black",
+    "css": ".peer:required ~ .peer-required\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-required:text-black",
+    "css": ".peer:required ~ .peer-required\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-required:border-black",
+    "css": ".peer:required ~ .peer-required\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-required:content-[\"hi\"]",
+    "css": ".peer:required ~ .peer-required\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-valid:flex",
+    "css": ".peer:valid ~ .peer-valid\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-valid:bg-black",
+    "css": ".peer:valid ~ .peer-valid\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-valid:text-black",
+    "css": ".peer:valid ~ .peer-valid\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-valid:border-black",
+    "css": ".peer:valid ~ .peer-valid\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-valid:content-[\"hi\"]",
+    "css": ".peer:valid ~ .peer-valid\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-invalid:flex",
+    "css": ".peer:invalid ~ .peer-invalid\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-invalid:bg-black",
+    "css": ".peer:invalid ~ .peer-invalid\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-invalid:text-black",
+    "css": ".peer:invalid ~ .peer-invalid\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-invalid:border-black",
+    "css": ".peer:invalid ~ .peer-invalid\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-invalid:content-[\"hi\"]",
+    "css": ".peer:invalid ~ .peer-invalid\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-in-range:flex",
+    "css": ".peer:in-range ~ .peer-in-range\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-in-range:bg-black",
+    "css": ".peer:in-range ~ .peer-in-range\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-in-range:text-black",
+    "css": ".peer:in-range ~ .peer-in-range\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-in-range:border-black",
+    "css": ".peer:in-range ~ .peer-in-range\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-in-range:content-[\"hi\"]",
+    "css": ".peer:in-range ~ .peer-in-range\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-out-of-range:flex",
+    "css": ".peer:out-of-range ~ .peer-out-of-range\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-out-of-range:bg-black",
+    "css": ".peer:out-of-range ~ .peer-out-of-range\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-out-of-range:text-black",
+    "css": ".peer:out-of-range ~ .peer-out-of-range\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-out-of-range:border-black",
+    "css": ".peer:out-of-range ~ .peer-out-of-range\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-out-of-range:content-[\"hi\"]",
+    "css": ".peer:out-of-range ~ .peer-out-of-range\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-read-only:flex",
+    "css": ".peer:read-only ~ .peer-read-only\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-read-only:bg-black",
+    "css": ".peer:read-only ~ .peer-read-only\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-read-only:text-black",
+    "css": ".peer:read-only ~ .peer-read-only\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-read-only:border-black",
+    "css": ".peer:read-only ~ .peer-read-only\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-read-only:content-[\"hi\"]",
+    "css": ".peer:read-only ~ .peer-read-only\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-empty:flex",
+    "css": ".peer:empty ~ .peer-empty\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-empty:bg-black",
+    "css": ".peer:empty ~ .peer-empty\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-empty:text-black",
+    "css": ".peer:empty ~ .peer-empty\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-empty:border-black",
+    "css": ".peer:empty ~ .peer-empty\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-empty:content-[\"hi\"]",
+    "css": ".peer:empty ~ .peer-empty\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-focus-within:flex",
+    "css": ".peer:focus-within ~ .peer-focus-within\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-focus-within:bg-black",
+    "css": ".peer:focus-within ~ .peer-focus-within\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-within:text-black",
+    "css": ".peer:focus-within ~ .peer-focus-within\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-within:border-black",
+    "css": ".peer:focus-within ~ .peer-focus-within\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-within:content-[\"hi\"]",
+    "css": ".peer:focus-within ~ .peer-focus-within\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-hover:flex",
+    "css": ".peer:hover ~ .peer-hover\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-hover:bg-black",
+    "css": ".peer:hover ~ .peer-hover\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-hover:text-black",
+    "css": ".peer:hover ~ .peer-hover\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-hover:border-black",
+    "css": ".peer:hover ~ .peer-hover\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-hover:content-[\"hi\"]",
+    "css": ".peer:hover ~ .peer-hover\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-focus:flex",
+    "css": ".peer:focus ~ .peer-focus\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-focus:bg-black",
+    "css": ".peer:focus ~ .peer-focus\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus:text-black",
+    "css": ".peer:focus ~ .peer-focus\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus:border-black",
+    "css": ".peer:focus ~ .peer-focus\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus:content-[\"hi\"]",
+    "css": ".peer:focus ~ .peer-focus\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-focus-visible:flex",
+    "css": ".peer:focus-visible ~ .peer-focus-visible\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-focus-visible:bg-black",
+    "css": ".peer:focus-visible ~ .peer-focus-visible\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-visible:text-black",
+    "css": ".peer:focus-visible ~ .peer-focus-visible\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-visible:border-black",
+    "css": ".peer:focus-visible ~ .peer-focus-visible\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-focus-visible:content-[\"hi\"]",
+    "css": ".peer:focus-visible ~ .peer-focus-visible\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-active:flex",
+    "css": ".peer:active ~ .peer-active\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-active:bg-black",
+    "css": ".peer:active ~ .peer-active\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-active:text-black",
+    "css": ".peer:active ~ .peer-active\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-active:border-black",
+    "css": ".peer:active ~ .peer-active\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-active:content-[\"hi\"]",
+    "css": ".peer:active ~ .peer-active\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-enabled:flex",
+    "css": ".peer:enabled ~ .peer-enabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-enabled:bg-black",
+    "css": ".peer:enabled ~ .peer-enabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-enabled:text-black",
+    "css": ".peer:enabled ~ .peer-enabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-enabled:border-black",
+    "css": ".peer:enabled ~ .peer-enabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-enabled:content-[\"hi\"]",
+    "css": ".peer:enabled ~ .peer-enabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-disabled:flex",
+    "css": ".peer:disabled ~ .peer-disabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-disabled:bg-black",
+    "css": ".peer:disabled ~ .peer-disabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-disabled:text-black",
+    "css": ".peer:disabled ~ .peer-disabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-disabled:border-black",
+    "css": ".peer:disabled ~ .peer-disabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-disabled:content-[\"hi\"]",
+    "css": ".peer:disabled ~ .peer-disabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer:flex",
+    "css": ""
+  },
+  {
+    "candidate": "peer:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "has:flex",
+    "css": ""
+  },
+  {
+    "candidate": "has:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "has:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "has:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "has:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "group-has:flex",
+    "css": ""
+  },
+  {
+    "candidate": "group-has:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-has:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-has:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-has:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "peer-has:flex",
+    "css": ""
+  },
+  {
+    "candidate": "peer-has:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-has:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-has:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-has:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "aria-busy:flex",
+    "css": ".aria-busy\\:flex[aria-busy=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-busy:bg-black",
+    "css": ".aria-busy\\:bg-black[aria-busy=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-busy:text-black",
+    "css": ".aria-busy\\:text-black[aria-busy=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-busy:border-black",
+    "css": ".aria-busy\\:border-black[aria-busy=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-busy:content-[\"hi\"]",
+    "css": ".aria-busy\\:content-\\[\\\"hi\\\"\\][aria-busy=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-checked:flex",
+    "css": ".aria-checked\\:flex[aria-checked=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-checked:bg-black",
+    "css": ".aria-checked\\:bg-black[aria-checked=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-checked:text-black",
+    "css": ".aria-checked\\:text-black[aria-checked=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-checked:border-black",
+    "css": ".aria-checked\\:border-black[aria-checked=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-checked:content-[\"hi\"]",
+    "css": ".aria-checked\\:content-\\[\\\"hi\\\"\\][aria-checked=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-disabled:flex",
+    "css": ".aria-disabled\\:flex[aria-disabled=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-disabled:bg-black",
+    "css": ".aria-disabled\\:bg-black[aria-disabled=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-disabled:text-black",
+    "css": ".aria-disabled\\:text-black[aria-disabled=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-disabled:border-black",
+    "css": ".aria-disabled\\:border-black[aria-disabled=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-disabled:content-[\"hi\"]",
+    "css": ".aria-disabled\\:content-\\[\\\"hi\\\"\\][aria-disabled=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-expanded:flex",
+    "css": ".aria-expanded\\:flex[aria-expanded=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-expanded:bg-black",
+    "css": ".aria-expanded\\:bg-black[aria-expanded=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-expanded:text-black",
+    "css": ".aria-expanded\\:text-black[aria-expanded=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-expanded:border-black",
+    "css": ".aria-expanded\\:border-black[aria-expanded=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-expanded:content-[\"hi\"]",
+    "css": ".aria-expanded\\:content-\\[\\\"hi\\\"\\][aria-expanded=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-hidden:flex",
+    "css": ".aria-hidden\\:flex[aria-hidden=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-hidden:bg-black",
+    "css": ".aria-hidden\\:bg-black[aria-hidden=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-hidden:text-black",
+    "css": ".aria-hidden\\:text-black[aria-hidden=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-hidden:border-black",
+    "css": ".aria-hidden\\:border-black[aria-hidden=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-hidden:content-[\"hi\"]",
+    "css": ".aria-hidden\\:content-\\[\\\"hi\\\"\\][aria-hidden=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-pressed:flex",
+    "css": ".aria-pressed\\:flex[aria-pressed=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-pressed:bg-black",
+    "css": ".aria-pressed\\:bg-black[aria-pressed=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-pressed:text-black",
+    "css": ".aria-pressed\\:text-black[aria-pressed=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-pressed:border-black",
+    "css": ".aria-pressed\\:border-black[aria-pressed=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-pressed:content-[\"hi\"]",
+    "css": ".aria-pressed\\:content-\\[\\\"hi\\\"\\][aria-pressed=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-readonly:flex",
+    "css": ".aria-readonly\\:flex[aria-readonly=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-readonly:bg-black",
+    "css": ".aria-readonly\\:bg-black[aria-readonly=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-readonly:text-black",
+    "css": ".aria-readonly\\:text-black[aria-readonly=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-readonly:border-black",
+    "css": ".aria-readonly\\:border-black[aria-readonly=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-readonly:content-[\"hi\"]",
+    "css": ".aria-readonly\\:content-\\[\\\"hi\\\"\\][aria-readonly=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-required:flex",
+    "css": ".aria-required\\:flex[aria-required=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-required:bg-black",
+    "css": ".aria-required\\:bg-black[aria-required=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-required:text-black",
+    "css": ".aria-required\\:text-black[aria-required=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-required:border-black",
+    "css": ".aria-required\\:border-black[aria-required=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-required:content-[\"hi\"]",
+    "css": ".aria-required\\:content-\\[\\\"hi\\\"\\][aria-required=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria-selected:flex",
+    "css": ".aria-selected\\:flex[aria-selected=\"true\"] {\n    display: flex\n}"
+  },
+  {
+    "candidate": "aria-selected:bg-black",
+    "css": ".aria-selected\\:bg-black[aria-selected=\"true\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-selected:text-black",
+    "css": ".aria-selected\\:text-black[aria-selected=\"true\"] {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-selected:border-black",
+    "css": ".aria-selected\\:border-black[aria-selected=\"true\"] {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-selected:content-[\"hi\"]",
+    "css": ".aria-selected\\:content-\\[\\\"hi\\\"\\][aria-selected=\"true\"] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "aria:flex",
+    "css": ""
+  },
+  {
+    "candidate": "aria:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "aria:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "aria:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "aria:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "group-aria-busy:flex",
+    "css": ".group[aria-busy=\"true\"] .group-aria-busy\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-busy:bg-black",
+    "css": ".group[aria-busy=\"true\"] .group-aria-busy\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-busy:text-black",
+    "css": ".group[aria-busy=\"true\"] .group-aria-busy\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-busy:border-black",
+    "css": ".group[aria-busy=\"true\"] .group-aria-busy\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-busy:content-[\"hi\"]",
+    "css": ".group[aria-busy=\"true\"] .group-aria-busy\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-checked:flex",
+    "css": ".group[aria-checked=\"true\"] .group-aria-checked\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-checked:bg-black",
+    "css": ".group[aria-checked=\"true\"] .group-aria-checked\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-checked:text-black",
+    "css": ".group[aria-checked=\"true\"] .group-aria-checked\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-checked:border-black",
+    "css": ".group[aria-checked=\"true\"] .group-aria-checked\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-checked:content-[\"hi\"]",
+    "css": ".group[aria-checked=\"true\"] .group-aria-checked\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-disabled:flex",
+    "css": ".group[aria-disabled=\"true\"] .group-aria-disabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-disabled:bg-black",
+    "css": ".group[aria-disabled=\"true\"] .group-aria-disabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-disabled:text-black",
+    "css": ".group[aria-disabled=\"true\"] .group-aria-disabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-disabled:border-black",
+    "css": ".group[aria-disabled=\"true\"] .group-aria-disabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-disabled:content-[\"hi\"]",
+    "css": ".group[aria-disabled=\"true\"] .group-aria-disabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-expanded:flex",
+    "css": ".group[aria-expanded=\"true\"] .group-aria-expanded\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-expanded:bg-black",
+    "css": ".group[aria-expanded=\"true\"] .group-aria-expanded\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-expanded:text-black",
+    "css": ".group[aria-expanded=\"true\"] .group-aria-expanded\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-expanded:border-black",
+    "css": ".group[aria-expanded=\"true\"] .group-aria-expanded\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-expanded:content-[\"hi\"]",
+    "css": ".group[aria-expanded=\"true\"] .group-aria-expanded\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-hidden:flex",
+    "css": ".group[aria-hidden=\"true\"] .group-aria-hidden\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-hidden:bg-black",
+    "css": ".group[aria-hidden=\"true\"] .group-aria-hidden\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-hidden:text-black",
+    "css": ".group[aria-hidden=\"true\"] .group-aria-hidden\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-hidden:border-black",
+    "css": ".group[aria-hidden=\"true\"] .group-aria-hidden\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-hidden:content-[\"hi\"]",
+    "css": ".group[aria-hidden=\"true\"] .group-aria-hidden\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-pressed:flex",
+    "css": ".group[aria-pressed=\"true\"] .group-aria-pressed\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-pressed:bg-black",
+    "css": ".group[aria-pressed=\"true\"] .group-aria-pressed\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-pressed:text-black",
+    "css": ".group[aria-pressed=\"true\"] .group-aria-pressed\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-pressed:border-black",
+    "css": ".group[aria-pressed=\"true\"] .group-aria-pressed\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-pressed:content-[\"hi\"]",
+    "css": ".group[aria-pressed=\"true\"] .group-aria-pressed\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-readonly:flex",
+    "css": ".group[aria-readonly=\"true\"] .group-aria-readonly\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-readonly:bg-black",
+    "css": ".group[aria-readonly=\"true\"] .group-aria-readonly\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-readonly:text-black",
+    "css": ".group[aria-readonly=\"true\"] .group-aria-readonly\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-readonly:border-black",
+    "css": ".group[aria-readonly=\"true\"] .group-aria-readonly\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-readonly:content-[\"hi\"]",
+    "css": ".group[aria-readonly=\"true\"] .group-aria-readonly\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-required:flex",
+    "css": ".group[aria-required=\"true\"] .group-aria-required\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-required:bg-black",
+    "css": ".group[aria-required=\"true\"] .group-aria-required\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-required:text-black",
+    "css": ".group[aria-required=\"true\"] .group-aria-required\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-required:border-black",
+    "css": ".group[aria-required=\"true\"] .group-aria-required\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-required:content-[\"hi\"]",
+    "css": ".group[aria-required=\"true\"] .group-aria-required\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria-selected:flex",
+    "css": ".group[aria-selected=\"true\"] .group-aria-selected\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "group-aria-selected:bg-black",
+    "css": ".group[aria-selected=\"true\"] .group-aria-selected\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-selected:text-black",
+    "css": ".group[aria-selected=\"true\"] .group-aria-selected\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-selected:border-black",
+    "css": ".group[aria-selected=\"true\"] .group-aria-selected\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-aria-selected:content-[\"hi\"]",
+    "css": ".group[aria-selected=\"true\"] .group-aria-selected\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "group-aria:flex",
+    "css": ""
+  },
+  {
+    "candidate": "group-aria:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-aria:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-aria:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-aria:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "peer-aria-busy:flex",
+    "css": ".peer[aria-busy=\"true\"] ~ .peer-aria-busy\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-busy:bg-black",
+    "css": ".peer[aria-busy=\"true\"] ~ .peer-aria-busy\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-busy:text-black",
+    "css": ".peer[aria-busy=\"true\"] ~ .peer-aria-busy\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-busy:border-black",
+    "css": ".peer[aria-busy=\"true\"] ~ .peer-aria-busy\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-busy:content-[\"hi\"]",
+    "css": ".peer[aria-busy=\"true\"] ~ .peer-aria-busy\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-checked:flex",
+    "css": ".peer[aria-checked=\"true\"] ~ .peer-aria-checked\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-checked:bg-black",
+    "css": ".peer[aria-checked=\"true\"] ~ .peer-aria-checked\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-checked:text-black",
+    "css": ".peer[aria-checked=\"true\"] ~ .peer-aria-checked\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-checked:border-black",
+    "css": ".peer[aria-checked=\"true\"] ~ .peer-aria-checked\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-checked:content-[\"hi\"]",
+    "css": ".peer[aria-checked=\"true\"] ~ .peer-aria-checked\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-disabled:flex",
+    "css": ".peer[aria-disabled=\"true\"] ~ .peer-aria-disabled\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-disabled:bg-black",
+    "css": ".peer[aria-disabled=\"true\"] ~ .peer-aria-disabled\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-disabled:text-black",
+    "css": ".peer[aria-disabled=\"true\"] ~ .peer-aria-disabled\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-disabled:border-black",
+    "css": ".peer[aria-disabled=\"true\"] ~ .peer-aria-disabled\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-disabled:content-[\"hi\"]",
+    "css": ".peer[aria-disabled=\"true\"] ~ .peer-aria-disabled\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-expanded:flex",
+    "css": ".peer[aria-expanded=\"true\"] ~ .peer-aria-expanded\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-expanded:bg-black",
+    "css": ".peer[aria-expanded=\"true\"] ~ .peer-aria-expanded\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-expanded:text-black",
+    "css": ".peer[aria-expanded=\"true\"] ~ .peer-aria-expanded\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-expanded:border-black",
+    "css": ".peer[aria-expanded=\"true\"] ~ .peer-aria-expanded\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-expanded:content-[\"hi\"]",
+    "css": ".peer[aria-expanded=\"true\"] ~ .peer-aria-expanded\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-hidden:flex",
+    "css": ".peer[aria-hidden=\"true\"] ~ .peer-aria-hidden\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-hidden:bg-black",
+    "css": ".peer[aria-hidden=\"true\"] ~ .peer-aria-hidden\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-hidden:text-black",
+    "css": ".peer[aria-hidden=\"true\"] ~ .peer-aria-hidden\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-hidden:border-black",
+    "css": ".peer[aria-hidden=\"true\"] ~ .peer-aria-hidden\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-hidden:content-[\"hi\"]",
+    "css": ".peer[aria-hidden=\"true\"] ~ .peer-aria-hidden\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-pressed:flex",
+    "css": ".peer[aria-pressed=\"true\"] ~ .peer-aria-pressed\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-pressed:bg-black",
+    "css": ".peer[aria-pressed=\"true\"] ~ .peer-aria-pressed\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-pressed:text-black",
+    "css": ".peer[aria-pressed=\"true\"] ~ .peer-aria-pressed\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-pressed:border-black",
+    "css": ".peer[aria-pressed=\"true\"] ~ .peer-aria-pressed\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-pressed:content-[\"hi\"]",
+    "css": ".peer[aria-pressed=\"true\"] ~ .peer-aria-pressed\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-readonly:flex",
+    "css": ".peer[aria-readonly=\"true\"] ~ .peer-aria-readonly\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-readonly:bg-black",
+    "css": ".peer[aria-readonly=\"true\"] ~ .peer-aria-readonly\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-readonly:text-black",
+    "css": ".peer[aria-readonly=\"true\"] ~ .peer-aria-readonly\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-readonly:border-black",
+    "css": ".peer[aria-readonly=\"true\"] ~ .peer-aria-readonly\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-readonly:content-[\"hi\"]",
+    "css": ".peer[aria-readonly=\"true\"] ~ .peer-aria-readonly\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-required:flex",
+    "css": ".peer[aria-required=\"true\"] ~ .peer-aria-required\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-required:bg-black",
+    "css": ".peer[aria-required=\"true\"] ~ .peer-aria-required\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-required:text-black",
+    "css": ".peer[aria-required=\"true\"] ~ .peer-aria-required\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-required:border-black",
+    "css": ".peer[aria-required=\"true\"] ~ .peer-aria-required\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-required:content-[\"hi\"]",
+    "css": ".peer[aria-required=\"true\"] ~ .peer-aria-required\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria-selected:flex",
+    "css": ".peer[aria-selected=\"true\"] ~ .peer-aria-selected\\:flex {\n    display: flex\n}"
+  },
+  {
+    "candidate": "peer-aria-selected:bg-black",
+    "css": ".peer[aria-selected=\"true\"] ~ .peer-aria-selected\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-selected:text-black",
+    "css": ".peer[aria-selected=\"true\"] ~ .peer-aria-selected\\:text-black {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-selected:border-black",
+    "css": ".peer[aria-selected=\"true\"] ~ .peer-aria-selected\\:border-black {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-aria-selected:content-[\"hi\"]",
+    "css": ".peer[aria-selected=\"true\"] ~ .peer-aria-selected\\:content-\\[\\\"hi\\\"\\] {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "peer-aria:flex",
+    "css": ""
+  },
+  {
+    "candidate": "peer-aria:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-aria:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-aria:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-aria:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "data:flex",
+    "css": ""
+  },
+  {
+    "candidate": "data:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "data:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "data:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "data:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "group-data:flex",
+    "css": ""
+  },
+  {
+    "candidate": "group-data:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-data:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-data:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "group-data:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "peer-data:flex",
+    "css": ""
+  },
+  {
+    "candidate": "peer-data:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-data:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-data:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "peer-data:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "supports:flex",
+    "css": ""
+  },
+  {
+    "candidate": "supports:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "supports:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "supports:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "supports:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "motion-safe:flex",
+    "css": "@media (prefers-reduced-motion: no-preference) {\n    .motion-safe\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "motion-safe:bg-black",
+    "css": "@media (prefers-reduced-motion: no-preference) {\n    .motion-safe\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-safe:text-black",
+    "css": "@media (prefers-reduced-motion: no-preference) {\n    .motion-safe\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-safe:border-black",
+    "css": "@media (prefers-reduced-motion: no-preference) {\n    .motion-safe\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-safe:content-[\"hi\"]",
+    "css": "@media (prefers-reduced-motion: no-preference) {\n    .motion-safe\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "motion-reduce:flex",
+    "css": "@media (prefers-reduced-motion: reduce) {\n    .motion-reduce\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "motion-reduce:bg-black",
+    "css": "@media (prefers-reduced-motion: reduce) {\n    .motion-reduce\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-reduce:text-black",
+    "css": "@media (prefers-reduced-motion: reduce) {\n    .motion-reduce\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-reduce:border-black",
+    "css": "@media (prefers-reduced-motion: reduce) {\n    .motion-reduce\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "motion-reduce:content-[\"hi\"]",
+    "css": "@media (prefers-reduced-motion: reduce) {\n    .motion-reduce\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "contrast-more:flex",
+    "css": "@media (prefers-contrast: more) {\n    .contrast-more\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "contrast-more:bg-black",
+    "css": "@media (prefers-contrast: more) {\n    .contrast-more\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-more:text-black",
+    "css": "@media (prefers-contrast: more) {\n    .contrast-more\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-more:border-black",
+    "css": "@media (prefers-contrast: more) {\n    .contrast-more\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-more:content-[\"hi\"]",
+    "css": "@media (prefers-contrast: more) {\n    .contrast-more\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "contrast-less:flex",
+    "css": "@media (prefers-contrast: less) {\n    .contrast-less\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "contrast-less:bg-black",
+    "css": "@media (prefers-contrast: less) {\n    .contrast-less\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-less:text-black",
+    "css": "@media (prefers-contrast: less) {\n    .contrast-less\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-less:border-black",
+    "css": "@media (prefers-contrast: less) {\n    .contrast-less\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "contrast-less:content-[\"hi\"]",
+    "css": "@media (prefers-contrast: less) {\n    .contrast-less\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max-sm:flex",
+    "css": "@media not all and (min-width: 640px) {\n    .max-sm\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "max-sm:bg-black",
+    "css": "@media not all and (min-width: 640px) {\n    .max-sm\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-sm:text-black",
+    "css": "@media not all and (min-width: 640px) {\n    .max-sm\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-sm:border-black",
+    "css": "@media not all and (min-width: 640px) {\n    .max-sm\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-sm:content-[\"hi\"]",
+    "css": "@media not all and (min-width: 640px) {\n    .max-sm\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max-md:flex",
+    "css": "@media not all and (min-width: 768px) {\n    .max-md\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "max-md:bg-black",
+    "css": "@media not all and (min-width: 768px) {\n    .max-md\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-md:text-black",
+    "css": "@media not all and (min-width: 768px) {\n    .max-md\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-md:border-black",
+    "css": "@media not all and (min-width: 768px) {\n    .max-md\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-md:content-[\"hi\"]",
+    "css": "@media not all and (min-width: 768px) {\n    .max-md\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max-lg:flex",
+    "css": "@media not all and (min-width: 1024px) {\n    .max-lg\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "max-lg:bg-black",
+    "css": "@media not all and (min-width: 1024px) {\n    .max-lg\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-lg:text-black",
+    "css": "@media not all and (min-width: 1024px) {\n    .max-lg\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-lg:border-black",
+    "css": "@media not all and (min-width: 1024px) {\n    .max-lg\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-lg:content-[\"hi\"]",
+    "css": "@media not all and (min-width: 1024px) {\n    .max-lg\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max-xl:flex",
+    "css": "@media not all and (min-width: 1280px) {\n    .max-xl\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "max-xl:bg-black",
+    "css": "@media not all and (min-width: 1280px) {\n    .max-xl\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-xl:text-black",
+    "css": "@media not all and (min-width: 1280px) {\n    .max-xl\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-xl:border-black",
+    "css": "@media not all and (min-width: 1280px) {\n    .max-xl\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-xl:content-[\"hi\"]",
+    "css": "@media not all and (min-width: 1280px) {\n    .max-xl\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max-2xl:flex",
+    "css": "@media not all and (min-width: 1536px) {\n    .max-2xl\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "max-2xl:bg-black",
+    "css": "@media not all and (min-width: 1536px) {\n    .max-2xl\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-2xl:text-black",
+    "css": "@media not all and (min-width: 1536px) {\n    .max-2xl\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-2xl:border-black",
+    "css": "@media not all and (min-width: 1536px) {\n    .max-2xl\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-2xl:content-[\"hi\"]",
+    "css": "@media not all and (min-width: 1536px) {\n    .max-2xl\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "max:flex",
+    "css": ""
+  },
+  {
+    "candidate": "max:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "max:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "max:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "max:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "sm:flex",
+    "css": "@media (min-width: 640px) {\n    .sm\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "sm:bg-black",
+    "css": "@media (min-width: 640px) {\n    .sm\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "sm:text-black",
+    "css": "@media (min-width: 640px) {\n    .sm\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "sm:border-black",
+    "css": "@media (min-width: 640px) {\n    .sm\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "sm:content-[\"hi\"]",
+    "css": "@media (min-width: 640px) {\n    .sm\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "md:flex",
+    "css": "@media (min-width: 768px) {\n    .md\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "md:bg-black",
+    "css": "@media (min-width: 768px) {\n    .md\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "md:text-black",
+    "css": "@media (min-width: 768px) {\n    .md\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "md:border-black",
+    "css": "@media (min-width: 768px) {\n    .md\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "md:content-[\"hi\"]",
+    "css": "@media (min-width: 768px) {\n    .md\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "lg:flex",
+    "css": "@media (min-width: 1024px) {\n    .lg\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "lg:bg-black",
+    "css": "@media (min-width: 1024px) {\n    .lg\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "lg:text-black",
+    "css": "@media (min-width: 1024px) {\n    .lg\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "lg:border-black",
+    "css": "@media (min-width: 1024px) {\n    .lg\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "lg:content-[\"hi\"]",
+    "css": "@media (min-width: 1024px) {\n    .lg\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "xl:flex",
+    "css": "@media (min-width: 1280px) {\n    .xl\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "xl:bg-black",
+    "css": "@media (min-width: 1280px) {\n    .xl\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "xl:text-black",
+    "css": "@media (min-width: 1280px) {\n    .xl\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "xl:border-black",
+    "css": "@media (min-width: 1280px) {\n    .xl\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "xl:content-[\"hi\"]",
+    "css": "@media (min-width: 1280px) {\n    .xl\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "2xl:flex",
+    "css": "@media (min-width: 1536px) {\n    .\\32xl\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "2xl:bg-black",
+    "css": "@media (min-width: 1536px) {\n    .\\32xl\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "2xl:text-black",
+    "css": "@media (min-width: 1536px) {\n    .\\32xl\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "2xl:border-black",
+    "css": "@media (min-width: 1536px) {\n    .\\32xl\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "2xl:content-[\"hi\"]",
+    "css": "@media (min-width: 1536px) {\n    .\\32xl\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "min:flex",
+    "css": ""
+  },
+  {
+    "candidate": "min:bg-black",
+    "css": ""
+  },
+  {
+    "candidate": "min:text-black",
+    "css": ""
+  },
+  {
+    "candidate": "min:border-black",
+    "css": ""
+  },
+  {
+    "candidate": "min:content-[\"hi\"]",
+    "css": ""
+  },
+  {
+    "candidate": "portrait:flex",
+    "css": "@media (orientation: portrait) {\n    .portrait\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "portrait:bg-black",
+    "css": "@media (orientation: portrait) {\n    .portrait\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "portrait:text-black",
+    "css": "@media (orientation: portrait) {\n    .portrait\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "portrait:border-black",
+    "css": "@media (orientation: portrait) {\n    .portrait\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "portrait:content-[\"hi\"]",
+    "css": "@media (orientation: portrait) {\n    .portrait\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "landscape:flex",
+    "css": "@media (orientation: landscape) {\n    .landscape\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "landscape:bg-black",
+    "css": "@media (orientation: landscape) {\n    .landscape\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "landscape:text-black",
+    "css": "@media (orientation: landscape) {\n    .landscape\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "landscape:border-black",
+    "css": "@media (orientation: landscape) {\n    .landscape\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "landscape:content-[\"hi\"]",
+    "css": "@media (orientation: landscape) {\n    .landscape\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "ltr:flex",
+    "css": ".ltr\\:flex:where([dir=\"ltr\"], [dir=\"ltr\"] *) {\n    display: flex\n}"
+  },
+  {
+    "candidate": "ltr:bg-black",
+    "css": ".ltr\\:bg-black:where([dir=\"ltr\"], [dir=\"ltr\"] *) {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "ltr:text-black",
+    "css": ".ltr\\:text-black:where([dir=\"ltr\"], [dir=\"ltr\"] *) {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "ltr:border-black",
+    "css": ".ltr\\:border-black:where([dir=\"ltr\"], [dir=\"ltr\"] *) {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "ltr:content-[\"hi\"]",
+    "css": ".ltr\\:content-\\[\\\"hi\\\"\\]:where([dir=\"ltr\"], [dir=\"ltr\"] *) {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "rtl:flex",
+    "css": ".rtl\\:flex:where([dir=\"rtl\"], [dir=\"rtl\"] *) {\n    display: flex\n}"
+  },
+  {
+    "candidate": "rtl:bg-black",
+    "css": ".rtl\\:bg-black:where([dir=\"rtl\"], [dir=\"rtl\"] *) {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "rtl:text-black",
+    "css": ".rtl\\:text-black:where([dir=\"rtl\"], [dir=\"rtl\"] *) {\n    --tw-text-opacity: 1;\n    color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n}"
+  },
+  {
+    "candidate": "rtl:border-black",
+    "css": ".rtl\\:border-black:where([dir=\"rtl\"], [dir=\"rtl\"] *) {\n    --tw-border-opacity: 1;\n    border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n}"
+  },
+  {
+    "candidate": "rtl:content-[\"hi\"]",
+    "css": ".rtl\\:content-\\[\\\"hi\\\"\\]:where([dir=\"rtl\"], [dir=\"rtl\"] *) {\n    --tw-content: \"hi\";\n    content: var(--tw-content)\n}"
+  },
+  {
+    "candidate": "dark:flex",
+    "css": "@media (prefers-color-scheme: dark) {\n    .dark\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "dark:bg-black",
+    "css": "@media (prefers-color-scheme: dark) {\n    .dark\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "dark:text-black",
+    "css": "@media (prefers-color-scheme: dark) {\n    .dark\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "dark:border-black",
+    "css": "@media (prefers-color-scheme: dark) {\n    .dark\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "dark:content-[\"hi\"]",
+    "css": "@media (prefers-color-scheme: dark) {\n    .dark\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "forced-colors:flex",
+    "css": "@media (forced-colors: active) {\n    .forced-colors\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "forced-colors:bg-black",
+    "css": "@media (forced-colors: active) {\n    .forced-colors\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "forced-colors:text-black",
+    "css": "@media (forced-colors: active) {\n    .forced-colors\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "forced-colors:border-black",
+    "css": "@media (forced-colors: active) {\n    .forced-colors\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "forced-colors:content-[\"hi\"]",
+    "css": "@media (forced-colors: active) {\n    .forced-colors\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "print:flex",
+    "css": "@media print {\n    .print\\:flex {\n        display: flex\n    }\n}"
+  },
+  {
+    "candidate": "print:bg-black",
+    "css": "@media print {\n    .print\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "print:text-black",
+    "css": "@media print {\n    .print\\:text-black {\n        --tw-text-opacity: 1;\n        color: rgb(0 0 0 / var(--tw-text-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "print:border-black",
+    "css": "@media print {\n    .print\\:border-black {\n        --tw-border-opacity: 1;\n        border-color: rgb(0 0 0 / var(--tw-border-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "print:content-[\"hi\"]",
+    "css": "@media print {\n    .print\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
+  },
+  {
+    "candidate": "group-hover/menu:bg-black",
+    "css": ".group\\/menu:hover .group-hover\\/menu\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-checked/choice:bg-black",
+    "css": ".peer\\/choice:checked ~ .peer-checked\\/choice\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "has-[img]:bg-black",
+    "css": ".has-\\[img\\]\\:bg-black:has(img) {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-has-[a]:bg-black",
+    "css": ".group:has(a) .group-has-\\[a\\]\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "peer-has-[:checked]:bg-black",
+    "css": ".peer:has(:checked) ~ .peer-has-\\[\\:checked\\]\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-[sort=ascending]:bg-black",
+    "css": ".aria-\\[sort\\=ascending\\]\\:bg-black[aria-sort=\"ascending\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "data-[state=open]:bg-black",
+    "css": ".data-\\[state\\=open\\]\\:bg-black[data-state=\"open\"] {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "supports-[display:grid]:bg-black",
+    "css": "@supports (display:grid) {\n    .supports-\\[display\\:grid\\]\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "supports-[backdrop-filter]:bg-black",
+    "css": "@supports (backdrop-filter: var(--tw)) {\n    .supports-\\[backdrop-filter\\]\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "min-[123px]:bg-black",
+    "css": "@media (min-width: 123px) {\n    .min-\\[123px\\]\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "max-[456px]:bg-black",
+    "css": "@media (max-width: 456px) {\n    .max-\\[456px\\]\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "[&>p]:bg-black",
+    "css": ".\\[\\&\\>p\\]\\:bg-black>p {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "sm:hover:bg-black",
+    "css": "@media (min-width: 640px) {\n    .sm\\:hover\\:bg-black:hover {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "hover:sm:bg-black",
+    "css": "@media (min-width: 640px) {\n    .hover\\:sm\\:bg-black:hover {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n}"
+  },
+  {
+    "candidate": "group-hover:focus:bg-black",
+    "css": ".group:hover .group-hover\\:focus\\:bg-black:focus {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "before:hover:bg-black",
+    "css": ".before\\:hover\\:bg-black:hover::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  }
+]

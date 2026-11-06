@@ -56,6 +56,20 @@ func (c *Compiler) Parse(class string) iter.Seq[Candidate] {
 }
 
 func (c *Compiler) hasUtility(name, kind string) bool {
+	if c.config.Compatibility == Tailwind3 {
+		if kind == "static" {
+			return v3Static[name] != nil || c.custom[name] != nil || c.customErrors[name] != nil || name == "container"
+		}
+		if c.customFunctional[name] != nil || c.matchingUtilities[name] != nil {
+			return true
+		}
+		for _, d := range v3Functional[strings.TrimPrefix(name, "-")] {
+			if name[0] != '-' || d.Negative {
+				return true
+			}
+		}
+		return false
+	}
 	if kind == "static" {
 		return builtinStatic[name] != nil || c.custom[name] != nil || c.customErrors[name] != nil || name == "container"
 	}

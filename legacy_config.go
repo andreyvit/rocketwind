@@ -40,6 +40,11 @@ func (c *Compiler) configureLegacy(sources []legacyConfigSource) error {
 	if len(sources) == 0 {
 		return nil
 	}
+	if c.config.Compatibility == Tailwind3 {
+		c.v3ConfigSources = append(c.v3ConfigSources, sources...)
+		sources = c.v3ConfigSources
+		c.legacyTheme = nil
+	}
 	c.initializeLegacyTheme()
 	var configs []legacyConfigSource
 	var visit func(legacyConfigSource) error
@@ -159,6 +164,9 @@ func (c *Compiler) finishLegacy() error {
 		return nil
 	}
 	c.legacyPending = false
+	if c.config.Compatibility == Tailwind3 {
+		return c.finishV3Legacy()
+	}
 	userTheme, replaced, resolved := c.legacyPendingTheme, c.legacyReplaced, c.legacyConfig
 	if c.config.Theme == nil {
 		c.config.Theme = map[string]string{}

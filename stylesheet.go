@@ -8,6 +8,9 @@ import (
 
 // Compile prepares a stylesheet, its theme and its utility definitions.
 func Compile(input string, config Config) (*Compiler, error) {
+	if config.Compatibility == Tailwind3 {
+		return compileV3(input, config)
+	}
 	ast, err := ParseCSS(input, config.From)
 	if err != nil {
 		return nil, err

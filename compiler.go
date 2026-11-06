@@ -18,6 +18,8 @@ type utilityDefinition struct {
 }
 
 type Config struct {
+	// Compatibility selects older generated CSS. The default follows Tailwind 4.
+	Compatibility    Compatibility
 	DisablePolyfills Polyfills
 	// From identifies the input stylesheet in diagnostics and source maps.
 	// Leave empty to avoid retaining source text when maps are not needed.
@@ -41,6 +43,10 @@ type Config struct {
 }
 
 type Compiler struct {
+	v3ConfigSources       []legacyConfigSource
+	v3Prefix              string
+	v3Layer, v3NextOrder  int
+	v3AlwaysRules         []compiledRule
 	features              Features
 	root                  *SourceRoot
 	hasUtilities          bool
@@ -85,10 +91,18 @@ type Compiler struct {
 }
 
 func New(config Config) *Compiler {
+	if config.Compatibility == Tailwind3 {
+		config.NoDefaultTheme = true
+	}
 	config.Theme = maps.Clone(config.Theme)
 	config.Aliases = maps.Clone(config.Aliases)
 	config.ExistingClasses = maps.Clone(config.ExistingClasses)
 	c := &Compiler{config: config, customVariants: map[string]variantDefinition{}, matchingVariants: map[string]*Variant{}}
+	if config.Compatibility == Tailwind3 {
+		c.v3Prefix, c.config.Prefix = config.Prefix, ""
+		c.initializeLegacyTheme()
+		_ = c.resolveAllLegacyTheme() // The generated default theme has no cycles.
+	}
 	for _, variant := range config.Variants {
 		c.addVariant(variant)
 	}
@@ -127,6 +141,9 @@ func (c *Compiler) build(candidates []string, track bool) (string, *decodedSourc
 }
 
 func (b *buildContext) renderRules(rules []compiledRule) string {
+	if b.compiler.config.Compatibility == Tailwind3 {
+		return b.renderV3Rules(rules)
+	}
 	c := b.compiler
 	var nodes []*Node
 	for _, r := range rules {
@@ -190,6 +207,9 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			for i, variant := range candidate.Variants {
 				variants[i] = b.compiledVariant(variant)
 			}
+			if b.compiler.config.Compatibility == Tailwind3 {
+				slices.Reverse(variants)
+			}
 			key := slices.Clone(variants)
 			slices.SortFunc(key, func(a, z *parsedVariant) int { return -b.compareParsedVariant(a, z) })
 			key = slices.CompactFunc(key, func(a, z *parsedVariant) bool { return b.compareParsedVariant(a, z) == 0 })
@@ -198,6 +218,11 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				return rules
 			}
 			for _, nodes := range groups {
+				v3Order := -1
+				if len(nodes) > 0 && nodes[0].Kind == "v3-order" {
+					v3Order, _ = strconv.Atoi(nodes[0].Value)
+					nodes = nodes[1:]
+				}
 				nodes = b.evaluateNodes(nodes)
 				if b.err != nil {
 					b.err = nil
@@ -207,7 +232,14 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 					continue
 				}
 				order, count := sortProperties(nodes)
+				if b.compiler.config.Compatibility == Tailwind3 {
+					order = []int{v3Order}
+					count = 0
+				}
 				n := &Node{Kind: "rule", Name: "." + Escape(raw), Nodes: nodes}
+				if b.compiler.config.Compatibility == Tailwind3 {
+					n.Name = "." + v3Escape(raw)
+				}
 				if candidate.Important || b.compiler.config.Important && !b.inApply {
 					n = cloneNode(n, "", true)
 				}
@@ -369,7 +401,9 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 		} else if nodes := b.compiler.custom[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
 		}
-		if candidate.Root == "container" {
+		if b.compiler.config.Compatibility == Tailwind3 {
+			result = append(result, b.v3Static(candidate.Root)...)
+		} else if candidate.Root == "container" {
 			result = append(result, b.container())
 		} else if nodes := builtinStatic[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
@@ -418,7 +452,9 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 
 func (b *buildContext) functionalGroups(root, value, mod, dataType string, arbitrary, modArbitrary bool) [][]*Node {
 	var result [][]*Node
-	if nodes := b.functional(root, value, mod, dataType, arbitrary, modArbitrary); len(nodes) > 0 {
+	if b.compiler.config.Compatibility == Tailwind3 {
+		result = b.v3Functional(root, value, mod, dataType, arbitrary, modArbitrary)
+	} else if nodes := b.functional(root, value, mod, dataType, arbitrary, modArbitrary); len(nodes) > 0 {
 		result = append(result, nodes)
 	}
 	for _, definition := range b.compiler.customFunctional[root] {
@@ -607,6 +643,18 @@ func (b *buildContext) resolveColor(s string, keys []string) string {
 }
 
 func (b *buildContext) colorAlpha(value, mod string, arbitrary bool) string {
+	if b.compiler.config.Compatibility == Tailwind3 {
+		if mod == "" {
+			return strings.ReplaceAll(value, "<alpha-value>", "1")
+		}
+		if !arbitrary {
+			mod = themeString(configObject(b.compiler.themeLookup("opacity")).Get(mod))
+			if mod == "" {
+				return ""
+			}
+		}
+		return v3WithAlpha(value, mod, "")
+	}
 	if value == "" || mod == "" {
 		return value
 	}

@@ -15,6 +15,9 @@ const (
 )
 
 func (b *buildContext) render(nodes []*Node) string {
+	if b.compiler.config.Compatibility == Tailwind3 {
+		return b.renderV3(nodes)
+	}
 	var mappings *[]cssMapping
 	if b.track {
 		mappings = &b.mappings

@@ -10,7 +10,8 @@ class to every visitor.
 **Work in progress.** Core utilities, variants, stylesheet directives and the
 Go plugin API work, along with typed settings, named classes, forms and
 typography and the other standard plugins. The CLI and browser transforms work;
-the Tailwind 3 compatibility profile and application integrations remain open.
+the Tailwind 3 compatibility profile is under test, and application integrations
+remain open.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -74,8 +75,10 @@ callbacks, breakpoints, container settings, dark mode, prefixes and blocklists.
 Use `ConfigObject` when field order matters, or ordinary maps for nested values.
 `ThemeFunc` receives a resolver for references to other settings. Plugin callbacks
 can read scalar values with `Theme`, or objects and tuples with `ThemeValue`.
-This is Tailwind 4's compatibility API; it does not yet reproduce Tailwind 3's
-generated CSS.
+By default this is Tailwind 4's compatibility API. An experimental
+`Config{Compatibility: rocketwind.Tailwind3}` profile reproduces the older
+generation's utilities, variants, defaults and stylesheet directives. Its CLI
+and application migration checks are still in progress.
 
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
@@ -333,8 +336,8 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full Go suite has 100% statement coverage, including the CLI subprocess. |
-| Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. This implementation reached 100% statement coverage, including the CLI subprocess, before the ongoing Tailwind 3 work. |
+| Tailwind CSS **3.4.17** | Experimental compatibility profile. All 11,344 default named utilities, 841 variant cases, 2,759 arbitrary-value cases, two custom configurations and seven stylesheet cases match the original compiler. CLI support, application migration checks and coverage of this new code remain open. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
 their upstream tests. Running JavaScript configuration or arbitrary JavaScript

@@ -48,6 +48,10 @@ func (c *Compiler) initializeLegacyTheme() {
 	c.legacyTheme = configObject(cloneConfigValue(legacyThemeDefaults))
 	c.legacyResolved = map[string]bool{}
 	c.legacyResolving = map[string]bool{}
+	if c.config.Compatibility == Tailwind3 {
+		c.legacyTheme = configObject(cloneConfigValue(v3ThemeDefaults))
+		return
+	}
 	for _, entry := range []NamedValue{{"fontSize", "text"}, {"boxShadow", "shadow"}, {"animation", "animate"}, {"aspectRatio", "aspect"}, {"borderRadius", "radius"}, {"screens", "breakpoint"}, {"letterSpacing", "tracking"}, {"lineHeight", "leading"}, {"maxWidth", "container"}} {
 		c.legacyTheme.set(entry.Name, legacyThemeMerge{c.legacyTheme.Get(entry.Name), ConfigObject{{"\x00theme:" + entry.Value, true}}})
 	}
@@ -102,7 +106,13 @@ func (c *Compiler) resolveLegacyValue(value any) any {
 	if object := configObject(value); object != nil {
 		result := make(ConfigObject, 0, len(object))
 		for _, entry := range object {
-			if path, ok := strings.CutPrefix(entry.Key, "\x00theme:"); ok {
+			if entry.Key == "\x00v3breakpoints" {
+				for _, screen := range configObject(c.themeLookup("screens")) {
+					if value, ok := screen.Value.(string); ok {
+						result.set("screen-"+screen.Key, value)
+					}
+				}
+			} else if path, ok := strings.CutPrefix(entry.Key, "\x00theme:"); ok {
 				for _, item := range configObject(c.themeLookup(path)) {
 					result.set(item.Key, cloneConfigValue(item.Value))
 				}

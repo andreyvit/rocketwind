@@ -424,6 +424,24 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 
 ## Initial compiler performance measurements
 
+### Tailwind 3 compatibility foundation
+
+- Added an opt-in profile for Tailwind 3.4.17. Its 361 static utilities and 198
+  functional registrations come from original source declarations, not test
+  snapshots. The default theme retains references between namespaces, so an
+  extended spacing or color setting reaches all dependent utilities.
+- Added native old-generation color opacity, gradients, shadows, transforms,
+  font tuples, container layout and selector composition. Preserve old hover
+  behavior, group/peer selectors, visited-color rules and stacked variant order.
+- Added preflight, component/utility layers, theme functions, @screen and @apply
+  compilation. Component rules, ordinary utilities and variants retain their
+  distinct positions; arbitrary values use Tailwind 3's ambiguity rules.
+- Independent Tailwind 3 references pass: 11,344 default named utilities, 841
+  variants, 2,759 arbitrary values, two configuration sets and seven stylesheet
+  cases. The complete existing Tailwind 4 and CLI suites still pass.
+- This is a compatibility checkpoint. CLI selection, remaining configuration
+  controls, full new-code coverage and Bubblehouse equivalence are not complete.
+
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
 
 | Workload | Before | After | Allocations before / after |

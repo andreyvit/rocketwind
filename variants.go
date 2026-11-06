@@ -48,6 +48,9 @@ func (c *Compiler) variantDefinition(name string) (variantDefinition, bool) {
 	if d, ok := c.customVariants[name]; ok {
 		return d, true
 	}
+	if c.config.Compatibility == Tailwind3 {
+		return c.v3VariantDefinition(name)
+	}
 	if d, ok := builtinVariants[name]; ok {
 		if d.Order > builtinVariants["min"].Order {
 			d.Order += c.legacyScreenCount
@@ -103,6 +106,9 @@ func slotNodes(template, content []*Node) []*Node {
 	return result
 }
 func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth int) ([]*Node, bool) {
+	if b.compiler.config.Compatibility == Tailwind3 && v.matcher == nil {
+		return b.applyV3Variant(nodes, v, depth)
+	}
 	if !v.arbitrary {
 		if value := b.compiler.legacyVariantValues[v.root].Get(v.value); value != nil {
 			copy := *v

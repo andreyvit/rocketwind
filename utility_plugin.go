@@ -345,7 +345,14 @@ func (api *PluginAPI) AddUtilities(nodes []*Node) error {
 	return nil
 }
 
-func (api *PluginAPI) AddComponents(nodes []*Node) error { return api.AddUtilities(nodes) }
+func (api *PluginAPI) AddComponents(nodes []*Node) error {
+	if api.compiler.config.Compatibility == Tailwind3 {
+		previous := api.compiler.v3Layer
+		api.compiler.v3Layer = 1
+		defer func() { api.compiler.v3Layer = previous }()
+	}
+	return api.AddUtilities(nodes)
+}
 
 func validPluginUtilityName(name string) bool {
 	if name == "" || !(name[0] >= 'a' && name[0] <= 'z' || name[0] == '@') {
