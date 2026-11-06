@@ -1,0 +1,208 @@
+[
+  {
+    "test": "runCommandLine > canonicalizes, collapses, and sorts candidate groups from positional arguments",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+        "py-3 p-1 px-3"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "p-3",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > falls back to the default tailwind import when --css is omitted",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "py-3 p-1 px-3"
+      ],
+      "cwd": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures",
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "p-3",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > canonicalizes, collapses, and sorts multiple groups from stdin lines",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css"
+      ],
+      "stdin": "[display:_flex_] py-3 p-1 px-3\nmt-2 mr-2 mb-2 ml-2 focus:hover:p-3 hover:p-1 py-3\n",
+      "stdinIsTTY": false,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "flex p-3\nm-2 py-3 hover:p-1 focus:hover:p-3",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > collapses equivalent candidates",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+        "mt-2 mr-2 mb-2 ml-2"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "m-2",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > renders json output for processed candidate groups",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+        "--format",
+        "json",
+        "py-3 p-1 px-3"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "[\n  {\n    \"input\": \"py-3 p-1 px-3\",\n    \"output\": \"p-3\",\n    \"changed\": true\n  }\n]",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > splits candidate lists with segment-aware spacing",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+        "--format",
+        "json",
+        "content-['hello world'] p-1"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "[\n  {\n    \"input\": \"content-['hello world'] p-1\",\n    \"output\": \"p-1 content-['hello_world']\",\n    \"changed\": true\n  }\n]",
+      "stderr": ""
+    }
+  },
+  {
+    "test": "runCommandLine > shows a usage error when no candidate groups are provided",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 1,
+      "stdout": "≈ tailwindcss v4.3.4\n\nUsage:\n  tailwindcss canonicalize [classes...]\n  tailwindcss canonicalize --css input.css [classes...]\n  tailwindcss canonicalize --stream [--css input.css]\n\nOptions:\n      --css ······························· CSS entry file used to load the\n                                            Tailwind design system (defaults to\n                                            `@import \"tailwindcss\";`)\n      --format[=text, json, jsonl] ········ Output format [default: `text`]\n      --stream ···························· Read candidate groups from stdin\n                                            line by line and write results to\n                                            stdout [default: `false`]\n  -h, --help ······························ Display usage information\n                                            [default: `false`]",
+      "stderr": "No candidate groups provided"
+    }
+  },
+  {
+    "test": "runCommandLine > streams canonicalized output line by line",
+    "kind": "stream",
+    "options": {
+      "css": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+      "cwd": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures",
+      "format": "text",
+      "input": "py-3 p-1 px-3\nmt-2 mr-2 mb-2 ml-2\n"
+    },
+    "result": {
+      "stdout": "p-3\nm-2\n",
+      "stderr": "",
+      "exitCode": 0
+    }
+  },
+  {
+    "test": "runCommandLine > streams empty lines as empty lines",
+    "kind": "stream",
+    "options": {
+      "css": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+      "cwd": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures",
+      "format": "text",
+      "input": "py-3 p-1 px-3\n\nmt-2 mr-2 mb-2 ml-2\n"
+    },
+    "result": {
+      "stdout": "p-3\n\nm-2\n",
+      "stderr": "",
+      "exitCode": 0
+    }
+  },
+  {
+    "test": "runCommandLine > streams json output when requested",
+    "kind": "stream",
+    "options": {
+      "css": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+      "cwd": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures",
+      "format": "json",
+      "input": "py-3 p-1 px-3\nmt-2 mr-2 mb-2 ml-2\n"
+    },
+    "result": {
+      "stdout": "[\n  {\n    \"input\": \"py-3 p-1 px-3\",\n    \"output\": \"p-3\",\n    \"changed\": true\n  },\n  {\n    \"input\": \"mt-2 mr-2 mb-2 ml-2\",\n    \"output\": \"m-2\",\n    \"changed\": true\n  }\n]",
+      "stderr": "",
+      "exitCode": 0
+    }
+  },
+  {
+    "test": "runCommandLine > streams jsonl output when requested",
+    "kind": "stream",
+    "options": {
+      "css": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input.css",
+      "cwd": "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures",
+      "format": "jsonl",
+      "input": "py-3 p-1 px-3\nmt-2 mr-2 mb-2 ml-2\n"
+    },
+    "result": {
+      "stdout": "{\"input\":\"py-3 p-1 px-3\",\"output\":\"p-3\",\"changed\":true}\n{\"input\":\"mt-2 mr-2 mb-2 ml-2\",\"output\":\"m-2\",\"changed\":true}\n",
+      "stderr": "",
+      "exitCode": 0
+    }
+  },
+  {
+    "test": "runCommandLine > writes plugin logs to stderr",
+    "kind": "run",
+    "options": {
+      "argv": [
+        "--css",
+        "/private/tmp/rocketwind-upstream/tailwindcss/packages/@tailwindcss-cli/src/commands/canonicalize/fixtures/input-with-plugin-logs.css",
+        "p-4 px-2 py-2 plugin-color-red"
+      ],
+      "stdinIsTTY": true,
+      "stdoutIsTTY": false
+    },
+    "result": {
+      "exitCode": 0,
+      "stdout": "p-2 plugin-color-red",
+      "stderr": ""
+    }
+  }
+]

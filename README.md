@@ -230,8 +230,22 @@ file. Source maps include imported stylesheets and trace generated utilities
 back to their definitions or `@apply` uses. Watch mode updates a changed map
 without rewriting identical CSS.
 
-Minification and the `canonicalize` command are still pending.
-The CLI has not yet passed the full upstream CLI integration suite.
+Canonicalize class lists from arguments or stdin:
+
+```sh
+rocketwind canonicalize 'mt-2 mb-2 flex'
+# my-2 flex
+rocketwind canonicalize --css src/input.css --format json 'block [display:flex]'
+rocketwind canonicalize --stream --format jsonl
+```
+
+Quote each group of classes. The command collapses equivalent utilities, sorts
+them in stylesheet order, and keeps unknown classes first. JSON output includes
+the original input, result and whether it changed. Streaming processes one group
+per line as it arrives. Use `--css` to supply the theme and custom utilities.
+
+Minification is still pending. The CLI has not yet passed the full upstream
+CLI integration suite.
 
 For source maps in Go, set `Config.From` to the entry stylesheet's filename,
 then call `BuildWithSourceMap` on the compiler or an incremental builder.
@@ -296,7 +310,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 14,429 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting, source maps and editor suggestions. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,794 captured upstream calls pass, covering compiler output, errors, syntax, normalization, CSS nesting, configuration, source extraction, filesystem scanning, URL rewriting, source maps, editor suggestions and canonicalization. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

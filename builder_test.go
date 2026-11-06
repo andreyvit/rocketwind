@@ -2,12 +2,36 @@ package rocketwind
 
 import (
 	"encoding/json"
+	"errors"
 	"os"
 	"slices"
 	"strings"
 	"sync"
 	"testing"
 )
+
+func TestSortClasses(t *testing.T) {
+	c := New(Config{})
+	input := []string{"hover:p-4", "unknown-10", "p-4", "flex", "unknown-2", "flex"}
+	before := slices.Clone(input)
+	got, err := c.SortClasses(input)
+	if err != nil || !slices.Equal(got, []string{"unknown-2", "unknown-10", "flex", "flex", "p-4", "hover:p-4"}) {
+		t.Fatal(got, err)
+	}
+	if !slices.Equal(input, before) {
+		t.Fatal("input changed")
+	}
+	failure := errors.New("plugin failed")
+	c, err = NewWithPlugins(Config{NoDefaultTheme: true}, func(api *PluginAPI) error {
+		return api.MatchUtility(Utility{Name: "broken", Values: []NamedValue{{"x", "x"}}, CompileWithError: func(string, string) ([]*Node, error) { return nil, failure }})
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := c.SortClasses([]string{"broken-x"}); !errors.Is(err, failure) {
+		t.Fatal(err)
+	}
+}
 
 func TestIncrementalBuilder(t *testing.T) {
 	c := New(Config{})

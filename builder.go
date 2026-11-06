@@ -112,3 +112,27 @@ func (c *Compiler) classOrder(classes []string) ([]int, error) {
 	}
 	return result, b.err
 }
+
+// SortClasses returns classes in CSS order, with unknown classes first.
+// Ties use Tailwind's natural name ordering. The input is left untouched.
+func (c *Compiler) SortClasses(classes []string) ([]string, error) {
+	order, err := c.classOrder(classes)
+	if err != nil {
+		return nil, err
+	}
+	indices := make([]int, len(classes))
+	for i := range indices {
+		indices[i] = i
+	}
+	slices.SortStableFunc(indices, func(a, b int) int {
+		if order[a] != order[b] {
+			return order[a] - order[b]
+		}
+		return naturalCompare(classes[a], classes[b])
+	})
+	result := make([]string, len(classes))
+	for i, index := range indices {
+		result[i] = classes[index]
+	}
+	return result, nil
+}

@@ -18,9 +18,10 @@ import (
 )
 
 type Options struct {
-	Stdin          io.Reader
-	Stdout, Stderr io.Writer
-	Modules        map[string]rocketwind.Module
+	Stdin                   io.Reader
+	Stdout, Stderr          io.Writer
+	Modules                 map[string]rocketwind.Module
+	StdinIsTTY, StdoutIsTTY bool
 }
 
 type flags struct {
@@ -65,6 +66,9 @@ func Run(ctx context.Context, args []string, options Options) int {
 	}
 	if options.Stderr == nil {
 		options.Stderr = os.Stderr
+	}
+	if len(args) > 0 && args[0] == "canonicalize" {
+		return canonicalizeCommand(ctx, args[1:], options)
 	}
 	f, err := parseFlags(args)
 	if err != nil {

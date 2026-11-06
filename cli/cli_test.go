@@ -210,6 +210,11 @@ func (b *lockedBuffer) Write(p []byte) (int, error) {
 	return b.Buffer.Write(p)
 }
 func (b *lockedBuffer) String() string { b.Lock(); defer b.Unlock(); return b.Buffer.String() }
+func (b *lockedBuffer) WriteString(s string) (int, error) {
+	b.Lock()
+	defer b.Unlock()
+	return b.Buffer.WriteString(s)
+}
 func write(t *testing.T, root, name, text string) {
 	t.Helper()
 	name = filepath.Join(root, name)

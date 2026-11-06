@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 97.3%.
+- Core Go suite, race detector and vet pass. Statement coverage: 97.4%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -246,6 +246,21 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   performance gate.
 - The CLI canonicalize command, minification, remaining suites, v3 compatibility
   and Bubblehouse/GoX integration are still pending.
+
+### CLI canonicalization
+
+- All twelve original CLI canonicalization tests pass upstream and in Go.
+  Total captured upstream calls checked: 17,794. Go callback ports preserve
+  plugin diagnostics; the Go command does not execute JavaScript fixtures.
+- Added quoted class groups, stdin input, streaming, theme stylesheets and
+  text/JSON/JSONL output. Class sorting is also available through `SortClasses`.
+- Added cancellation, long lines, CRLF boundaries, terminal input and I/O failure
+  checks. The race detector exposed an unlocked `WriteString` in the shared test
+  buffer; its writes now use the same lock as byte writes and reads.
+- The command implementation has 100% statement coverage. Whole-project
+  coverage is 97.4%; tests, race tests, vet and a compiled-binary smoke test pass.
+  Remaining CLI/internal suites, optimization, v3 compatibility and integration
+  gates remain open.
 
 ## Initial compiler performance measurements
 
