@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/tailwindlabs/tailwindcss-aspect-ratio",
+  "version": "0.4.2",
+  "commit": "c9027ad30f8cd19fc259f596bada3a090230a15a",
+  "license": "package.json declares MIT; this release omits a license file. Included the MIT text and Tailwind Labs attribution used by its other plugins."
+}

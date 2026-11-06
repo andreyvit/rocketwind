@@ -1,0 +1,32 @@
+[
+  {
+    "name": "should add the `line-clamp-{n}` components",
+    "config": {
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [
+        {
+          "raw": "<div class=\"line-clamp-2 line-clamp-[33] line-clamp-[var(--line-clamp-variable)]\"></div>"
+        }
+      ]
+    },
+    "input": "@tailwind utilities",
+    "result": ".line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2\n}\n.line-clamp-\\[33\\] {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 33\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: var(--line-clamp-variable)\n}"
+  },
+  {
+    "name": "should add the `line-clamp-none` utility",
+    "config": {
+      "corePlugins": {
+        "preflight": false
+      },
+      "content": [
+        {
+          "raw": "<div class=\"line-clamp-none\"></div>"
+        }
+      ]
+    },
+    "input": "@tailwind utilities",
+    "result": ".line-clamp-none {\n    -webkit-line-clamp: unset\n}"
+  }
+]

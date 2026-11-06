@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/tailwindlabs/tailwindcss-line-clamp",
+  "version": "0.4.4",
+  "commit": "7e63a53e1d215d5d337ac4d396852d41f151802f",
+  "license": "Original LICENSE file",
+  "developmentAdapter": "Tailwind 4 removed variants(); the differential harness supplies an empty variants function. All CSS is compared."
+}

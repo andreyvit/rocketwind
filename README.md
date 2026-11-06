@@ -9,8 +9,8 @@ class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
 Go plugin API work, along with typed settings, named classes, forms and
-typography. The other standard plugins, CLI and compatibility profiles are still
-being built.
+typography and the other standard plugins. The CLI and compatibility profiles
+are still being built.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -145,7 +145,20 @@ element variants, custom class names and the legacy selector option. In Go, use
 customizes selected declarations or selectors. All 16 original upstream tests
 pass with their pinned Tailwind 3.2.2 dependency. The same cases plus four default
 configurations match Tailwind 4.3.4 output; 20 selector cases also match.
-The remaining standard plugins are still in progress.
+
+The older **aspect-ratio 0.4.2**, **line-clamp 0.4.4** and **container-queries
+0.1.1** plugins are also available, through their `@plugin` names or the
+`AspectRatio`, `LineClamp` and `ContainerQueries` Go functions. Their options
+accept ordered named values. Aspect-ratio supplies the older padding-based
+layout. Modern Tailwind already includes line-clamp and container queries in
+core, so new applications usually don't need those two plugins.
+
+All six original tests for these three plugins pass with their legacy Tailwind
+dependencies. Their inputs and 24 additional cases match Tailwind 4 output.
+The line-clamp comparison supplies a no-op `variants()` function because its
+JavaScript release still calls that API, which Tailwind 4 removed. The Go port
+has no such dependency. Original legacy CSS results are retained for testing
+the pending compatibility profile.
 
 
 Tailwind compatibility

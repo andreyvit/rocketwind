@@ -1,0 +1,168 @@
+[
+  {
+    "css": "@theme { --breakpoint-sm: 640px; } @theme {  } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-1",
+      "line-clamp-6",
+      "line-clamp-7",
+      "line-clamp-seven",
+      "line-clamp-[33]",
+      "line-clamp-[var(--line-clamp-variable)]",
+      "line-clamp-none",
+      "hover:line-clamp-none",
+      "sm:line-clamp-2",
+      "line-clamp-2!",
+      "-line-clamp-2",
+      "line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 640px) {\n  .sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@import \"tailwindcss/theme.css\"; @theme {  } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-1",
+      "line-clamp-6",
+      "line-clamp-7",
+      "line-clamp-seven",
+      "line-clamp-[33]",
+      "line-clamp-[var(--line-clamp-variable)]",
+      "line-clamp-none",
+      "hover:line-clamp-none",
+      "sm:line-clamp-2",
+      "line-clamp-2!",
+      "-line-clamp-2",
+      "line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 40rem) {\n  .sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@theme { --breakpoint-sm: 640px; } @theme { --aspect-special: 13; --aspect-2: 20; --line-clamp-seven: 7; --container-wide: 90rem; --container-md: 30rem; } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-1",
+      "line-clamp-6",
+      "line-clamp-7",
+      "line-clamp-seven",
+      "line-clamp-[33]",
+      "line-clamp-[var(--line-clamp-variable)]",
+      "line-clamp-none",
+      "hover:line-clamp-none",
+      "sm:line-clamp-2",
+      "line-clamp-2!",
+      "-line-clamp-2",
+      "line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --line-clamp-seven: 7;\n}\n.line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n.line-clamp-seven {\n  -webkit-line-clamp: var(--line-clamp-seven);\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-none {\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 640px) {\n  .sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@import \"tailwindcss/theme.css\"; @theme { --aspect-special: 13; --aspect-2: 20; --line-clamp-seven: 7; --container-wide: 90rem; --container-md: 30rem; } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-1",
+      "line-clamp-6",
+      "line-clamp-7",
+      "line-clamp-seven",
+      "line-clamp-[33]",
+      "line-clamp-[var(--line-clamp-variable)]",
+      "line-clamp-none",
+      "hover:line-clamp-none",
+      "sm:line-clamp-2",
+      "line-clamp-2!",
+      "-line-clamp-2",
+      "line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --line-clamp-seven: 7;\n}\n.line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n.line-clamp-seven {\n  -webkit-line-clamp: var(--line-clamp-seven);\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.line-clamp-none {\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 40rem) {\n  .sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@theme prefix(tw) { --breakpoint-sm: 640px; } @theme {  } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "tw:line-clamp-1",
+      "tw:line-clamp-6",
+      "tw:line-clamp-7",
+      "tw:line-clamp-seven",
+      "tw:line-clamp-[33]",
+      "tw:line-clamp-[var(--line-clamp-variable)]",
+      "tw:line-clamp-none",
+      "tw:hover:line-clamp-none",
+      "tw:sm:line-clamp-2",
+      "tw:line-clamp-2!",
+      "tw:-line-clamp-2",
+      "tw:line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.tw\\:line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.tw\\:line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.tw\\:line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.tw\\:line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.tw\\:line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.tw\\:line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 640px) {\n  .tw\\:sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@import \"tailwindcss/theme.css\" prefix(tw); @theme {  } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "tw:line-clamp-1",
+      "tw:line-clamp-6",
+      "tw:line-clamp-7",
+      "tw:line-clamp-seven",
+      "tw:line-clamp-[33]",
+      "tw:line-clamp-[var(--line-clamp-variable)]",
+      "tw:line-clamp-none",
+      "tw:hover:line-clamp-none",
+      "tw:sm:line-clamp-2",
+      "tw:line-clamp-2!",
+      "tw:-line-clamp-2",
+      "tw:line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.tw\\:line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.tw\\:line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.tw\\:line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.tw\\:line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.tw\\:line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.tw\\:line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 40rem) {\n  .tw\\:sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@theme prefix(tw) { --breakpoint-sm: 640px; } @theme { --aspect-special: 13; --aspect-2: 20; --line-clamp-seven: 7; --container-wide: 90rem; --container-md: 30rem; } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "tw:line-clamp-1",
+      "tw:line-clamp-6",
+      "tw:line-clamp-7",
+      "tw:line-clamp-seven",
+      "tw:line-clamp-[33]",
+      "tw:line-clamp-[var(--line-clamp-variable)]",
+      "tw:line-clamp-none",
+      "tw:hover:line-clamp-none",
+      "tw:sm:line-clamp-2",
+      "tw:line-clamp-2!",
+      "tw:-line-clamp-2",
+      "tw:line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-line-clamp-seven: 7;\n}\n.tw\\:line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.tw\\:line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.tw\\:line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.tw\\:line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.tw\\:line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.tw\\:line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n.tw\\:line-clamp-seven {\n  -webkit-line-clamp: var(--tw-line-clamp-seven);\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-none {\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 640px) {\n  .tw\\:sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "css": "@import \"tailwindcss/theme.css\" prefix(tw); @theme { --aspect-special: 13; --aspect-2: 20; --line-clamp-seven: 7; --container-wide: 90rem; --container-md: 30rem; } @plugin \"@tailwindcss/line-clamp\"; @tailwind utilities;",
+    "candidates": [
+      "tw:line-clamp-1",
+      "tw:line-clamp-6",
+      "tw:line-clamp-7",
+      "tw:line-clamp-seven",
+      "tw:line-clamp-[33]",
+      "tw:line-clamp-[var(--line-clamp-variable)]",
+      "tw:line-clamp-none",
+      "tw:hover:line-clamp-none",
+      "tw:sm:line-clamp-2",
+      "tw:line-clamp-2!",
+      "tw:-line-clamp-2",
+      "tw:line-clamp-2/no"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --tw-line-clamp-seven: 7;\n}\n.tw\\:line-clamp-1 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n}\n.tw\\:line-clamp-2\\! {\n  overflow: hidden !important;\n  display: -webkit-box !important;\n  -webkit-box-orient: vertical !important;\n  -webkit-line-clamp: 2 !important;\n}\n.tw\\:line-clamp-6 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 6;\n}\n.tw\\:line-clamp-7 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.tw\\:line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n.tw\\:line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n.tw\\:line-clamp-seven {\n  -webkit-line-clamp: var(--tw-line-clamp-seven);\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 7;\n}\n.tw\\:line-clamp-none {\n  -webkit-line-clamp: unset;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-clamp-none:hover {\n    overflow: visible;\n    display: block;\n    -webkit-box-orient: horizontal;\n    -webkit-line-clamp: unset;\n  }\n}\n@media (width >= 40rem) {\n  .tw\\:sm\\:line-clamp-2 {\n    overflow: hidden;\n    display: -webkit-box;\n    -webkit-box-orient: vertical;\n    -webkit-line-clamp: 2;\n  }\n}\n"
+  },
+  {
+    "name": "should add the `line-clamp-{n}` components",
+    "css": "@plugin \"@tailwindcss/line-clamp\"; @config \"fixture\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-2",
+      "line-clamp-[33]",
+      "line-clamp-[var(--line-clamp-variable)]"
+    ],
+    "original": true,
+    "values": null,
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.line-clamp-2 {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 2;\n}\n.line-clamp-\\[33\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 33;\n}\n.line-clamp-\\[var\\(--line-clamp-variable\\)\\] {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: var(--line-clamp-variable);\n}\n"
+  },
+  {
+    "name": "should add the `line-clamp-none` utility",
+    "css": "@plugin \"@tailwindcss/line-clamp\"; @config \"fixture\"; @tailwind utilities;",
+    "candidates": [
+      "line-clamp-none"
+    ],
+    "original": true,
+    "values": null,
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.line-clamp-none {\n  overflow: visible;\n  display: block;\n  -webkit-box-orient: horizontal;\n  -webkit-line-clamp: unset;\n}\n"
+  }
+]

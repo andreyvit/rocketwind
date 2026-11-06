@@ -1,0 +1,30 @@
+[
+  {
+    "name": "v3",
+    "config": {
+      "content": [
+        {
+          "raw": "aspect-none aspect-w-1 aspect-w-2 aspect-h-2 aspect-w-[123] aspect-w-[var(--width)] aspect-h-[123] aspect-h-[var(--height)]"
+        }
+      ]
+    },
+    "input": "@tailwind components",
+    "result": ".aspect-w-1 {\n    position: relative;\n    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);\n    --tw-aspect-w: 1\n}\n.aspect-w-1 > * {\n    position: absolute;\n    height: 100%;\n    width: 100%;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0\n}\n.aspect-w-2 {\n    position: relative;\n    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);\n    --tw-aspect-w: 2\n}\n.aspect-w-2 > * {\n    position: absolute;\n    height: 100%;\n    width: 100%;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0\n}\n.aspect-h-2 {\n    --tw-aspect-h: 2\n}\n.aspect-w-\\[123\\] {\n    position: relative;\n    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);\n    --tw-aspect-w: 123\n}\n.aspect-w-\\[123\\] > * {\n    position: absolute;\n    height: 100%;\n    width: 100%;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0\n}\n.aspect-w-\\[var\\(--width\\)\\] {\n    position: relative;\n    padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);\n    --tw-aspect-w: var(--width)\n}\n.aspect-w-\\[var\\(--width\\)\\] > * {\n    position: absolute;\n    height: 100%;\n    width: 100%;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0\n}\n.aspect-h-\\[123\\] {\n    --tw-aspect-h: 123\n}\n.aspect-h-\\[var\\(--height\\)\\] {\n    --tw-aspect-h: var(--height)\n}\n.aspect-none {\n    position: static;\n    padding-bottom: 0\n}\n.aspect-none > * {\n    position: static;\n    height: auto;\n    width: auto;\n    top: auto;\n    right: auto;\n    bottom: auto;\n    left: auto\n}"
+  },
+  {
+    "name": "v2",
+    "config": {
+      "purge": {
+        "enabled": true,
+        "content": [
+          {
+            "raw": "aspect-none aspect-w-1 aspect-w-2 aspect-h-2"
+          }
+        ]
+      },
+      "variants": []
+    },
+    "input": "@tailwind components",
+    "result": ".aspect-w-1,\n.aspect-w-2 {\n  position: relative;\n  padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%)\n}\n\n.aspect-w-1 > *,\n.aspect-w-2 > * {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0\n}\n\n.aspect-none {\n  position: static;\n  padding-bottom: 0\n}\n\n.aspect-none > * {\n  position: static;\n  height: auto;\n  width: auto;\n  top: auto;\n  right: auto;\n  bottom: auto;\n  left: auto\n}\n\n.aspect-w-1 {\n  --tw-aspect-w: 1\n}\n\n.aspect-w-2 {\n  --tw-aspect-w: 2\n}\n\n.aspect-h-2 {\n  --tw-aspect-h: 2\n}"
+  }
+]

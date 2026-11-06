@@ -106,6 +106,11 @@ func (c *Compiler) resolveVariants() error {
 		state[name] = 1
 		path = append(path, name)
 		d := c.customVariants[name]
+		if d.Kind == "functional" {
+			path = path[:len(path)-1]
+			state[name] = 2
+			return nil
+		}
 		nodes, err := expand(d.Nodes)
 		if err != nil {
 			return err

@@ -142,23 +142,3 @@ func svgDataURI(svg string) string {
 	}
 	return out.String()
 }
-
-func standardModule(name string) (Module, bool) {
-	if name == "@tailwindcss/typography" {
-		return Module{Configure: func(options map[string]any) (Plugin, error) {
-			className, _ := options["className"].(string)
-			target, _ := options["target"].(string)
-			return Typography(TypographyOptions{ClassName: className, Legacy: target == "legacy"}), nil
-		}}, true
-	}
-	if name == "@tailwindcss/forms" {
-		return Module{Configure: func(options map[string]any) (Plugin, error) {
-			strategy, _ := options["strategy"].(string)
-			if _, ok := options["strategy"]; ok && strategy == "" {
-				strategy = "invalid"
-			}
-			return Forms(FormsOptions{Strategy: strategy}), nil
-		}}, true
-	}
-	return Module{}, false
-}

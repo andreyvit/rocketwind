@@ -1,0 +1,40 @@
+[
+  {
+    "name": "container queries",
+    "config": {
+      "content": [
+        {
+          "raw": "\n          <div\n            class=\"@container @container-normal @container/sidebar @container-normal/sidebar @container-[size]/sidebar\"\n          >\n            <div class=\"@md:underline\"></div>\n            <div class=\"@md/container1:underline\"></div>\n            <div class=\"@md/container2:underline\"></div>\n            <div class=\"@md/container10:underline\"></div>\n\n            <div class=\"@sm:underline\"></div>\n            <div class=\"@sm/container1:underline\"></div>\n            <div class=\"@sm/container2:underline\"></div>\n            <div class=\"@sm/container10:underline\"></div>\n\n            <div class=\"@lg:underline\"></div>\n            <div class=\"@lg/container1:underline\"></div>\n            <div class=\"@lg/container2:underline\"></div>\n            <div class=\"@lg/container10:underline\"></div>\n            <div class=\"@[1024px]:underline\"></div>\n            <div class=\"@[1024px]/container1:underline\"></div>\n            <div class=\"@[1024]/container1:underline\"></div>\n\n            <div class=\"@[312px]:underline\"></div>\n            <div class=\"@[200rem]:underline\"></div>\n            <div class=\"@[123px]:underline\"></div>\n          </div>\n        "
+        }
+      ],
+      "theme": {
+        "containers": {
+          "sm": "320px",
+          "md": "768px",
+          "lg": "1024px"
+        }
+      },
+      "corePlugins": {
+        "preflight": false
+      }
+    },
+    "input": "\n    @tailwind utilities;\n  ",
+    "result": ".\\@container {\n    container-type: inline-size\n}\n.\\@container-normal {\n    container-type: normal\n}\n.\\@container\\/sidebar {\n    container-type: inline-size;\n    container-name: sidebar\n}\n.\\@container-normal\\/sidebar {\n    container-type: normal;\n    container-name: sidebar\n}\n@container (min-width: 123px) {\n    .\\@\\[123px\\]\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 200rem) {\n    .\\@\\[200rem\\]\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 312px) {\n    .\\@\\[312px\\]\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container1 (min-width: 320px) {\n    .\\@sm\\/container1\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container2 (min-width: 320px) {\n    .\\@sm\\/container2\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container10 (min-width: 320px) {\n    .\\@sm\\/container10\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 320px) {\n    .\\@sm\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container1 (min-width: 768px) {\n    .\\@md\\/container1\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container2 (min-width: 768px) {\n    .\\@md\\/container2\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container10 (min-width: 768px) {\n    .\\@md\\/container10\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 768px) {\n    .\\@md\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container1 (min-width: 1024px) {\n    .\\@lg\\/container1\\:underline {\n        text-decoration-line: underline\n    }\n    .\\@\\[1024px\\]\\/container1\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container2 (min-width: 1024px) {\n    .\\@lg\\/container2\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container container10 (min-width: 1024px) {\n    .\\@lg\\/container10\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 1024px) {\n    .\\@lg\\:underline {\n        text-decoration-line: underline\n    }\n    .\\@\\[1024px\\]\\:underline {\n        text-decoration-line: underline\n    }\n}\n  "
+  },
+  {
+    "name": "should be possible to use default container queries",
+    "config": {
+      "content": [
+        {
+          "raw": "\n          <div>\n            <div class=\"@md:underline\"></div>\n            <div class=\"@lg:underline\"></div>\n            <div class=\"@sm:underline\"></div>\n            <div class=\"@xs:underline\"></div>\n            <div class=\"@7xl:underline\"></div>\n            <div class=\"@6xl:underline\"></div>\n            <div class=\"@3xl:underline\"></div>\n            <div class=\"@5xl:underline\"></div>\n          </div>\n        "
+        }
+      ],
+      "theme": {},
+      "corePlugins": {
+        "preflight": false
+      }
+    },
+    "input": "\n    @tailwind utilities;\n  ",
+    "result": "@container (min-width: 20rem) {\n    .\\@xs\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 24rem) {\n    .\\@sm\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 28rem) {\n    .\\@md\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 32rem) {\n    .\\@lg\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 48rem) {\n    .\\@3xl\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 64rem) {\n    .\\@5xl\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 72rem) {\n    .\\@6xl\\:underline {\n        text-decoration-line: underline\n    }\n}\n@container (min-width: 80rem) {\n    .\\@7xl\\:underline {\n        text-decoration-line: underline\n    }\n}\n  "
+  }
+]

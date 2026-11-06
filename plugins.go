@@ -16,7 +16,12 @@ type Variant struct {
 	Name   string
 	Values []NamedValue
 	Match  func(value, modifier string) string
+	Sort   func(a, b VariantValue) int
 }
+
+// VariantValue is a resolved value and optional modifier passed to a variant's
+// sort function. Return a negative number to put a before b, zero for a tie.
+type VariantValue struct{ Value, Modifier string }
 
 // Plugin registers Go equivalents of stylesheet plugins.
 type Plugin func(*PluginAPI) error
@@ -177,7 +182,11 @@ func (api *PluginAPI) MatchVariant(variant Variant) { api.compiler.addVariant(va
 func (c *Compiler) addVariant(v Variant) {
 	v.Values = slices.Clone(v.Values)
 	c.matchingVariants[v.Name] = &v
-	c.customVariants[v.Name] = variantDefinition{Kind: "functional", Order: 100 + len(c.customVariants), Compounds: 2}
+	order := 100 + len(c.customVariants)
+	if existing, ok := c.variantDefinition(v.Name); ok {
+		order = existing.Order
+	}
+	c.customVariants[v.Name] = variantDefinition{Kind: "functional", Order: order, Compounds: 3}
 }
 
 func variantCompounds(nodes []*Node) int {

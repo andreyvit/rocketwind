@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.0%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.2%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -59,8 +59,14 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   20 latest-Tailwind differential CSS fixtures and 20 selector cases pass.
   Original v3 output is retained for the pending compatibility profile.
   New typography code has 100% statement coverage.
+- Aspect-ratio v0.4.2, line-clamp v0.4.4 and container-queries v0.1.1 ported.
+  All six original upstream tests pass with legacy dependencies; their inputs
+  and 24 additional configurations match latest Tailwind output (30 fixtures).
+  Original legacy results are retained for the compatibility profile. The
+  v4 differential harness supplies the removed variants() API to line-clamp.
+  New standard-plugin code has 100% statement coverage.
 - Remaining: full internal and compatibility test suites,
-  standard plugins, scanning/CLI, coverage/performance
+  scanning/CLI, coverage/performance
   and integration gates.
 - Implementation and conformance gates remain open.
 

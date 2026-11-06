@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/tailwindlabs/tailwindcss-container-queries",
+  "version": "0.1.1",
+  "commit": "f8b51dd8530fa63a284374ba026a44931a8cd57f",
+  "license": "package.json declares MIT; this release omits a license file. Included the MIT text and Tailwind Labs attribution used by its other plugins."
+}

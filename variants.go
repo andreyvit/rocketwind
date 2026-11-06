@@ -130,7 +130,7 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 		if !v.arbitrary {
 			found := false
 			for _, entry := range v.matcher.Values {
-				if entry.Name == value {
+				if entry.Name == value || value == "" && entry.Name == "DEFAULT" {
 					value = entry.Value
 					found = true
 					break
@@ -143,6 +143,10 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 		selector := v.matcher.Match(value, v.modifier)
 		if selector == "" {
 			return nil, false
+		}
+		if strings.HasPrefix(selector, "@") {
+			name, query, _ := strings.Cut(selector, " ")
+			return at(name, strings.TrimSpace(query))
 		}
 		return wrap(selector)
 	}
@@ -413,6 +417,22 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 	}
 	if v := strings.Compare(a.root, z.root); v != 0 {
 		return v
+	}
+	if a.matcher != nil && a.matcher.Sort != nil {
+		resolve := func(v *parsedVariant) VariantValue {
+			value := v.value
+			if value == "" {
+				value = "DEFAULT"
+			}
+			for _, entry := range v.matcher.Values {
+				if entry.Name == value {
+					value = entry.Value
+					break
+				}
+			}
+			return VariantValue{Value: value, Modifier: v.modifier}
+		}
+		return a.matcher.Sort(resolve(a), resolve(z))
 	}
 	if v := cmp.Compare(boolInt(a.arbitrary), boolInt(z.arbitrary)); v != 0 {
 		return v
