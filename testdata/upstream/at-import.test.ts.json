@@ -1,0 +1,1837 @@
+[
+  {
+    "test": "can resolve relative @imports",
+    "kind": "compile.build",
+    "args": [
+      "@import './foo/bar.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": ".foo {\n  color: red;\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": ".foo {\n  color: red;\n}\n"
+  },
+  {
+    "test": "can recursively resolve relative @imports",
+    "kind": "compile.build",
+    "args": [
+      "@import './foo/bar.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import './bar/baz.css';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "./bar/baz.css",
+              "/root/foo"
+            ],
+            "result": {
+              "content": ".baz {\n  color: blue;\n}",
+              "base": "/root/foo/bar",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": ".baz {\n  color: blue;\n}\n"
+  },
+  {
+    "test": "extracts path from @import nodes",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "a {\n  color: red;\n}\n"
+  },
+  {
+    "test": "extracts path from @import nodes",
+    "kind": "compile.build",
+    "args": [
+      "@import './example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "a {\n  color: red;\n}\n"
+  },
+  {
+    "test": "extracts path from @import nodes",
+    "kind": "compile.build",
+    "args": [
+      "@import '/example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "/example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "a {\n  color: red;\n}\n"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url('example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url('example.css');"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url('./example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url('./example.css');"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url('/example.css');",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url('/example.css');"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url(example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url(example.css);"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url(./example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url(./example.css);"
+  },
+  {
+    "test": "url() imports are passed-through",
+    "kind": "compile.build",
+    "args": [
+      "@import url(/example.css);",
+      {
+        "base": "/root",
+        "stylesheets": []
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@import url(/example.css);"
+  },
+  {
+    "test": "handles case-insensitive @import directive",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "a {\n  color: red;\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' print;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@media print {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' print, screen;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@media print, screen {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' screen and (orientation: landscape);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@media screen and (orientation: landscape) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@media",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' foo(bar);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@media foo(bar) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' supports(display: grid);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@supports (display: grid) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' supports(display: grid) screen and (max-width: 400px);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@supports (display: grid) {\n  @media screen and (max-width: 400px) {\n    a {\n      color: red;\n    }\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' supports((not (display: grid)) and (display: flex)) screen and\n  (max-width: 400px);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@supports (not (display: grid)) and (display: flex) {\n  @media screen and (max-width: 400px) {\n    a {\n      color: red;\n    }\n  }\n}\n"
+  },
+  {
+    "test": "@supports",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css'\nsupports((selector(h2 > p)) and (font-tech(color-COLRv1)));",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@supports (selector(h2 > p)) and (font-tech(color-COLRv1)) {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@layer",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' layer(utilities);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@layer utilities {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "@layer",
+    "kind": "compile.build",
+    "args": [
+      "@import 'example.css' layer();",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "a {\n  color: red;\n}",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": "@layer {\n  a {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "test": "supports theme(reference) imports",
+    "kind": "compile.build",
+    "args": [
+      "@tailwind utilities;\n@import 'example.css' theme(reference);",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "example.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@theme {\n  --color-red-500: red;\n}",
+              "base": "",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "text-red-500"
+        ]
+      ]
+    ],
+    "result": ".text-red-500 {\n  color: var(--color-red-500, red);\n}\n"
+  },
+  {
+    "test": "updates the base when loading modules inside nested files",
+    "kind": "compile.build",
+    "args": [
+      "@import './foo/bar.css';\n@config './root-config.js';\n@plugin './root-plugin.js';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@config './nested-config.js';\n@plugin './nested-plugin.js';",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ],
+        "modules": [
+          {
+            "args": [
+              "./nested-config.js",
+              "/root/foo",
+              "config"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            }
+          },
+          {
+            "args": [
+              "./root-config.js",
+              "/root",
+              "config"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            }
+          },
+          {
+            "args": [
+              "./nested-plugin.js",
+              "/root/foo",
+              "plugin"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            },
+            "plugins": [
+              []
+            ]
+          },
+          {
+            "args": [
+              "./root-plugin.js",
+              "/root",
+              "plugin"
+            ],
+            "result": {
+              "base": "",
+              "path": "",
+              "module": {
+                "$function": "() => {}"
+              }
+            },
+            "plugins": [
+              []
+            ]
+          }
+        ]
+      },
+      [
+        []
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "it crashes when inside a cycle",
+    "kind": "compile",
+    "args": [
+      "@import 'foo.css';",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          },
+          {
+            "args": [
+              "foo.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@import 'foo.css';",
+              "base": "/root",
+              "path": ""
+            }
+          }
+        ]
+      }
+    ],
+    "error": "Exceeded maximum recursion depth while resolving `foo.css` in `/root`)"
+  },
+  {
+    "test": "resolves @reference as `@import \"…\" reference`",
+    "kind": "compile.build",
+    "args": [
+      "@reference './foo/bar.css';\n@tailwind utilities;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@theme {\n  --color-red-500: red;\n}\n.foo {\n  color: red;\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "text-red-500"
+        ]
+      ]
+    ],
+    "result": ".text-red-500 {\n  color: var(--color-red-500, red);\n}\n"
+  },
+  {
+    "test": "resolves `@variant` used as `@custom-variant` inside `@reference`",
+    "kind": "compile.build",
+    "args": [
+      "@reference './foo/bar.css';\n@tailwind utilities;",
+      {
+        "base": "/root",
+        "stylesheets": [
+          {
+            "args": [
+              "./foo/bar.css",
+              "/root"
+            ],
+            "result": {
+              "content": "@variant dark {\n  &:where([data-theme='dark'] *) {\n    @slot;\n  }\n}",
+              "base": "/root/foo",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "dark:flex"
+        ]
+      ]
+    ],
+    "result": ".dark\\:flex:where([data-theme='dark'] *) {\n  display: flex;\n}\n"
+  }
+]

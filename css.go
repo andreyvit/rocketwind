@@ -12,6 +12,8 @@ import (
 // Name holds a selector, at-rule name or property; Value holds parameters or a
 // declaration/comment value. Source spans use UTF-8 byte offsets.
 type Node struct {
+	base       string
+	variant    bool
 	Kind       string
 	Name       string
 	Value      string

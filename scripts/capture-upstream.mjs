@@ -44,23 +44,65 @@ export default defineConfig({
       if (id.endsWith('/tailwindcss/src/index.ts')) {
         code = code.replace('export async function compile(', 'async function compileOriginal(')
         return code + \`
+          function recordLoader(original, records) {
+            if (!original) return original
+            return async (...args) => {
+              try {
+                const result = await original(...args)
+                const record = { args, result: JSON.parse(JSON.stringify(result, (key, value) => typeof value === 'function' ? { $function: value.toString() } : value)) }
+                records.push(record)
+                if (args[2] === 'plugin') return { ...result, module: capturePlugin(result.module, record) }
+                if (args[2] === 'config' && result.module?.plugins) return { ...result, module: { ...result.module, plugins: result.module.plugins.map(p => capturePlugin(p, record)) } }
+                return result
+              } catch (error) {
+                records.push({ args, error: error.message })
+                throw error
+              }
+            }
+          }
+          function capturePlugin(plugin, record) {
+            if (plugin.__isOptionsFunction) {
+              const wrapper = (options) => capturePlugin(plugin(options), record)
+              Object.assign(wrapper, plugin)
+              return wrapper
+            }
+            const handler = typeof plugin === 'function' ? plugin : plugin.handler
+            if (typeof handler !== 'function') return plugin
+            return { ...(typeof plugin === 'object' ? plugin : {}), handler(api) {
+              const operations = []
+              ;(record.plugins ??= []).push(operations)
+              return handler(new Proxy(api, { get(target, key) {
+                const original = target[key]
+                if (typeof original !== 'function') return original
+                return (...args) => {
+                  const result = original(...args)
+                  operations.push(JSON.parse(JSON.stringify({name:key, args, result}, (key, value) => typeof value === 'function' ? {$function:value.toString()} : value)))
+                  return result
+                }
+              }}))
+            }}
+          }
           export async function compile(css, options = {}) {
+            const metadata = JSON.parse(JSON.stringify(options))
+            const recordedOptions = { ...options }
+            if (options.loadStylesheet) recordedOptions.loadStylesheet = recordLoader(options.loadStylesheet, metadata.stylesheets = [])
+            if (options.loadModule) recordedOptions.loadModule = recordLoader(options.loadModule, metadata.modules = [])
             try {
-              const api = await compileOriginal(css, options)
+              const api = await compileOriginal(css, recordedOptions)
               const builds = []
               return {...api, build(candidates) {
                 builds.push([...candidates])
                 try {
                   const result = api.build(candidates)
-                  globalThis.__rocketwindRecord?.('compile.build', [css, options, builds.slice()], result, undefined)
+                  globalThis.__rocketwindRecord?.('compile.build', [css, metadata, builds.slice()], result, undefined)
                   return result
                 } catch (error) {
-                  globalThis.__rocketwindRecord?.('compile.build', [css, options, builds.slice()], undefined, error.message)
+                  globalThis.__rocketwindRecord?.('compile.build', [css, metadata, builds.slice()], undefined, error.message)
                   throw error
                 }
               }}
             } catch (error) {
-              globalThis.__rocketwindRecord?.('compile', [css, options], undefined, error.message)
+              globalThis.__rocketwindRecord?.('compile', [css, metadata], undefined, error.message)
               throw error
             }
           }

@@ -1,0 +1,76 @@
+[
+  {
+    "test": "Utilities can be wrapped in a selector",
+    "kind": "compile.build",
+    "args": [
+      "\n        #app {\n          @tailwind utilities;\n        }\n      ",
+      {},
+      [
+        [
+          "underline",
+          "hover:line-through"
+        ]
+      ]
+    ],
+    "result": "#app .underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  #app .hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "Utilities can be marked with important",
+    "kind": "compile.build",
+    "args": [
+      "\n        @import 'tailwindcss/utilities' important;\n      ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss/utilities",
+              ""
+            ],
+            "result": {
+              "base": "",
+              "content": "@tailwind utilities;",
+              "path": ""
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through"
+        ]
+      ]
+    ],
+    "result": ".underline {\n  text-decoration-line: underline !important;\n}\n@media (hover: hover) {\n  .hover\\:line-through:hover {\n    text-decoration-line: line-through !important;\n  }\n}\n"
+  },
+  {
+    "test": "Utilities can be wrapped with a selector and marked as important",
+    "kind": "compile.build",
+    "args": [
+      "\n        @media important {\n          #app {\n            @tailwind utilities;\n          }\n        }\n      ",
+      {},
+      [
+        [
+          "underline",
+          "hover:line-through"
+        ]
+      ]
+    ],
+    "result": "#app .underline {\n  text-decoration-line: underline !important;\n}\n@media (hover: hover) {\n  #app .hover\\:line-through:hover {\n    text-decoration-line: line-through !important;\n  }\n}\n"
+  },
+  {
+    "test": "variables in utilities should not be marked as important",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme {\n          --ease-out: cubic-bezier(0, 0, 0.2, 1);\n        }\n        @tailwind utilities;\n      ",
+      {},
+      [
+        [
+          "ease-out!",
+          "z-10!"
+        ]
+      ]
+    ],
+    "result": "@layer properties;\n:root, :host {\n  --ease-out: cubic-bezier(0, 0, 0.2, 1);\n}\n.z-10\\! {\n  z-index: 10 !important;\n}\n.ease-out\\! {\n  --tw-ease: var(--ease-out) !important;\n  transition-timing-function: var(--ease-out) !important;\n}\n@property --tw-ease {\n  syntax: \"*\";\n  inherits: false;\n}\n@layer properties {\n  @supports ((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {\n    *, ::before, ::after, ::backdrop {\n      --tw-ease: initial;\n    }\n  }\n}\n"
+  }
+]

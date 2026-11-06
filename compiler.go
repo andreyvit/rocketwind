@@ -18,6 +18,11 @@ type utilityDefinition struct {
 }
 
 type Config struct {
+	DisablePolyfills Polyfills
+	Base             string
+	LoadStylesheet   StylesheetLoader
+	LoadModule       ModuleLoader
+	Important        bool
 	// Theme contains CSS theme variables, for example --color-brand: #663399.
 	Theme map[string]string
 	// NoDefaultTheme starts with an empty theme, like @tailwind utilities alone.
@@ -30,6 +35,7 @@ type Config struct {
 }
 
 type Compiler struct {
+	hasUtilities          bool
 	config                Config
 	input                 []*Node
 	hasInput, themePlaced bool
@@ -40,6 +46,11 @@ type Compiler struct {
 	customFunctional      map[string][][]*Node
 	customOrder           []string
 	customVariants        map[string]variantDefinition
+	variantOrder          []string
+	pluginBase            []*Node
+	sources               []Source
+	inlineCandidates      []string
+	excludedCandidates    map[string]bool
 	matchingVariants      map[string]*Variant
 }
 
@@ -54,6 +65,9 @@ func New(config Config) *Compiler {
 
 func (c *Compiler) Build(candidates []string) (string, error) {
 	b := buildContext{compiler: c, used: make(map[string]bool)}
+	if len(c.inlineCandidates) > 0 {
+		candidates = append(slices.Clone(candidates), c.inlineCandidates...)
+	}
 	rules := b.compileRules(candidates)
 	var nodes []*Node
 	for _, r := range rules {
@@ -85,6 +99,9 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 	seen := make(map[string]bool, len(candidates))
 	var rules []compiledRule
 	for _, raw := range candidates {
+		if b.compiler.excludedCandidates[raw] {
+			continue
+		}
 		if seen[raw] {
 			continue
 		}
@@ -100,7 +117,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			}
 			order, count := sortProperties(nodes)
 			n := &Node{Kind: "rule", Name: "." + Escape(raw), Nodes: nodes}
-			if important {
+			if important || b.compiler.config.Important && !b.inApply {
 				n = cloneNode(n, "", true)
 			}
 			var valid bool
@@ -135,6 +152,8 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 }
 
 type buildContext struct {
+	err      error
+	inApply  bool
 	compiler *Compiler
 	used     map[string]bool
 }
@@ -170,9 +189,6 @@ func parseClass(raw, prefix string) (base string, variants []string, important, 
 
 func (b *buildContext) themeValue(key string) string {
 	if value, ok := b.compiler.config.Theme[key]; ok {
-		if value == "initial" {
-			return ""
-		}
 		return value
 	}
 	if b.compiler.config.NoDefaultTheme {

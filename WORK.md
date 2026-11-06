@@ -23,7 +23,15 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Utilities: all 749 captured compiler calls from 400 upstream tests match exactly.
 - Variants: all 1,009 captured compiler calls from 104 upstream tests match exactly;
   the upstream matchVariant test plugin is ported to a Go callback.
-- Core Go suite and race detector pass. Statement coverage: 91.6% at this stage.
-- Remaining: broader stylesheet features, dynamic settings, standard plugins,
-  scanning/CLI, existing-CSS exclusion, coverage/performance and integration gates.
+- General stylesheets: 252 calls; prefixes: 14; important: 4; CSS functions: 75;
+  imports: 27; compiler lifetime: 1; legacy utilities: 13. All match exactly.
+  Total compiler calls: 2,144. Declarative JS test plugins replay through the Go
+  API; functional test callbacks have explicit Go ports. No Go conformance skips.
+- Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
+  the eight additional source files pass. One upstream sorting test is already
+  skipped upstream. Sorting uses compileAst and still needs capture coverage.
+- Core Go suite, race detector and vet pass. Statement coverage: 94.1%.
+- Remaining: full internal and compatibility test suites, dynamic settings,
+  standard plugins, scanning/CLI, existing-CSS exclusion, coverage/performance
+  and integration gates.
 - Implementation and conformance gates remain open.

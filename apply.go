@@ -7,7 +7,7 @@ import (
 )
 
 func (c *Compiler) resolveApplies() error {
-	b := buildContext{compiler: c, used: map[string]bool{}}
+	b := buildContext{compiler: c, used: map[string]bool{}, inApply: true}
 	complete := map[string]bool{}
 	var path, edges []string
 	var expand func([]*Node, bool) ([]*Node, error)
@@ -101,6 +101,25 @@ func (c *Compiler) resolveApplies() error {
 						}
 					}
 					if !found {
+						_, variants, _, _ := parseClass(raw, c.config.Prefix)
+						var unknown []string
+						for _, variant := range variants {
+							if b.parseVariant(variant) == nil {
+								unknown = append(unknown, "`"+variant+"`")
+							}
+						}
+						if len(unknown) > 0 {
+							if len(unknown) == 1 {
+								return nil, fmt.Errorf("Cannot apply utility class `%s` because the %s variant does not exist.", raw, unknown[0])
+							}
+							return nil, fmt.Errorf("Cannot apply utility class `%s` because the %s and %s variants do not exist.", raw, strings.Join(unknown[:len(unknown)-1], ", "), unknown[len(unknown)-1])
+						}
+						if prefix := c.config.Prefix; prefix != "" && !strings.HasPrefix(raw, prefix+":") {
+							return nil, fmt.Errorf("Cannot apply unprefixed utility class `%s`. Did you mean `%s:%s`?", raw, prefix, raw)
+						}
+						if len(c.config.Theme) == 0 {
+							return nil, fmt.Errorf("Cannot apply unknown utility class `%s`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive", raw)
+						}
 						return nil, fmt.Errorf("Cannot apply unknown utility class `%s`", raw)
 					}
 				}

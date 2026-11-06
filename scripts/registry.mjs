@@ -139,4 +139,20 @@ for(const [name,v] of variants.variants) {
   go+=q(name)+':{Kind:'+q(v.kind)+',Order:'+v.order+',Compounds:'+v.compounds+',Nodes:'+nodesGo(nodes)+'},\n'
 }
 go+='}\n'
+const legacyDefaults = {}
+function flattenLegacy(value, parts) {
+  if (typeof value === 'function' || value == null) return
+  if (typeof value === 'string' || typeof value === 'number') { legacyDefaults[parts.join('.')] = String(value); return }
+  if (Array.isArray(value)) {
+    if (parts[0] === 'fontSize') {
+      flattenLegacy(value[0], parts)
+      if(typeof value[1] === 'string') flattenLegacy(value[1], [...parts,'1','lineHeight'])
+      else flattenLegacy(value[1], [...parts,'1'])
+    } else if (value.every(v=>typeof v === 'string')) legacyDefaults[parts.join('.')] = value.join(', ')
+    return
+  }
+  for(const [key,child] of Object.entries(value)) flattenLegacy(child,[...parts,key])
+}
+flattenLegacy(require(path.join(src,'compat/default-theme.ts')).default,[])
+go+='\nvar legacyDefaultTheme=map[string]string{\n'+Object.entries(legacyDefaults).map(([k,v])=>q(k)+':'+q(v)+',').join('\n')+'\n}\n'
 fs.writeFileSync('registry_generated.go',go)

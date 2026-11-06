@@ -6,6 +6,50 @@ import (
 )
 
 func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modArbitrary bool) []*Node {
+	if root == "start" || root == "end" || root == "-start" || root == "-end" {
+		if value == "" {
+			return nil
+		}
+		negative := root[0] == '-'
+		property := "inset-inline-start"
+		if strings.HasSuffix(root, "end") {
+			property = "inset-inline-end"
+		}
+		resolved := ""
+		if arbitrary {
+			if mod != "" {
+				return nil
+			}
+			resolved = value
+		} else {
+			key := value
+			if mod != "" && !modArbitrary {
+				key += "/" + mod
+			}
+			resolved = b.resolve(key, []string{"--inset", "--spacing"})
+			if resolved == "" && mod != "" && !modArbitrary {
+				if !positiveInteger(value) || !positiveInteger(mod) {
+					return nil
+				}
+				resolved = "calc(" + value + "/" + mod + " * 100%)"
+			}
+			if resolved == "" && quarterNumber(value) {
+				if multiplier := b.theme("--spacing"); multiplier != "" {
+					if negative {
+						value = "-" + value
+					}
+					return declarations(property, "calc("+multiplier+" * "+value+")")
+				}
+			}
+		}
+		if resolved == "" {
+			return nil
+		}
+		if negative {
+			resolved = "calc(" + resolved + " * -1)"
+		}
+		return declarations(property, resolved)
+	}
 	if root == "shadow" || root == "inset-shadow" || root == "text-shadow" || root == "drop-shadow" {
 		return b.shadow(root, value, mod, dataType, arbitrary, modArbitrary)
 	}

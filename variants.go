@@ -179,6 +179,7 @@ func slotNodes(template, content []*Node) []*Node {
 			continue
 		}
 		r := *n
+		r.variant = true
 		if n.Nodes != nil {
 			r.Nodes = slotNodes(n.Nodes, content)
 		}
@@ -191,7 +192,7 @@ func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth
 		return []*Node{{Kind: "rule", Name: selector, Nodes: nodes}}, true
 	}
 	at := func(name, query string) ([]*Node, bool) {
-		return []*Node{{Kind: "at-rule", Name: name, Value: query, Nodes: nodes}}, true
+		return []*Node{{Kind: "at-rule", Name: name, Value: query, Nodes: nodes, variant: true}}, true
 	}
 	if v.root == "[]" {
 		if v.relative && depth == 0 {

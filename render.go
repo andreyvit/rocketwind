@@ -6,8 +6,27 @@ import (
 	"strings"
 )
 
+type Polyfills uint8
+
+const (
+	PolyfillAtProperty Polyfills = 1 << iota
+	PolyfillColorMix
+	PolyfillAll = PolyfillAtProperty | PolyfillColorMix
+)
+
 func (b *buildContext) render(nodes []*Node) string {
 	clear(b.used)
+	animations := make(map[string]bool)
+	markAnimation := func(value string) {
+		for _, word := range strings.FieldsFunc(value, func(r rune) bool { return r == ',' || r == ' ' || r == '\n' || r == '\t' }) {
+			animations[word] = true
+		}
+	}
+	for key, flags := range b.compiler.themeFlags {
+		if strings.Contains(flags, "static") {
+			b.used[key] = true
+		}
+	}
 	var mark func(string)
 	mark = func(s string) {
 		for {
@@ -34,6 +53,9 @@ func (b *buildContext) render(nodes []*Node) string {
 		for _, n := range nodes {
 			if n.Kind == "declaration" {
 				mark(n.Value)
+				if n.Name == "animation" {
+					markAnimation(n.Value)
+				}
 			}
 			scan(n.Nodes)
 		}
@@ -59,19 +81,29 @@ func (b *buildContext) render(nodes []*Node) string {
 	}
 	hoist(nodes)
 	var out strings.Builder
-	var propertyDefaults []*Node
-	for _, n := range globals {
-		if n.Name == "@property" {
+	var propertyDefaults, inheritedDefaults []*Node
+	properties := append(slices.Clone(globals), nodes...)
+	for _, n := range properties {
+		if n.Name == "@property" && b.compiler.config.DisablePolyfills&PolyfillAtProperty == 0 {
 			initial := "initial"
+			inherits := false
 			for _, d := range n.Nodes {
+				if d.Name == "inherits" && d.Value == "true" {
+					inherits = true
+				}
 				if d.Name == "initial-value" {
 					initial = d.Value
 				}
 			}
-			propertyDefaults = append(propertyDefaults, &Node{Kind: "declaration", Name: n.Value, Value: initial})
+			fallback := &Node{Kind: "declaration", Name: n.Value, Value: initial}
+			if inherits {
+				inheritedDefaults = append(inheritedDefaults, fallback)
+			} else {
+				propertyDefaults = append(propertyDefaults, fallback)
+			}
 		}
 	}
-	if len(propertyDefaults) > 0 {
+	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
 		out.WriteString("@layer properties;\n")
 	}
 	var themeNodes []*Node
@@ -79,25 +111,15 @@ func (b *buildContext) render(nodes []*Node) string {
 		for {
 			before := len(b.used)
 			for key := range b.used {
-				s := b.themeValue(key)
-				for {
-					_, tail, ok := strings.Cut(s, "var(")
-					if !ok {
-						break
-					}
-					end := strings.IndexAny(tail, ",)")
-					if end < 0 {
-						break
-					}
-					name := strings.TrimSpace(tail[:end])
-					if b.themeValue(name) != "" {
-						b.used[name] = true
-					}
-					s = tail[end+1:]
-				}
+				mark(b.themeValue(key))
 			}
 			if before == len(b.used) {
 				break
+			}
+		}
+		for key := range b.used {
+			if strings.HasPrefix(key, "--animate-") {
+				markAnimation(b.themeValue(key))
 			}
 		}
 		keys := slices.Sorted(maps.Keys(b.used))
@@ -106,7 +128,7 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 		seen := make(map[string]bool)
 		for _, key := range keys {
-			if seen[key] || !b.used[key] || strings.Contains(b.compiler.themeFlags[key], "reference") {
+			if seen[key] || !b.used[key] || b.themeValue(key) == "initial" || strings.Contains(b.compiler.themeFlags[key], "reference") {
 				continue
 			}
 			seen[key] = true
@@ -115,6 +137,14 @@ func (b *buildContext) render(nodes []*Node) string {
 				name = "--" + p + "-" + key[2:]
 			}
 			themeNodes = append(themeNodes, &Node{Kind: "declaration", Name: Escape(name), Value: b.themeValue(key)})
+			if strings.HasPrefix(key, "--animate-") {
+				markAnimation(b.themeValue(key))
+			}
+		}
+	}
+	for _, frame := range b.compiler.keyframes {
+		if animations[strings.TrimSpace(frame.Value)] {
+			globals = append(globals, frame)
 		}
 	}
 	if len(themeNodes) > 0 {
@@ -133,6 +163,9 @@ func (b *buildContext) render(nodes []*Node) string {
 					r := *n
 					if n.Nodes != nil {
 						r.Nodes = expand(n.Nodes)
+						if len(r.Nodes) == 0 {
+							continue
+						}
 					}
 					result = append(result, &r)
 				}
@@ -141,11 +174,21 @@ func (b *buildContext) render(nodes []*Node) string {
 		}
 		nodes = expand(nodes)
 	}
-	nodes = flattenRules(b.polyfillColors(nodes, false), "")
+	if b.compiler.config.DisablePolyfills&PolyfillColorMix == 0 {
+		nodes = b.polyfillColors(nodes, false)
+	}
+	nodes = cleanRules(flattenRules(nodes, ""))
 	writeCSS(&out, nodes, 0)
 	writeCSS(&out, globals, 0)
-	if len(propertyDefaults) > 0 {
-		fallback := []*Node{{Kind: "at-rule", Name: "@layer", Value: "properties", Nodes: []*Node{{Kind: "at-rule", Name: "@supports", Value: "((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))", Nodes: []*Node{{Kind: "rule", Name: "*, ::before, ::after, ::backdrop", Nodes: propertyDefaults}}}}}}
+	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
+		var defaults []*Node
+		if len(inheritedDefaults) > 0 {
+			defaults = append(defaults, &Node{Kind: "rule", Name: ":root, :host", Nodes: inheritedDefaults})
+		}
+		if len(propertyDefaults) > 0 {
+			defaults = append(defaults, &Node{Kind: "rule", Name: "*, ::before, ::after, ::backdrop", Nodes: propertyDefaults})
+		}
+		fallback := []*Node{{Kind: "at-rule", Name: "@layer", Value: "properties", Nodes: []*Node{{Kind: "at-rule", Name: "@supports", Value: "((-webkit-hyphens: none) and (not (margin-trim: block))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b))))", Nodes: defaults}}}}
 		writeCSS(&out, fallback, 0)
 	}
 	return out.String()

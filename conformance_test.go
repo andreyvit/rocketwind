@@ -16,6 +16,15 @@ func TestUpstreamVariants(t *testing.T) {
 	checkCompilerSuite(t, "variants", 1009)
 }
 
+func TestUpstreamStylesheets(t *testing.T) {
+	for _, suite := range []struct {
+		name  string
+		count int
+	}{{"index", 252}, {"prefix", 14}, {"important", 4}, {"css-functions", 75}, {"at-import", 27}, {"compiler-lifetime", 1}, {"compat_legacy-utilities", 13}} {
+		t.Run(suite.name, func(t *testing.T) { checkCompilerSuite(t, suite.name, suite.count) })
+	}
+}
+
 func checkCompilerSuite(t *testing.T, suite string, count int) {
 	t.Helper()
 	data, err := os.ReadFile("testdata/upstream/" + suite + ".test.ts.json")
@@ -38,6 +47,41 @@ func checkCompilerSuite(t *testing.T, suite string, count int) {
 		var input string
 		json.Unmarshal(tt.Args[0], &input)
 		config := Config{}
+		var options struct {
+			Polyfills   *Polyfills
+			Modules     []upstreamModule
+			Base        string
+			Stylesheets []struct {
+				Args   []string
+				Result Stylesheet
+				Error  string
+			}
+		}
+		if len(tt.Args) > 1 {
+			if err := json.Unmarshal(tt.Args[1], &options); err != nil {
+				t.Fatal(err)
+			}
+		}
+		config.Base = options.Base
+		if options.Polyfills != nil {
+			config.DisablePolyfills = PolyfillAll &^ *options.Polyfills
+		}
+		if len(options.Modules) > 0 {
+			config.LoadModule = upstreamModuleLoader(options.Modules)
+		}
+		if options.Stylesheets != nil {
+			config.LoadStylesheet = func(id, base string) (Stylesheet, error) {
+				for _, loaded := range options.Stylesheets {
+					if len(loaded.Args) >= 2 && loaded.Args[0] == id && loaded.Args[1] == base {
+						if loaded.Error != "" {
+							return Stylesheet{}, fmt.Errorf("%s", loaded.Error)
+						}
+						return loaded.Result, nil
+					}
+				}
+				return Stylesheet{}, fmt.Errorf("uncaptured stylesheet %q from %q", id, base)
+			}
+		}
 		if suite == "variants" && tt.Test == "matchVariant sorts deterministically" {
 			// Port the upstream test's plugin callback to Go; retain its reference CSS.
 			config.Plugins = map[string]Plugin{"./plugin.js": func(api *PluginAPI) error {

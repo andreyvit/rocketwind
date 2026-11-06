@@ -20,7 +20,7 @@ func (b *buildContext) evaluateNodes(nodes []*Node) []*Node {
 		}
 		if strings.Contains(r.Value, "--spacing(") || strings.Contains(r.Value, "--alpha(") || strings.Contains(r.Value, "theme(") {
 			values := parseValue(r.Value)
-			if !b.evaluateFunctions(values) {
+			if !b.evaluateFunctions(values, r.Kind == "at-rule", 0) {
 				return nil
 			}
 			r.Value = valueCSS(values)
@@ -34,74 +34,6 @@ func (b *buildContext) evaluateNodes(nodes []*Node) []*Node {
 		result = append(result, &r)
 	}
 	return result
-}
-
-func (b *buildContext) evaluateFunctions(nodes []*valueNode) bool {
-	for _, n := range nodes {
-		if n.kind != 'f' {
-			continue
-		}
-		if !b.evaluateFunctions(n.nodes) {
-			return false
-		}
-		value := ""
-		switch n.value {
-		case "--spacing":
-			arg := strings.TrimSpace(valueCSS(n.nodes))
-			if arg == "" || strings.Contains(arg, ",") {
-				return false
-			}
-			spacing := b.theme("--spacing")
-			if spacing == "" {
-				return false
-			}
-			if zeroLength(arg) {
-				value = "0px"
-			} else if arg == "1" {
-				value = spacing
-			} else {
-				value = "calc(" + spacing + " * " + arg + ")"
-			}
-		case "--alpha":
-			args := valueCSS(n.nodes)
-			parts := []string{}
-			for p := range Segments(args, '/') {
-				parts = append(parts, strings.TrimSpace(p))
-			}
-			if len(parts) != 2 || parts[0] == "" || parts[1] == "" {
-				return false
-			}
-			value = b.colorAlpha(parts[0], parts[1], true)
-		case "--theme":
-			arg, fallback, _ := strings.Cut(valueCSS(n.nodes), ",")
-			arg = strings.TrimSpace(arg)
-			if strings.HasSuffix(arg, " inline") {
-				value = b.themeValue(strings.TrimSuffix(arg, " inline"))
-			} else {
-				value = b.theme(arg)
-			}
-			if value == "" {
-				value = strings.TrimSpace(fallback)
-			}
-			if value == "" {
-				return false
-			}
-		case "theme":
-			arg, fallback, _ := strings.Cut(valueCSS(n.nodes), ",")
-			arg = strings.Trim(strings.TrimSpace(arg), "\"'")
-			value = b.themeValue(arg)
-			if value == "" {
-				value = strings.TrimSpace(fallback)
-			}
-			if value == "" {
-				return false
-			}
-		default:
-			continue
-		}
-		n.kind, n.value, n.nodes = 'w', value, nil
-	}
-	return true
 }
 
 func valueCSS(nodes []*valueNode) string {
@@ -181,6 +113,7 @@ func (b *buildContext) colorFallback(value string) (string, bool) {
 					c.value = "srgb"
 				}
 			}
+			walk(n.nodes)
 		}
 	}
 	walk(nodes)
@@ -215,8 +148,16 @@ func flattenRules(input []*Node, parent string) []*Node {
 		}
 		r := *n
 		if n.Kind == "rule" {
+			if n.Name == "&" {
+				for _, child := range flattenRules(n.Nodes, parent) {
+					result = appendFlattened(result, child)
+				}
+				continue
+			}
 			if parent != "" {
 				r.Name = nestSelector(n.Name, parent)
+			} else if strings.Contains(n.Name, "&") {
+				r.Name = replaceTopLevelNesting(n.Name, ":scope")
 			}
 			if deadSelector(r.Name) {
 				continue
@@ -228,12 +169,49 @@ func flattenRules(input []*Node, parent string) []*Node {
 					break
 				}
 			}
-			if !hasDeclarations {
+			if !hasDeclarations || hasNode(n.Nodes, "@scope") {
 				for _, child := range flattenRules(n.Nodes, r.Name) {
 					result = appendFlattened(result, child)
 				}
 				continue
 			}
+		} else if n.Kind == "at-rule" && n.Name == "@scope" {
+			innerParent := parent
+			if strings.Contains(n.Value, "&") || !n.variant && parent != "" {
+				params := parseValue(n.Value)
+				end := false
+				for _, p := range params {
+					if p.kind == 'w' && p.value == "to" {
+						end = true
+					}
+					if p.kind != 'f' || p.value != "" {
+						continue
+					}
+					selector := valueCSS(p.nodes)
+					if !end && !n.variant && parent != "" {
+						selector = nestSelector(selector, parent)
+						innerParent = ":where(:scope)"
+					} else if strings.Contains(selector, "&") {
+						replacement := parent
+						if replacement == "" {
+							replacement = ":scope"
+						}
+						if end {
+							replacement = ":where(:scope)"
+						}
+						selector = nestSelector(selector, replacement)
+						if !end && parent != "" {
+							innerParent = ":where(:scope)"
+						}
+					}
+					p.nodes = []*valueNode{{kind: 'w', value: selector}}
+				}
+				r.Value = valueCSS(params)
+			}
+			if innerParent == "" {
+				innerParent = ":where(:scope)"
+			}
+			r.Nodes = flattenRules(n.Nodes, innerParent)
 		} else if n.Kind == "at-rule" && len(n.Nodes) > 0 && (n.Name == "@media" || n.Name == "@supports" || n.Name == "@layer" || n.Name == "@container" || n.Name == "@starting-style") {
 			r.Nodes = flattenRules(n.Nodes, parent)
 		} else if parent != "" {
@@ -247,7 +225,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 func appendFlattened(nodes []*Node, n *Node) []*Node {
 	if len(nodes) > 0 {
 		last := nodes[len(nodes)-1]
-		if n.Kind == last.Kind && n.Name == last.Name && n.Value == last.Value && (n.Kind == "rule" || n.Name == "@media" || n.Name == "@supports" || n.Name == "@container") {
+		if n.Kind == last.Kind && n.Name == last.Name && n.Value == last.Value && (n.Kind == "rule" || n.Name == "@media" || n.Name == "@supports" || n.Name == "@container" || n.Name == "@scope") {
 			last.Nodes = append(last.Nodes, n.Nodes...)
 			seen := map[string]bool{}
 			for i := len(last.Nodes) - 1; i >= 0; i-- {
@@ -275,14 +253,78 @@ func nestSelector(selector, parent string) string {
 	var selectors []string
 	for s := range Segments(selector, ',') {
 		s = strings.TrimSpace(s)
-		if strings.Contains(s, "&") {
-			s = strings.ReplaceAll(s, "&", parent)
+		if s == "&" {
+			selectors = append(selectors, parent)
+			continue
+		}
+		replacement := parent
+		for part := range Segments(parent, ',') {
+			if part != parent {
+				replacement = ":is(" + parent + ")"
+				break
+			}
+		}
+		ast := parseSelector(s)
+		changed := replaceNesting(ast, replacement)
+		if changed {
+			s = selectorCSS(ast)
 		} else {
-			s = parent + " " + s
+			s = replacement + " " + s
 		}
 		selectors = append(selectors, s)
 	}
 	return normalizeSelector(strings.Join(selectors, ", "))
+}
+
+func replaceNesting(nodes []*selectorNode, parent string) bool {
+	changed := false
+	for _, n := range nodes {
+		if n.Kind == "selector" && n.Value == "&" {
+			n.Value = parent
+			changed = true
+		}
+		if replaceNesting(n.Nodes, parent) {
+			changed = true
+		}
+	}
+	return changed
+}
+
+func replaceTopLevelNesting(selector, parent string) string {
+	nodes := parseSelector(selector)
+	replaceNesting(nodes, parent)
+	return selectorCSS(nodes)
+}
+
+func cleanRules(nodes []*Node) []*Node {
+	var result []*Node
+	for _, n := range nodes {
+		r := *n
+		if n.Nodes != nil {
+			r.Nodes = cleanRules(n.Nodes)
+			if len(r.Nodes) == 0 {
+				continue
+			}
+		}
+		result = appendFlattened(result, &r)
+	}
+	seen := make(map[string]bool)
+	for i := len(result) - 1; i >= 0; i-- {
+		n := result[i]
+		if n.Kind != "declaration" {
+			continue
+		}
+		key := n.Name + "\x00" + n.Value
+		if n.Important {
+			key += "\x01"
+		}
+		if seen[key] {
+			result = append(result[:i], result[i+1:]...)
+		} else {
+			seen[key] = true
+		}
+	}
+	return result
 }
 
 func deadSelector(s string) bool {

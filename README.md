@@ -7,8 +7,9 @@ Rocketwind is being built to compile that CSS inside your Go process. No Node
 process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
-**Work in progress.** The core utility compiler works. The complete compiler,
-dynamic settings API, plugins and compatibility profiles are still being built.
+**Work in progress.** Core utilities, variants, stylesheet directives and the
+Go plugin API work. The dynamic settings API, standard plugins, CLI and
+compatibility profiles are still being built.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -44,7 +45,9 @@ css, err := compiler.Build([]string{"grid", "p-4", "text-xl", "bg-brand"})
 ```
 
 Or start with a stylesheet containing `@theme`, `@utility`, `@apply` and
-`@tailwind utilities`, using `rocketwind.Compile(css, config)`.
+`@tailwind utilities`, using `rocketwind.Compile(css, config)`. Imports can use
+`Config.LoadStylesheet`; Go configuration and plugins use `Config.LoadModule`.
+The standard Tailwind theme and preflight stylesheet are built in.
 
 
 Tailwind compatibility
@@ -52,7 +55,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 749 utility and 1,009 variant compiler calls captured from upstream tests match exactly, along with 222 CSS parser calls and 66 arbitrary-value decoding calls. Full compiler compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 2,144 compiler calls captured from nine upstream suites match exactly, plus 222 CSS parser calls and 66 arbitrary-value decoding calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

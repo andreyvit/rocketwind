@@ -11,6 +11,10 @@ func Compile(input string, config Config) (*Compiler, error) {
 	if err != nil {
 		return nil, err
 	}
+	ast, err = resolveImports(ast, config, config.Base, 0)
+	if err != nil {
+		return nil, err
+	}
 	config.NoDefaultTheme = true
 	c := New(config)
 	if c.config.Theme == nil {
@@ -21,20 +25,95 @@ func Compile(input string, config Config) (*Compiler, error) {
 	c.themeFlags = make(map[string]string)
 	c.custom = make(map[string][]*Node)
 	c.customFunctional = make(map[string][][]*Node)
-	var walk func([]*Node) ([]*Node, error)
-	walk = func(nodes []*Node) ([]*Node, error) {
+	var modules []moduleRequest
+	var walk func([]*Node, bool, bool) ([]*Node, error)
+	walk = func(nodes []*Node, nested, reference bool) ([]*Node, error) {
 		result := make([]*Node, 0, len(nodes))
 		for _, n := range nodes {
 			if n.Kind == "at-rule" {
+				if n.Name == "@variant" && !nested && (len(n.Nodes) == 0 || hasNode(n.Nodes, "@slot")) {
+					n.Name = "@custom-variant"
+				}
 				switch n.Name {
+				case "@source":
+					if len(n.Nodes) > 0 {
+						return nil, fmt.Errorf("`@source` cannot have a body.")
+					}
+					if nested {
+						return nil, fmt.Errorf("`@source` cannot be nested.")
+					}
+					if err := c.addSource(n); err != nil {
+						return nil, err
+					}
+					continue
+				case "@media":
+					var unknown []string
+					ref := reference
+					for part := range Segments(n.Value, ' ') {
+						switch {
+						case part == "reference":
+							ref = true
+						case part == "important":
+							c.config.Important = true
+						case strings.HasPrefix(part, "theme(") && strings.HasSuffix(part, ")"):
+							flags := part[6 : len(part)-1]
+							if err := annotateTheme(n.Nodes, flags, strings.Contains(flags, "reference")); err != nil {
+								return nil, err
+							}
+						case strings.HasPrefix(part, "prefix("):
+							if err := annotateTheme(n.Nodes, part, false); err != nil {
+								return nil, err
+							}
+						default:
+							unknown = append(unknown, part)
+						}
+					}
+					if len(unknown) == 0 {
+						children, err := walk(n.Nodes, nested, ref)
+						if err != nil {
+							return nil, err
+						}
+						result = append(result, children...)
+						continue
+					}
+					n.Value = strings.Join(unknown, " ")
+
 				case "@theme":
+					if reference {
+						n.Value += " reference"
+					}
+					for _, arg := range parseValue(n.Value) {
+						if arg.kind == 'f' && arg.value == "prefix" {
+							prefix := valueCSS(arg.nodes)
+							for _, c := range prefix {
+								if c < 'a' || c > 'z' {
+									return nil, fmt.Errorf("The prefix %q is invalid. Prefixes must be lowercase ASCII letters (a-z) only.", prefix)
+								}
+							}
+							c.config.Prefix = prefix
+						}
+					}
 					for _, d := range n.Nodes {
+						if d.Kind == "comment" {
+							continue
+						}
+						d.Name = Unescape(d.Name)
 						if d.Kind == "at-rule" && d.Name == "@keyframes" {
 							c.keyframes = append(c.keyframes, d)
 							continue
 						}
 						if d.Kind != "declaration" || !strings.HasPrefix(d.Name, "--") {
-							return nil, fmt.Errorf("`@theme` blocks must only contain custom properties or `@keyframes`.")
+							var snippet strings.Builder
+							writeCSS(&snippet, []*Node{{Kind: "at-rule", Name: n.Name, Value: n.Value, Nodes: []*Node{d}}}, 0)
+							lines := strings.Split(snippet.String(), "\n")
+							for i, line := range lines {
+								prefix := "> "
+								if i == 0 || i >= len(lines)-2 {
+									prefix = "  "
+								}
+								lines[i] = prefix + line
+							}
+							return nil, fmt.Errorf("`@theme` blocks must only contain custom properties or `@keyframes`.\n\n%s", strings.Join(lines, "\n"))
 						}
 						if strings.HasSuffix(d.Name, "-*") {
 							if d.Value != "initial" {
@@ -42,13 +121,17 @@ func Compile(input string, config Config) (*Compiler, error) {
 							}
 							prefix := strings.TrimSuffix(d.Name, "*")
 							for key := range c.config.Theme {
-								if strings.HasPrefix(key, prefix) {
+								if strings.HasPrefix(key, prefix) && !ignoredThemeKey(key, strings.TrimSuffix(prefix, "-")) {
 									delete(c.config.Theme, key)
 								}
 							}
 							continue
 						}
 						if strings.Contains(n.Value, "default") && c.config.Theme[d.Name] != "" && !strings.Contains(c.themeFlags[d.Name], "default") {
+							continue
+						}
+						if d.Value == "initial" {
+							delete(c.config.Theme, d.Name)
 							continue
 						}
 						c.config.Theme[d.Name] = d.Value
@@ -62,10 +145,31 @@ func Compile(input string, config Config) (*Compiler, error) {
 					continue
 				case "@tailwind":
 					if strings.HasPrefix(n.Value, "utilities") {
+						if reference || c.hasUtilities {
+							continue
+						}
+						c.hasUtilities = true
+						for part := range Segments(n.Value, ' ') {
+							if part == "important" {
+								c.config.Important = true
+							}
+						}
 						n = &Node{Kind: "utilities"}
 					}
 				case "@utility":
+					if nested {
+						return nil, fmt.Errorf("`@utility` cannot be nested.")
+					}
+					if len(n.Nodes) == 0 {
+						return nil, fmt.Errorf("`@utility %s` is empty. Utilities should include at least one property.", n.Value)
+					}
 					name := Unescape(n.Value)
+					if strings.HasSuffix(name, "*") && !strings.HasSuffix(name, "-*") {
+						return nil, fmt.Errorf("`@utility %s` defines an invalid utility name. A functional utility must end in `-*`.", n.Value)
+					}
+					if strings.Contains(strings.TrimSuffix(name, "-*"), "-*") {
+						return nil, fmt.Errorf("`@utility %s` defines an invalid utility name. The dynamic portion marked by `-*` must appear once at the end.", n.Value)
+					}
 					if !validUtilityName(name) {
 						return nil, fmt.Errorf("`@utility %s` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter.", n.Value)
 					}
@@ -78,55 +182,80 @@ func Compile(input string, config Config) (*Compiler, error) {
 					c.customOrder = append(c.customOrder, name)
 					continue
 				case "@custom-variant":
-					name, selector, _ := strings.Cut(n.Value, " ")
-					template := n.Nodes
-					if selector != "" {
-						selector = strings.TrimSpace(selector)
-						if len(selector) < 2 || selector[0] != '(' || selector[len(selector)-1] != ')' {
-							return nil, fmt.Errorf("Invalid custom variant: %s", n.Value)
-						}
-						template = nil
-						for part := range Segments(selector[1:len(selector)-1], ',') {
-							part = strings.TrimSpace(part)
-							if strings.HasPrefix(part, "@") {
-								name, value, _ := strings.Cut(part, " ")
-								template = append(template, &Node{Kind: "at-rule", Name: name, Value: value, Nodes: []*Node{{Kind: "slot"}}})
-							} else {
-								template = append(template, &Node{Kind: "rule", Name: part, Nodes: []*Node{{Kind: "slot"}}})
-							}
-						}
+					if nested {
+						return nil, fmt.Errorf("`@custom-variant` cannot be nested.")
 					}
-					c.customVariants[name] = variantDefinition{Kind: "static", Order: 100 + len(c.customVariants), Compounds: variantCompounds(template), Nodes: template}
+					if err := c.registerCustomVariant(n); err != nil {
+						return nil, err
+					}
 					continue
-				case "@plugin":
-					name := strings.Trim(n.Value, "\"'")
-					if plugin := c.config.Plugins[name]; plugin != nil {
-						if err := plugin(&PluginAPI{compiler: c}); err != nil {
-							return nil, err
-						}
-						continue
+				case "@plugin", "@config":
+					if nested {
+						return nil, fmt.Errorf("`%s` cannot be nested.", n.Name)
 					}
-					return nil, fmt.Errorf("%s requires a Go configuration or plugin", n.Name)
-				case "@config":
-					return nil, fmt.Errorf("%s requires a Go configuration or plugin", n.Name)
+					name := strings.Trim(n.Value, "\"'")
+					if name == "" {
+						return nil, fmt.Errorf("`%s` must have a path.", n.Name)
+					}
+					modules = append(modules, moduleRequest{node: n, name: name, reference: reference})
+					continue
 				}
 			}
 			if len(n.Nodes) > 0 {
-				n.Nodes, err = walk(n.Nodes)
+				n.Nodes, err = walk(n.Nodes, true, reference)
 				if err != nil {
 					return nil, err
 				}
 			}
-			result = append(result, n)
+			if !reference {
+				result = append(result, n)
+			}
 		}
 		return result, nil
 	}
-	c.input, err = walk(ast)
+	c.input, err = walk(ast, false, false)
 	if err != nil {
 		return nil, err
+	}
+	if err := c.loadModules(modules); err != nil {
+		return nil, err
+	}
+	c.input = append(c.input, c.pluginBase...)
+	c.pluginBase = nil
+	c.config.LoadModule, c.config.LoadStylesheet = nil, nil
+	if err := c.resolveVariants(); err != nil {
+		return nil, err
+	}
+	b := buildContext{compiler: c, used: map[string]bool{}}
+	for _, key := range c.themeOrder {
+		value := parseValue(c.config.Theme[key])
+		if !b.evaluateFunctions(value, false, 0) {
+			return nil, b.err
+		}
+		c.config.Theme[key] = valueCSS(value)
+	}
+	c.input = b.evaluateNodes(c.input)
+	if b.err != nil {
+		return nil, b.err
 	}
 	if err := c.resolveApplies(); err != nil {
 		return nil, err
 	}
 	return c, nil
+}
+
+func annotateTheme(nodes []*Node, flags string, only bool) error {
+	for _, n := range nodes {
+		if n.Kind == "at-rule" && n.Name == "@theme" {
+			n.Value += " " + flags
+			continue
+		}
+		if only && n.Kind != "at-rule" {
+			return fmt.Errorf("Files imported with `@import \"…\" theme(reference)` must only contain `@theme` blocks.\nUse `@reference \"…\";` instead.")
+		}
+		if err := annotateTheme(n.Nodes, flags, only); err != nil {
+			return err
+		}
+	}
+	return nil
 }

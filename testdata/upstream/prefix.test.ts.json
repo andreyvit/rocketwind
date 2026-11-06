@@ -1,0 +1,309 @@
+[
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n    @theme reference prefix(tw);\n    @tailwind utilities;\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {},
+      [
+        [
+          "tw:underline",
+          "tw:hover:line-through",
+          "tw:custom",
+          "tw:group-hover:flex",
+          "tw:peer-hover:flex"
+        ]
+      ]
+    ],
+    "result": ".tw\\:custom {\n  color: red;\n}\n.tw\\:underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  :is(:where(.tw\\:group):hover .tw\\:group-hover\\:flex) {\n    display: flex;\n  }\n  :is(:where(.tw\\:peer):hover ~ .tw\\:peer-hover\\:flex) {\n    display: flex;\n  }\n  .tw\\:hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "utilities must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n    @theme reference prefix(tw);\n    @tailwind utilities;\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {},
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "utilities used in @apply must be prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n      @theme reference prefix(tw);\n\n      .my-underline {\n        @apply tw:underline;\n      }\n    ",
+      {},
+      [
+        []
+      ]
+    ],
+    "result": ".my-underline {\n  text-decoration-line: underline;\n}\n"
+  },
+  {
+    "test": "utilities used in @apply must be prefixed",
+    "kind": "compile",
+    "args": [
+      "\n      @theme reference prefix(tw);\n\n      .my-underline {\n        @apply underline;\n      }\n    ",
+      {}
+    ],
+    "error": "Cannot apply unprefixed utility class `underline`. Did you mean `tw:underline`?"
+  },
+  {
+    "test": "CSS variables output by the theme are prefixed",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme prefix(tw) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @tailwind utilities;\n      ",
+      {},
+      [
+        [
+          "tw:text-red"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --tw-color-red: #f00;\n}\n.tw\\:text-red {\n  color: var(--tw-color-red);\n}\n"
+  },
+  {
+    "test": "CSS theme functions do not use the prefix",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme prefix(tw) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @tailwind utilities;\n      ",
+      {},
+      [
+        [
+          "tw:[color:theme(--color-red)]",
+          "tw:text-[theme(--color-red)]"
+        ]
+      ]
+    ],
+    "result": ".tw\\:\\[color\\:theme\\(--color-red\\)\\] {\n  color: #f00;\n}\n.tw\\:text-\\[theme\\(--color-red\\)\\] {\n  color: #f00;\n}\n"
+  },
+  {
+    "test": "CSS theme functions do not use the prefix",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme reference prefix(tw) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @tailwind utilities;\n      ",
+      {},
+      [
+        [
+          "tw:[color:theme(--tw-color-red)]",
+          "tw:text-[theme(--tw-color-red)]"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "JS theme functions do not use the prefix",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme prefix(tw) {\n          --color-red: #f00;\n          --color-green: #0f0;\n          --breakpoint-sm: 640px;\n        }\n\n        @plugin \"./plugin.js\";\n\n        @tailwind utilities;\n      ",
+      {
+        "modules": [
+          {
+            "args": [
+              "./plugin.js",
+              "",
+              "plugin"
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "module": {
+                "handler": {
+                  "$function": "({ addUtilities, theme }) => {\n\t\t\t\taddUtilities({ \".my-custom\": { color: theme(\"--color-red\") } });\n\t\t\t\t// The theme function does not use the prefix\n\t\t\t\t(0,__vite_ssr_import_0__.expect)(theme(\"--tw-color-red\")).toEqual(undefined);\n\t\t\t}"
+                }
+              }
+            },
+            "plugins": [
+              [
+                {
+                  "name": "theme",
+                  "args": [
+                    "--color-red"
+                  ],
+                  "result": "#f00"
+                },
+                {
+                  "name": "addUtilities",
+                  "args": [
+                    {
+                      ".my-custom": {
+                        "color": "#f00"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "theme",
+                  "args": [
+                    "--tw-color-red"
+                  ]
+                }
+              ]
+            ]
+          }
+        ]
+      },
+      [
+        [
+          "tw:my-custom"
+        ]
+      ]
+    ],
+    "result": ".tw\\:my-custom {\n  color: #f00;\n}\n"
+  },
+  {
+    "test": "a prefix can be configured via @import theme(…)",
+    "kind": "compile.build",
+    "args": [
+      "\n    @import 'tailwindcss/theme' theme(reference prefix(tw));\n    @tailwind utilities;\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss/theme",
+              ""
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "content": "\n          @theme {\n            --color-potato: #7a4724;\n          }\n        "
+            }
+          }
+        ]
+      },
+      [
+        [
+          "tw:underline",
+          "tw:bg-potato",
+          "tw:hover:line-through",
+          "tw:custom",
+          "flex",
+          "text-potato"
+        ]
+      ]
+    ],
+    "result": ".tw\\:bg-potato {\n  background-color: var(--tw-color-potato, #7a4724);\n}\n.tw\\:custom {\n  color: red;\n}\n.tw\\:underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "a prefix can be configured via @import theme(…)",
+    "kind": "compile.build",
+    "args": [
+      "\n    @import 'tailwindcss/theme' theme(reference prefix(tw));\n    @tailwind utilities;\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss/theme",
+              ""
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "content": "\n          @theme {\n            --color-potato: #7a4724;\n          }\n        "
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "a prefix can be configured via @import prefix(…)",
+    "kind": "compile.build",
+    "args": [
+      "\n    @import 'tailwindcss' prefix(tw);\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss",
+              ""
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "content": "\n          @theme {\n            --color-potato: #7a4724;\n          }\n          @tailwind utilities;\n        "
+            }
+          }
+        ]
+      },
+      [
+        [
+          "tw:underline",
+          "tw:bg-potato",
+          "tw:hover:line-through",
+          "tw:custom"
+        ]
+      ]
+    ],
+    "result": ":root, :host {\n  --tw-color-potato: #7a4724;\n}\n.tw\\:bg-potato {\n  background-color: var(--tw-color-potato);\n}\n.tw\\:custom {\n  color: red;\n}\n.tw\\:underline {\n  text-decoration-line: underline;\n}\n@media (hover: hover) {\n  .tw\\:hover\\:line-through:hover {\n    text-decoration-line: line-through;\n  }\n}\n"
+  },
+  {
+    "test": "a prefix can be configured via @import prefix(…)",
+    "kind": "compile.build",
+    "args": [
+      "\n    @import 'tailwindcss' prefix(tw);\n\n    @utility custom {\n      color: red;\n    }\n  ",
+      {
+        "stylesheets": [
+          {
+            "args": [
+              "tailwindcss",
+              ""
+            ],
+            "result": {
+              "path": "",
+              "base": "",
+              "content": "\n          @theme {\n            --color-potato: #7a4724;\n          }\n          @tailwind utilities;\n        "
+            }
+          }
+        ]
+      },
+      [
+        [
+          "underline",
+          "hover:line-through",
+          "custom"
+        ]
+      ]
+    ],
+    "result": ""
+  },
+  {
+    "test": "a prefix must be letters only",
+    "kind": "compile",
+    "args": [
+      "\n    @theme reference prefix(__);\n  ",
+      {}
+    ],
+    "error": "The prefix \"__\" is invalid. Prefixes must be lowercase ASCII letters (a-z) only."
+  },
+  {
+    "test": "a candidate matching the prefix does not crash",
+    "kind": "compile.build",
+    "args": [
+      "\n        @theme reference prefix(tomato);\n        @tailwind utilities;\n      ",
+      {},
+      [
+        [
+          "tomato",
+          "tomato:flex"
+        ]
+      ]
+    ],
+    "result": ".tomato\\:flex {\n  display: flex;\n}\n"
+  }
+]
