@@ -1,0 +1,647 @@
+{
+  "repository": "https://github.com/tailwindlabs/tailwindcss",
+  "tag": "v4.3.4",
+  "commit": "2626ae6ceddf36069ab6d55c53a5857c1e2e360a",
+  "tests": [
+    {
+      "path": "integrations/cli/config.test.ts",
+      "sha256": "d8d5d4b044b09352542fd3e7fe444714c320cdce702579e6a44bee3f3e9d9b73",
+      "bytes": 8141
+    },
+    {
+      "path": "integrations/cli/index.test.ts",
+      "sha256": "9eb940b2f9a9ec9b785e09fe0c5ff2450b381384d673d55b8e0b372263333baf",
+      "bytes": 95666
+    },
+    {
+      "path": "integrations/cli/plugins.test.ts",
+      "sha256": "da3bb3e8558b80f7f56ec6c361e6f8d4954acace40c036f745da40aa38d5784a",
+      "bytes": 9681
+    },
+    {
+      "path": "integrations/cli/standalone.test.ts",
+      "sha256": "313c37063bff869aaf592a8a789e01b2a28df9884a5843b11730ecf252d352f7",
+      "bytes": 6015
+    },
+    {
+      "path": "integrations/oxide/wasm.test.ts",
+      "sha256": "02c01ac35369f82c07613e3458416e79548cea2bb852b8de2d12e2f0e89c6509",
+      "bytes": 7342
+    },
+    {
+      "path": "integrations/oxide/workers.test.ts",
+      "sha256": "3ac3f43de4227420a21ecda1d0a201c657f72b2f07dc6076054b3a5a2e105324",
+      "bytes": 745
+    },
+    {
+      "path": "integrations/postcss/config.test.ts",
+      "sha256": "685a4e9b383beab9f5fe5dc4a38fbe66b639999e309758488304dd8e50457a2c",
+      "bytes": 6261
+    },
+    {
+      "path": "integrations/postcss/core-as-postcss-plugin.test.ts",
+      "sha256": "7b8b80af547e05c84721a0ed1bd14fc66cdc1136acded2d4cdbc2aabb4ab8235",
+      "bytes": 1525
+    },
+    {
+      "path": "integrations/postcss/index.test.ts",
+      "sha256": "489b1a5d57a4eb3b4b12a608d0a0a4dd7f4ddc66dcda01e6331f1f65ff93ff29",
+      "bytes": 23981
+    },
+    {
+      "path": "integrations/postcss/multi-root.test.ts",
+      "sha256": "d2f26f57fd33511e095ef8e2f54cf0a95f08a70e2b3a20f1d935615eab4a6179",
+      "bytes": 1384
+    },
+    {
+      "path": "integrations/postcss/next.test.ts",
+      "sha256": "a1ba8513e9351312a7451c48a46d52b1521935484359b4f4fc511b9a5fa918a0",
+      "bytes": 13282
+    },
+    {
+      "path": "integrations/postcss/plugins.test.ts",
+      "sha256": "c22b6e530884d8c2e8ae51e11b5c83c6d982b9d798f1fd2cb51ccc5da4b1ffe7",
+      "bytes": 2099
+    },
+    {
+      "path": "integrations/postcss/source.test.ts",
+      "sha256": "631ab63bfb16bbe8be41ad67b3db6be3e58cbb9ee8ca46fde2183a8c4054d231",
+      "bytes": 29518
+    },
+    {
+      "path": "integrations/postcss/url-rewriting.test.ts",
+      "sha256": "772cd44fde10e23a277c7340d0f63d1fb61150f09ba37df95339b654a6b7a7b1",
+      "bytes": 5981
+    },
+    {
+      "path": "integrations/turbopack/loader.test.ts",
+      "sha256": "16991c4d069b6c1cababb291a7dc5339538976eed00dcccfcbc12d62ab3753db",
+      "bytes": 4530
+    },
+    {
+      "path": "integrations/upgrade/index.test.ts",
+      "sha256": "7c7d88f402cd7d618fa25f0a4fde83d75bfda16327c3ad547e44efc239686c48",
+      "bytes": 89244
+    },
+    {
+      "path": "integrations/upgrade/js-config.test.ts",
+      "sha256": "50c30f0fd0330c377b52adc9b84fa50fc6cc41f6ecbe35ec45e61bf87c1a575a",
+      "bytes": 58153
+    },
+    {
+      "path": "integrations/upgrade/upgrade-errors.test.ts",
+      "sha256": "be9b9c7cb453df27bf4e292f71fd8d88aef8d6be478c14ae2537ee11b1dac30a",
+      "bytes": 8044
+    },
+    {
+      "path": "integrations/vite/astro.test.ts",
+      "sha256": "baa013fd04f5f00d1e17e2cc0892e4e7f805c3c7558f8fe102b88ba81ce6b5ae",
+      "bytes": 5209
+    },
+    {
+      "path": "integrations/vite/bundled-dev.test.ts",
+      "sha256": "fce368a0015b0beba391ecd821772d76b7bf9d4d94940e53bfe60cde1b42fe02",
+      "bytes": 6904
+    },
+    {
+      "path": "integrations/vite/config.test.ts",
+      "sha256": "7e1042c3624816308667e9caee200f929366a378897d31c9f59b8e9897d1e477",
+      "bytes": 6936
+    },
+    {
+      "path": "integrations/vite/css-modules.test.ts",
+      "sha256": "d2656e670718bd02b33772012c2e0dfae6ee31496745dc14b0c71818c45cc321",
+      "bytes": 1841
+    },
+    {
+      "path": "integrations/vite/html-style-blocks.test.ts",
+      "sha256": "b21f6f843b8eb09571c48c8bf1fcc6b24f20432814ba74255cf3e725ec6d4afc",
+      "bytes": 1267
+    },
+    {
+      "path": "integrations/vite/ignored-packages.test.ts",
+      "sha256": "3eeaee543fbe1a95810e4eef1b8f7d7da0b212634cbb0b229403cc65f6d04825",
+      "bytes": 1968
+    },
+    {
+      "path": "integrations/vite/index.test.ts",
+      "sha256": "355e573e326e56a80e3df092d5cc8949ada991d4154662f50c9f1ddcaafa4828",
+      "bytes": 53481
+    },
+    {
+      "path": "integrations/vite/multi-root.test.ts",
+      "sha256": "8c43fa2948c2fe9a934754124efc955e64fe0f1f250219a0538a07fa44b9b6de",
+      "bytes": 4806
+    },
+    {
+      "path": "integrations/vite/nuxt.test.ts",
+      "sha256": "f980fad5961395a8386226f8a3f4d5eb1fb6b2a450fecab1d71ba94234a01539",
+      "bytes": 2725
+    },
+    {
+      "path": "integrations/vite/other-transforms.test.ts",
+      "sha256": "0f1af68a46d550907dac6ccac997f1811a267357eff1df5fda48a2765577c593",
+      "bytes": 4616
+    },
+    {
+      "path": "integrations/vite/preact.test.ts",
+      "sha256": "937dce1fad8f9c135765844628a8a09c916e3bf030d48d3b994e9360861cc3a9",
+      "bytes": 5146
+    },
+    {
+      "path": "integrations/vite/qwik.test.ts",
+      "sha256": "6f99c8c29f65a42dfb64818fb4138c8d2c8b507797ffe77e05ea62b07a9d4424",
+      "bytes": 2802
+    },
+    {
+      "path": "integrations/vite/react-router.test.ts",
+      "sha256": "d8e6e051b3b0cc2a165f503ab8c1b5471824fd899ce79b2e2d7a25ef1ff6fb8c",
+      "bytes": 7828
+    },
+    {
+      "path": "integrations/vite/resolvers.test.ts",
+      "sha256": "4307db910eac422960d8c2c1e80fdd63cf10ba468125ca91b320c4df56234277",
+      "bytes": 21540
+    },
+    {
+      "path": "integrations/vite/solidstart.test.ts",
+      "sha256": "cfe1dcbc270668cde0018db75b5a33317d128a41eb86f9de8aaa202d583bcea0",
+      "bytes": 2578
+    },
+    {
+      "path": "integrations/vite/source-maps.test.ts",
+      "sha256": "943b105a8d7fb72c96f69d80261a280770d69e53c504265efdd4d2a01c74da45",
+      "bytes": 3957
+    },
+    {
+      "path": "integrations/vite/ssr.test.ts",
+      "sha256": "458d90690972a986d20bc7d037c85d1b81a928f41a9c920e5a9e02222bd29b08",
+      "bytes": 1967
+    },
+    {
+      "path": "integrations/vite/svelte.test.ts",
+      "sha256": "53cc19e6036dfb7bb57658b35a96bdf0ba8ec17603a39f4ad372d5732cb87b5e",
+      "bytes": 6983
+    },
+    {
+      "path": "integrations/vite/sveltekit.test.ts",
+      "sha256": "9b83eec9bac5e4e74cfa2d6306b935be0ae302402746941348ed67d3ec4354bf",
+      "bytes": 2088
+    },
+    {
+      "path": "integrations/vite/url-rewriting.test.ts",
+      "sha256": "c50d20e7f716f2bf59d4295f1b1d7ef4de1015a85d34298d97758a3732aa0688",
+      "bytes": 3522
+    },
+    {
+      "path": "integrations/vite/virtual-modules.test.ts",
+      "sha256": "1d6b47806abca9180236b8209de1a2b84c464fde0fbc7ce3aadae0699d5130a9",
+      "bytes": 2339
+    },
+    {
+      "path": "integrations/vite/vue.test.ts",
+      "sha256": "8039be23f9fd5b0768e2cc22c15283d6b93dc219d5e587f5aff6e8f578695713",
+      "bytes": 10889
+    },
+    {
+      "path": "integrations/webpack/index.test.ts",
+      "sha256": "eb5483c222c023984cb6ac6f6db6299fc1bf5cfe9c079fb3c39da70a4db94b15",
+      "bytes": 2949
+    },
+    {
+      "path": "integrations/webpack/loader.test.ts",
+      "sha256": "133c3e8ed625057222156d3768b5396bb8cadf30b3974387150934b76ddeb070",
+      "bytes": 15444
+    },
+    {
+      "path": "packages/@tailwindcss-cli/src/commands/canonicalize/canonicalize.test.ts",
+      "sha256": "69a1af22453733ea9f223339474c2590109b2437cbf0875729bbebc167c2f97f",
+      "bytes": 6154
+    },
+    {
+      "path": "packages/@tailwindcss-cli/src/utils/args.test.ts",
+      "sha256": "9685d5d6a7e42df61be80aff836c03d5d99cf50af47c096f4209e4679b9a2b31",
+      "bytes": 4017
+    },
+    {
+      "path": "packages/@tailwindcss-cli/src/utils/format-ns.test.ts",
+      "sha256": "0e55fe941465211afb85f081e8c4d44ad24de7de4a3796b76e03b045424451ab",
+      "bytes": 680
+    },
+    {
+      "path": "packages/@tailwindcss-cli/src/utils/renderer.test.ts",
+      "sha256": "c5293dd8e27b0de1a1fafa37e78cf28700933199373fa9a363498de39da78daf",
+      "bytes": 2151
+    },
+    {
+      "path": "packages/@tailwindcss-node/src/instrumentation.test.ts",
+      "sha256": "90bcac13b9fa723b93737f9b66d838bae224f076ab2ef973b66767b9220b21ae",
+      "bytes": 2840
+    },
+    {
+      "path": "packages/@tailwindcss-node/src/source-maps.test.ts",
+      "sha256": "4785845cfa38b5181a938e75748360eae3fe8900fe022e6bf0b4079551fd48ef",
+      "bytes": 285
+    },
+    {
+      "path": "packages/@tailwindcss-node/src/urls.test.ts",
+      "sha256": "7c15a3cec064201c12ba43fe2f7112b4a21f13ad0920ade68fe520ebfb55e6ca",
+      "bytes": 6196
+    },
+    {
+      "path": "packages/@tailwindcss-postcss/src/__snapshots__/index.test.ts.snap",
+      "sha256": "d54b97c69d0673d0fd458271d97f3b09ac952dd64c92d17285e304f43e84680b",
+      "bytes": 6367
+    },
+    {
+      "path": "packages/@tailwindcss-postcss/src/ast.test.ts",
+      "sha256": "15a83dded8b9c4dcbf080a794affe90769804fd87a3cb0c29066eb2a409eee58",
+      "bytes": 2074
+    },
+    {
+      "path": "packages/@tailwindcss-postcss/src/index.test.ts",
+      "sha256": "eb28137a35722a1b81cc887db3b0d77b197e99e6e483812a5430865997395de4",
+      "bytes": 16711
+    },
+    {
+      "path": "packages/@tailwindcss-postcss/src/postcss-fix-relative-paths/index.test.ts",
+      "sha256": "1164e1b4f8e3bf3ffb95727d29ab2029988f31cd79bce3551e466fff58824027",
+      "bytes": 2290
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/format-nodes.test.ts",
+      "sha256": "f03e3af14e092bd0a76f701c9ed46c681b8fe8d1f0c21d94c7456abd95432122",
+      "bytes": 1121
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-at-apply.test.ts",
+      "sha256": "f0538bdcaa409f6b9f00a4a3945d898bb4d674a846b30a4872ea4066fbb61c5c",
+      "bytes": 2839
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-at-layer-utilities.test.ts",
+      "sha256": "b6c06a08b226123dde81a36c4d0faf8c50b5b190d46b2a7927be903b1910d649",
+      "bytes": 22430
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-import.test.ts",
+      "sha256": "b6a6903a2bc6319709512d940cfefd0a9df7dadfddb4bfc87e67b29a8519e0d6",
+      "bytes": 3548
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-media-screen.test.ts",
+      "sha256": "822579979dbfd47826b35569d272f99c96a3c4d8418320176b3831b8575b90c9",
+      "bytes": 3781
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-missing-layers.test.ts",
+      "sha256": "febe599825560ac47e721e021a02e3b059b24228dd95de9eb436e315e5a9af8c",
+      "bytes": 4778
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-preflight.test.ts",
+      "sha256": "e042f302006225f6c9856708b54d22237edeee5135dccf8ed43ab845b6d7c015",
+      "bytes": 6899
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-tailwind-directives.test.ts",
+      "sha256": "2e5fd81413902c1d22dcfff7c0ca1fc1a3a9e3ee8895d0f9f0b1d510d03c42bb",
+      "bytes": 9052
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-theme-to-var.test.ts",
+      "sha256": "66e6af482739231eca974ebc21cb87e721e7db9601f001e87f7c27a7ce71314a",
+      "bytes": 1276
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/css/migrate-variants-directive.test.ts",
+      "sha256": "61576f26a0b60df3c361dd9f7461ec6f4b07135cc707ef93eadbccaf7287fd73",
+      "bytes": 816
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/candidates.test.ts",
+      "sha256": "8acf3b7b5e2335e2043040d0b7055989cdd3f9624ca129101ce1d18bde7cb29a",
+      "bytes": 2081
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/is-safe-migration.test.ts",
+      "sha256": "c58b359a5cbbfd13c6492462f14497ef348a4bb1babb5ebf5e021c5b1c65cfe2",
+      "bytes": 6181
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-automatic-var-injection.test.ts",
+      "sha256": "f7c0b918a392369ea0c9fc37f89f4219b7d956678569e28f931f64042d5113a6",
+      "bytes": 3414
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-camelcase-in-named-value.test.ts",
+      "sha256": "21b85b8c2087bb3f582adbe8d79381ff1bb1e2f8827ced60c4872047b2a8e403",
+      "bytes": 1022
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-canonicalize-candidate.test.ts",
+      "sha256": "4dc7882ad8a5f57bf0253a6ff0f28915f27f2d6a91ae5e705deb40520707e1bf",
+      "bytes": 992
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-handle-empty-arbitrary-values.test.ts",
+      "sha256": "a7b2984b643d3966a2e1a34565b4f89a7c34ed683730c68ca02aa65b9bcfbb09",
+      "bytes": 1338
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-legacy-arbitrary-values.test.ts",
+      "sha256": "55aad7014cb37969ef24b38a42a0f3cde2ac85e92a3d0be4446195cf6812b140",
+      "bytes": 593
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-legacy-classes.test.ts",
+      "sha256": "354d4a8a1d15f39db19c7cbb91e97717526df4f76de1848811d28c04ecce4f0b",
+      "bytes": 1281
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-max-width-screen.test.ts",
+      "sha256": "4b8850cecdbf28e0fe3db8dc80ac4820e409a40a28d1442079d15e7c51545d3b",
+      "bytes": 560
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-modernize-arbitrary-values.test.ts",
+      "sha256": "cb2d7552eea523b3ce73323b3c1ae115344d4acc70e0cb5610b19901f904fb00",
+      "bytes": 3475
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-prefix.test.ts",
+      "sha256": "5f6891fdcc4be41079dda8369a2f5e76e304a81b9438314c6a55bb49a9f03088",
+      "bytes": 1836
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-simple-legacy-classes.test.ts",
+      "sha256": "3dac1d939c81c3fa30618884c4a19f4bf35c9765603835d4fc6465832928344f",
+      "bytes": 1147
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate-variant-order.test.ts",
+      "sha256": "eebe618897b367dbd54f51c1817f7a523709e48f6d8b7a3fe0d5869c001ff4a8",
+      "bytes": 3139
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/codemods/template/migrate.test.ts",
+      "sha256": "95fd806188ae5aa556c8aedd338a0fb52a104071399f8155c22ebabfc15f14fc",
+      "bytes": 4749
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/index.test.ts",
+      "sha256": "d05f7050b720a2de38e5629d6471996e3c27454991ac841d1e9b083daa87540c",
+      "bytes": 5710
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/utils/args.test.ts",
+      "sha256": "01fd991290cc686621e4d1234b881f15d9aaed3e1806cf5cad1b4b7d06eb9a72",
+      "bytes": 2709
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/utils/extract-static-plugins.test.ts",
+      "sha256": "d9b4a1ca67da01c8df5a583a5eac0102dda402121eebed4932bb8433d8ffbfba",
+      "bytes": 8576
+    },
+    {
+      "path": "packages/@tailwindcss-upgrade/src/utils/format-ns.test.ts",
+      "sha256": "0e55fe941465211afb85f081e8c4d44ad24de7de4a3796b76e03b045424451ab",
+      "bytes": 680
+    },
+    {
+      "path": "packages/tailwindcss/src/__snapshots__/index.test.ts.snap",
+      "sha256": "2578f2921ebebbf3df5eae2db85dd7c224e12b2043bddb15711e65b47cdf8363",
+      "bytes": 7983
+    },
+    {
+      "path": "packages/tailwindcss/src/__snapshots__/intellisense.test.ts.snap",
+      "sha256": "2447a9074540a52e71b98d739fee620f8c41e1c1254a01bfdfa3059f16218cf3",
+      "bytes": 267862
+    },
+    {
+      "path": "packages/tailwindcss/src/__snapshots__/utilities.test.ts.snap",
+      "sha256": "7073c3810511bac44958d2e670ea55affa88bbbfcbe272a69627b0d6c237d7be",
+      "bytes": 46223
+    },
+    {
+      "path": "packages/tailwindcss/src/ast.test.ts",
+      "sha256": "3bffdbf6676a2b3113c91108d506f5d7e3c5b12a804d32ee0e4e6bdd98912d33",
+      "bytes": 47317
+    },
+    {
+      "path": "packages/tailwindcss/src/at-import.test.ts",
+      "sha256": "ac9dc0231444171e1626549d4d26b42efa98d1d68964fd01bf53952c9e2074a1",
+      "bytes": 13473
+    },
+    {
+      "path": "packages/tailwindcss/src/attribute-selector-parser.test.ts",
+      "sha256": "673bf611222c6f4107fb18df7f0dc4b05999337fd175c411cb0473ad1a1ee552",
+      "bytes": 2029
+    },
+    {
+      "path": "packages/tailwindcss/src/candidate.test.ts",
+      "sha256": "977a4befaea4c1bfac8619d69542d3932d0f9b172f2d75ceab0dde474fb4cfa2",
+      "bytes": 57417
+    },
+    {
+      "path": "packages/tailwindcss/src/canonicalize-calc-expressions.test.ts",
+      "sha256": "f6d7ebdccebe1e95b1fc7a573442d5b308dec05c313cdbf90b7999944b9f0a51",
+      "bytes": 872
+    },
+    {
+      "path": "packages/tailwindcss/src/canonicalize-candidates.test.ts",
+      "sha256": "ca60c0bbf0437e34a443465c67272f930635f498a16c4055abe33154b51c60ae",
+      "bytes": 71949
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/apply-config-to-theme.test.ts",
+      "sha256": "04e8a6ef12b577306d3f0a8e78fb672eb4023c1af82561696ffa7cdec84e7f09",
+      "bytes": 9067
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/apply-keyframes-to-theme.test.ts",
+      "sha256": "ba13ab6fbd0d522b04e4dcd25fb433a5bf737f9c2b9495e1a9a41c7f6f0ec8c5",
+      "bytes": 3013
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/config/create-compat-config.test.ts",
+      "sha256": "dce3f4dcdd50f0c0d014d54355eb14ad292bbabf8f9c5f23b815061aa5a5861d",
+      "bytes": 6423
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/config/resolve-config.test.ts",
+      "sha256": "14570264bcb1d70681f71a8f16f092bc07f8fea0fe1257d8bea8b0c4f9ec8a17",
+      "bytes": 7124
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/config.test.ts",
+      "sha256": "24d5b131d1e0fd9a5cb32b58226ddb8ee34622a8ead299505b662f3f5ccedc39",
+      "bytes": 44188
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/container-config.test.ts",
+      "sha256": "881d0d02cd05d363d06c0808fbad684d045344296ff780845b5d3eade0a34a30",
+      "bytes": 14112
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/flatten-color-palette.test.ts",
+      "sha256": "d1c76d073ed5c1bcfa8802c442efedff0fd9d13790ef844f16fd17cd02032b5e",
+      "bytes": 866
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/legacy-utilities.test.ts",
+      "sha256": "4bdc8bd0668e10f01f526642cd38131a2734aa0df4e5dd2b5fa98ec97c875722",
+      "bytes": 7929
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/plugin-api.test.ts",
+      "sha256": "62d2a36c424513c217213cdda299485b6aa69515914ce8a399e8660ddc545695",
+      "bytes": 120880
+    },
+    {
+      "path": "packages/tailwindcss/src/compat/screens-config.test.ts",
+      "sha256": "4d2ae5b8e3abc2984f08eec5936741b9f9f930f5d894142331a0229e2719f430",
+      "bytes": 14373
+    },
+    {
+      "path": "packages/tailwindcss/src/compiler-lifetime.test.ts",
+      "sha256": "12020e16f9a6ef65d8124d95c07b201b8a272b432dc6fc39813322af65633b89",
+      "bytes": 1335
+    },
+    {
+      "path": "packages/tailwindcss/src/constant-fold-declaration.test.ts",
+      "sha256": "6e6104668b9a28598cef86e75fa5ee4bc4506c953019c6557cb4c5614c13c8f2",
+      "bytes": 4110
+    },
+    {
+      "path": "packages/tailwindcss/src/css-functions.test.ts",
+      "sha256": "37fed46f0f1a3bf2fbc0ab03ac80da5069bf18aa02ea44cb7fa64cd5b0e699e0",
+      "bytes": 38250
+    },
+    {
+      "path": "packages/tailwindcss/src/css-parser.test.ts",
+      "sha256": "75abfed20d3d6a247ced3d4609933dafc4b1087afd9ce7535e1710335cc4d5b8",
+      "bytes": 43830
+    },
+    {
+      "path": "packages/tailwindcss/src/expand-declaration.test.ts",
+      "sha256": "883e653f02ebec40dbaba4a3aa5643491b375f08a476a0801bbee8c105386296",
+      "bytes": 12160
+    },
+    {
+      "path": "packages/tailwindcss/src/important.test.ts",
+      "sha256": "8e79b6eafa69a2b82714d511234163cd8be1c7b0959fa5ce41cd9e66be0136d9",
+      "bytes": 2867
+    },
+    {
+      "path": "packages/tailwindcss/src/index.test.ts",
+      "sha256": "59223d220f50adb1368e15e1f472284075cb2aee4f87a55927325bb893c40813",
+      "bytes": 171097
+    },
+    {
+      "path": "packages/tailwindcss/src/intellisense.test.ts",
+      "sha256": "77a24338cd7334fcdae7852ed65572c538b409adcda41af79111bb80b5d121de",
+      "bytes": 21464
+    },
+    {
+      "path": "packages/tailwindcss/src/plugin.test.ts",
+      "sha256": "6ae19d3ec9fbff26744e3d89151caa67fcbb8b40298f8e83e5fc91047a97d5a6",
+      "bytes": 1263
+    },
+    {
+      "path": "packages/tailwindcss/src/prefix.test.ts",
+      "sha256": "93541761888f239526947fe9ff4e3a05dc0aec567760fe00f0c00f107522bf94",
+      "bytes": 7084
+    },
+    {
+      "path": "packages/tailwindcss/src/selector-parser.test.ts",
+      "sha256": "600843ae9859b706ce19b1af9de3b768eec53d31e2fd57ca58ef0d2245bae399",
+      "bytes": 17111
+    },
+    {
+      "path": "packages/tailwindcss/src/sort.test.ts",
+      "sha256": "bb6e83d7d1646f83d67a2e0bc8c69557105b887f39c2ae77fb6db8e767239eb0",
+      "bytes": 3643
+    },
+    {
+      "path": "packages/tailwindcss/src/source-maps/line-table.test.ts",
+      "sha256": "508c43c37d7df0980481890ebad0eb4428d804e45d11396fd2244383b9754011",
+      "bytes": 3476
+    },
+    {
+      "path": "packages/tailwindcss/src/source-maps/source-map.test.ts",
+      "sha256": "07df2d069bf9ececc38d4f6144874a85114772f7b4a2b6bf238087bf6414feed",
+      "bytes": 77112
+    },
+    {
+      "path": "packages/tailwindcss/src/source-maps/translation-map.test.ts",
+      "sha256": "4c7d6210b5d35080c39cd168b37560eb6b8617b4e9437b190961d2060a0a48dc",
+      "bytes": 10275
+    },
+    {
+      "path": "packages/tailwindcss/src/source-maps/visualize-source-map.test.ts",
+      "sha256": "5d53c2c5cf4d8db5f691476d775c0d4885364d00ffef5dd6faaaccd55fb4ea38",
+      "bytes": 7261
+    },
+    {
+      "path": "packages/tailwindcss/src/utilities.test.ts",
+      "sha256": "baab0327220c59916ef69205de5ab8a3713a6997c177c650db65e935ee3061a6",
+      "bytes": 843010
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/brace-expansion.test.ts",
+      "sha256": "8727dbd9bc21172a74718aa014a0bf93c3b1cf6b686b7169d948d9030c6b0c2c",
+      "bytes": 2608
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/compare.test.ts",
+      "sha256": "9e871715545809993d86efdb4870e0102db51738937850dfefd2e28212fba380",
+      "bytes": 4038
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/decode-arbitrary-value.test.ts",
+      "sha256": "09d4b884a33564a91b746c90b0d89f2674e8dbf9b8ddf4bee82c2762d05baf23",
+      "bytes": 7009
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/escape.test.ts",
+      "sha256": "d211feebd0b96244faa32c40063509d8c9bc626e6a26d15af0d7f70500417a62",
+      "bytes": 1472
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/lru-default-map.test.ts",
+      "sha256": "92b3c2bd408160e1ba6e926e74e64739267f99532973f90ce29c5c40c01c9e1e",
+      "bytes": 1774
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/replace-shadow-colors.test.ts",
+      "sha256": "5dd3dd68bf3e389dd41bb7ab6a7b21f103a1d53b9971d15a8f411f7ae164bf5e",
+      "bytes": 5568
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/segment.test.ts",
+      "sha256": "6f2dce06b0b9bf0cbef068371f21188ebf0058af98d6b21570d82d3903e24d08",
+      "bytes": 1828
+    },
+    {
+      "path": "packages/tailwindcss/src/utils/to-key-path.test.ts",
+      "sha256": "ea318dd6e40d864788204a44896429103d1dad3caba3e6960121911b1d2e3da9",
+      "bytes": 741
+    },
+    {
+      "path": "packages/tailwindcss/src/value-parser.test.ts",
+      "sha256": "92e9248b448518fb4657ad50041e3d5e724a85b7650be024b8f3ea2d51a49d27",
+      "bytes": 6652
+    },
+    {
+      "path": "packages/tailwindcss/src/variants.test.ts",
+      "sha256": "0d412cdbf449f73b535ed25c7d61d946abf60c68dcc2fdca9c7fc795611fad7b",
+      "bytes": 81667
+    },
+    {
+      "path": "packages/tailwindcss/src/walk.test.ts",
+      "sha256": "a16dc7ecc731e4bca7eddb2aa6504a0c7852f75418384ab18cd4135f1a6c295f",
+      "bytes": 39108
+    }
+  ]
+}
