@@ -1,6 +1,8 @@
 package rocketwind
 
 import (
+	"os"
+	"path/filepath"
 	"slices"
 	"strings"
 	"testing"
@@ -64,5 +66,24 @@ func TestResolveStylesheetURLs(t *testing.T) {
 	}
 	if _, err := ResolveURLs(`.broken {`, "https://app.test/a"); err == nil {
 		t.Fatal("invalid CSS accepted")
+	}
+}
+
+func TestVirtualFilesystemIgnoresHostSymlinks(t *testing.T) {
+	root := t.TempDir()
+	if err := os.Mkdir(filepath.Join(root, "other"), 0700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Symlink(filepath.Join(root, "other"), filepath.Join(root, "assets")); err != nil {
+		t.Fatal(err)
+	}
+	t.Chdir(root)
+	loader := Filesystem{Root: "assets", FS: fstest.MapFS{"assets/main.css": {Data: []byte(`.image {background:url(./icon.png)}`)}}}
+	sheet, err := loader.LoadStylesheet("./main.css", "assets")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !strings.Contains(sheet.Content, "url(./icon.png)") {
+		t.Fatal(sheet.Content)
 	}
 }

@@ -36,14 +36,23 @@ func (fs Filesystem) LoadStylesheet(id, base string) (Stylesheet, error) {
 	}
 	sheet := Stylesheet{Path: name, Base: filepath.Dir(name), Content: string(data)}
 	if fs.Root != "" {
-		root, e := filepath.Abs(fs.Root)
-		if e != nil {
-			return Stylesheet{}, e
+		root, base := fs.Root, sheet.Base
+		if fs.FS != nil {
+			// Virtual filesystem paths must not follow host symlinks or depend
+			// on the process working directory when rebasing imported URLs.
+			root = filepath.Join(string(filepath.Separator), root)
+			base = filepath.Join(string(filepath.Separator), base)
+		} else {
+			var e error
+			root, e = filepath.Abs(root)
+			if e != nil {
+				return Stylesheet{}, e
+			}
+			if canonical, e := filepath.EvalSymlinks(root); e == nil {
+				root = canonical
+			}
 		}
-		if canonical, e := filepath.EvalSymlinks(root); e == nil {
-			root = canonical
-		}
-		sheet.Content, err = RewriteURLs(sheet.Content, sheet.Base, root)
+		sheet.Content, err = RewriteURLs(sheet.Content, base, root)
 	}
 	return sheet, err
 }
