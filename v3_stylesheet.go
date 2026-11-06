@@ -234,7 +234,7 @@ func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node, prefix bool) {
 		}
 		replace(tree)
 		nodes := cloneNodes(node.Nodes, "", false)
-		if selector := selectorCSS(tree); selector != "&" {
+		if selector := selectorCSS(tree); selector != "&" || len(nodes) == 0 {
 			nodes = []*Node{{Kind: "v3-rule", Name: selector, Nodes: nodes}}
 		}
 		for i := len(wrappers) - 1; i >= 0; i-- {

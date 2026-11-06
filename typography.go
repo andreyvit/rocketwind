@@ -1,6 +1,9 @@
 package rocketwind
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // TypographyStyle contains declarations and nested selectors for a prose
 // modifier. Name "DEFAULT" defines prose; "lg" defines prose-lg, for example.
@@ -13,6 +16,8 @@ type TypographyStyle struct {
 // "prose". Legacy disables :where() specificity reduction. A non-nil Styles
 // slice replaces the defaults; Extend merges declarations and nested rules.
 type TypographyOptions struct {
+	// Version defaults to 0.5.20. Use 0.5.15 to preserve its RGB shadow variables.
+	Version   string
 	ClassName string
 	Legacy    bool
 	Styles    []TypographyStyle
@@ -21,6 +26,7 @@ type TypographyOptions struct {
 
 var typographyStyles = typographyStylesFromConfig(typographyTheme)
 var typographyV3Styles = typographyStylesFromConfig(typographyV3Theme)
+var typographyLegacyStyles = typographyStylesFromConfig(typographyLegacyTheme)
 
 func typographyStylesFromConfig(config ConfigObject) []TypographyStyle {
 	styles := make([]TypographyStyle, 0, len(config))
@@ -42,6 +48,9 @@ func typographyStylesFromConfig(config ConfigObject) []TypographyStyle {
 // Typography is the Go port of @tailwindcss/typography v0.5.20.
 func Typography(options TypographyOptions) Plugin {
 	return func(api *PluginAPI) error {
+		if options.Version != "" && options.Version != "0.5.20" && options.Version != "0.5.15" {
+			return fmt.Errorf("unsupported typography version %q", options.Version)
+		}
 		className := options.ClassName
 		if className == "" {
 			className = "prose"
@@ -80,6 +89,9 @@ func Typography(options TypographyOptions) Plugin {
 			styles = typographyStyles
 			if api.compiler.config.Compatibility == Tailwind3 {
 				styles = typographyV3Styles
+			}
+			if options.Version == "0.5.15" {
+				styles = typographyLegacyStyles
 			}
 			if configured := configObject(api.ThemeValue("typography")); configured != nil {
 				configuredStyles := typographyStylesFromConfig(configured)

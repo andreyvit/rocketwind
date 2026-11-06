@@ -17,19 +17,29 @@ func standardModule(name string) (Module, bool) {
 		return Module{Plugin: LineClamp(LineClampOptions{})}, true
 	case "@tailwindcss/container-queries":
 		return Module{Plugin: ContainerQueries(ContainerQueriesOptions{})}, true
-	case "@tailwindcss/typography":
-		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"typography", typographyTheme}}}}, legacy3: ConfigObject{{"theme", ConfigObject{{"typography", typographyV3Theme}}}}, Configure: func(options map[string]any) (Plugin, error) {
+	case "@tailwindcss/typography", "@tailwindcss/typography@0.5.15":
+		version := ""
+		theme, theme3 := typographyTheme, typographyV3Theme
+		if strings.HasSuffix(name, "@0.5.15") {
+			version = "0.5.15"
+			theme, theme3 = typographyLegacyTheme, typographyLegacyTheme
+		}
+		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"typography", theme}}}}, legacy3: ConfigObject{{"theme", ConfigObject{{"typography", theme3}}}}, Configure: func(options map[string]any) (Plugin, error) {
 			className, _ := options["className"].(string)
 			target, _ := options["target"].(string)
-			return Typography(TypographyOptions{ClassName: className, Legacy: target == "legacy"}), nil
+			return Typography(TypographyOptions{ClassName: className, Legacy: target == "legacy", Version: version}), nil
 		}}, true
-	case "@tailwindcss/forms":
+	case "@tailwindcss/forms", "@tailwindcss/forms@0.5.9":
 		return Module{Configure: func(options map[string]any) (Plugin, error) {
 			strategy, _ := options["strategy"].(string)
 			if _, ok := options["strategy"]; ok && strategy == "" {
 				strategy = "invalid"
 			}
-			return Forms(FormsOptions{Strategy: strategy}), nil
+			version := ""
+			if strings.HasSuffix(name, "@0.5.9") {
+				version = "0.5.9"
+			}
+			return Forms(FormsOptions{Strategy: strategy, Version: version}), nil
 		}}, true
 	}
 	return Module{}, false

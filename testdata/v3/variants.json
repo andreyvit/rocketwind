@@ -3300,6 +3300,34 @@
     "css": "@media print {\n    .print\\:content-\\[\\\"hi\\\"\\] {\n        --tw-content: \"hi\";\n        content: var(--tw-content)\n    }\n}"
   },
   {
+    "candidate": "group-[.x]/menu:bg-black",
+    "css": ".group\\/menu.x .group-\\[\\.x\\]\\/menu\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-[&:is(.x)]:bg-black",
+    "css": ".group:is(.x) .group-\\[\\&\\:is\\(\\.x\\)\\]\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "aria-expanded:before:bg-black",
+    "css": ".aria-expanded\\:before\\:bg-black[aria-expanded=\"true\"]::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "before:aria-expanded:bg-black",
+    "css": ".before\\:aria-expanded\\:bg-black[aria-expanded=\"true\"]::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "hover:before:bg-black",
+    "css": ".hover\\:before\\:bg-black:hover::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "group-hover:before:bg-black",
+    "css": ".group:hover .group-hover\\:before\\:bg-black::before {\n    content: var(--tw-content);\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
+  },
+  {
+    "candidate": "[.x]:bg-black",
+    "css": ""
+  },
+  {
     "candidate": "group-hover/menu:bg-black",
     "css": ".group\\/menu:hover .group-hover\\/menu\\:bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}"
   },

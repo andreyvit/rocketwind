@@ -107,6 +107,12 @@ function goValue(value) {
 }
 let go='// Code generated from Tailwind CSS v3.4.17 by scripts/registry-v3.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/upstream/LICENSE.\npackage rocketwind\n\n'
 go+='var v3ThemeDefaults = '+goValue(require('tailwindcss/stubs/config.full').theme)+'\n'
+const oldTypography = structuredClone(require('typography-v3/src/styles'))
+for (const style of Object.values(oldTypography)) {
+ const normalize = value => require('postcss-js').objectify(require('postcss').root({nodes:parseStyles(value)}))
+ style.css = Array.isArray(style.css) ? style.css.map(normalize) : normalize(style.css)
+}
+go+='\nvar typographyLegacyTheme = '+goValue(oldTypography)+'\n'
 go+='\nvar typographyV3Theme = '+goValue(require('@tailwindcss/typography/src/styles'))+'\n'
 go+='\nvar v3Static = map[string][]v3StaticDefinition{\n'
 for(const [name,defs] of Object.entries(result.static)) go+=q(name)+':{'+defs.map(d=>'{'+d.order+','+goNodes(d.nodes)+'}').join(',')+'},\n'

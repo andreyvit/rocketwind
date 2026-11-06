@@ -15,6 +15,7 @@ type Node struct {
 	source     *cssSource
 	base       string
 	variant    bool
+	v3Applied  bool
 	context    map[string]any
 	Kind       string
 	Name       string

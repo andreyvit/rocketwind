@@ -134,6 +134,9 @@ func (c *Compiler) resolveApplies() error {
 				}
 				for _, r := range rules {
 					content := r.node.Nodes
+					if c.config.Compatibility == Tailwind3 {
+						content = v3AppliedNodes(content)
+					}
 					if n.source != nil {
 						content = cloneNodes(content, "", false)
 					}

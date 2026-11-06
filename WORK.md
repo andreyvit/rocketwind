@@ -467,3 +467,21 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
   three complete completion lists and 180 standard-plugin cases. The full v4
   and v3 suites pass. New v3 code still needs complete coverage and the real
   application comparison; those gates remain open.
+
+### Tailwind 3 source scanning and stylesheet behavior
+
+- Ported source extraction and retained the original 45-test extractor file;
+  all 45 original tests and captured extraction results pass in Go.
+- Added selectable forms 0.5.9 and typography 0.5.15 ports for applications
+  using the versions bundled with Tailwind 3.4.17. The default plugins remain
+  current. All 258 old-profile plugin comparisons pass.
+- Fixed arbitrary-property validation and normalization, stacked pseudo-element
+  variants, empty component rules, duplicate declaration handling and important
+  behavior across apply expansions.
+- A private application snapshot now matches all 2,506 selectors and all
+  declarations from the original compiler with browser prefixing disabled.
+  Three declaration lists differ only in independent property order. Rule
+  ordering and modern browser output still need separate validation.
+- Full Go tests pass. Combined coverage is 12,043/12,190 statements (98.794%);
+  closing these new paths and application integration remain open.
+- Browser prefix upgrades are explicitly desired and permitted output changes.

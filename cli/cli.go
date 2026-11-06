@@ -325,7 +325,7 @@ func build(ctx context.Context, f flags, options Options) error {
 		}
 		builder = compiled.NewBuilder()
 		features = compiled.Features()
-		scanner = rocketwind.NewScanner(sources, rocketwind.ScannerOptions{Base: base})
+		scanner = rocketwind.NewScanner(sources, rocketwind.ScannerOptions{Base: base, Compatibility: f.compatibility})
 		dependencies = deps
 		return nil
 	}

@@ -422,7 +422,7 @@ func (b *buildContext) renderV3(nodes []*Node) string {
 		return result
 	}
 	nodes = strip(nodes)
-	nodes = v3Flatten(append(globals, nodes...))
+	nodes = v3Collapse(v3Flatten(append(globals, nodes...)))
 	if b.outputAST != nil {
 		*b.outputAST = nodes
 	}
@@ -436,7 +436,7 @@ func (b *buildContext) renderV3(nodes []*Node) string {
 // CSS nesting's :is() specificity or simplify universal selectors.
 func v3Flatten(input []*Node) []*Node {
 	var output []*Node
-	var walk func([]*Node, string, []*Node)
+	var walk func([]*Node, string, []*Node, bool)
 	emit := func(node *Node, wrappers []*Node) {
 		for i := len(wrappers) - 1; i >= 0; i-- {
 			copy := *wrappers[i]
@@ -445,12 +445,16 @@ func v3Flatten(input []*Node) []*Node {
 		}
 		output = append(output, node)
 	}
-	walk = func(nodes []*Node, parent string, wrappers []*Node) {
+	walk = func(nodes []*Node, parent string, wrappers []*Node, variant bool) {
 		var declarations []*Node
 		flush := func() {
 			if len(declarations) > 0 {
 				if parent != "" {
-					emit(&Node{Kind: "rule", Name: parent, Nodes: declarations}, wrappers)
+					selector := parent
+					if variant {
+						selector = v3MovePseudos(selector)
+					}
+					emit(&Node{Kind: "rule", Name: selector, Nodes: declarations}, wrappers)
 				} else {
 					for _, n := range declarations {
 						emit(n, wrappers)
@@ -484,16 +488,20 @@ func v3Flatten(input []*Node) []*Node {
 					}
 					selector = strings.Join(selectors, ", ")
 				}
-				walk(n.Nodes, selector, wrappers)
+				if len(n.Nodes) == 0 {
+					emit(&Node{Kind: "rule", Name: selector, Nodes: []*Node{}}, wrappers)
+				} else {
+					walk(n.Nodes, selector, wrappers, variant || n.variant)
+				}
 			case n.Kind == "at-rule" && n.Nodes != nil && n.Name != "@keyframes" && n.Name != "@font-face":
-				walk(n.Nodes, parent, append(slices.Clone(wrappers), n))
+				walk(n.Nodes, parent, append(slices.Clone(wrappers), n), variant || n.variant)
 			default:
 				emit(n, wrappers)
 			}
 		}
 		flush()
 	}
-	walk(input, "", nil)
+	walk(input, "", nil, false)
 	return output
 }
 
@@ -633,4 +641,31 @@ func v3FilterRules(nodes []*Node) []*Node {
 		result = append(result, &copy)
 	}
 	return result
+}
+
+func v3AppliedNodes(nodes []*Node) []*Node {
+	result := cloneNodes(nodes, "", false)
+	var mark func([]*Node)
+	mark = func(nodes []*Node) {
+		for _, n := range nodes {
+			n.v3Applied = true
+			mark(n.Nodes)
+		}
+	}
+	mark(result)
+	return result
+}
+
+func v3ImportantNode(n *Node) *Node {
+	copy := *n
+	if n.Kind == "declaration" && !n.v3Applied {
+		copy.Important = true
+	}
+	if n.Nodes != nil {
+		copy.Nodes = make([]*Node, len(n.Nodes))
+		for i, child := range n.Nodes {
+			copy.Nodes[i] = v3ImportantNode(child)
+		}
+	}
+	return &copy
 }

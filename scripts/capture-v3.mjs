@@ -32,7 +32,7 @@ for(const variant of context.variantMap.keys()) {
     variants.push({candidate,css:root.toString()})
   }
 }
-for(const variant of ['group-hover/menu','peer-checked/choice','has-[img]','group-has-[a]','peer-has-[:checked]','aria-[sort=ascending]','data-[state=open]','supports-[display:grid]','supports-[backdrop-filter]','min-[123px]','max-[456px]','[&>p]','sm:hover','hover:sm','group-hover:focus','before:hover']) {
+for(const variant of ['group-[.x]/menu','group-[&:is(.x)]','aria-expanded:before','before:aria-expanded','hover:before','group-hover:before','[.x]','group-hover/menu','peer-checked/choice','has-[img]','group-has-[a]','peer-has-[:checked]','aria-[sort=ascending]','data-[state=open]','supports-[display:grid]','supports-[backdrop-filter]','min-[123px]','max-[456px]','[&>p]','sm:hover','hover:sm','group-hover:focus','before:hover']) {
   const candidate=variant+':bg-black'
   const root=postcss.root({nodes:generateRules(new Set([candidate]),context).map(([,node])=>node.clone())})
   root.walkAtRules('defaults',n=>n.remove())
@@ -41,6 +41,8 @@ for(const variant of ['group-hover/menu','peer-checked/choice','has-[img]','grou
 fs.writeFileSync('testdata/v3/variants.json',JSON.stringify(variants,null,2)+'\n')
 console.log('Captured '+variants.length+' Tailwind 3.4.17 variant builds')
 const configurations=[
+  {name:'legacy arbitrary syntax',config:{},classes:['[name.dot:value]','[e.f(a:value]','[title::value]','[_property:value]','[-property:value]','[--foo:--bar]','[color:--brand]','[https://example.com]','bg-[--brand]','w-[calc(100%-theme(spacing.2))]','grid-cols-[minmax(min-content,{.widget.max-width.size})]','[display:flex]/2','[.x]:flex','[background:center,_no-repeat_{.image.position}/cover]']},
+
   {name:'prefix',config:{prefix:'tw-'},classes:['flex','tw-flex','hover:tw-bg-black','group-hover:tw-flex','peer-checked/item:tw-flex','-tw-mt-4','tw--mt-4','!tw-p-4','hover:!tw-p-4','tw-p-4!','[color:red]','tw-[color:red]','tw-bg-(--brand)']},
   {name:'important selector',config:{important:'#app'},classes:['flex','hover:flex','before:block','sm:flex','container','[color:red]']},
   {name:'important bool',config:{important:true},classes:['flex','hover:flex','before:block','container','!container','sm:container']},
@@ -48,7 +50,15 @@ const configurations=[
   {name:'extended theme',config:{theme:{extend:{spacing:{custom:'17px'},colors:{brand:'#123456',alpha:'rgb(1 2 3 / <alpha-value>)',variable:'var(--brand)'},fontFamily:{custom:['Custom','serif'],feature:[['Feature','sans-serif'],{fontFeatureSettings:'"cv11"',fontVariationSettings:'"wght" 500'}]},fontSize:{custom:['19px',{lineHeight:'27px',letterSpacing:'0.1px',fontWeight:'600'}]},screens:{xs:'450px'},transitionDuration:{DEFAULT:'321ms'},transitionTimingFunction:{DEFAULT:'linear'},container:{center:true,padding:{DEFAULT:'12px',sm:'16px',xs:'8px'}}}}},classes:['p-custom','m-custom','-mt-custom','w-custom','h-custom','gap-custom','space-x-custom','translate-x-custom','bg-brand','bg-brand/50','text-brand','border-brand','ring-brand','from-brand','via-brand','to-brand','bg-alpha','bg-alpha/25','text-variable','bg-variable/50','font-custom','font-feature','text-custom','text-custom/6','text-custom/[1.5]','xs:flex','container','transition','transition-none']},
   {name:'replaced theme',config:{theme:{spacing:{x:'3px'},colors:{brand:'#abcdef'},fontSize:{custom:'2em'},screens:{tiny:'200px'},fontFamily:{sans:['Example','serif']},container:{padding:'10px'}}},classes:['p-x','p-4','bg-brand','bg-red-500','font-sans','text-custom','sm:flex','tiny:flex','container']},
 ]
-for(const fixture of configurations){const ctx=createContext(resolveConfig({content:[],...fixture.config}));fixture.results=fixture.classes.map(candidate=>{const root=postcss.root({nodes:generateRules(new Set([candidate]),ctx).map(([,node])=>node.clone())});root.walkAtRules('defaults',n=>n.remove());return root.toString()})}
+for(const fixture of configurations) {
+ const ctx=createContext(resolveConfig({content:[],...fixture.config}))
+ fixture.results=fixture.classes.map(candidate=>{
+  const root=postcss.root({nodes:generateRules(new Set([candidate]),ctx).map(([,node])=>node.clone())})
+  root.walkAtRules('defaults',n=>n.remove())
+  require('tailwindcss/lib/lib/evaluateTailwindFunctions').default(ctx)(root)
+  return root.toString()
+ })
+}
 fs.writeFileSync('testdata/v3/configuration.json',JSON.stringify(configurations,null,2)+'\n')
 const sheets=[
   {name:'layer important',css:'@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4 !important; } } @layer utilities { .heavy { @apply font-bold !important; } }',classes:['card','heavy']},

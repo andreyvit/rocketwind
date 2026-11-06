@@ -231,7 +231,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 					b.err = nil
 					continue
 				}
-				if len(nodes) == 0 {
+				if len(nodes) == 0 || b.compiler.config.Compatibility == Tailwind3 && !v3ParsableNodes(nodes) {
 					continue
 				}
 				order, count := sortProperties(nodes)
@@ -242,6 +242,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				n := &Node{Kind: "rule", Name: "." + Escape(raw), Nodes: nodes}
 				if b.compiler.config.Compatibility == Tailwind3 {
 					n.Name = "." + v3Escape(raw)
+					n.variant = len(variants) > 0
 				}
 				if b.compiler.config.Compatibility != Tailwind3 && (candidate.Important || b.compiler.config.Important && !b.inApply) {
 					n = cloneNode(n, "", true)
@@ -258,8 +259,8 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				}
 				if b.compiler.config.Compatibility == Tailwind3 {
 					component := v3Order < -1
-					if candidate.Important && (!component || v3Order == -20000) || !component && b.compiler.config.Important && !b.inApply {
-						n = cloneNode(n, "", true)
+					if candidate.Important || !component && b.compiler.config.Important && !b.inApply {
+						n = v3ImportantNode(n)
 					}
 					if !component && !b.inApply && b.compiler.importantSelector != "" {
 						n = &Node{Kind: "rule", Name: b.compiler.importantSelector, Nodes: []*Node{n}}
@@ -427,6 +428,9 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 		}
 		return result
 	case "arbitrary":
+		if b.compiler.config.Compatibility == Tailwind3 && !strings.HasPrefix(candidate.Property, "--") {
+			candidate.Property = cssPropertyName(candidate.Property)
+		}
 		value := candidate.Value.Value
 		if modifier != "" {
 			value = b.colorAlpha(value, modifier, modifierArbitrary)

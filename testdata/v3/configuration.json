@@ -1,5 +1,41 @@
 [
   {
+    "name": "legacy arbitrary syntax",
+    "config": {},
+    "classes": [
+      "[name.dot:value]",
+      "[e.f(a:value]",
+      "[title::value]",
+      "[_property:value]",
+      "[-property:value]",
+      "[--foo:--bar]",
+      "[color:--brand]",
+      "[https://example.com]",
+      "bg-[--brand]",
+      "w-[calc(100%-theme(spacing.2))]",
+      "grid-cols-[minmax(min-content,{.widget.max-width.size})]",
+      "[display:flex]/2",
+      "[.x]:flex",
+      "[background:center,_no-repeat_{.image.position}/cover]"
+    ],
+    "results": [
+      "",
+      "",
+      "",
+      ".\\[_property\\:value\\] {\n    _property: value\n}",
+      ".\\[-property\\:value\\] {\n    -property: value\n}",
+      ".\\[--foo\\:--bar\\] {\n    --foo: var(--bar)\n}",
+      ".\\[color\\:--brand\\] {\n    color: var(--brand)\n}",
+      "",
+      ".bg-\\[--brand\\] {\n    background-color: var(--brand)\n}",
+      ".w-\\[calc\\(100\\%-theme\\(spacing\\.2\\)\\)\\] {\n    width: calc(100% - 0.5rem)\n}",
+      ".grid-cols-\\[minmax\\(min-content\\2c \\{\\.widget\\.max-width\\.size\\}\\)\\] {\n    grid-template-columns: minmax(min-content,{.widget.max - width.size})\n}",
+      "",
+      "",
+      ""
+    ]
+  },
+  {
     "name": "prefix",
     "config": {
       "prefix": "tw-"

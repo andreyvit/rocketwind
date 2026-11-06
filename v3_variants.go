@@ -77,9 +77,7 @@ func (b *buildContext) applyV3Variant(nodes []*Node, v *parsedVariant, depth int
 		return wrap(v.value)
 	}
 	if v.root == "before" || v.root == "after" {
-		if !hasNode(nodes, "content") {
-			nodes = append(declarations("content", "var(--tw-content)"), nodes...)
-		}
+		nodes = v3Content(nodes)
 	}
 	if v.root == "visited" || v.root == "marker" {
 		names := []string{"--tw-text-opacity"}
@@ -195,6 +193,26 @@ func v3RemoveAlpha(nodes []*Node, names []string) []*Node {
 		}
 		if n.Nodes != nil {
 			copy.Nodes = v3RemoveAlpha(n.Nodes, names)
+		}
+		result = append(result, &copy)
+	}
+	return result
+}
+
+func v3Content(nodes []*Node) []*Node {
+	result := make([]*Node, 0, len(nodes)+1)
+	direct, content := false, false
+	for _, n := range nodes {
+		direct = direct || n.Kind == "declaration" || n.Kind == "slot"
+		content = content || n.Name == "content"
+	}
+	if direct && !content {
+		result = append(result, declarations("content", "var(--tw-content)")...)
+	}
+	for _, n := range nodes {
+		copy := *n
+		if n.Nodes != nil && n.Kind != "at-root" {
+			copy.Nodes = v3Content(n.Nodes)
 		}
 		result = append(result, &copy)
 	}

@@ -19,6 +19,7 @@ type Content struct{ Path, Text, Extension string }
 // builds. Construct a new scanner for a clean build. A Scanner is not safe for
 // concurrent use. Missing and unreadable files are skipped, as in Tailwind.
 type Scanner struct {
+	compatibility           Compatibility
 	sources                 []scannedSource
 	rules                   []scanIgnore
 	candidates              map[string]bool
@@ -31,15 +32,20 @@ type Scanner struct {
 
 // ScannerOptions controls filesystem discovery. Base is the working directory
 // used to bound ancestor ignore rules; an empty Base uses the process directory.
-type ScannerOptions struct{ Base string }
+type ScannerOptions struct {
+	Base          string
+	Compatibility Compatibility
+}
 
 func NewScanner(sources []Source, options ...ScannerOptions) *Scanner {
 	base := ""
+	compatibility := Tailwind4
 	if len(options) > 0 {
 		base = options[0].Base
+		compatibility = options[0].Compatibility
 	}
 	prepared, rules := prepareScanSources(sources, base)
-	return &Scanner{sources: prepared, rules: rules, candidates: map[string]bool{}, files: map[string]bool{}, dirs: map[string]bool{}, extensions: map[string]bool{}, mtimes: map[string]time.Time{}}
+	return &Scanner{compatibility: compatibility, sources: prepared, rules: rules, candidates: map[string]bool{}, files: map[string]bool{}, dirs: map[string]bool{}, extensions: map[string]bool{}, mtimes: map[string]time.Time{}}
 }
 
 // NewScanner combines the stylesheet's @source directives with its automatic
@@ -51,7 +57,7 @@ func (c *Compiler) NewScanner(base string) *Scanner {
 	} else if !c.root.Disabled {
 		sources = append(sources, Source{Base: c.root.Base, Pattern: c.root.Pattern})
 	}
-	return NewScanner(append(sources, c.sources...), ScannerOptions{Base: base})
+	return NewScanner(append(sources, c.sources...), ScannerOptions{Base: base, Compatibility: c.config.Compatibility})
 }
 
 // Scan discovers files, reads additions and changes, and returns all candidates.
@@ -106,7 +112,9 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string) {
 		return
 	}
 	for line := range strings.SplitSeq(text, "\n") {
-		if cssOnly && content.Extension == "css" {
+		if s.compatibility == Tailwind3 {
+			s.buffer = appendExtractedV3(s.buffer[:0], line)
+		} else if cssOnly && content.Extension == "css" {
 			s.buffer = append(s.buffer[:0], CSSVariables(line)...)
 		} else {
 			s.buffer = AppendExtracted(s.buffer[:0], line)

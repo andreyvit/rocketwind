@@ -5,7 +5,7 @@ import path from 'node:path'
 import Module, { createRequire } from 'node:module'
 import { execFileSync } from 'node:child_process'
 
-const [upstream, tooling] = process.argv.slice(2)
+const [upstream, tooling, legacyVersion] = process.argv.slice(2)
 if (!upstream || !tooling) throw new Error('usage: node scripts/forms.mjs FORMS TOOLING')
 const require = createRequire(path.resolve(tooling, 'package.json'))
 const file = path.resolve(upstream, 'src/index.js')
@@ -35,10 +35,16 @@ function nodesGo(object) {
   }
   return '[]*Node{' + nodes.join(',') + '}'
 }
+const legacy = legacyVersion === '0.5.9'
 let go = '// Code generated from @tailwindcss/forms v0.5.11 by scripts/forms.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/plugins/forms/LICENSE.\npackage rocketwind\n\n'
-go += 'var formsRules = []formsRule{\n'
+go += 'var '+(legacy?'formsV3Rules':'formsRules')+' = []formsRule{\n'
 for (const rule of globalThis.__rocketwindForms) go += `{Base:[]string{${rule.base.map(q).join(',')}},Classes:[]string{${(rule.class??[]).map(q).join(',')}},Nodes:${nodesGo(rule.styles)}},\n`
 go += '}\n'
+if (legacy) {
+  fs.writeFileSync('forms_v3_generated.go',go.replaceAll('v0.5.11','v0.5.9'))
+  console.log('Extracted legacy forms rules')
+  process.exit(0)
+}
 const svgPackage = path.dirname(require.resolve('mini-svg-data-uri/package.json'))
 const shortColors = require(path.join(svgPackage,'shorter-css-color-names.js'))
 const hexColors = new Map()

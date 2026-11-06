@@ -9,12 +9,12 @@ const {createContext} = require('tailwindcss/lib/lib/setupContextUtils')
 const {generateRules} = require('tailwindcss/lib/lib/generateRules')
 const postcss = require('postcss')
 const cases=[]
-for(const name of ['forms','typography','aspect-ratio','line-clamp','container-queries']) {
-  const plugin=require('@tailwindcss/'+name)
+for(const name of ['forms','typography','aspect-ratio','line-clamp','container-queries','forms@0.5.9','typography@0.5.15']) {
+  const plugin=require(name==='forms@0.5.9'?'forms-v3':name==='typography@0.5.15'?'typography-v3':'@tailwindcss/'+name)
   for(const prefix of ['', 'tw-']) {
     const config={content:[],prefix,plugins:[plugin]}
     const ctx=createContext(resolveConfig(config))
-    const roots={forms:['form-'],typography:['prose'], 'aspect-ratio':['aspect-w','aspect-h','aspect-none'], 'line-clamp':['line-clamp'], 'container-queries':['@container']}[name]
+    const roots={forms:['form-'],typography:['prose'], 'aspect-ratio':['aspect-w','aspect-h','aspect-none'], 'line-clamp':['line-clamp'], 'container-queries':['@container']}[name.split('@')[0]]
     let classes=[...new Set(ctx.getClassList().filter(c=>roots.some(root=>c.startsWith(prefix+root))))]
     classes.push(...classes.slice(0,2).map(c=>'hover:'+c))
     if(name==='typography') classes.push('prose-a:text-red-500'.replace('text-',prefix+'text-'))

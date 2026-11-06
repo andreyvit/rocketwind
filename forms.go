@@ -1,10 +1,17 @@
 package rocketwind
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // FormsOptions selects both base styles and form-* classes by default. Strategy
 // can be "base" or "class" to generate just one, as in @tailwindcss/forms.
-type FormsOptions struct{ Strategy string }
+type FormsOptions struct {
+	Strategy string
+	// Version defaults to 0.5.11. Use 0.5.9 for older form selector specificity.
+	Version string
+}
 
 type formsRule struct {
 	Base, Classes []string
@@ -14,9 +21,17 @@ type formsRule struct {
 // Forms is the Go port of @tailwindcss/forms v0.5.11.
 func Forms(options FormsOptions) Plugin {
 	return func(api *PluginAPI) error {
+		rules := formsRules
+		switch options.Version {
+		case "", "0.5.11":
+		case "0.5.9":
+			rules = formsV3Rules
+		default:
+			return fmt.Errorf("unsupported forms version %q", options.Version)
+		}
 		base, classes := options.Strategy == "" || options.Strategy == "base", options.Strategy == "" || options.Strategy == "class"
 		var baseRules, classRules []*Node
-		for _, rule := range formsRules {
+		for _, rule := range rules {
 			if !base && !classes {
 				break
 			}
