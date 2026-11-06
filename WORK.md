@@ -145,6 +145,22 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   TypeScript internals, coverage and integration gates remain open.
 - Go tests, race detector and vet pass; overall statement coverage is 96.3%.
 
+### CLI and filesystem loaders
+
+- Added the standalone command and reusable `cli.Run`, with file/stdin input,
+  file/stdout output, watch mode, explicit sources, extra classes and exclusion
+  stylesheets. JSON configuration can name built-in or registered Go plugins.
+- Added stylesheet/package resolution, dependency tracking and asset URL
+  rebasing. Both original Tailwind URL tests and their captured calls pass.
+- CLI tests cover GoX source text, exclusions, registered Go plugins, command
+  errors, dependency changes, recovery from invalid CSS and unchanged output.
+- Go tests, race detector and vet pass. The built executable passed a separate
+  stdin/GoX/exclusion/output smoke test. Current combined statement coverage is
+  96.1%; command entry-point coverage remains part of the integration gate.
+- Minification, source maps, canonicalization and the original CLI integration
+  suite remain pending. This is a usable compiler checkpoint, not completion of
+  the CLI or compatibility gates. No Bubblehouse files have been integrated.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

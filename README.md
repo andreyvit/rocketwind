@@ -174,6 +174,37 @@ last scan. Each scanner belongs to one build session; do not share it between
 concurrent builds or accounts.
 
 
+Command-line compiler
+---------------------
+
+```sh
+go install github.com/andreyvit/rocketwind/cmd/rocketwind@latest
+rocketwind -i src/input.css -o public/app.css
+rocketwind -i src/input.css -o public/app.css --watch
+```
+
+The CLI reads files or stdin (`-i -`), writes files or stdout (`-o -`), and uses
+Tailwind's automatic source discovery and `@source` directives. Without an input
+file, it compiles `@import "tailwindcss"`. Use `--cwd` to choose the search root,
+`--content` for explicit source patterns, and `--classes` for extra class names.
+
+Use `--exclude public/admin.css` to generate only helpers absent from an existing
+stylesheet. Both `--content` and `--exclude` can be repeated.
+
+`--config theme.json` loads Tailwind's object-style configuration. JSON `plugins`
+can list the built-in plugin names, such as `"@tailwindcss/typography"`.
+Applications can register their own Go modules through `cli.Run`.
+`Filesystem.LoadStylesheet` and `Filesystem.LoadModule` provide the same loaders
+for library callers, including package CSS imports and relative asset URLs.
+
+Watch mode polls for changes, keeps the last valid CSS after an error, and
+avoids rewriting unchanged output. `--poll=100` sets the interval in
+milliseconds; `--watch=always` keeps running after stdin closes.
+
+Minification, source maps and the `canonicalize` command are still pending.
+The CLI has not yet passed the full upstream CLI integration suite.
+
+
 Reuse existing CSS
 ------------------
 
