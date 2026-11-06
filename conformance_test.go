@@ -20,7 +20,7 @@ func TestUpstreamStylesheets(t *testing.T) {
 	for _, suite := range []struct {
 		name  string
 		count int
-	}{{"index", 252}, {"prefix", 14}, {"important", 4}, {"css-functions", 75}, {"at-import", 27}, {"compiler-lifetime", 1}, {"compat_legacy-utilities", 13}} {
+	}{{"index", 252}, {"prefix", 14}, {"important", 4}, {"css-functions", 75}, {"at-import", 27}, {"compiler-lifetime", 1}, {"plugin", 2}, {"compat_legacy-utilities", 13}} {
 		t.Run(suite.name, func(t *testing.T) { checkCompilerSuite(t, suite.name, suite.count) })
 	}
 }
@@ -94,8 +94,9 @@ func checkCompilerSuite(t *testing.T, suite string, count int) {
 		if err == nil && tt.Kind == "compile.build" {
 			var builds [][]string
 			json.Unmarshal(tt.Args[2], &builds)
+			builder := c.NewBuilder()
 			for _, classes := range builds {
-				got, err = c.Build(classes)
+				got, err = builder.Build(classes)
 				if err != nil {
 					break
 				}

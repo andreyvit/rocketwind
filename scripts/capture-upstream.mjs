@@ -35,7 +35,7 @@ globalThis.__rocketwindRecord = (kind, args, result, error) => {
     if (found !== undefined) args[1] = {$registry:found}
     else {const id = candidateRegistries.size;candidateRegistries.set(key,id);args[1] = {$registry:id,definition:args[1]}}
   }
-  records.push(JSON.parse(JSON.stringify({ test: expect.getState().currentTestName, kind, args, result, error }, (key,value)=>typeof value === 'function' ? { $function:value.toString() } : value)))
+  records.push(JSON.parse(JSON.stringify({ test: expect.getState().currentTestName, kind, args, result, error }, (key,value)=>typeof value === 'bigint' ? Number(value) : typeof value === 'function' ? { $function:value.toString() } : value)))
 }
 afterAll(() => {
   const name = expect.getState().testPath.replaceAll('\\\\', '/').split('/src/')[1].replaceAll('/', '_')
@@ -124,6 +124,7 @@ export function \${name}(...args) {
       }
       if (id.endsWith('/tailwindcss/src/index.ts')) {
         code = code.replace('export async function compile(', 'async function compileOriginal(')
+        code = code.replace('export async function __unstable__loadDesignSystem(', 'async function loadDesignOriginal(')
         return code + \`
           function recordLoader(original, records) {
             if (!original) return original
@@ -162,6 +163,20 @@ export function \${name}(...args) {
                 }
               }}))
             }}
+          }
+          export async function __unstable__loadDesignSystem(css,options = {}) {
+            const metadata = JSON.parse(JSON.stringify(options))
+            const recordedOptions = {...options}
+            if (options.loadStylesheet) recordedOptions.loadStylesheet = recordLoader(options.loadStylesheet, metadata.stylesheets = [])
+            if (options.loadModule) recordedOptions.loadModule = recordLoader(options.loadModule, metadata.modules = [])
+            const design = await loadDesignOriginal(css,recordedOptions)
+            const getClassOrder = design.getClassOrder.bind(design)
+            design.getClassOrder = (classes) => {
+              const result = getClassOrder(classes)
+              globalThis.__rocketwindRecord?.('design.order',[css,metadata,classes],result,undefined)
+              return result
+            }
+            return design
           }
           export async function compile(css, options = {}) {
             const metadata = JSON.parse(JSON.stringify(options))

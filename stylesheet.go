@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Compile prepares a stylesheet for incremental utility generation.
+// Compile prepares a stylesheet, its theme and its utility definitions.
 func Compile(input string, config Config) (*Compiler, error) {
 	ast, err := ParseCSS(input, "")
 	if err != nil {
@@ -17,6 +17,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 	}
 	config.NoDefaultTheme = true
 	c := New(config)
+	c.breakpointVariants = nil
 	if c.config.Theme == nil {
 		c.config.Theme = make(map[string]string)
 	}
@@ -241,6 +242,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 	if err := c.resolveApplies(); err != nil {
 		return nil, err
 	}
+	c.prepareBreakpoints()
 	return c, nil
 }
 

@@ -324,23 +324,44 @@ func droppable(name string) bool { return name != "@layer" && hoistable(name) }
 
 func flattenContexts(nodes []*Node, source string) []*Node {
 	var result []*Node
-	for _, n := range nodes {
+	for i, n := range nodes {
 		if n.Kind == "context" {
 			childSource := source
 			if value, ok := n.context["source"].(string); ok {
 				childSource = value
 			}
+			if result == nil {
+				result = make([]*Node, i, len(nodes))
+				copy(result, nodes[:i])
+			}
 			result = append(result, flattenContexts(n.Nodes, childSource)...)
 			continue
 		}
-		r := *n
+		children := n.Nodes
+		if len(children) > 0 {
+			children = flattenContexts(children, source)
+		}
+		variant := n.variant
 		if source != "" {
-			r.variant = source == "variant"
+			variant = source == "variant"
 		}
-		if n.Nodes != nil {
-			r.Nodes = flattenContexts(n.Nodes, source)
+		changed := variant != n.variant || !sameNodeSlice(children, n.Nodes)
+		if changed || result != nil {
+			if result == nil {
+				result = make([]*Node, i, len(nodes))
+				copy(result, nodes[:i])
+			}
+			if changed {
+				r := *n
+				r.variant, r.Nodes = variant, children
+				result = append(result, &r)
+			} else {
+				result = append(result, n)
+			}
 		}
-		result = append(result, &r)
+	}
+	if result == nil {
+		return nodes
 	}
 	return result
 }

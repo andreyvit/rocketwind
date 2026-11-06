@@ -24,25 +24,45 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Variants: all 1,009 captured compiler calls from 104 upstream tests match exactly;
   the upstream matchVariant test plugin is ported to a Go callback.
 - General stylesheets: 252 calls; prefixes: 14; important: 4; CSS functions: 75;
-  imports: 27; compiler lifetime: 1; legacy utilities: 13. All match exactly.
-  Total compiler calls: 2,144. Declarative JS test plugins replay through the Go
+  imports: 27; compiler lifetime: 1; plugin entry points: 2; legacy utilities: 13. All match exactly.
+  Total compiler calls: 2,146. Declarative JS test plugins replay through the Go
   API; functional test callbacks have explicit Go ports. No Go conformance skips.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
-  skipped upstream. Sorting uses the design-system API and still needs capture coverage.
-- Core Go suite, race detector and vet pass. Statement coverage: 95.0%.
+  skipped upstream. All 14 captured class-order calls now pass.
+- Core Go suite, race detector and vet pass. Statement coverage: 95.3%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
   covers values, selectors, attributes, braces, escaping, segmenting, comparison,
   theme paths and shadow colors. Total captured calls checked: 7,677.
 - CSS AST/nesting: all 604 calls from 208 upstream tests pass. Total captured
-  calls checked: 8,281.
+  calls checked: 8,297.
 - Typed templates, scoped class-list references, named selectors and opt-in aliases
   implemented. Templates and aliases have 100% statement coverage.
 - Existing-CSS exclusion implemented, with escaped selectors, nested rules and
   independent named-rule resolution; 100% statement coverage.
+- Incremental builder caches additions and reuses unchanged output with zero
+  allocations; independent compiler builds remain stateless. Builder and class
+  ordering have 100% statement coverage.
+- Removed repeated variant parsing during sorting and unnecessary CSS tree copies.
 - Remaining: full internal and compatibility test suites,
   standard plugins, scanning/CLI, coverage/performance
   and integration gates.
 - Implementation and conformance gates remain open.
+
+## Initial performance measurements
+
+Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
+
+| Workload | Before | After | Allocations before / after |
+| --- | --- | --- | --- |
+| Build 10 candidates | 34.9 us | 24.7 us | 942 / 583 |
+| Build 100 candidates | 162 us | 133 us | 4,899 / 3,724 |
+| Build 586 candidates, including variants | 3.42 ms | 1.20 ms | 109,122 / 33,044 |
+| Resolve and render an account template | 2.93 us | 1.95 us | 102 / 58 |
+| Repeat unchanged incremental build, 586 candidates | — | 3.44 us | 0 |
+
+The large build's allocated bytes fell from about 6.74 MB to 1.76 MB.
+This is an initial profile pass, not the final performance gate. Benchmark code
+is in benchmark_test.go; raw local results and profiles are in .cache/.

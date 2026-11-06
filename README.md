@@ -52,6 +52,13 @@ The standard Tailwind theme and preflight stylesheet are built in.
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
 
+`Build` compiles exactly the classes passed to it; separate accounts do not
+accumulate each other's classes. For a file watcher or a growing template set,
+use `compiler.NewBuilder()`. Its `Build` method accumulates candidates, compiles
+only additions, and returns cached CSS when nothing changed. `Reset` starts a
+fresh stylesheet. Compilers and prepared templates can be shared across
+goroutines; each incremental builder belongs to one caller.
+
 
 Editable settings and named classes
 ----------------------------------
@@ -122,7 +129,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 2,144 compiler calls captured from nine upstream suites match exactly, plus 6,137 syntax, normalization, CSS nesting and helper calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 2,146 compiler calls captured from ten upstream suites match exactly, plus 6,151 syntax, normalization, CSS nesting and helper calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

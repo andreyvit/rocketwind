@@ -1,1 +1,445 @@
-[]
+[
+  {
+    "test": "sorts classes: \"py-3 p-1 px-3\" -> \"p-1 px-3 py-3\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "py-3",
+        "p-1",
+        "px-3"
+      ]
+    ],
+    "result": [
+      [
+        "py-3",
+        2
+      ],
+      [
+        "p-1",
+        0
+      ],
+      [
+        "px-3",
+        1
+      ]
+    ]
+  },
+  {
+    "test": "sorts classes: \"px-3 focus:hover:p-3 hover:p-1 py-3\" -> \"px-3 py-3 hover:p-1 focus:hover:p-3\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "px-3",
+        "focus:hover:p-3",
+        "hover:p-1",
+        "py-3"
+      ]
+    ],
+    "result": [
+      [
+        "px-3",
+        0
+      ],
+      [
+        "focus:hover:p-3",
+        3
+      ],
+      [
+        "hover:p-1",
+        2
+      ],
+      [
+        "py-3",
+        1
+      ]
+    ]
+  },
+  {
+    "test": "sorts classes: \"px-3 py-4! p-1\" -> \"p-1 px-3 py-4!\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "px-3",
+        "py-4!",
+        "p-1"
+      ]
+    ],
+    "result": [
+      [
+        "px-3",
+        1
+      ],
+      [
+        "py-4!",
+        2
+      ],
+      [
+        "p-1",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "sorts classes: \"py-4! px-3 p-1\" -> \"p-1 px-3 py-4!\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "py-4!",
+        "px-3",
+        "p-1"
+      ]
+    ],
+    "result": [
+      [
+        "py-4!",
+        2
+      ],
+      [
+        "px-3",
+        1
+      ],
+      [
+        "p-1",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "sorts classes: \"b p-1 a\" -> \"b a p-1\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "b",
+        "p-1",
+        "a"
+      ]
+    ],
+    "result": [
+      [
+        "b",
+        null
+      ],
+      [
+        "p-1",
+        0
+      ],
+      [
+        "a",
+        null
+      ]
+    ]
+  },
+  {
+    "test": "sorts classes: \"hover:b focus:p-1 a\" -> \"hover:b a focus:p-1\"",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "hover:b",
+        "focus:p-1",
+        "a"
+      ]
+    ],
+    "result": [
+      [
+        "hover:b",
+        null
+      ],
+      [
+        "focus:p-1",
+        0
+      ],
+      [
+        "a",
+        null
+      ]
+    ]
+  },
+  {
+    "test": "can sort classes deterministically across multiple class lists",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "a-class",
+        "px-3",
+        "p-1",
+        "b-class",
+        "py-3",
+        "bg-red-500",
+        "bg-blue-500"
+      ]
+    ],
+    "result": [
+      [
+        "a-class",
+        null
+      ],
+      [
+        "px-3",
+        3
+      ],
+      [
+        "p-1",
+        2
+      ],
+      [
+        "b-class",
+        null
+      ],
+      [
+        "py-3",
+        4
+      ],
+      [
+        "bg-red-500",
+        1
+      ],
+      [
+        "bg-blue-500",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "can sort classes deterministically across multiple class lists",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "px-3",
+        "b-class",
+        "p-1",
+        "py-3",
+        "bg-blue-500",
+        "a-class",
+        "bg-red-500"
+      ]
+    ],
+    "result": [
+      [
+        "px-3",
+        3
+      ],
+      [
+        "b-class",
+        null
+      ],
+      [
+        "p-1",
+        2
+      ],
+      [
+        "py-3",
+        4
+      ],
+      [
+        "bg-blue-500",
+        0
+      ],
+      [
+        "a-class",
+        null
+      ],
+      [
+        "bg-red-500",
+        1
+      ]
+    ]
+  },
+  {
+    "test": "can sort classes deterministically across multiple class lists",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "a-class",
+        "px-3",
+        "p-1",
+        "b-class",
+        "py-3",
+        "bg-red-500",
+        "bg-blue-500"
+      ]
+    ],
+    "result": [
+      [
+        "a-class",
+        null
+      ],
+      [
+        "px-3",
+        3
+      ],
+      [
+        "p-1",
+        2
+      ],
+      [
+        "b-class",
+        null
+      ],
+      [
+        "py-3",
+        4
+      ],
+      [
+        "bg-red-500",
+        1
+      ],
+      [
+        "bg-blue-500",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "can sort classes deterministically across multiple class lists",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "px-3",
+        "b-class",
+        "p-1",
+        "py-3",
+        "bg-blue-500",
+        "a-class",
+        "bg-red-500"
+      ]
+    ],
+    "result": [
+      [
+        "px-3",
+        3
+      ],
+      [
+        "b-class",
+        null
+      ],
+      [
+        "p-1",
+        2
+      ],
+      [
+        "py-3",
+        4
+      ],
+      [
+        "bg-blue-500",
+        0
+      ],
+      [
+        "a-class",
+        null
+      ],
+      [
+        "bg-red-500",
+        1
+      ]
+    ]
+  },
+  {
+    "test": "sorts arbitrary values across one or more class lists consistently",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "[--fg:#fff]"
+      ]
+    ],
+    "result": [
+      [
+        "[--fg:#fff]",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "sorts arbitrary values across one or more class lists consistently",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "[--bg:#111]",
+        "[--bg_hover:#000]",
+        "[--fg:#fff]"
+      ]
+    ],
+    "result": [
+      [
+        "[--bg:#111]",
+        0
+      ],
+      [
+        "[--bg_hover:#000]",
+        1
+      ],
+      [
+        "[--fg:#fff]",
+        2
+      ]
+    ]
+  },
+  {
+    "test": "sorts arbitrary values across one or more class lists consistently",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "[--fg:#fff]"
+      ]
+    ],
+    "result": [
+      [
+        "[--fg:#fff]",
+        0
+      ]
+    ]
+  },
+  {
+    "test": "sorts arbitrary values across one or more class lists consistently",
+    "kind": "design.order",
+    "args": [
+      "\n    @theme {\n      --spacing-1: 0.25rem;\n      --spacing-3: 0.75rem;\n      --spacing-4: 1rem;\n      --color-red-500: red;\n      --color-blue-500: blue;\n    }\n  ",
+      {},
+      [
+        "[--bg:#111]",
+        "[--bg_hover:#000]",
+        "[--fg:#fff]"
+      ]
+    ],
+    "result": [
+      [
+        "[--bg:#111]",
+        0
+      ],
+      [
+        "[--bg_hover:#000]",
+        1
+      ],
+      [
+        "[--fg:#fff]",
+        2
+      ]
+    ]
+  }
+]

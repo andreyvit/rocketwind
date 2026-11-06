@@ -141,7 +141,7 @@ func parseSelector(input string) []*selectorNode {
 			}
 		case '.', ':', '#':
 			if c == ':' && buffer == ":" {
-				buffer += ":"
+				buffer = input[i-len(buffer) : i+1]
 				continue
 			}
 			flush()
@@ -171,20 +171,20 @@ func parseSelector(input string) []*selectorNode {
 					break
 				}
 			}
-			buffer += input[start : i+1]
+			buffer = input[start-len(buffer) : i+1]
 		case '&', '*':
 			flush()
 			appendNode(&selectorNode{Kind: "selector", Value: input[i : i+1]})
 		case '\\':
-			buffer += input[i : i+1]
+			buffer = input[i-len(buffer) : i+1]
 			i++
 			if i < len(input) {
-				buffer += input[i : i+1]
+				buffer = input[i-len(buffer) : i+1]
 			} else {
 				buffer += "undefined"
 			}
 		default:
-			buffer += input[i : i+1]
+			buffer = input[i-len(buffer) : i+1]
 		}
 	}
 	flush()

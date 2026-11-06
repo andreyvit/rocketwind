@@ -49,6 +49,7 @@ type Compiler struct {
 	customFunctional      map[string][][]*Node
 	customOrder           []string
 	customVariants        map[string]variantDefinition
+	breakpointVariants    map[string]variantDefinition
 	variantOrder          []string
 	pluginBase            []*Node
 	sources               []Source
@@ -65,15 +66,22 @@ func New(config Config) *Compiler {
 	for _, variant := range config.Variants {
 		c.addVariant(variant)
 	}
+	c.prepareBreakpoints()
 	return c
 }
 
+// Build generates CSS for exactly these candidates. Calls are independent and
+// may run concurrently. Use NewBuilder for incremental, cumulative builds.
 func (c *Compiler) Build(candidates []string) (string, error) {
 	b := buildContext{compiler: c, used: make(map[string]bool)}
 	if len(c.inlineCandidates) > 0 {
 		candidates = append(slices.Clone(candidates), c.inlineCandidates...)
 	}
-	rules := b.compileRules(candidates)
+	return b.renderRules(b.compileRules(candidates)), nil
+}
+
+func (b *buildContext) renderRules(rules []compiledRule) string {
+	c := b.compiler
 	var nodes []*Node
 	for _, r := range rules {
 		nodes = append(nodes, r.node)
@@ -97,7 +105,7 @@ func (c *Compiler) Build(candidates []string) (string, error) {
 		}
 		nodes = expand(c.input)
 	}
-	return b.render(nodes), nil
+	return b.render(nodes)
 }
 
 func (b *buildContext) compileRules(candidates []string) []compiledRule {
@@ -111,8 +119,14 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			continue
 		}
 		seen[raw] = true
-		_, variants, _, _ := parseClass(raw, b.compiler.config.Prefix)
 		for candidate := range b.compiler.Parse(raw) {
+			variants := make([]*parsedVariant, len(candidate.Variants))
+			for i, variant := range candidate.Variants {
+				variants[i] = b.compiledVariant(variant)
+			}
+			key := slices.Clone(variants)
+			slices.SortFunc(key, func(a, z *parsedVariant) int { return -b.compareParsedVariant(a, z) })
+			key = slices.CompactFunc(key, func(a, z *parsedVariant) bool { return b.compareParsedVariant(a, z) == 0 })
 			for _, nodes := range b.candidateGroups(candidate) {
 				nodes = b.evaluateNodes(nodes)
 				if len(nodes) == 0 {
@@ -124,8 +138,8 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 					n = cloneNode(n, "", true)
 				}
 				valid := true
-				for _, variant := range candidate.Variants {
-					n.Nodes, valid = b.applyParsedVariant(n.Nodes, b.compiledVariant(variant), 0)
+				for _, variant := range variants {
+					n.Nodes, valid = b.applyParsedVariant(n.Nodes, variant, 0)
 					if !valid {
 						break
 					}
@@ -133,31 +147,33 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				if !valid {
 					continue
 				}
-				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: variants})
+				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: key})
 			}
 		}
 	}
-	slices.SortStableFunc(rules, func(a, z compiledRule) int {
-		if v := b.compareVariantSets(a.variants, z.variants); v != 0 {
-			return v
-		}
-		for i := 0; i < max(len(a.order), len(z.order)); i++ {
-			if i == len(a.order) {
-				return 1
-			}
-			if i == len(z.order) {
-				return -1
-			}
-			if v := cmp.Compare(a.order[i], z.order[i]); v != 0 {
-				return v
-			}
-		}
-		if v := cmp.Compare(z.count, a.count); v != 0 {
-			return v
-		}
-		return naturalCompare(a.raw, z.raw)
-	})
+	slices.SortStableFunc(rules, b.compareRules)
 	return rules
+}
+
+func (b *buildContext) compareRules(a, z compiledRule) int {
+	if v := b.compareVariantKeys(a.variants, z.variants); v != 0 {
+		return v
+	}
+	for i := 0; i < max(len(a.order), len(z.order)); i++ {
+		if i == len(a.order) {
+			return 1
+		}
+		if i == len(z.order) {
+			return -1
+		}
+		if v := cmp.Compare(a.order[i], z.order[i]); v != 0 {
+			return v
+		}
+	}
+	if v := cmp.Compare(z.count, a.count); v != 0 {
+		return v
+	}
+	return naturalCompare(a.raw, z.raw)
 }
 
 type buildContext struct {
@@ -169,7 +185,7 @@ type buildContext struct {
 }
 
 type compiledRule struct {
-	variants []string
+	variants []*parsedVariant
 	raw      string
 	node     *Node
 	order    []int

@@ -51,26 +51,38 @@ func (c *Compiler) variantDefinition(name string) (variantDefinition, bool) {
 	if d, ok := builtinVariants[name]; ok {
 		return d, true
 	}
+	if c.breakpointVariants != nil {
+		d, ok := c.breakpointVariants[name]
+		return d, ok
+	}
 	b := buildContext{compiler: c}
 	if value := b.themeValue("--breakpoint-" + name); value != "" {
 		return variantDefinition{Kind: "static", Order: builtinVariants["min"].Order, Compounds: 1, Nodes: []*Node{{Kind: "at-rule", Name: "@media", Value: "(width >= " + value + ")", Nodes: []*Node{{Kind: "slot"}}}}}, true
 	}
 	return variantDefinition{}, false
 }
-func (b *buildContext) applyVariants(nodes []*Node, variants []string) ([]*Node, bool) {
-	for i := len(variants) - 1; i >= 0; i-- {
-		v := b.parseVariant(variants[i])
-		if v == nil {
-			return nil, false
+func (c *Compiler) prepareBreakpoints() {
+	variants := make(map[string]variantDefinition)
+	b := buildContext{compiler: c}
+	add := func(key string) {
+		if !strings.HasPrefix(key, "--breakpoint-") {
+			return
 		}
-		var ok bool
-		nodes, ok = b.applyParsedVariant(nodes, v, 0)
-		if !ok {
-			return nil, false
+		if value := b.themeValue(key); value != "" {
+			variants[strings.TrimPrefix(key, "--breakpoint-")] = variantDefinition{Kind: "static", Order: builtinVariants["min"].Order, Compounds: 1, Nodes: []*Node{{Kind: "at-rule", Name: "@media", Value: "(width >= " + value + ")", Nodes: []*Node{{Kind: "slot"}}}}}
 		}
 	}
-	return nodes, true
+	if !c.config.NoDefaultTheme {
+		for key := range builtinTheme {
+			add(key)
+		}
+	}
+	for key := range c.config.Theme {
+		add(key)
+	}
+	c.breakpointVariants = variants
 }
+
 func slotNodes(template, content []*Node) []*Node {
 	var result []*Node
 	for _, n := range template {
@@ -424,19 +436,9 @@ func boolInt(v bool) int {
 	}
 	return 0
 }
-func (b *buildContext) compareVariant(a, z string) int {
-	return b.compareParsedVariant(b.parseVariant(a), b.parseVariant(z))
-}
-func (b *buildContext) compareVariantSets(a, z []string) int {
-	a = slices.Clone(a)
-	z = slices.Clone(z)
-	reverse := func(a, z string) int { return -b.compareVariant(a, z) }
-	slices.SortFunc(a, reverse)
-	slices.SortFunc(z, reverse)
-	a = slices.CompactFunc(a, func(a, z string) bool { return b.compareVariant(a, z) == 0 })
-	z = slices.CompactFunc(z, func(a, z string) bool { return b.compareVariant(a, z) == 0 })
+func (b *buildContext) compareVariantKeys(a, z []*parsedVariant) int {
 	for i := 0; i < min(len(a), len(z)); i++ {
-		if v := b.compareVariant(a[i], z[i]); v != 0 {
+		if v := b.compareParsedVariant(a[i], z[i]); v != 0 {
 			return v
 		}
 	}
