@@ -98,6 +98,25 @@ mean a font family. Aliases do not change the default Tailwind vocabulary.
 `TemplateOptions.DollarReferences` also accepts `$name` as shorthand for `{name}`.
 
 
+Reuse existing CSS
+------------------
+
+If your application already ships a stylesheet, add only the helpers it lacks:
+
+```go
+existing, err := rocketwind.DefinedClasses(mainCSS, widgetsCSS)
+compiler := rocketwind.New(rocketwind.Config{ExistingClasses: existing})
+css, err := compiler.Build(templateClasses)
+```
+
+Class names are read from CSS selectors, including escaped names and nested
+rules. Text inside comments, declarations, attributes, `:not()` and `:has()`
+does not count as a class definition. Exclusion applies to generated helpers;
+`@apply` and named rules still resolve those utilities. Imported stylesheets
+must be passed separately. Rocketwind does not compare declaration values:
+when a class already exists, the supplied stylesheet owns its behavior.
+
+
 Tailwind compatibility
 ----------------------
 

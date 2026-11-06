@@ -33,6 +33,8 @@ type Config struct {
 	Variants    []Variant
 	Plugins     map[string]Plugin
 	Aliases     map[string]Alias
+	// ExistingClasses suppresses helper rules supplied by another stylesheet.
+	ExistingClasses ClassSet
 }
 
 type Compiler struct {
@@ -58,6 +60,7 @@ type Compiler struct {
 func New(config Config) *Compiler {
 	config.Theme = maps.Clone(config.Theme)
 	config.Aliases = maps.Clone(config.Aliases)
+	config.ExistingClasses = maps.Clone(config.ExistingClasses)
 	c := &Compiler{config: config, customVariants: map[string]variantDefinition{}, matchingVariants: map[string]*Variant{}}
 	for _, variant := range config.Variants {
 		c.addVariant(variant)
@@ -101,7 +104,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 	seen := make(map[string]bool, len(candidates))
 	var rules []compiledRule
 	for _, raw := range candidates {
-		if b.compiler.excludedCandidates[raw] {
+		if !b.inApply && (b.compiler.excludedCandidates[raw] || b.compiler.config.ExistingClasses.Contains(raw)) {
 			continue
 		}
 		if seen[raw] {
