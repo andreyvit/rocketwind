@@ -34,6 +34,9 @@ type completionItem struct {
 // ClassList returns the theme's named utility suggestions in Tailwind order.
 // It includes Go plugins and @utility definitions, and does not compile CSS.
 func (c *Compiler) ClassList() []ClassSuggestion {
+	if c.config.Compatibility == Tailwind3 {
+		return c.v3ClassList()
+	}
 	keys := c.themeKeys()
 	items := make(map[string]int)
 	storage := make([]completionItem, 0, len(builtinStaticCompletions)+len(keys)*16)

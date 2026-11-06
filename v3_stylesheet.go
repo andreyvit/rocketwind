@@ -53,12 +53,16 @@ func compileV3(input string, config Config) (*Compiler, error) {
 				case "@layer":
 					layer := v3LayerIndex(n.Value)
 					if layer >= 0 {
-						layers[layer] = append(layers[layer], n.Nodes...)
+						children, err := walk(n.Nodes, "")
+						if err != nil {
+							return nil, err
+						}
+						layers[layer] = append(layers[layer], children...)
 						continue
 					}
 				case "@tailwind":
 					layer := v3LayerIndex(n.Value)
-					if layer >= 0 {
+					if layer >= 0 || n.Value == "variants" {
 						n.Kind = "v3-layer"
 						c.features |= FeatureUtilities
 						if layer == 2 || layer == 1 {
@@ -102,16 +106,6 @@ func compileV3(input string, config Config) (*Compiler, error) {
 	if err := c.loadModules(modules); err != nil {
 		return nil, err
 	}
-	for layer, nodes := range layers {
-		if layer == 0 {
-			continue
-		}
-		c.v3Layer = layer
-		for _, n := range nodes {
-			c.registerV3Rule(n, nil)
-		}
-	}
-	c.v3Layer = 2
 	var expand func([]*Node) ([]*Node, error)
 	expand = func(nodes []*Node) ([]*Node, error) {
 		var result []*Node
@@ -124,7 +118,9 @@ func compileV3(input string, config Config) (*Compiler, error) {
 				result = append(result, c.v3BaseDefaults()...)
 				result = append(result, &Node{Kind: "comment", Value: "\n! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com\n"})
 				result = append(result, base...)
-				result = append(result, c.pluginBase...)
+				for _, layer := range c.pluginBase {
+					result = append(result, layer.Nodes...)
+				}
 				result = append(result, layers[0]...)
 				continue
 			}
@@ -145,12 +141,31 @@ func compileV3(input string, config Config) (*Compiler, error) {
 		}
 		return result, nil
 	}
+	for i := range layers {
+		layers[i], err = expand(layers[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	for layer, nodes := range layers {
+		if layer == 0 {
+			continue
+		}
+		c.v3Layer = layer
+		for _, n := range nodes {
+			c.registerV3Rule(n, nil, false)
+		}
+	}
+	c.v3Layer = 2
 	c.input, err = expand(c.input)
 	if err != nil {
 		return nil, err
 	}
 	b := buildContext{compiler: c, used: map[string]bool{}}
 	c.input = b.evaluateNodes(c.input)
+	for i := range c.v3AlwaysRules {
+		c.v3AlwaysRules[i].node = b.evaluateNodes([]*Node{c.v3AlwaysRules[i].node})[0]
+	}
 	if b.err != nil {
 		return nil, b.err
 	}
@@ -173,10 +188,10 @@ func v3LayerIndex(layer string) int {
 	return -1
 }
 
-func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node) {
+func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node, prefix bool) {
 	if node.Kind == "at-rule" {
 		for _, child := range node.Nodes {
-			c.registerV3Rule(child, append(slices.Clone(wrappers), node))
+			c.registerV3Rule(child, append(slices.Clone(wrappers), node), prefix)
 		}
 		return
 	}
@@ -211,6 +226,8 @@ func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node) {
 			for _, n := range nodes {
 				if n.Kind == "selector" && strings.HasPrefix(n.Value, ".") && Unescape(n.Value[1:]) == name {
 					n.Value = "&"
+				} else if prefix && n.Kind == "selector" && strings.HasPrefix(n.Value, ".") {
+					n.Value = "." + v3Escape(c.v3ConfiguredPrefix()+Unescape(n.Value[1:]))
 				}
 				replace(n.Nodes)
 			}
@@ -218,7 +235,7 @@ func (c *Compiler) registerV3Rule(node *Node, wrappers []*Node) {
 		replace(tree)
 		nodes := cloneNodes(node.Nodes, "", false)
 		if selector := selectorCSS(tree); selector != "&" {
-			nodes = []*Node{{Kind: "rule", Name: selector, Nodes: nodes}}
+			nodes = []*Node{{Kind: "v3-rule", Name: selector, Nodes: nodes}}
 		}
 		for i := len(wrappers) - 1; i >= 0; i-- {
 			copy := *wrappers[i]
@@ -274,6 +291,7 @@ func (b *buildContext) renderV3Rules(rules []compiledRule) string {
 	if !c.hasInput {
 		return b.renderV3(append(append(components, utilities...), variants...))
 	}
+	placedVariants := false
 	var expand func([]*Node) []*Node
 	expand = func(nodes []*Node) []*Node {
 		var result []*Node
@@ -283,6 +301,9 @@ func (b *buildContext) renderV3Rules(rules []compiledRule) string {
 					result = append(result, components...)
 				} else if n.Value == "utilities" {
 					result = append(result, utilities...)
+				} else if n.Value == "variants" {
+					result = append(result, variants...)
+					placedVariants = true
 				}
 				continue
 			}
@@ -294,5 +315,9 @@ func (b *buildContext) renderV3Rules(rules []compiledRule) string {
 		}
 		return result
 	}
-	return b.renderV3(append(expand(c.input), variants...))
+	nodes := expand(c.input)
+	if !placedVariants {
+		nodes = append(nodes, variants...)
+	}
+	return b.renderV3(nodes)
 }

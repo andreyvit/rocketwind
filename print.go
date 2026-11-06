@@ -17,6 +17,12 @@ func (c *Compiler) Print(candidate Candidate) string {
 	} else if candidate.Kind == "functional" && candidate.Value != nil {
 		if candidate.Value.Kind == "named" {
 			base += "-" + candidate.Value.Value
+		} else if c.config.Compatibility == Tailwind3 {
+			hint := candidate.Value.DataType
+			if hint != "" {
+				hint += ":"
+			}
+			base += "-[" + hint + printArbitraryValue(candidate.Value.Value) + "]"
 		} else {
 			base += "-" + printArbitrary(candidate.Value.Value, candidate.Value.DataType)
 		}
@@ -25,7 +31,21 @@ func (c *Compiler) Print(candidate Candidate) string {
 		base += printModifier(candidate.Modifier)
 	}
 	if candidate.Important {
-		base += "!"
+		if c.config.Compatibility != Tailwind3 {
+			base += "!"
+		}
+	}
+	if c.config.Compatibility == Tailwind3 {
+		if candidate.Kind != "arbitrary" {
+			if strings.HasPrefix(base, "-") {
+				base = "-" + c.v3Prefix + base[1:]
+			} else {
+				base = c.v3Prefix + base
+			}
+		}
+		if candidate.Important {
+			base = "!" + base
+		}
 	}
 	return strings.Join(append(parts, base), ":")
 }

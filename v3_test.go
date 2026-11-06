@@ -4,9 +4,97 @@ import (
 	"compress/gzip"
 	"encoding/json"
 	"os"
+	"slices"
 	"strings"
 	"testing"
 )
+
+func TestTailwind3Completions(t *testing.T) {
+	f, err := os.Open("testdata/v3/completions.json.gz")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+	z, err := gzip.NewReader(f)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer z.Close()
+	var cases []struct {
+		Config  ConfigObject
+		Classes []json.RawMessage
+	}
+	if err := json.NewDecoder(z).Decode(&cases); err != nil {
+		t.Fatal(err)
+	}
+	for _, tt := range cases {
+		c, err := NewWithPlugins(Config{Compatibility: Tailwind3}, Legacy(tt.Config))
+		if err != nil {
+			t.Fatal(err)
+		}
+		got := c.ClassList()
+		if len(got) != len(tt.Classes) {
+			t.Fatalf("class count %d != %d", len(got), len(tt.Classes))
+		}
+		for i, raw := range tt.Classes {
+			var want ClassSuggestion
+			if raw[0] == '[' {
+				var parts []json.RawMessage
+				if err := json.Unmarshal(raw, &parts); err != nil {
+					t.Fatal(err)
+				}
+				if err := json.Unmarshal(parts[0], &want.Name); err != nil {
+					t.Fatal(err)
+				}
+				if err := json.Unmarshal(parts[1], &want); err != nil {
+					t.Fatal(err)
+				}
+			} else if err := json.Unmarshal(raw, &want.Name); err != nil {
+				t.Fatal(err)
+			}
+			if got[i].Name != want.Name || !slices.Equal(got[i].Modifiers, want.Modifiers) {
+				t.Fatalf("class %d: got %+v, want %+v", i, got[i], want)
+			}
+		}
+	}
+}
+
+func TestTailwind3StandardPlugins(t *testing.T) {
+	data, err := os.ReadFile("testdata/v3/plugins.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var cases []struct{ Name, Prefix, Candidate, Result string }
+	if err := json.Unmarshal(data, &cases); err != nil {
+		t.Fatal(err)
+	}
+	compilers := map[string]*Compiler{}
+	var failures []map[string]any
+	for _, tt := range cases {
+		key := tt.Name + tt.Prefix
+		c := compilers[key]
+		if c == nil {
+			c, err = Compile(`@plugin "@tailwindcss/`+tt.Name+`"; @tailwind components; @tailwind utilities;`, Config{Compatibility: Tailwind3, Prefix: tt.Prefix})
+			if err != nil {
+				t.Fatal(err)
+			}
+			compilers[key] = c
+		}
+		got, err := c.Build([]string{tt.Candidate})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if normalizeV3CSS(t, got) != normalizeV3CSS(t, tt.Result) {
+			failures = append(failures, map[string]any{"name": tt.Name, "candidate": tt.Candidate, "got": got, "want": tt.Result})
+		}
+	}
+	if len(failures) > 0 {
+		data, _ := json.MarshalIndent(failures, "", "  ")
+		os.MkdirAll(".cache", 0755)
+		os.WriteFile(".cache/v3-plugin-failures.json", data, 0644)
+		t.Fatalf("%d/%d failures: .cache/v3-plugin-failures.json", len(failures), len(cases))
+	}
+}
 
 func TestTailwind3DefaultUtilities(t *testing.T) {
 	checkV3Utilities(t, "utilities", 11344)
@@ -62,13 +150,14 @@ func TestTailwind3Stylesheets(t *testing.T) {
 	var cases []struct {
 		Name, CSS, Result, Error string
 		Classes                  []string
+		Config                   ConfigObject
 	}
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
 	for _, tt := range cases {
 		t.Run(tt.Name, func(t *testing.T) {
-			c, err := Compile(tt.CSS, Config{Compatibility: Tailwind3})
+			c, err := Compile("@config \"test\";"+tt.CSS, Config{Compatibility: Tailwind3, LoadModule: func(_, _, _ string) (Module, error) { return Module{Legacy: tt.Config}, nil }})
 			if tt.Error != "" {
 				if err == nil || !strings.Contains(err.Error(), tt.Error) {
 					t.Fatalf("got %v, want %s", err, tt.Error)

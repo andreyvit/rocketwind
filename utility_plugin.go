@@ -29,6 +29,7 @@ type Utility struct {
 type utilityMatcher struct {
 	Utility
 	values, modifiers map[string]string
+	v3Order           int
 }
 
 // NewWithPlugins configures a compiler entirely from Go. Plugin errors are
@@ -93,6 +94,9 @@ func (api *PluginAPI) MatchUtility(utility Utility) error {
 		matcher.modifiers[value.Name] = value.Value
 	}
 	c := api.compiler
+	if c.config.Compatibility == Tailwind3 {
+		matcher.v3Order = c.nextV3Order()
+	}
 	if c.matchingUtilities == nil {
 		c.matchingUtilities = map[string][]*utilityMatcher{}
 	}
@@ -198,7 +202,11 @@ func (b *buildContext) matchUtility(m *utilityMatcher, candidate Candidate) ([]*
 			return nil, true
 		}
 	}
-	return replaceUtilityReferences(nodes, m.Name, candidate.Raw), false
+	nodes = replaceUtilityReferences(nodes, m.Name, candidate.Raw)
+	if b.compiler.config.Compatibility == Tailwind3 {
+		nodes = v3Ordered(nodes, m.v3Order)
+	}
+	return nodes, false
 }
 
 func (b *buildContext) expandPluginDirectives(nodes []*Node, keyframes bool) []*Node {
@@ -281,6 +289,12 @@ func (b *buildContext) expandPluginDirectives(nodes []*Node, keyframes bool) []*
 // AddUtilities registers complete selector rules, splitting selector lists and
 // preserving pseudo-classes and descendant rules. AddComponents is identical.
 func (api *PluginAPI) AddUtilities(nodes []*Node) error {
+	if api.compiler.config.Compatibility == Tailwind3 {
+		for _, node := range v3Flatten(nodes) {
+			api.compiler.registerV3Rule(node, nil, true)
+		}
+		return nil
+	}
 	definitions := map[string][]*Node{}
 	var order []string
 	for _, node := range nodes {

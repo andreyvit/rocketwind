@@ -37,7 +37,23 @@ type PluginAPI struct {
 
 // Prefix preserves Tailwind 4's legacy plugin helper, which returns its input.
 // The compiler adds configured prefixes when it emits registered utilities.
-func (api *PluginAPI) Prefix(class string) string { return class }
+func (api *PluginAPI) Prefix(class string) string {
+	if api.compiler.config.Compatibility == Tailwind3 {
+		tree := parseSelectorMode(class, true)
+		var walk func([]*selectorNode)
+		walk = func(nodes []*selectorNode) {
+			for _, n := range nodes {
+				if n.Kind == "selector" && strings.HasPrefix(n.Value, ".") {
+					n.Value = "." + v3Escape(api.compiler.v3ConfiguredPrefix()+Unescape(n.Value[1:]))
+				}
+				walk(n.Nodes)
+			}
+		}
+		walk(tree)
+		return selectorCSS(tree)
+	}
+	return class
+}
 
 // Module is a Go replacement for a configuration file or JavaScript plugin.
 // Theme values override defaults but leave explicit stylesheet theme values intact.
@@ -47,6 +63,7 @@ type Module struct {
 	Base      string
 	Theme     map[string]string
 	Legacy    ConfigObject
+	legacy3   ConfigObject
 	Plugins   []Plugin
 	Plugin    Plugin
 	Configure func(options map[string]any) (Plugin, error)
@@ -116,6 +133,9 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 				}
 				c.config.Theme[key], c.themeFlags[key] = value, "inline reference"
 				c.themeOrder = append(c.themeOrder, key)
+			}
+			if c.config.Compatibility == Tailwind3 && module.legacy3 != nil {
+				module.Legacy = module.legacy3
 			}
 			if module.Legacy != nil {
 				base := module.Base

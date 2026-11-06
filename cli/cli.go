@@ -38,6 +38,7 @@ type flags struct {
 	poll                              time.Duration
 	silent, help, version             bool
 	minify, optimize                  bool
+	compatibility                     rocketwind.Compatibility
 }
 
 const usage = `Rocketwind — Tailwind CSS 4.3.4 compiler for Go
@@ -50,6 +51,7 @@ Usage: rocketwind [build] [options]
       --poll[=MS]     Poll interval in milliseconds (default: 250)
       --cwd DIR       Source search directory (default: current directory)
       --config FILE   JSON configuration
+      --compat 3|4    Tailwind compatibility (default: 4; versions 3.4.17 / 4.3.4)
       --content GLOB  Explicit source pattern; may be repeated
       --exclude FILE  Omit helpers already defined in this CSS; may be repeated
       --classes LIST  Additional complete class names; may be repeated
@@ -117,6 +119,7 @@ func parseFlags(args []string) (flags, error) {
 		"--help":     {Type: "boolean", Alias: "-h"},
 		"--version":  {Type: "boolean"},
 		"--config":   {Type: "string"},
+		"--compat":   {Type: "string"},
 		"--minify":   {Type: "boolean", Alias: "-m"},
 		"--optimize": {Type: "boolean"},
 	}, raw, positional)
@@ -125,6 +128,13 @@ func parseFlags(args []string) (flags, error) {
 	f.input, f.output, f.cwd, f.config = str("--input"), str("--output"), str("--cwd"), str("--config")
 	f.silent, f.help, f.version = enabled("--silent"), enabled("--help"), enabled("--version")
 	f.minify, f.optimize = enabled("--minify"), enabled("--optimize")
+	switch str("--compat") {
+	case "", "4", "4.3.4":
+	case "3", "3.4.17":
+		f.compatibility = rocketwind.Tailwind3
+	default:
+		return f, errors.New("Use --compat=3 (3.4.17) or --compat=4 (4.3.4).")
+	}
 	if !explicitBuild && len(args) > 0 && !strings.HasPrefix(args[0], "-") && !f.help {
 		return f, fmt.Errorf("invalid command %q; use --help", args[0])
 	}
@@ -214,6 +224,9 @@ func build(ctx context.Context, f flags, options Options) error {
 		}
 	}
 	input := `@import "tailwindcss";`
+	if f.compatibility == rocketwind.Tailwind3 {
+		input = "@tailwind base; @tailwind components; @tailwind utilities;"
+	}
 	if f.input == "-" {
 		data, err := io.ReadAll(options.Stdin)
 		if err != nil {
@@ -259,13 +272,13 @@ func build(ctx context.Context, f flags, options Options) error {
 		if err != nil {
 			return err
 		}
-		fs := rocketwind.Filesystem{Root: entryBase, Modules: options.Modules, OnDependency: dependency}
+		fs := rocketwind.Filesystem{Compatibility: f.compatibility, Root: entryBase, Modules: options.Modules, OnDependency: dependency}
 		loadModule := options.moduleLoader(fs, dependency)
 		from := f.input
 		if from == "" || from == "-" {
 			from = "<stdin>"
 		}
-		compiled, err := rocketwind.Compile(text, rocketwind.Config{From: from, Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: loadModule, ExistingClasses: classes})
+		compiled, err := rocketwind.Compile(text, rocketwind.Config{Compatibility: f.compatibility, From: from, Base: entryBase, LoadStylesheet: fs.LoadStylesheet, LoadModule: loadModule, ExistingClasses: classes})
 		if err != nil {
 			return err
 		}
@@ -296,13 +309,15 @@ func build(ctx context.Context, f flags, options Options) error {
 			}
 			sources = append(sources, rocketwind.Source{Base: root.Base, Pattern: root.Pattern})
 		}
-		sources = append(sources, compiled.Sources()...)
+		if f.compatibility != rocketwind.Tailwind3 || len(f.content) == 0 {
+			sources = append(sources, compiled.Sources()...)
+		}
 		for _, output := range []string{f.output, f.sourceMap} {
 			if output != "" && output != "-" {
 				sources = append(sources, rocketwind.Source{Base: filepath.Dir(output), Pattern: filepath.Base(output), Negated: true})
 			}
 		}
-		if f.input != "" && f.input != "-" {
+		if f.compatibility != rocketwind.Tailwind3 && f.input != "" && f.input != "-" {
 			sources = append(sources, rocketwind.Source{Base: filepath.Dir(f.input), Pattern: filepath.Base(f.input)})
 		}
 		if executable, err := os.Executable(); err == nil {

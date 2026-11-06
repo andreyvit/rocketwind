@@ -107,11 +107,18 @@ function goValue(value) {
 }
 let go='// Code generated from Tailwind CSS v3.4.17 by scripts/registry-v3.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/upstream/LICENSE.\npackage rocketwind\n\n'
 go+='var v3ThemeDefaults = '+goValue(require('tailwindcss/stubs/config.full').theme)+'\n'
+go+='\nvar typographyV3Theme = '+goValue(require('@tailwindcss/typography/src/styles'))+'\n'
 go+='\nvar v3Static = map[string][]v3StaticDefinition{\n'
 for(const [name,defs] of Object.entries(result.static)) go+=q(name)+':{'+defs.map(d=>'{'+d.order+','+goNodes(d.nodes)+'}').join(',')+'},\n'
 go+='}\n\nvar v3Functional = map[string][]v3UtilityDefinition{\n'
 for(const [name,defs] of Map.groupBy(result.functional,d=>d.name))
   go+=q(name)+':{'+defs.map(d=>'{Namespace:'+q(d.namespace)+',Order:'+d.order+',Types:[]string{'+d.type.map(q).join(',')+'},Negative:'+d.negative+',FilterDefault:'+d.filterDefault+',Template:'+goNodes(d.template)+'}').join(',')+'},\n'
+go+='}\n\nvar v3Completions = []v3CompletionDefinition{{"container",-1},'
+const completionEntries=[]
+for(const [name,defs] of Object.entries(result.static)) completionEntries.push({name,index:-1,order:defs[0].order})
+for(const [name,defs] of Map.groupBy(result.functional,d=>d.name)) defs.forEach((d,index)=>completionEntries.push({name,index,order:d.order}))
+completionEntries.sort((a,b)=>a.order-b.order)
+go+=completionEntries.map(e=>'{'+q(e.name)+','+e.index+'}').join(',')
 go+='}\n\nvar v3Defaults = '+goNodes(Object.values(result.defaults).flat())+'\n'
 go+='\nvar v3ColorNames = map[string]string{'+Object.entries(require('tailwindcss/lib/util/colorNames').default).map(([k,v])=>q(k)+':'+q(v.join(' '))).join(',')+'}\n'
 const context = require('tailwindcss/lib/lib/setupContextUtils').createContext(config)

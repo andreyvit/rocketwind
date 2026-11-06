@@ -1,5 +1,86 @@
 [
   {
+    "name": "layer important",
+    "css": "@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4 !important; } } @layer utilities { .heavy { @apply font-bold !important; } }",
+    "classes": [
+      "card",
+      "heavy"
+    ],
+    "result": " .card { padding: 1rem !important\n} .heavy { font-weight: 700 !important\n}"
+  },
+  {
+    "name": "layer screens",
+    "css": "@tailwind components; @layer components { @screen sm { .card { @apply flex; } } }",
+    "classes": [
+      "card"
+    ],
+    "result": " @media (min-width: 640px) { .card { display: flex } }"
+  },
+  {
+    "name": "always layer apply",
+    "css": "@tailwind utilities; @layer utilities { h1 { @apply text-xl; } }",
+    "classes": [],
+    "result": " h1 {\n    font-size: 1.25rem;\n    line-height: 1.75rem\n}"
+  },
+  {
+    "name": "important components",
+    "config": {
+      "important": "#app"
+    },
+    "css": "@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4; } } @layer utilities { .tab { tab-size: 4; } }",
+    "classes": [
+      "card",
+      "hover:card",
+      "!card",
+      "tab",
+      "hover:tab"
+    ],
+    "result": " .\\!card { padding: 1rem; } .card { padding: 1rem; } #app .tab { tab-size: 4; } .hover\\:card:hover { padding: 1rem; } #app .hover\\:tab:hover { tab-size: 4; }"
+  },
+  {
+    "name": "important bool components",
+    "config": {
+      "important": true
+    },
+    "css": "@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4; } } @layer utilities { .tab { tab-size: 4; } }",
+    "classes": [
+      "card",
+      "hover:card",
+      "!card",
+      "tab",
+      "hover:tab"
+    ],
+    "result": " .\\!card { padding: 1rem; } .card { padding: 1rem; } .tab { tab-size: 4 !important; } .hover\\:card:hover { padding: 1rem; } .hover\\:tab:hover { tab-size: 4 !important; }"
+  },
+  {
+    "name": "safelist",
+    "config": {
+      "safelist": [
+        "flex",
+        "hover:text-xl",
+        {
+          "pattern": "^(bg-black|font-bold)$",
+          "variants": [
+            "hover",
+            "sm"
+          ]
+        }
+      ]
+    },
+    "css": "@tailwind utilities;",
+    "classes": [],
+    "result": ".flex {\n    display: flex\n}\n.bg-black {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}\n.font-bold {\n    font-weight: 700\n}\n.hover\\:bg-black:hover {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}\n.hover\\:text-xl:hover {\n    font-size: 1.25rem;\n    line-height: 1.75rem\n}\n.hover\\:font-bold:hover {\n    font-weight: 700\n}\n@media (min-width: 640px) {\n    .sm\\:bg-black {\n        --tw-bg-opacity: 1;\n        background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n    }\n    .sm\\:font-bold {\n        font-weight: 700\n    }\n}"
+  },
+  {
+    "name": "explicit variants",
+    "css": "@tailwind variants; .after { color: red; } @tailwind utilities;",
+    "classes": [
+      "flex",
+      "hover:flex"
+    ],
+    "result": ".hover\\:flex:hover { display: flex; } .after { color: red; } .flex { display: flex; }"
+  },
+  {
     "name": "utilities without preflight",
     "css": "@tailwind utilities;",
     "classes": [

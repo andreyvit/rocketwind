@@ -20,6 +20,7 @@ type TypographyOptions struct {
 }
 
 var typographyStyles = typographyStylesFromConfig(typographyTheme)
+var typographyV3Styles = typographyStylesFromConfig(typographyV3Theme)
 
 func typographyStylesFromConfig(config ConfigObject) []TypographyStyle {
 	styles := make([]TypographyStyle, 0, len(config))
@@ -53,13 +54,20 @@ func Typography(options TypographyOptions) Plugin {
 			case "lead":
 				selector = `[class~="lead"]`
 			}
+			where := func(selector, modifier string) string {
+				result := typographyWhere(selector, className, modifier)
+				if api.compiler.config.Compatibility == Tailwind3 {
+					result = strings.ReplaceAll(result, `"not-`+className+`"`, `"`+strings.TrimPrefix(api.Prefix(".not-"+className), ".")+`"`)
+				}
+				return result
+			}
 			var template []*Node
 			if options.Legacy {
 				for item := range Segments(selector, ',') {
 					template = append(template, &Node{Kind: "rule", Name: "& " + strings.TrimSpace(item), Nodes: []*Node{{Kind: "at-rule", Name: "@slot"}}})
 				}
 			} else {
-				selector = "& :is(" + typographyWhere(selector, className, "") + ")"
+				selector = "& :is(" + where(selector, "") + ")"
 				template = []*Node{{Kind: "rule", Name: selector, Nodes: []*Node{{Kind: "at-rule", Name: "@slot"}}}}
 			}
 			if err := api.AddVariant(className+"-"+name, template); err != nil {
@@ -70,6 +78,9 @@ func Typography(options TypographyOptions) Plugin {
 		extraStyles := options.Extend
 		if styles == nil {
 			styles = typographyStyles
+			if api.compiler.config.Compatibility == Tailwind3 {
+				styles = typographyV3Styles
+			}
 			if configured := configObject(api.ThemeValue("typography")); configured != nil {
 				configuredStyles := typographyStylesFromConfig(configured)
 				if api.compiler.legacyReplaced["typography"] {
@@ -104,6 +115,9 @@ func Typography(options TypographyOptions) Plugin {
 				for _, node := range nodes {
 					if node.Kind == "rule" {
 						node.Name = typographyWhere(node.Name, className, style.Name)
+						if api.compiler.config.Compatibility == Tailwind3 {
+							node.Name = strings.ReplaceAll(node.Name, `"not-`+className+`"`, `"`+strings.TrimPrefix(api.Prefix(".not-"+className), ".")+`"`)
+						}
 					}
 				}
 			}

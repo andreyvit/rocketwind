@@ -455,3 +455,15 @@ Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
 The large build's allocated bytes fell from about 6.74 MB to 1.76 MB.
 This is an initial profile pass, not the final performance gate. Benchmark code
 is in benchmark_test.go; raw local results and profiles are in .cache/.
+
+### Tailwind 3 configuration, CLI and plugins
+
+- Added the `--compat=3` CLI profile, prefix parsing/printing, selector and
+  boolean important modes, string/regexp safelists, and named completions.
+- Fixed layer-local apply/screen handling, unconditional layer rules and the
+  explicit variants insertion point. Standard plugin selectors retain the
+  older grouping rules; typography uses the original v3 palette.
+- Added original reference builds for five configurations, fourteen stylesheets,
+  three complete completion lists and 180 standard-plugin cases. The full v4
+  and v3 suites pass. New v3 code still needs complete coverage and the real
+  application comparison; those gates remain open.

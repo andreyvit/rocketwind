@@ -466,7 +466,7 @@ func v3Flatten(input []*Node) []*Node {
 			}
 			flush()
 			switch {
-			case n.Kind == "rule":
+			case n.Kind == "rule" || n.Kind == "v3-rule":
 				selector := n.Name
 				if parent != "" {
 					var selectors []string
@@ -475,6 +475,8 @@ func v3Flatten(input []*Node) []*Node {
 							tree := parseSelectorMode(strings.TrimSpace(s), true)
 							if replaceNesting(tree, strings.TrimSpace(p)) {
 								selectors = append(selectors, selectorCSS(tree))
+							} else if n.Kind == "v3-rule" {
+								selectors = append(selectors, strings.TrimSpace(s))
 							} else {
 								selectors = append(selectors, strings.TrimSpace(p)+" "+strings.TrimSpace(s))
 							}
@@ -606,4 +608,29 @@ func v3Color(value string) (mode, components, alpha string) {
 		return "", "", ""
 	}
 	return mode, strings.Join(componentsList, " "), alpha
+}
+
+// A variant or @apply keeps only the selectors containing its candidate.
+func v3FilterRules(nodes []*Node) []*Node {
+	result := make([]*Node, 0, len(nodes))
+	for _, n := range nodes {
+		copy := *n
+		if n.Kind == "v3-rule" {
+			var selectors []string
+			for selector := range Segments(n.Name, ',') {
+				if replaceNesting(parseSelectorMode(selector, true), "&") {
+					selectors = append(selectors, selector)
+				}
+			}
+			if len(selectors) == 0 {
+				continue
+			}
+			copy.Name = strings.Join(selectors, ", ")
+		}
+		if n.Nodes != nil {
+			copy.Nodes = v3FilterRules(n.Nodes)
+		}
+		result = append(result, &copy)
+	}
+	return result
 }

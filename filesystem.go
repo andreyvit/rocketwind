@@ -12,9 +12,10 @@ import (
 // Root rebases imported asset URLs to the entry stylesheet's directory. Leave
 // it empty to preserve URLs. OnDependency receives files used during compilation.
 type Filesystem struct {
-	Root         string
-	Modules      map[string]Module
-	OnDependency func(string)
+	Compatibility Compatibility
+	Root          string
+	Modules       map[string]Module
+	OnDependency  func(string)
 }
 
 func (fs Filesystem) LoadStylesheet(id, base string) (Stylesheet, error) {
@@ -49,6 +50,9 @@ func (fs Filesystem) LoadModule(id, base, kind string) (Module, error) {
 	}
 	if kind == "plugin" {
 		if module, ok := standardModule(id); ok {
+			if fs.Compatibility == Tailwind3 && module.legacy3 != nil {
+				module.Legacy = module.legacy3
+			}
 			return module, nil
 		}
 	}

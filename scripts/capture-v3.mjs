@@ -41,12 +41,24 @@ for(const variant of ['group-hover/menu','peer-checked/choice','has-[img]','grou
 fs.writeFileSync('testdata/v3/variants.json',JSON.stringify(variants,null,2)+'\n')
 console.log('Captured '+variants.length+' Tailwind 3.4.17 variant builds')
 const configurations=[
+  {name:'prefix',config:{prefix:'tw-'},classes:['flex','tw-flex','hover:tw-bg-black','group-hover:tw-flex','peer-checked/item:tw-flex','-tw-mt-4','tw--mt-4','!tw-p-4','hover:!tw-p-4','tw-p-4!','[color:red]','tw-[color:red]','tw-bg-(--brand)']},
+  {name:'important selector',config:{important:'#app'},classes:['flex','hover:flex','before:block','sm:flex','container','[color:red]']},
+  {name:'important bool',config:{important:true},classes:['flex','hover:flex','before:block','container','!container','sm:container']},
+
   {name:'extended theme',config:{theme:{extend:{spacing:{custom:'17px'},colors:{brand:'#123456',alpha:'rgb(1 2 3 / <alpha-value>)',variable:'var(--brand)'},fontFamily:{custom:['Custom','serif'],feature:[['Feature','sans-serif'],{fontFeatureSettings:'"cv11"',fontVariationSettings:'"wght" 500'}]},fontSize:{custom:['19px',{lineHeight:'27px',letterSpacing:'0.1px',fontWeight:'600'}]},screens:{xs:'450px'},transitionDuration:{DEFAULT:'321ms'},transitionTimingFunction:{DEFAULT:'linear'},container:{center:true,padding:{DEFAULT:'12px',sm:'16px',xs:'8px'}}}}},classes:['p-custom','m-custom','-mt-custom','w-custom','h-custom','gap-custom','space-x-custom','translate-x-custom','bg-brand','bg-brand/50','text-brand','border-brand','ring-brand','from-brand','via-brand','to-brand','bg-alpha','bg-alpha/25','text-variable','bg-variable/50','font-custom','font-feature','text-custom','text-custom/6','text-custom/[1.5]','xs:flex','container','transition','transition-none']},
   {name:'replaced theme',config:{theme:{spacing:{x:'3px'},colors:{brand:'#abcdef'},fontSize:{custom:'2em'},screens:{tiny:'200px'},fontFamily:{sans:['Example','serif']},container:{padding:'10px'}}},classes:['p-x','p-4','bg-brand','bg-red-500','font-sans','text-custom','sm:flex','tiny:flex','container']},
 ]
 for(const fixture of configurations){const ctx=createContext(resolveConfig({content:[],...fixture.config}));fixture.results=fixture.classes.map(candidate=>{const root=postcss.root({nodes:generateRules(new Set([candidate]),ctx).map(([,node])=>node.clone())});root.walkAtRules('defaults',n=>n.remove());return root.toString()})}
 fs.writeFileSync('testdata/v3/configuration.json',JSON.stringify(configurations,null,2)+'\n')
 const sheets=[
+  {name:'layer important',css:'@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4 !important; } } @layer utilities { .heavy { @apply font-bold !important; } }',classes:['card','heavy']},
+  {name:'layer screens',css:'@tailwind components; @layer components { @screen sm { .card { @apply flex; } } }',classes:['card']},
+  {name:'always layer apply',css:'@tailwind utilities; @layer utilities { h1 { @apply text-xl; } }',classes:[]},
+  {name:'important components',config:{important:'#app'},css:'@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4; } } @layer utilities { .tab { tab-size: 4; } }',classes:['card','hover:card','!card','tab','hover:tab']},
+  {name:'important bool components',config:{important:true},css:'@tailwind components; @tailwind utilities; @layer components { .card { @apply p-4; } } @layer utilities { .tab { tab-size: 4; } }',classes:['card','hover:card','!card','tab','hover:tab']},
+  {name:'safelist',config:{safelist:['flex','hover:text-xl',{pattern:'^(bg-black|font-bold)$',variants:['hover','sm']}]},css:'@tailwind utilities;',classes:[]},
+  {name:'explicit variants',css:'@tailwind variants; .after { color: red; } @tailwind utilities;',classes:['flex','hover:flex']},
+
   {name:'utilities without preflight',css:'@tailwind utilities;',classes:['flex','translate-x-2','text-red-500','shadow-sm']},
   {name:'base without utilities',css:'@tailwind base;',classes:[]},
   {name:'base and utilities',css:'@tailwind base; @tailwind components; @tailwind utilities;',classes:['flex','bg-black','before:block']},
@@ -55,7 +67,7 @@ const sheets=[
   {name:'invalid nested apply',css:'.card { @screen md { @apply block; } }',classes:[]},
   {name:'apply important',css:'@tailwind utilities; .card { @apply flex p-4 !important; }',classes:[]},
 ]
-for(const sheet of sheets){try{const result=await postcss([require('tailwindcss')({content:[{raw:sheet.classes.join(' ')}]})]).process(sheet.css,{from:undefined});sheet.result=result.css}catch(error){sheet.error=error.reason??error.message}}
+for(const sheet of sheets){try{const result=await postcss([require('tailwindcss')({content:[{raw:sheet.classes.join(' ')}],...sheet.config,safelist:sheet.config?.safelist?.map(v=>typeof v==='string'?v:{...v,pattern:new RegExp(v.pattern)})})]).process(sheet.css,{from:undefined});sheet.result=result.css}catch(error){sheet.error=error.reason??error.message}}
 fs.writeFileSync('testdata/v3/stylesheets.json',JSON.stringify(sheets,null,2)+'\n')
 const extra=new Set()
 const registry=JSON.parse(fs.readFileSync('.cache/registry-v3.json'))
@@ -70,3 +82,6 @@ const arbitrary=[]
 for(const candidate of extra){const root=postcss.root({nodes:generateRules(new Set([candidate]),context).map(([,node])=>node.clone())});root.walkAtRules('defaults',n=>n.remove());arbitrary.push({candidate,css:root.toString()})}
 fs.writeFileSync('testdata/v3/arbitrary.json.gz',zlib.gzipSync(JSON.stringify(arbitrary)))
 console.log('Captured '+sheets.length+' stylesheet and '+arbitrary.length+' arbitrary-value builds')
+
+const lists=[{}, {theme:{spacing:{x:'3px',auto:'auto'},colors:{brand:'#abc'}}}, {prefix:'tw-'}].map(config=>({config,classes:createContext(resolveConfig({content:[],...config})).getClassList({includeMetadata:true})}));
+fs.writeFileSync('testdata/v3/completions.json.gz',zlib.gzipSync(JSON.stringify(lists)));

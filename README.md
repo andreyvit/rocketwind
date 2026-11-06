@@ -77,8 +77,9 @@ Use `ConfigObject` when field order matters, or ordinary maps for nested values.
 can read scalar values with `Theme`, or objects and tuples with `ThemeValue`.
 By default this is Tailwind 4's compatibility API. An experimental
 `Config{Compatibility: rocketwind.Tailwind3}` profile reproduces the older
-generation's utilities, variants, defaults and stylesheet directives. Its CLI
-and application migration checks are still in progress.
+generation's utilities, variants, defaults and stylesheet directives. The CLI
+selects it with `--compat=3`; the default is `--compat=4`. Application migration
+checks and complete coverage of the older profile are still in progress.
 
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.

@@ -169,5 +169,15 @@ func (c *Compiler) resolveApplies() error {
 		c.features |= FeatureApply
 	}
 	c.input, err = expand(c.input, false)
-	return err
+	if err != nil {
+		return err
+	}
+	for i := range c.v3AlwaysRules {
+		nodes, err := expand([]*Node{c.v3AlwaysRules[i].node}, false)
+		if err != nil {
+			return err
+		}
+		c.v3AlwaysRules[i].node = nodes[0]
+	}
+	return nil
 }

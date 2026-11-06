@@ -1,5 +1,85 @@
 [
   {
+    "name": "prefix",
+    "config": {
+      "prefix": "tw-"
+    },
+    "classes": [
+      "flex",
+      "tw-flex",
+      "hover:tw-bg-black",
+      "group-hover:tw-flex",
+      "peer-checked/item:tw-flex",
+      "-tw-mt-4",
+      "tw--mt-4",
+      "!tw-p-4",
+      "hover:!tw-p-4",
+      "tw-p-4!",
+      "[color:red]",
+      "tw-[color:red]",
+      "tw-bg-(--brand)"
+    ],
+    "results": [
+      "",
+      ".tw-flex {\n    display: flex\n}",
+      ".hover\\:tw-bg-black:hover {\n    --tw-bg-opacity: 1;\n    background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))\n}",
+      ".tw-group:hover .group-hover\\:tw-flex {\n    display: flex\n}",
+      ".tw-peer\\/item:checked ~ .peer-checked\\/item\\:tw-flex {\n    display: flex\n}",
+      ".-tw-mt-4 {\n    margin-top: -1rem\n}",
+      ".tw--mt-4 {\n    margin-top: -1rem\n}",
+      ".\\!tw-p-4 {\n    padding: 1rem !important\n}",
+      ".hover\\:\\!tw-p-4:hover {\n    padding: 1rem !important\n}",
+      "",
+      ".\\[color\\:red\\] {\n    color: red\n}",
+      "",
+      ""
+    ]
+  },
+  {
+    "name": "important selector",
+    "config": {
+      "important": "#app"
+    },
+    "classes": [
+      "flex",
+      "hover:flex",
+      "before:block",
+      "sm:flex",
+      "container",
+      "[color:red]"
+    ],
+    "results": [
+      "#app .flex {\n    display: flex\n}",
+      "#app .hover\\:flex:hover {\n    display: flex\n}",
+      "#app .before\\:block::before {\n    content: var(--tw-content);\n    display: block\n}",
+      "@media (min-width: 640px) {\n    #app .sm\\:flex {\n        display: flex\n    }\n}",
+      ".container {\n    width: 100%\n}\n@media (min-width: 640px) {\n    .container {\n        max-width: 640px\n    }\n}\n@media (min-width: 768px) {\n    .container {\n        max-width: 768px\n    }\n}\n@media (min-width: 1024px) {\n    .container {\n        max-width: 1024px\n    }\n}\n@media (min-width: 1280px) {\n    .container {\n        max-width: 1280px\n    }\n}\n@media (min-width: 1536px) {\n    .container {\n        max-width: 1536px\n    }\n}",
+      "#app .\\[color\\:red\\] {\n    color: red\n}"
+    ]
+  },
+  {
+    "name": "important bool",
+    "config": {
+      "important": true
+    },
+    "classes": [
+      "flex",
+      "hover:flex",
+      "before:block",
+      "container",
+      "!container",
+      "sm:container"
+    ],
+    "results": [
+      ".flex {\n    display: flex !important\n}",
+      ".hover\\:flex:hover {\n    display: flex !important\n}",
+      ".before\\:block::before {\n    content: var(--tw-content) !important;\n    display: block !important\n}",
+      ".container {\n    width: 100%\n}\n@media (min-width: 640px) {\n    .container {\n        max-width: 640px\n    }\n}\n@media (min-width: 768px) {\n    .container {\n        max-width: 768px\n    }\n}\n@media (min-width: 1024px) {\n    .container {\n        max-width: 1024px\n    }\n}\n@media (min-width: 1280px) {\n    .container {\n        max-width: 1280px\n    }\n}\n@media (min-width: 1536px) {\n    .container {\n        max-width: 1536px\n    }\n}",
+      ".\\!container {\n    width: 100% !important\n}\n@media (min-width: 640px) {\n    .\\!container {\n        max-width: 640px !important\n    }\n}\n@media (min-width: 768px) {\n    .\\!container {\n        max-width: 768px !important\n    }\n}\n@media (min-width: 1024px) {\n    .\\!container {\n        max-width: 1024px !important\n    }\n}\n@media (min-width: 1280px) {\n    .\\!container {\n        max-width: 1280px !important\n    }\n}\n@media (min-width: 1536px) {\n    .\\!container {\n        max-width: 1536px !important\n    }\n}",
+      "@media (min-width: 640px) {\n    .sm\\:container {\n        width: 100%\n    }\n}\n@media (min-width: 640px) {\n    @media (min-width: 640px) {\n        .sm\\:container {\n            max-width: 640px\n        }\n    }\n}\n@media (min-width: 640px) {\n    @media (min-width: 768px) {\n        .sm\\:container {\n            max-width: 768px\n        }\n    }\n}\n@media (min-width: 640px) {\n    @media (min-width: 1024px) {\n        .sm\\:container {\n            max-width: 1024px\n        }\n    }\n}\n@media (min-width: 640px) {\n    @media (min-width: 1280px) {\n        .sm\\:container {\n            max-width: 1280px\n        }\n    }\n}\n@media (min-width: 640px) {\n    @media (min-width: 1536px) {\n        .sm\\:container {\n            max-width: 1536px\n        }\n    }\n}"
+    ]
+  },
+  {
     "name": "extended theme",
     "config": {
       "theme": {

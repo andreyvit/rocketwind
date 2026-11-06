@@ -18,7 +18,7 @@ func standardModule(name string) (Module, bool) {
 	case "@tailwindcss/container-queries":
 		return Module{Plugin: ContainerQueries(ContainerQueriesOptions{})}, true
 	case "@tailwindcss/typography":
-		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"typography", typographyTheme}}}}, Configure: func(options map[string]any) (Plugin, error) {
+		return Module{Legacy: ConfigObject{{"theme", ConfigObject{{"typography", typographyTheme}}}}, legacy3: ConfigObject{{"theme", ConfigObject{{"typography", typographyV3Theme}}}}, Configure: func(options map[string]any) (Plugin, error) {
 			className, _ := options["className"].(string)
 			target, _ := options["target"].(string)
 			return Typography(TypographyOptions{ClassName: className, Legacy: target == "legacy"}), nil
@@ -89,6 +89,10 @@ type LineClampOptions struct{ Values []NamedValue }
 // Modern Tailwind already provides line-clamp utilities without this plugin.
 func LineClamp(options LineClampOptions) Plugin {
 	return func(api *PluginAPI) error {
+		// Tailwind 3.4 removes the obsolete plugin during configuration validation.
+		if api.compiler.config.Compatibility == Tailwind3 {
+			return nil
+		}
 		values := options.Values
 		if values == nil {
 			values = numberedPluginValues(6)

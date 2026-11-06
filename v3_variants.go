@@ -112,9 +112,9 @@ func (b *buildContext) applyV3Variant(nodes []*Node, v *parsedVariant, depth int
 		if !ok {
 			return nil, false
 		}
-		marker := "." + Escape(v.root)
+		marker := "." + v3Escape(b.compiler.v3Prefix+v.root)
 		if v.modifier != "" {
-			marker = "." + Escape(v.root+"/"+v.modifier)
+			marker = "." + v3Escape(b.compiler.v3Prefix+v.root+"/"+v.modifier)
 		}
 		combinator := " &"
 		if v.root == "peer" {

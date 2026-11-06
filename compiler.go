@@ -218,10 +218,13 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				return rules
 			}
 			for _, nodes := range groups {
-				v3Order := -1
+				v3Order := 1 << 20
 				if len(nodes) > 0 && nodes[0].Kind == "v3-order" {
 					v3Order, _ = strconv.Atoi(nodes[0].Value)
 					nodes = nodes[1:]
+				}
+				if b.compiler.config.Compatibility == Tailwind3 && (len(variants) > 0 || candidate.Important || b.inApply) {
+					nodes = v3FilterRules(nodes)
 				}
 				nodes = b.evaluateNodes(nodes)
 				if b.err != nil {
@@ -240,7 +243,7 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				if b.compiler.config.Compatibility == Tailwind3 {
 					n.Name = "." + v3Escape(raw)
 				}
-				if candidate.Important || b.compiler.config.Important && !b.inApply {
+				if b.compiler.config.Compatibility != Tailwind3 && (candidate.Important || b.compiler.config.Important && !b.inApply) {
 					n = cloneNode(n, "", true)
 				}
 				valid := true
@@ -252,6 +255,15 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 				}
 				if !valid {
 					continue
+				}
+				if b.compiler.config.Compatibility == Tailwind3 {
+					component := v3Order < -1
+					if candidate.Important && (!component || v3Order == -20000) || !component && b.compiler.config.Important && !b.inApply {
+						n = cloneNode(n, "", true)
+					}
+					if !component && !b.inApply && b.compiler.importantSelector != "" {
+						n = &Node{Kind: "rule", Name: b.compiler.importantSelector, Nodes: []*Node{n}}
+					}
 				}
 				if b.compiler.utilitiesSource.source != nil {
 					n = cloneNode(n, "", false)
