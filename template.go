@@ -446,6 +446,11 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 				accepted = true
 				continue
 			}
+			if candidate.Value != nil && candidate.Value.Kind == "named" && candidate.Modifier != nil && candidate.Modifier.Kind == "named" {
+				value := *candidate.Value
+				value.Fraction = value.Value + "/" + candidate.Modifier.Value
+				candidate.Value = &value
+			}
 			candidate.Variants = make([]*CandidateVariant, 0, len(input.Variants))
 			for _, variant := range input.Variants {
 				var value *CandidateVariant

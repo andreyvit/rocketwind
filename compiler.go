@@ -56,6 +56,8 @@ type Compiler struct {
 	inlineCandidates      []string
 	excludedCandidates    map[string]bool
 	matchingVariants      map[string]*Variant
+	matchingUtilities     map[string][]*utilityMatcher
+	customReferences      map[string]bool
 }
 
 func New(config Config) *Compiler {
@@ -85,6 +87,9 @@ func (b *buildContext) renderRules(rules []compiledRule) string {
 	var nodes []*Node
 	for _, r := range rules {
 		nodes = append(nodes, r.node)
+	}
+	if !c.hasInput && len(c.pluginBase) > 0 {
+		nodes = append(slices.Clone(c.pluginBase), nodes...)
 	}
 	if c.hasInput {
 		var expand func([]*Node) []*Node
@@ -280,6 +285,11 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 		} else if nodes := builtinStatic[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
 		}
+		if b.compiler.customReferences[candidate.Root] {
+			for i, nodes := range result {
+				result[i] = replaceUtilityReferences(nodes, candidate.Root, candidate.Raw)
+			}
+		}
 		return result
 	case "arbitrary":
 		value := candidate.Value.Value
@@ -295,7 +305,17 @@ func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
 		if candidate.Value != nil {
 			value, dataType, arbitrary = candidate.Value.Value, candidate.Value.DataType, candidate.Value.Kind == "arbitrary"
 		}
-		return b.functionalGroups(candidate.Root, value, modifier, dataType, arbitrary, modifierArbitrary)
+		groups := b.functionalGroups(candidate.Root, value, modifier, dataType, arbitrary, modifierArbitrary)
+		for _, matcher := range b.compiler.matchingUtilities[candidate.Root] {
+			nodes, stop := b.matchUtility(matcher, candidate)
+			if stop {
+				return nil
+			}
+			if len(nodes) > 0 {
+				groups = append(groups, nodes)
+			}
+		}
+		return groups
 	}
 	return nil
 }

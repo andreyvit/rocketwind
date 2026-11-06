@@ -30,7 +30,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 95.3%.
+- Core Go suite, race detector and vet pass. Statement coverage: 95.5%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -46,6 +46,8 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   allocations; independent compiler builds remain stateless. Builder and class
   ordering have 100% statement coverage.
 - Removed repeated variant parsing during sorting and unnecessary CSS tree copies.
+- Programmatic plugin construction, component selector registration and typed
+  utility matching implemented; new Go plugin code has 100% statement coverage.
 - Remaining: full internal and compatibility test suites,
   standard plugins, scanning/CLI, coverage/performance
   and integration gates.

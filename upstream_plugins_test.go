@@ -93,14 +93,8 @@ func replayPlugin(api *PluginAPI, operations []upstreamOperation) error {
 		case "addBase":
 			api.AddBase(upstreamStyleNodes(op.Args[0]))
 		case "addUtilities", "addComponents":
-			for _, node := range upstreamStyleNodes(op.Args[0]) {
-				if node.Kind == "at-rule" && node.Name == "@keyframes" {
-					continue
-				}
-				if node.Kind != "rule" || !strings.HasPrefix(node.Name, ".") {
-					return fmt.Errorf("unported upstream utility selector: %s", node.Name)
-				}
-				api.AddUtility(Unescape(node.Name[1:]), node.Nodes)
+			if err := api.AddUtilities(upstreamStyleNodes(op.Args[0])); err != nil {
+				return err
 			}
 		case "addVariant":
 			var name string

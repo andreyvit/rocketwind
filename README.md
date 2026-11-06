@@ -49,6 +49,11 @@ Or start with a stylesheet containing `@theme`, `@utility`, `@apply` and
 `Config.LoadStylesheet`; Go configuration and plugins use `Config.LoadModule`.
 The standard Tailwind theme and preflight stylesheet are built in.
 
+For configuration entirely in Go, `NewWithPlugins(config, plugins...)` runs
+plugin callbacks before returning the compiler. `PluginAPI` registers base
+styles, component selectors, static utilities, variants and typed functional
+utilities with named values, fractions, modifiers and negative values.
+
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
 
