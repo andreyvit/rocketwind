@@ -58,6 +58,7 @@ func TestUpstreamCSSParser(t *testing.T) {
 }
 
 type upstreamNode struct {
+	Context                                       map[string]any
 	Kind, Selector, Name, Params, Property, Value string
 	Important                                     bool
 	Nodes                                         []upstreamNode
@@ -68,6 +69,7 @@ func convertUpstreamNodes(nodes []upstreamNode, input string) []*Node {
 	result := make([]*Node, 0, len(nodes))
 	for _, n := range nodes {
 		v := &Node{Kind: n.Kind, Name: n.Name, Value: n.Value, Important: n.Important}
+		v.context = n.Context
 		switch n.Kind {
 		case "rule":
 			v.Name = n.Selector
@@ -77,6 +79,8 @@ func convertUpstreamNodes(nodes []upstreamNode, input string) []*Node {
 			v.Nodes = convertUpstreamNodes(n.Nodes, input)
 		case "declaration":
 			v.Name = n.Property
+		case "context", "at-root":
+			v.Nodes = convertUpstreamNodes(n.Nodes, input)
 		}
 		if len(n.Src) > 0 {
 			var start, end int

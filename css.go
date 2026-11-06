@@ -14,6 +14,7 @@ import (
 type Node struct {
 	base       string
 	variant    bool
+	context    map[string]any
 	Kind       string
 	Name       string
 	Value      string

@@ -15,6 +15,7 @@ const (
 )
 
 func (b *buildContext) render(nodes []*Node) string {
+	nodes = flattenContexts(nodes, "")
 	clear(b.used)
 	animations := make(map[string]bool)
 	markAnimation := func(value string) {
@@ -177,7 +178,7 @@ func (b *buildContext) render(nodes []*Node) string {
 	if b.compiler.config.DisablePolyfills&PolyfillColorMix == 0 {
 		nodes = b.polyfillColors(nodes, false)
 	}
-	nodes = cleanRules(flattenRules(nodes, ""))
+	nodes = flattenRules(nodes, "")
 	writeCSS(&out, nodes, 0)
 	writeCSS(&out, globals, 0)
 	if len(propertyDefaults)+len(inheritedDefaults) > 0 {
@@ -197,7 +198,7 @@ func (b *buildContext) render(nodes []*Node) string {
 func writeCSS(out *strings.Builder, nodes []*Node, depth int) {
 	indent := strings.Repeat("  ", depth)
 	for _, n := range nodes {
-		if n.Kind == "at-root" || n.Kind == "declaration" && n.Name == "--tw-sort" {
+		if n.Kind == "at-root" || n.Kind == "context" || n.Kind == "declaration" && n.Name == "--tw-sort" {
 			continue
 		}
 		out.WriteString(indent)
