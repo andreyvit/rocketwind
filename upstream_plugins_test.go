@@ -427,12 +427,16 @@ func replayUtilityCallbacks(api *PluginAPI, op upstreamOperation) error {
 		for _, entry := range configObject(options.Get("modifiers")) {
 			u.Modifiers = append(u.Modifiers, NamedValue{entry.Key, themeString(entry.Value)})
 		}
-		u.Compile = func(value, modifier string) []*Node {
+		u.CompileWithError = func(value, modifier string) ([]*Node, error) {
+			api.compiler.legacyErr = nil
 			raw := replayCallback(api, op.Calls, name, pluginCallbackArgs(value, modifier)...)
-			if len(raw) == 0 || string(raw) == "null" || strings.Contains(string(raw), `"$undefined":true`) {
-				return nil
+			if api.compiler.legacyErr != nil {
+				return nil, api.compiler.legacyErr
 			}
-			return upstreamStyleNodes(raw)
+			if len(raw) == 0 || string(raw) == "null" || strings.Contains(string(raw), `"$undefined":true`) {
+				return nil, nil
+			}
+			return upstreamStyleNodes(raw), nil
 		}
 		if err := api.MatchUtility(u); err != nil {
 			return err

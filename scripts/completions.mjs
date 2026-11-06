@@ -41,6 +41,7 @@ const groups = values => '[]completionGroup{' + values.map(value => {
 }).join(',') + '}'
 let go = '// Code generated from Tailwind CSS v4.3.4 by scripts/completions.mjs; DO NOT EDIT.\n// Copyright Tailwind Labs. MIT license: testdata/upstream/LICENSE.\npackage rocketwind\n\n'
 go += 'var builtinStaticCompletions=' + strings(staticNames) + '\n'
+go += 'var builtinFunctionalOrder=' + strings(roots) + '\n'
 go += 'var builtinFunctionalCompletions=[]completionRoot{\n'
 const originalGet = theme.get.bind(theme)
 for (const root of roots) {

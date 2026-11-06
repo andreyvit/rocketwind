@@ -66,6 +66,7 @@ type Compiler struct {
 	excludedCandidates    map[string]bool
 	matchingVariants      map[string]*Variant
 	matchingUtilities     map[string][]*utilityMatcher
+	functionalOrder       []string
 	legacyTheme           ConfigObject
 	legacyResolved        map[string]bool
 	legacyResolving       map[string]bool

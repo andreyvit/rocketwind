@@ -1,0 +1,1945 @@
+[
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "p-4",
+      "m-2",
+      "unknown",
+      "unknown"
+    ],
+    "output": [
+      "p-4",
+      "m-2",
+      "unknown"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "mt-1",
+      "mb-1",
+      "ml-2",
+      "mr-2"
+    ],
+    "output": [
+      "mt-1",
+      "mb-1",
+      "ml-2",
+      "mr-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-sm",
+      "leading-7",
+      "leading-[28px]"
+    ],
+    "output": [
+      "text-sm",
+      "leading-7",
+      "leading-[28px]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-2",
+      "h-2",
+      "min-w-2",
+      "min-h-2"
+    ],
+    "output": [
+      "w-2",
+      "h-2",
+      "min-w-2",
+      "min-h-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-2",
+      "h-3",
+      "size-4"
+    ],
+    "output": [
+      "w-2",
+      "h-3",
+      "size-4"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "-mt-1",
+      "mb-1",
+      "ml-1",
+      "mr-1"
+    ],
+    "output": [
+      "-mt-1",
+      "mb-1",
+      "ml-1",
+      "mr-1"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "ps-1",
+      "pe-1"
+    ],
+    "output": [
+      "ps-1",
+      "pe-1"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "before:content-[\"hello\"]",
+      "after:content-[\"hello\"]"
+    ],
+    "output": [
+      "before:content-[\"hello\"]",
+      "after:content-[\"hello\"]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "border-red/100"
+    ],
+    "output": [
+      "border-red"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[var(--color-red)]/100"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[color:var(--color-label)]"
+    ],
+    "output": [
+      "[color:var(--color-label)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-[length:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-[angle:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "font-[number:var(--foo)]"
+    ],
+    "output": [
+      "font-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[color:var(--foo)]/[abc.%]"
+    ],
+    "output": [
+      "text-(--foo)/[abc.%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-red/[50.0%]"
+    ],
+    "output": [
+      "text-red/[50.0%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-red/[.5]"
+    ],
+    "output": [
+      "text-red/[.5]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(\"colors.red\")]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme('colors.red')]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(_colors.red)]"
+    ],
+    "output": [
+      "text-[theme(\\_colors.red)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme( colors.red)]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[width:calc(var(--container-sm)*1)]"
+    ],
+    "output": [
+      "[width:calc(var(--container-sm)*1)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-[calc(var(--setting-size)*1)]"
+    ],
+    "output": [
+      "w-(--setting-size)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-[calc(var(--setting-size)*2)]"
+    ],
+    "output": [
+      "w-[calc(var(--setting-size)*2)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[width:calc(var(--setting-size)*1)]"
+    ],
+    "output": [
+      "w-[calc(var(--setting-size)*1)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(\"colors.red\",theme(\"colors.blue\"))]"
+    ],
+    "output": [
+      "text-(--color-red,var(--color-blue))"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(\"colors.a\\\"b\")]"
+    ],
+    "output": [
+      "text-[theme(\"colors.a\\\"b\")]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme('colors.a\\\\b')]"
+    ],
+    "output": [
+      "text-[theme('colors.a\\\\b')]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "shadow-[0_0_theme(colors.red/50%)]"
+    ],
+    "output": [
+      "shadow-[0_0_--theme(--color-red/50%)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "w-[calc(1px*theme(spacing.4))]"
+    ],
+    "output": [
+      "w-[calc(1px*(--spacing(4)))]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[color:theme(colors.red,red)]/[50%]"
+    ],
+    "output": [
+      "text-(--color-red,red)/[50%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(colors.red/var(--a))]"
+    ],
+    "output": [
+      "text-(--color-red)/(--a)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(colors.red/50%/50%)]"
+    ],
+    "output": [
+      "text-[theme(colors.red/50%/50%)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "text-[theme(var(--foo))]"
+    ],
+    "output": [
+      "text-[theme(var(--foo))]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "grid-cols-[repeat(2,minmax(0,1fr))]"
+    ],
+    "output": [
+      "grid-cols-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "aspect-[16/9]"
+    ],
+    "output": [
+      "aspect-16/9"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "opacity-[50%]"
+    ],
+    "output": [
+      "opacity-[50%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[--setting:12px]"
+    ],
+    "output": [
+      "[--setting:12px]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[color:var(--color-red,var(--missing))]"
+    ],
+    "output": [
+      "text-(--color-red,var(--missing))"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "has-group-hover/foo:flex"
+    ],
+    "output": [
+      "has-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "not-group-hover/foo:flex"
+    ],
+    "output": [
+      "not-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "in-group-hover/foo:flex"
+    ],
+    "output": [
+      "in-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "group-hover/sidebar:flex"
+    ],
+    "output": [
+      "group-hover/sidebar:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "has-[:hover]/foo:flex"
+    ],
+    "output": [
+      "has-[:hover]/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:hover,&:focus]:flex"
+    ],
+    "output": [
+      "[&:hover,&:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:is(:hover,:focus)]:flex"
+    ],
+    "output": [
+      "[:hover,:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:is([data-x],[data-y])]:flex"
+    ],
+    "output": [
+      "[[data-x],[data-y]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:not(:hover,:focus)]:flex"
+    ],
+    "output": [
+      "[&:not(:hover,:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:not(:is(:hover))]:flex"
+    ],
+    "output": [
+      "[&:not(:is(:hover))]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:nth-last-of-type(3)]:flex"
+    ],
+    "output": [
+      "nth-of-last-type-3:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:nth-child(2n+1)]:flex"
+    ],
+    "output": [
+      "nth-[2n+1]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:is(*:focus)]:flex"
+    ],
+    "output": [
+      "[*:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:where(:focus)]:flex"
+    ],
+    "output": [
+      "[&:where(:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:not(*:focus)]:flex"
+    ],
+    "output": [
+      "[&:not(*:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[aria-expanded=false]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded=false]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[aria-expanded~=true]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded~=true]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[aria-expanded=\"false\"_i]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded=\"false\"_i]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[1bad]]:flex"
+    ],
+    "output": [
+      "[[1bad]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[foo=]]:flex"
+    ],
+    "output": [
+      "[&[foo=]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&[foo?=bar]]:flex"
+    ],
+    "output": [
+      "[&[foo?=bar]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[@media_not_(width>10px)]:flex"
+    ],
+    "output": [
+      "not-[@media_(width>10px)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[@supports_not_(foo:bar)]:flex"
+    ],
+    "output": [
+      "not-[@supports_(foo:bar)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&::part(foo)]:flex"
+    ],
+    "output": [
+      "[&::part(foo)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&>_:first-line]:flex"
+    ],
+    "output": [
+      "*:[&:first-line]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "supports-[foo-bar]:flex"
+    ],
+    "output": [
+      "supports-foo-bar:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "aria-[foo*=true]:flex"
+    ],
+    "output": [
+      "aria-[foo*=true]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "data-[x=y]:flex"
+    ],
+    "output": [
+      "data-[x=y]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "max-[--theme(--missing)]:flex"
+    ],
+    "output": [
+      "max-[--theme(--missing)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[@media(width>--theme(--missing))]:flex"
+    ],
+    "output": [
+      "[@media(width>--theme(--missing))]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:is()]:flex"
+    ],
+    "output": [
+      "[]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&:not()]:flex"
+    ],
+    "output": [
+      "[&:not()]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {},
+    "input": [
+      "[&]:flex"
+    ],
+    "output": [
+      "[&]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "p-4",
+      "m-2",
+      "unknown",
+      "unknown"
+    ],
+    "output": [
+      "p-4",
+      "m-2",
+      "unknown"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "mt-1",
+      "mb-1",
+      "ml-2",
+      "mr-2"
+    ],
+    "output": [
+      "my-1",
+      "mx-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-sm",
+      "leading-7",
+      "leading-[28px]"
+    ],
+    "output": [
+      "text-sm/7"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-2",
+      "h-2",
+      "min-w-2",
+      "min-h-2"
+    ],
+    "output": [
+      "min-w-2",
+      "min-h-2",
+      "size-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-2",
+      "h-3",
+      "size-4"
+    ],
+    "output": [
+      "w-2",
+      "h-3",
+      "size-4"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "-mt-1",
+      "mb-1",
+      "ml-1",
+      "mr-1"
+    ],
+    "output": [
+      "-mt-1",
+      "mb-1",
+      "mx-1"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "ps-1",
+      "pe-1"
+    ],
+    "output": [
+      "ps-1",
+      "pe-1"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "before:content-[\"hello\"]",
+      "after:content-[\"hello\"]"
+    ],
+    "output": [
+      "before:content-[\"hello\"]",
+      "after:content-[\"hello\"]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "border-red/100"
+    ],
+    "output": [
+      "border-red"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[var(--color-red)]/100"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[color:var(--color-label)]"
+    ],
+    "output": [
+      "[color:var(--color-label)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[length:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[angle:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "font-[number:var(--foo)]"
+    ],
+    "output": [
+      "font-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[color:var(--foo)]/[abc.%]"
+    ],
+    "output": [
+      "text-(--foo)/[abc.%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-red/[50.0%]"
+    ],
+    "output": [
+      "text-red/[50.0%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-red/[.5]"
+    ],
+    "output": [
+      "text-red/[.5]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(\"colors.red\")]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme('colors.red')]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(_colors.red)]"
+    ],
+    "output": [
+      "text-[theme(\\_colors.red)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme( colors.red)]"
+    ],
+    "output": [
+      "text-(--color-red)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[width:calc(var(--container-sm)*1)]"
+    ],
+    "output": [
+      "[width:calc(var(--container-sm)*1)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[calc(var(--setting-size)*1)]"
+    ],
+    "output": [
+      "w-(--setting-size)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[calc(var(--setting-size)*2)]"
+    ],
+    "output": [
+      "w-[calc(var(--setting-size)*2)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[width:calc(var(--setting-size)*1)]"
+    ],
+    "output": [
+      "[width:calc(var(--setting-size)*1)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(\"colors.red\",theme(\"colors.blue\"))]"
+    ],
+    "output": [
+      "text-(--color-red,var(--color-blue))"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(\"colors.a\\\"b\")]"
+    ],
+    "output": [
+      "text-[theme(\"colors.a\\\"b\")]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme('colors.a\\\\b')]"
+    ],
+    "output": [
+      "text-[theme('colors.a\\\\b')]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "shadow-[0_0_theme(colors.red/50%)]"
+    ],
+    "output": [
+      "shadow-[0_0_--theme(--color-red/50%)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[calc(1px*theme(spacing.4))]"
+    ],
+    "output": [
+      "w-[calc(1px*(--spacing(4)))]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[color:theme(colors.red,red)]/[50%]"
+    ],
+    "output": [
+      "text-(--color-red,red)/[50%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(colors.red/var(--a))]"
+    ],
+    "output": [
+      "text-(--color-red)/(--a)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(colors.red/50%/50%)]"
+    ],
+    "output": [
+      "text-[theme(colors.red/50%/50%)]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-[theme(var(--foo))]"
+    ],
+    "output": [
+      "text-[theme(var(--foo))]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "grid-cols-[repeat(2,minmax(0,1fr))]"
+    ],
+    "output": [
+      "grid-cols-2"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "aspect-[16/9]"
+    ],
+    "output": [
+      "aspect-16/9"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "opacity-[50%]"
+    ],
+    "output": [
+      "opacity-[50%]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[--setting:12px]"
+    ],
+    "output": [
+      "[--setting:12px]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[color:var(--color-red,var(--missing))]"
+    ],
+    "output": [
+      "text-(--color-red,var(--missing))"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "has-group-hover/foo:flex"
+    ],
+    "output": [
+      "has-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "not-group-hover/foo:flex"
+    ],
+    "output": [
+      "not-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "in-group-hover/foo:flex"
+    ],
+    "output": [
+      "in-group-hover/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "group-hover/sidebar:flex"
+    ],
+    "output": [
+      "group-hover/sidebar:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "has-[:hover]/foo:flex"
+    ],
+    "output": [
+      "has-[:hover]/foo:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:hover,&:focus]:flex"
+    ],
+    "output": [
+      "[&:hover,&:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:is(:hover,:focus)]:flex"
+    ],
+    "output": [
+      "[:hover,:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:is([data-x],[data-y])]:flex"
+    ],
+    "output": [
+      "[[data-x],[data-y]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:not(:hover,:focus)]:flex"
+    ],
+    "output": [
+      "[&:not(:hover,:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:not(:is(:hover))]:flex"
+    ],
+    "output": [
+      "[&:not(:is(:hover))]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:nth-last-of-type(3)]:flex"
+    ],
+    "output": [
+      "nth-of-last-type-3:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:nth-child(2n+1)]:flex"
+    ],
+    "output": [
+      "nth-[2n+1]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:is(*:focus)]:flex"
+    ],
+    "output": [
+      "[*:focus]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:where(:focus)]:flex"
+    ],
+    "output": [
+      "[&:where(:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:not(*:focus)]:flex"
+    ],
+    "output": [
+      "[&:not(*:focus)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[aria-expanded=false]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded=false]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[aria-expanded~=true]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded~=true]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[aria-expanded=\"false\"_i]]:flex"
+    ],
+    "output": [
+      "aria-[aria-expanded=\"false\"_i]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[1bad]]:flex"
+    ],
+    "output": [
+      "[[1bad]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[foo=]]:flex"
+    ],
+    "output": [
+      "[&[foo=]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&[foo?=bar]]:flex"
+    ],
+    "output": [
+      "[&[foo?=bar]]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[@media_not_(width>10px)]:flex"
+    ],
+    "output": [
+      "not-[@media_(width>10px)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[@supports_not_(foo:bar)]:flex"
+    ],
+    "output": [
+      "not-[@supports_(foo:bar)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&::part(foo)]:flex"
+    ],
+    "output": [
+      "[&::part(foo)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&>_:first-line]:flex"
+    ],
+    "output": [
+      "*:[&:first-line]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "supports-[foo-bar]:flex"
+    ],
+    "output": [
+      "supports-foo-bar:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "aria-[foo*=true]:flex"
+    ],
+    "output": [
+      "aria-[foo*=true]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "data-[x=y]:flex"
+    ],
+    "output": [
+      "data-[x=y]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "max-[--theme(--missing)]:flex"
+    ],
+    "output": [
+      "max-[--theme(--missing)]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[@media(width>--theme(--missing))]:flex"
+    ],
+    "output": [
+      "[@media(width>--theme(--missing))]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:is()]:flex"
+    ],
+    "output": [
+      "[]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:not()]:flex"
+    ],
+    "output": [
+      "[&:not()]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&]:flex"
+    ],
+    "output": [
+      "[&]:flex"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[length:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "w-[angle:var(--foo)]"
+    ],
+    "output": [
+      "w-(--foo)"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "note",
+      "text-red"
+    ],
+    "output": [
+      "text-red"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "p-1",
+      "h-1",
+      "w-1"
+    ],
+    "output": [
+      "p-1",
+      "size-1"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "alias-a",
+      "alias-b"
+    ],
+    "output": [
+      "alias-b"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "trial-[4px]/[red]"
+    ],
+    "output": [
+      "trial-[4px]/[red]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "text-sm",
+      "leading-6",
+      "same-leading"
+    ],
+    "output": [
+      "same-leading",
+      "text-sm/6"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "m-[-1px]"
+    ],
+    "output": [
+      "m-[-1px]"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "a",
+      "b",
+      "c"
+    ],
+    "output": [
+      "c",
+      "ab"
+    ]
+  },
+  {
+    "css": "@tailwind utilities; @theme {\n  --spacing: .25rem; --color-red: #f00; --color-blue: #00f; --color-label: var(--color-red);\n  --text-sm: .875rem; --text-sm--line-height: 1.25rem; --breakpoint-sm: 40rem;\n  --container-sm: 24rem; --opacity-50: .5; --setting-size: 12px;\n}\n@utility alias-a { width: var(--foo); }\n@utility alias-b { width: var(--foo); }\n@utility note { /*! retained */ --tw-sort: note; color: #F00; }\n@utility multi { width: 4px; height: 4px; }\n@utility p-1 { width: 4px; }\n@utility trial-* { width: --value([length]); color: --modifier([color]); }\n@utility same-leading { line-height: 24px; color: red; }\n@utility a { width: 1px; }\n@utility b { height: 1px; }\n@utility c { color: red; }\n@utility ab { width: 1px; height: 1px; }\n@utility ac { width: 1px; color: red; }\n@utility bc { height: 1px; color: red; }\n@theme { --spacing-copy: 1px; }\n@custom-variant nth (&:custom);\n",
+    "options": {
+      "collapse": true,
+      "logicalToPhysical": true,
+      "rem": 16
+    },
+    "input": [
+      "[&:nth-child(3)]:flex"
+    ],
+    "output": [
+      "[&:nth-child(3)]:flex"
+    ]
+  }
+]

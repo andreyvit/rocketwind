@@ -21,6 +21,9 @@ type Utility struct {
 	// no slash was supplied. Returning false rejects the candidate.
 	Bare    func(value, fraction string) (string, bool)
 	Compile func(value, modifier string) []*Node
+	// CompileWithError takes precedence over Compile and reports a plugin failure.
+	// Canonicalization ignores failed speculative replacements; Build returns it.
+	CompileWithError func(value, modifier string) ([]*Node, error)
 }
 
 type utilityMatcher struct {
@@ -66,7 +69,7 @@ func (api *PluginAPI) MatchUtility(utility Utility) error {
 	if !validPluginUtilityName(utility.Name) {
 		return fmt.Errorf("`matchUtilities({ '%s' : … })` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter, eg. `scrollbar`.", utility.Name)
 	}
-	if utility.Compile == nil {
+	if utility.Compile == nil && utility.CompileWithError == nil {
 		return fmt.Errorf("utility %q needs a compile function", utility.Name)
 	}
 	utility.Types = slices.Clone(utility.Types)
@@ -96,7 +99,9 @@ func (api *PluginAPI) MatchUtility(utility Utility) error {
 	c.matchingUtilities[utility.Name] = append(c.matchingUtilities[utility.Name], matcher)
 	if utility.SupportsNegative {
 		c.matchingUtilities["-"+utility.Name] = append(c.matchingUtilities["-"+utility.Name], matcher)
+		c.functionalOrder = appendUnique(c.functionalOrder, "-"+utility.Name)
 	}
+	c.functionalOrder = appendUnique(c.functionalOrder, utility.Name)
 	return nil
 }
 
@@ -167,7 +172,15 @@ func (b *buildContext) matchUtility(m *utilityMatcher, candidate Candidate) ([]*
 	if strings.HasPrefix(candidate.Root, "-") {
 		value = "calc(" + value + " * -1)"
 	}
-	nodes := m.Compile(value, modifier)
+	var nodes []*Node
+	if m.CompileWithError != nil {
+		nodes, b.err = m.CompileWithError(value, modifier)
+		if b.err != nil {
+			return nil, true
+		}
+	} else {
+		nodes = m.Compile(value, modifier)
+	}
 	if hasNode(nodes, "@apply") || hasNode(nodes, "@variant") {
 		if slices.Contains(b.applyStack, candidate.Raw) {
 			b.err = fmt.Errorf("You cannot `@apply` the `%s` utility here because it creates a circular dependency.", candidate.Raw)

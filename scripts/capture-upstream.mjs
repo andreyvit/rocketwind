@@ -24,6 +24,7 @@ import fs from 'node:fs'
 import { afterAll, expect } from 'vitest'
 const records = []
 const candidateRegistries = new Map()
+const designRegistries = new Map()
 globalThis.__rocketwindSuite = () => expect.getState().testPath.replaceAll('\\\\', '/').split('/src/')[1].replace(/\\.test\\.ts$/, '')
 globalThis.__rocketwindRecord = (kind, args, result, error) => {
   const testPath = expect.getState().testPath
@@ -35,6 +36,15 @@ globalThis.__rocketwindRecord = (kind, args, result, error) => {
     const found = candidateRegistries.get(key)
     if (found !== undefined) args[1] = {$registry:found}
     else {const id = candidateRegistries.size;candidateRegistries.set(key,id);args[1] = {$registry:id,definition:args[1]}}
+  }
+  if ((kind === 'design.canonicalize' || kind === 'design.order') && testPath.endsWith('/canonicalize-candidates.test.ts')) {
+    const definition = {css:args[0],options:args[1]}
+    const key = JSON.stringify(definition)
+    const found = designRegistries.get(key)
+    let ref
+    if (found !== undefined) ref = {$design:found}
+    else {const id = designRegistries.size;designRegistries.set(key,id);ref = {$design:id,definition}}
+    args.splice(0,2,ref)
   }
   records.push(JSON.parse(JSON.stringify({ test: expect.getState().currentTestName, kind, args, result, error }, (key,value)=>typeof value === 'bigint' ? Number(value) : typeof value === 'function' ? { $function:value.toString() } : value)))
 }
@@ -93,6 +103,16 @@ export function \${name}(...args) {
               globalThis.__rocketwindRecord?.('internal:source-maps/line-table:'+name,[source,...args],result,undefined)
               return result
             }]))
+          }
+        \`
+      }
+      if (id.endsWith('/src/canonicalize-candidates.ts')) {
+        code = code.replace('export function intersection<T>(', 'function originalIntersection<T>(')
+        return code + \`
+          export function intersection(a,b) {
+            const result = originalIntersection(a,b)
+            globalThis.__rocketwindRecord?.('internal:canonicalize-candidates:intersection',[[...a],[...b]],[...result],undefined)
+            return result
           }
         \`
       }
@@ -297,6 +317,14 @@ export function \${name}(...args) {
             if (options.loadStylesheet) recordedOptions.loadStylesheet = recordLoader(options.loadStylesheet, metadata.stylesheets = [])
             if (options.loadModule) recordedOptions.loadModule = recordLoader(options.loadModule, metadata.modules = [])
             const design = await loadDesignOriginal(css,recordedOptions)
+            if (globalThis.__rocketwindSuite?.() === 'canonicalize-candidates') {
+              const original = design.canonicalizeCandidates.bind(design)
+              design.canonicalizeCandidates = (...args) => {
+                const result = original(...args)
+                globalThis.__rocketwindRecord?.('design.canonicalize',[css,metadata,...args],result,undefined)
+                return result
+              }
+            }
             if (globalThis.__rocketwindSuite?.() === 'intellisense') {
               const state = () => ({theme:[...design.theme.values],invalid:[...design.invalidCandidates]})
               for (const name of ['getClassList','candidatesToCss','candidatesToAst']) {

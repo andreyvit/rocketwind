@@ -91,6 +91,19 @@ stylesheet rules, theme declarations or browser polyfills. Invalid classes
 produce empty strings. `CandidateAST(classes)` returns the same previews as
 editable CSS trees; editing them does not change the compiler.
 
+`Canonicalize(classes, options)` rewrites equivalent class names. For example,
+`[display:flex]` becomes `flex`; with `Collapse: true`, `mt-2 mb-2` becomes `my-2`.
+Set `Rem` to the root font size to compare `rem` and pixel values, and opt into
+`LogicalToPhysical` when logical and physical directions are interchangeable.
+Unknown classes stay intact. Replacements preserve the theme variables they
+depend on, so changing a setting later still works.
+
+For an editor that processes many class lists, use `NewCanonicalizer(options)`
+and keep it while the theme stays the same. Its first call indexes known
+utilities; later calls reuse the compiled signatures. Each canonicalizer belongs
+to one caller. This work is separate from ordinary CSS compilation: `Build`
+does not need to canonicalize classes first.
+
 `Build` compiles exactly the classes passed to it; separate accounts do not
 accumulate each other's classes. For a file watcher or a growing template set,
 use `compiler.NewBuilder()`. Its `Build` method accumulates candidates, compiles

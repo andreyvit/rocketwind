@@ -89,6 +89,11 @@ func (builder *Builder) Reset() {
 // Unknown classes have order -1. Duplicates receive the same position. Existing
 // stylesheet exclusions do not affect ordering.
 func (c *Compiler) ClassOrder(classes []string) []int {
+	order, _ := c.classOrder(classes)
+	return order
+}
+
+func (c *Compiler) classOrder(classes []string) ([]int, error) {
 	b := buildContext{compiler: c, used: map[string]bool{}, inApply: true}
 	rules := b.compileRules(classes)
 	positions := make(map[string]int, len(rules))
@@ -105,5 +110,5 @@ func (c *Compiler) ClassOrder(classes []string) []int {
 		}
 		result[i] = position
 	}
-	return result
+	return result, b.err
 }

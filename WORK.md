@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 96.7%.
+- Core Go suite, race detector and vet pass. Statement coverage: 97.3%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -65,9 +65,8 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   Original legacy results are retained for the compatibility profile. The
   v4 differential harness supplies the removed variants() API to line-clamp.
   New standard-plugin code has 100% statement coverage.
-- Remaining: full internal and compatibility test suites,
-  scanning/CLI, coverage/performance
-  and integration gates.
+- Remaining: internal and CLI suites, optimization, Tailwind 3 compatibility,
+  coverage/performance and integration gates.
 - Implementation and conformance gates remain open.
 
 ### Legacy configuration and expanded compiler checks
@@ -222,6 +221,31 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Overall coverage is 96.7%; tests, race tests and vet pass. Canonical class
   conversion, CLI optimization, remaining suites and integration gates remain
   open.
+
+### Canonical class conversion
+
+- All 1,896 original canonicalization tests pass upstream. All 3,353 captured
+  calls pass in Go: 1,916 class-list conversions, 886 ordering calls and 551
+  set operations. Total captured upstream calls checked: 17,782.
+- Added utility and variant normalization, equivalent class lookup, deprecated
+  spellings, theme-function migration and class collapsing. Replacements compare
+  normalized CSS and preserve dependent theme variables. Prefixes, inline themes,
+  typed arbitrary values and failing Go plugins have matching behavior.
+- Added 154 further differential cases, concurrent compiler reuse, independently
+  owned results, option isolation and combinations beyond 64 inputs. Canonical
+  conversion files have 100% statement coverage. Whole-project coverage is 97.3%;
+  tests, race tests and vet pass.
+- Reused normalized values and property discovery, and cached class groups only
+  while their replacement index stays unchanged. On the seven-class benchmark,
+  initial full-theme time was 477 ms with 15.7 million allocations and 727 MB
+  allocated. The final three-run median is 266 ms, 5.33 million allocations and
+  408 MB. This includes indexing all known utilities on the first call.
+- Repeating an unchanged class list takes 26 ns and one 80-byte allocation for
+  the independently owned result, after the index settles. Ordinary CSS builds
+  do not use this index. These remain checkpoint measurements, not the final
+  performance gate.
+- The CLI canonicalize command, minification, remaining suites, v3 compatibility
+  and Bubblehouse/GoX integration are still pending.
 
 ## Initial compiler performance measurements
 
