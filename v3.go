@@ -423,6 +423,9 @@ func (b *buildContext) renderV3(nodes []*Node) string {
 	}
 	nodes = strip(nodes)
 	nodes = v3Collapse(v3Flatten(append(globals, nodes...)))
+	if prefix := b.compiler.config.InternalVariablePrefix; prefix != "" {
+		nodes = namespaceInternalVariables(nodes, prefix)
+	}
 	if b.outputAST != nil {
 		*b.outputAST = nodes
 	}

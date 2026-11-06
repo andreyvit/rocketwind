@@ -506,3 +506,13 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
   the executed suites, profile limits and JavaScript host exceptions precisely.
 - Standalone implementation is ready for application integration. The disabled
   runtime-theming proof, application build switch and GoX tenant hookup remain.
+
+### Mixed-version internal variables
+
+- Added optional InternalVariablePrefix. It renames reserved --tw-* declarations,
+  var references, registrations and fallback defaults without changing helpers
+  or application-owned variables. This isolates new helpers beside older CSS.
+- Full tests and 12,329/12,329 statement coverage pass. Concurrent builds,
+  previews, incremental/source-map output and both compatibility profiles are
+  tested; the focused race run and vet pass. Refreshed benchmark measurements
+  in the README after the compatibility work.

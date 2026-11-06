@@ -35,9 +35,13 @@ type Config struct {
 	// InlineTheme emits resolved values rather than theme variable references.
 	InlineTheme bool
 	Prefix      string
-	Variants    []Variant
-	Plugins     map[string]Plugin
-	Aliases     map[string]Alias
+	// InternalVariablePrefix isolates Tailwind's reserved --tw-* properties
+	// without changing class names or application-owned variables. For example,
+	// "gox" turns --tw-shadow into --gox-tw-shadow. Use a CSS identifier.
+	InternalVariablePrefix string
+	Variants               []Variant
+	Plugins                map[string]Plugin
+	Aliases                map[string]Alias
 	// ExistingClasses suppresses helper rules supplied by another stylesheet.
 	ExistingClasses ClassSet
 }

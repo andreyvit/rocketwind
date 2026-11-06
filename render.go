@@ -219,6 +219,9 @@ func (b *buildContext) render(nodes []*Node) string {
 }
 
 func (b *buildContext) writeOutput(out *strings.Builder, nodes []*Node, mappings *[]cssMapping) {
+	if prefix := b.compiler.config.InternalVariablePrefix; prefix != "" {
+		nodes = namespaceInternalVariables(nodes, prefix)
+	}
 	if b.outputAST != nil {
 		*b.outputAST = append(*b.outputAST, nodes...)
 	} else {

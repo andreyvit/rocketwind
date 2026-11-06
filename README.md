@@ -302,7 +302,16 @@ Class names are read from CSS selectors, including escaped names and nested
 rules. Text inside comments, declarations, attributes, `:not()` and `:has()`
 does not count as a class definition. Exclusion applies to generated helpers;
 `@apply` and named rules still resolve those utilities. Imported stylesheets
-must be passed separately. Rocketwind does not compare declaration values:
+must be passed separately.
+
+When old and new Tailwind output share a page, set
+`Config.InternalVariablePrefix: "gox"` on the new compiler. Its reserved
+`--tw-*` properties become `--gox-tw-*`, including property registrations and
+fallbacks. Class names, quoted strings and application variables such as
+`--brand` stay unchanged. This prevents the new transform or shadow defaults
+from changing older helpers already on the page.
+
+Rocketwind does not compare declaration values:
 when a class already exists, the supplied stylesheet owns its behavior.
 
 
@@ -371,13 +380,13 @@ On an Apple M5 Max with Go 1.27.3, three-run medians:
 
 | Work | Time | Allocations |
 | --- | --- | --- |
-| Compile 10 classes | 26 us | 505 |
-| Compile 100 classes | 136 us | 2,836 |
-| Compile 586 classes, including variants | 1.27 ms | 26,630 |
+| Compile 10 classes | 27 us | 525 |
+| Compile 100 classes | 146 us | 3,036 |
+| Compile 586 classes, including variants | 1.29 ms | 27,801 |
 | Resolve and render a prepared account template | 2.08 us | 59 |
-| Repeat an unchanged incremental build of 586 classes | 3.44 us | 0 |
+| Repeat an unchanged incremental build of 586 classes | 3.50 us | 0 |
 | Extract candidates from 27.9 KB of templates | 135 us | 0 |
-| Optimize 40 KB of CSS | 308 us | 4,082 |
+| Optimize 40 KB of CSS | 314 us | 4,082 |
 
 These are local measurements, not guarantees for every template. The benchmarks
 live in `benchmark_test.go`. Reuse compilers and prepared templates; use an
