@@ -179,7 +179,7 @@ func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modA
 				return declarations(property, value)
 			}
 		} else if value != "" {
-			if color := b.colorAlpha(b.resolveColor(value, []string{"--background-color", "--color"}), mod, modArbitrary); color != "" {
+			if color := b.colorAlpha(b.resolveColor(value, []string{"--background-color", "--color"}), mod, modArbitrary); color != "" && (dataType == "" || dataType == "color") {
 				return declarations("background-color", color)
 			}
 			if mod == "" {
@@ -200,10 +200,10 @@ func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modA
 				return declarations("color", color)
 			}
 		} else if value != "" {
-			if color := b.colorAlpha(b.resolveColor(value, []string{"--text-color", "--color"}), mod, modArbitrary); color != "" {
+			if color := b.colorAlpha(b.resolveColor(value, []string{"--text-color", "--color"}), mod, modArbitrary); color != "" && (dataType == "" || dataType == "color") {
 				return declarations("color", color)
 			}
-			if size := b.resolve(value, []string{"--text"}); size != "" {
+			if size := b.resolve(value, []string{"--text"}); size != "" && dataType != "color" {
 				var extra []*Node
 				for _, p := range []string{"line-height", "letter-spacing", "font-weight"} {
 					if v := b.theme("--text-" + value + "--" + p); v != "" {
@@ -230,7 +230,7 @@ func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modA
 			}
 			return manualTemplate(root, dataType, value)
 		}
-		if v := b.resolve(value, []string{"--font"}); v != "" {
+		if v := b.resolve(value, []string{"--font"}); v != "" && dataType != "number" {
 			nodes := declarations("font-family", v)
 			for _, p := range []string{"font-feature-settings", "font-variation-settings"} {
 				if v := b.theme("--font-" + value + "--" + p); v != "" {
@@ -239,7 +239,7 @@ func (b *buildContext) manual(root, value, mod, dataType string, arbitrary, modA
 			}
 			return nodes
 		}
-		if v := b.resolve(value, []string{"--font-weight"}); v != "" {
+		if v := b.resolve(value, []string{"--font-weight"}); v != "" && dataType != "family-name" && dataType != "generic-name" {
 			return manualTemplate(root, "number", v)
 		}
 	case "fill", "stroke":
@@ -385,7 +385,10 @@ func (b *buildContext) typedUtility(root, value, mod, dataType string, arbitrary
 		}
 		return color(value)
 	}
-	if colorFirst {
+	if dataType == "color" {
+		return color(b.resolveColor(value, colorKeys))
+	}
+	if colorFirst && dataType == "" {
 		if n := color(b.resolveColor(value, colorKeys)); n != nil {
 			return n
 		}
@@ -412,7 +415,7 @@ func (b *buildContext) typedUtility(root, value, mod, dataType string, arbitrary
 	if n := width(v); n != nil {
 		return n
 	}
-	if !colorFirst {
+	if !colorFirst && dataType == "" {
 		return color(b.resolveColor(value, colorKeys))
 	}
 	return nil

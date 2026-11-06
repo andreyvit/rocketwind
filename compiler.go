@@ -32,6 +32,7 @@ type Config struct {
 	Prefix      string
 	Variants    []Variant
 	Plugins     map[string]Plugin
+	Aliases     map[string]Alias
 }
 
 type Compiler struct {
@@ -56,6 +57,7 @@ type Compiler struct {
 
 func New(config Config) *Compiler {
 	config.Theme = maps.Clone(config.Theme)
+	config.Aliases = maps.Clone(config.Aliases)
 	c := &Compiler{config: config, customVariants: map[string]variantDefinition{}, matchingVariants: map[string]*Variant{}}
 	for _, variant := range config.Variants {
 		c.addVariant(variant)
@@ -156,10 +158,11 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 }
 
 type buildContext struct {
-	err      error
-	inApply  bool
-	compiler *Compiler
-	used     map[string]bool
+	err        error
+	inApply    bool
+	standalone bool
+	compiler   *Compiler
+	used       map[string]bool
 }
 
 type compiledRule struct {

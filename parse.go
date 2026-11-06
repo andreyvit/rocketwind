@@ -36,7 +36,24 @@ type candidateParser struct {
 
 // Parse yields the registered interpretations of a class without compiling CSS.
 func (c *Compiler) Parse(class string) iter.Seq[Candidate] {
-	return candidateParser{c.config.Prefix, c.hasUtility, c.variantDefinition}.parse(class)
+	parser := candidateParser{c.config.Prefix, c.hasUtility, c.variantDefinition}
+	if len(c.config.Aliases) == 0 {
+		return parser.parse(class)
+	}
+	return func(yield func(Candidate) bool) {
+		resolved, kind := c.aliased(class)
+		for candidate := range parser.parse(resolved) {
+			candidate.Raw = class
+			if candidate.Value != nil && kind != "" {
+				value := *candidate.Value
+				value.DataType = string(kind)
+				candidate.Value = &value
+			}
+			if !yield(candidate) {
+				return
+			}
+		}
+	}
 }
 
 func (c *Compiler) hasUtility(name, kind string) bool {

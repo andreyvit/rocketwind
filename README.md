@@ -8,8 +8,8 @@ process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
-Go plugin API work. The dynamic settings API, standard plugins, CLI and
-compatibility profiles are still being built.
+Go plugin API work, along with typed settings and named classes. Standard
+plugins, the CLI and compatibility profiles are still being built.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -31,7 +31,7 @@ Three things that are awkward with a conventional CSS build:
 
 The last case matters because Tailwind's names can be ambiguous. `text-*` can
 mean a font size or a color. A setting's type should settle that question even
-when its value is a CSS variable. Rocketwind must not guess from its name.
+when its value is a CSS variable. Rocketwind does not guess from its name.
 
 Ordinary helper classes work too: pass in `text-xl`, `hover:flex` and the other
 classes your templates use, and get a stylesheet back. Configuration can come
@@ -51,6 +51,51 @@ The standard Tailwind theme and preflight stylesheet are built in.
 
 `compiler.Parse(class)` exposes the parsed candidates, including explicit value
 types. `compiler.Print(candidate)` produces their normalized spelling.
+
+
+Editable settings and named classes
+----------------------------------
+
+Prepare a class list once. Supply types now and values when an account's CSS is
+needed:
+
+```go
+settings := map[string]rocketwind.ValueType{
+    "heading.size": rocketwind.TypeLength,
+    "brand.color":  rocketwind.TypeColor,
+}
+button, err := compiler.Prepare("text-{heading.size} bg-{brand.color}",
+    rocketwind.TemplateOptions{
+        TypeOf: func(name string) (rocketwind.ValueType, error) {
+            return settings[name], nil
+        },
+    })
+css, err = button.CSS(".signup-button", func(p rocketwind.Parameter) (rocketwind.Value, error) {
+    return rocketwind.Value{CSS: accountSettings[p.Expression]}, nil
+})
+```
+
+Rocketwind treats expressions such as `heading.size` as opaque strings. Your code
+owns lookup, inheritance and validation. Values are literal CSS: underscores and
+spaces are preserved. Set `Named: true` to supply a theme token such as `xl`
+instead, or `Omit: true` to leave out a utility whose setting is unset.
+
+A whole-class parameter, such as `hover:{button.styles}`, has type `TypeClasses`.
+Return `Value{Classes: anotherTemplate}` to inline it. Its `Resolve` field can
+supply a different resolver, preserving the scope where those classes were
+defined. References inherit surrounding variants and `!`; cycles are errors.
+Parameters also work inside arbitrary values and variants, for example
+`w-[calc(100%_-_{gap})]` and `min-{breakpoint}:flex`.
+
+Use `compiler.Render([]rocketwind.Rule{...})` to compile several named selectors
+with one set of shared theme variables and property registrations. Named rules
+preserve class-list order, so later declarations can override earlier ones.
+Prepared templates can be reused concurrently with independent resolvers.
+
+Older class spellings can opt into `Config.Aliases`. For example,
+`"family": {Utility: "font", Type: rocketwind.TypeFamilyName}` makes `family-*`
+mean a font family. Aliases do not change the default Tailwind vocabulary.
+`TemplateOptions.DollarReferences` also accepts `$name` as shorthand for `{name}`.
 
 
 Tailwind compatibility

@@ -151,7 +151,7 @@ func (b *buildContext) render(nodes []*Node) string {
 	if len(themeNodes) > 0 {
 		themeNodes = []*Node{{Kind: "rule", Name: ":root, :host", Nodes: themeNodes}}
 	}
-	if !b.compiler.hasInput {
+	if !b.compiler.hasInput || b.standalone {
 		writeCSS(&out, themeNodes, 0)
 	} else {
 		var expand func([]*Node) []*Node
