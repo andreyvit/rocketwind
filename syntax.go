@@ -11,6 +11,10 @@ import (
 // Returned strings share input storage. Iteration uses no heap allocations.
 func Segments(input string, separator byte) iter.Seq[string] {
 	return func(yield func(string) bool) {
+		if strings.IndexByte(input, separator) < 0 {
+			yield(input)
+			return
+		}
 		var local [64]byte
 		stack := local[:0]
 		start := 0
