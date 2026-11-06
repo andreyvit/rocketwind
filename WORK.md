@@ -285,6 +285,29 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   CLI integration suites, the v3 compatibility profile, complete coverage and
   the final performance/integration gates remain open.
 
+### CSS optimization and source maps
+
+- Added readable and compact optimization, full nesting lowering, adjacent rule
+  grouping and source-map composition. The CLI exposes `--optimize` and
+  `--minify` / `-m`; watch builds reuse optimized output when the input CSS and
+  source map have not changed. Reusing that cache allocates nothing.
+- Captured all 849 distinct stylesheet outputs from the complete core suite.
+  Both optimizer modes pass 1,698 independent comparisons through Tailwind's
+  pinned Lightning CSS optimizer and parsed CSS trees. Comparisons ignore only
+  insignificant token whitespace; they retain declaration order, fallbacks,
+  selector structure and opaque future mixins.
+- Added idempotence checks across those inputs, source-map composition and
+  ownership checks, CLI failures and escaped-selector regressions. Preserve
+  whitespace-only custom properties and the terminator of hexadecimal escapes.
+  The optimizer and its CLI cache have 100% statement coverage.
+- The 40 KB compiler-output benchmark takes a three-run median of 317 us in
+  readable mode (4,062 allocations) and 412 us compact (7,619 allocations).
+  These are initial measurements; the final allocation pass remains open.
+- Go tests, race tests and vet pass; overall coverage remains 97.5%.
+- This is the structural optimizer checkpoint. Browser-specific transforms,
+  complete CLI integration checks, whole-project coverage, v3 compatibility and
+  the final performance/integration gates remain open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

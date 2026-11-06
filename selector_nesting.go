@@ -25,10 +25,14 @@ func isTypeSelector(n *selectorNode) bool {
 }
 
 func nestSelector(selector, parent string) string {
-	parentAST := parseSelector(parent)
+	return nestSelectorMode(selector, parent, false)
+}
+
+func nestSelectorMode(selector, parent string, cssEscapes bool) string {
+	parentAST := parseSelectorMode(parent, cssEscapes)
 	list := len(parentAST) == 1 && parentAST[0].Kind == "list"
 	if strings.Contains(selector, "&") {
-		nodes := parseSelector(selector)
+		nodes := parseSelectorMode(selector, cssEscapes)
 		changed := false
 		var walk func([]*selectorNode, *selectorNode, *selectorNode) []*selectorNode
 		walk = func(nodes []*selectorNode, container, grandparent *selectorNode) []*selectorNode {

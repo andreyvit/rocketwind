@@ -10,6 +10,10 @@ type selectorFrame struct {
 }
 
 func flattenRules(input []*Node, parent string) []*Node {
+	return flattenRulesMode(input, parent, false)
+}
+
+func flattenRulesMode(input []*Node, parent string, lowerAll bool) []*Node {
 	var result []*Node
 	var selectors []selectorFrame
 	if parent != "" {
@@ -126,7 +130,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 							break
 						}
 					}
-					nodes := parseSelector(selector)
+					nodes := parseSelectorMode(selector, lowerAll)
 					if replaceNesting(nodes, replacement) {
 						selector = selectorCSS(nodes)
 					}
@@ -134,7 +138,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 			} else {
 				var all, live []string
 				for part := range Segments(selector, ',') {
-					resolved := nestSelector(part, selectors[len(selectors)-1].selector)
+					resolved := nestSelectorMode(part, selectors[len(selectors)-1].selector, lowerAll)
 					all = append(all, resolved)
 					if !deadSelector(resolved) {
 						live = append(live, resolved)
@@ -149,7 +153,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 			}
 			selectors = append(selectors, selectorFrame{selector, dead, location(node)})
 			fast := false
-			if !dead && !scopes[node] {
+			if !lowerAll && !dead && !scopes[node] {
 				for _, child := range node.Nodes {
 					if child.Kind == "declaration" {
 						fast = true
@@ -213,7 +217,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 						if !end && !variant && parent != "" {
 							var resolved []string
 							for item := range Segments(selector, ',') {
-								resolved = append(resolved, nestSelector(strings.TrimSpace(item), parent))
+								resolved = append(resolved, nestSelectorMode(strings.TrimSpace(item), parent, lowerAll))
 							}
 							selector = strings.Join(resolved, ", ")
 							consumed = true
@@ -225,7 +229,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 							if end {
 								replacement = ":where(:scope)"
 							}
-							selector = nestSelector(selector, replacement)
+							selector = nestSelectorMode(selector, replacement, lowerAll)
 							if !end && parent != "" {
 								consumed = true
 							}
@@ -252,7 +256,7 @@ func flattenRules(input []*Node, parent string) []*Node {
 			atRules = atRules[:len(atRules)-1]
 			selectors = saved
 		case "declaration", "comment":
-			if node.Kind == "declaration" && node.Name == "--tw-sort" {
+			if !lowerAll && node.Kind == "declaration" && node.Name == "--tw-sort" {
 				return
 			}
 			if len(selectors) > 0 && selectors[len(selectors)-1].dead {

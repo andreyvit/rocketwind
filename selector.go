@@ -10,6 +10,10 @@ type selectorNode struct {
 }
 
 func parseSelector(input string) []*selectorNode {
+	return parseSelectorMode(input, false)
+}
+
+func parseSelectorMode(input string, cssEscapes bool) []*selectorNode {
 	input = strings.ReplaceAll(input, "\r\n", "\n")
 	ast := []*selectorNode{}
 	target := &ast
@@ -111,7 +115,7 @@ func parseSelector(input string) []*selectorNode {
 				if (node.Value == ":nth-child" || node.Value == ":nth-last-child") && strings.Contains(contents, "of ") {
 					idx := strings.Index(contents, "of ")
 					node.Nodes = append(node.Nodes, &selectorNode{Kind: "value", Value: contents[:idx+3]})
-					node.Nodes = append(node.Nodes, parseSelector(contents[idx+3:])...)
+					node.Nodes = append(node.Nodes, parseSelectorMode(contents[idx+3:], cssEscapes)...)
 				} else {
 					node.Nodes = append(node.Nodes, &selectorNode{Kind: "value", Value: contents})
 				}
@@ -176,6 +180,12 @@ func parseSelector(input string) []*selectorNode {
 			flush()
 			appendNode(&selectorNode{Kind: "selector", Value: input[i : i+1]})
 		case '\\':
+			if cssEscapes {
+				end := cssEscapeEnd(input, i)
+				buffer = input[i-len(buffer) : end]
+				i = end - 1
+				continue
+			}
 			buffer = input[i-len(buffer) : i+1]
 			i++
 			if i < len(input) {

@@ -76,3 +76,22 @@ func BenchmarkIncrementalUnchanged(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkOptimize(b *testing.B) {
+	input, err := New(Config{}).Build(benchmarkCandidates())
+	if err != nil {
+		b.Fatal(err)
+	}
+	for _, compact := range []bool{false, true} {
+		b.Run(strconv.FormatBool(compact), func(b *testing.B) {
+			b.ReportAllocs()
+			b.SetBytes(int64(len(input)))
+			for b.Loop() {
+				benchmarkCSS, err = Optimize(input, OptimizeOptions{Minify: compact})
+				if err != nil {
+					b.Fatal(err)
+				}
+			}
+		})
+	}
+}

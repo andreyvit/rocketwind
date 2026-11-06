@@ -248,8 +248,18 @@ them in stylesheet order, and keeps unknown classes first. JSON output includes
 the original input, result and whether it changed. Streaming processes one group
 per line as it arrives. Use `--css` to supply the theme and custom utilities.
 
-Minification is still pending. The CLI has not yet passed the full upstream
-CLI integration suite.
+Use `--minify` (or `-m`) for compact CSS, or `--optimize` to keep readable
+indentation. Both lower nested rules and preserve license comments, fallbacks
+and custom property names. They work with source maps and watch mode.
+
+The same operations are available in Go as `Optimize(css, options)` and
+`OptimizeWithSourceMap(css, options, sourceMap)`. Pass the map returned by
+`BuildWithSourceMap` to trace optimized CSS back to the original stylesheets.
+Optimization keeps value precision; it does not choose every shorthand or
+shorter color spelling used by Lightning CSS.
+
+Browser-specific transforms and the full upstream CLI integration suite are
+still being checked.
 
 For source maps in Go, set `Config.From` to the entry stylesheet's filename,
 then call `BuildWithSourceMap` on the compiler or an incremental builder.
@@ -314,7 +324,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning and CLI helper tests also pass. Optimization and full CLI integration checks remain open, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning and CLI helper tests also pass. Both optimizer modes pass 1,698 additional stylesheet comparisons. Browser-specific transforms and full CLI integration checks remain open, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

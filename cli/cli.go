@@ -33,6 +33,7 @@ type flags struct {
 	content, exclude, classes         []string
 	poll                              time.Duration
 	silent, help, version             bool
+	minify, optimize                  bool
 }
 
 const usage = `Rocketwind — Tailwind CSS 4.3.4 compiler for Go
@@ -48,6 +49,8 @@ Usage: rocketwind [build] [options]
       --content GLOB  Explicit source pattern; may be repeated
       --exclude FILE  Omit helpers already defined in this CSS; may be repeated
       --classes LIST  Additional complete class names; may be repeated
+  -m, --minify         Optimize and compact the output
+      --optimize       Optimize while keeping readable output
       --map[=FILE]    Generate an inline source map, or write one to FILE
       --silent        Suppress progress messages
   -h, --help          Show this help
@@ -100,21 +103,24 @@ func parseFlags(args []string) (flags, error) {
 	}
 	raw, positional := rawArguments(args)
 	values := typedArguments(map[string]argDefinition{
-		"--input":   {Type: "string", Alias: "-i"},
-		"--output":  {Type: "string", Alias: "-o", Default: "-", HasDefault: true},
-		"--cwd":     {Type: "string", Default: ".", HasDefault: true},
-		"--watch":   {Type: "boolean | string", Alias: "-w"},
-		"--poll":    {Type: "boolean | number", Default: false, HasDefault: true},
-		"--map":     {Type: "boolean | string", Default: false, HasDefault: true},
-		"--silent":  {Type: "boolean"},
-		"--help":    {Type: "boolean", Alias: "-h"},
-		"--version": {Type: "boolean"},
-		"--config":  {Type: "string"},
+		"--input":    {Type: "string", Alias: "-i"},
+		"--output":   {Type: "string", Alias: "-o", Default: "-", HasDefault: true},
+		"--cwd":      {Type: "string", Default: ".", HasDefault: true},
+		"--watch":    {Type: "boolean | string", Alias: "-w"},
+		"--poll":     {Type: "boolean | number", Default: false, HasDefault: true},
+		"--map":      {Type: "boolean | string", Default: false, HasDefault: true},
+		"--silent":   {Type: "boolean"},
+		"--help":     {Type: "boolean", Alias: "-h"},
+		"--version":  {Type: "boolean"},
+		"--config":   {Type: "string"},
+		"--minify":   {Type: "boolean", Alias: "-m"},
+		"--optimize": {Type: "boolean"},
 	}, raw, positional)
 	str := func(key string) string { value, _ := values[key].(string); return value }
 	enabled := func(key string) bool { return values[key] == true }
 	f.input, f.output, f.cwd, f.config = str("--input"), str("--output"), str("--cwd"), str("--config")
 	f.silent, f.help, f.version = enabled("--silent"), enabled("--help"), enabled("--version")
+	f.minify, f.optimize = enabled("--minify"), enabled("--optimize")
 	if !explicitBuild && len(args) > 0 && !strings.HasPrefix(args[0], "-") && !f.help {
 		return f, fmt.Errorf("invalid command %q; use --help", args[0])
 	}
@@ -216,6 +222,7 @@ func build(ctx context.Context, f flags, options Options) error {
 	dependencies := map[string]stamp{}
 	var lastCSS, lastMap string
 	written := false
+	optimizer := optimizationCache{options: rocketwind.OptimizeOptions{Minify: f.minify, From: f.output}}
 	compile := func() error {
 		deps := map[string]stamp{}
 		dependency := func(path string) { deps[path] = fileStamp(path) }
@@ -310,6 +317,9 @@ func build(ctx context.Context, f flags, options Options) error {
 		if f.inlineMap || f.sourceMap != "" {
 			var sourceMap *rocketwind.SourceMap
 			css, sourceMap, err = builder.BuildWithSourceMap(classes)
+			if err == nil && (f.minify || f.optimize) {
+				css, sourceMap, err = optimizer.run(css, sourceMap)
+			}
 			if err == nil {
 				if f.inlineMap {
 					css += "\n" + sourceMap.Inline()
@@ -327,6 +337,9 @@ func build(ctx context.Context, f flags, options Options) error {
 			}
 		} else {
 			css, err = builder.Build(classes)
+			if err == nil && (f.minify || f.optimize) {
+				css, _, err = optimizer.run(css, nil)
+			}
 		}
 		if err != nil {
 			return err

@@ -37,6 +37,7 @@ func ParseCSS(input string, filename string) ([]*Node, error) {
 type cssParser struct {
 	input, filename string
 	source          *cssSource
+	optimize        bool
 }
 
 func (p *cssParser) fail(at int, message string) error {
@@ -105,8 +106,11 @@ func (p *cssParser) parse() ([]*Node, error) {
 				start = i
 			}
 			end := min(i+2, len(input))
+			if p.optimize {
+				end = cssEscapeEnd(input, i)
+			}
 			buf = append(buf, input[i:end]...)
-			i++
+			i = end - 1
 		case c == '/' && i+1 < len(input) && input[i+1] == '*':
 			end := strings.Index(input[i+2:], "*/")
 			if end < 0 {
@@ -115,6 +119,9 @@ func (p *cssParser) parse() ([]*Node, error) {
 			end += i + 4
 			if i+2 < len(input) && input[i+2] == '!' {
 				licenses = append(licenses, p.span(&Node{Kind: "comment", Value: input[i+2 : end-2]}, i, end))
+			}
+			if p.optimize && len(buf) > 0 {
+				buf = append(buf, '/', '*', '*', '/')
 			}
 			i = end - 1
 		case c == '\'' || c == '"':
@@ -295,6 +302,12 @@ done:
 	n := cssDeclaration(s[start:end], valueEnd)
 	if n == nil {
 		return nil, 0, p.fail(start, "Invalid custom property, expected a value")
+	}
+	if p.optimize && n.Value == "" {
+		colon := start + strings.IndexByte(s[start:end], ':')
+		if colon+1 < end && cssSpace(s[colon+1]) {
+			n.Value = " "
+		}
 	}
 	return p.span(n, start, next), next, nil
 }
