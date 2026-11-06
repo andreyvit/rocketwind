@@ -1,6 +1,8 @@
 package rocketwind
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"slices"
 	"strconv"
@@ -92,7 +94,12 @@ func (c *Compiler) configureLegacy(sources []legacyConfigSource) error {
 				} else {
 					object := configObject(path)
 					if object.Get("raw") != nil {
-						return fmt.Errorf("Error in the config file/plugin/preset. The `content` key contains a `raw` entry")
+						var detail bytes.Buffer
+						encoder := json.NewEncoder(&detail)
+						encoder.SetEscapeHTML(false)
+						encoder.SetIndent("", "  ")
+						_ = encoder.Encode(object)
+						return fmt.Errorf("Error in the config file/plugin/preset. The `content` key contains a `raw` entry:\n\n%s\nThis feature is not currently supported.", detail.String())
 					}
 					base, pattern := themeString(object.Get("base")), themeString(object.Get("pattern"))
 					c.sources = append(c.sources, Source{Base: base, Pattern: pattern})
@@ -230,9 +237,7 @@ func (c *Compiler) finishLegacy() error {
 			}
 		}
 	}
-	if err := c.configureDarkMode(resolved.Get("darkMode")); err != nil {
-		return err
-	}
+	c.configureDarkMode(resolved.Get("darkMode"))
 	c.legacyVariantValues = map[string]ConfigObject{}
 	for _, name := range []string{"aria", "data", "supports"} {
 		c.legacyVariantValues[name] = configObject(userTheme.Get(name))
@@ -362,7 +367,7 @@ func cssPropertyName(name string) string {
 	return result
 }
 
-func (c *Compiler) configureDarkMode(value any) error {
+func (c *Compiler) configureDarkMode(value any) {
 	mode, selector := themeString(value), any(".dark")
 	if array, ok := value.([]any); ok && len(array) > 0 {
 		mode = themeString(array[0])
@@ -386,12 +391,12 @@ func (c *Compiler) configureDarkMode(value any) error {
 		for _, value := range values {
 			selector := themeString(value)
 			if selector == ".dark" || !strings.Contains(selector, "&") {
-				return nil
+				return
 			}
 			templates = append(templates, &Node{Kind: "rule", Name: selector, Nodes: []*Node{{Kind: "slot"}}})
 		}
 	default:
-		return nil
+		return
 	}
-	return (&PluginAPI{compiler: c}).AddVariant("dark", templates)
+	c.registerVariantTemplate("dark", templates)
 }

@@ -50,7 +50,8 @@ func (b *buildContext) render(nodes []*Node) string {
 			if p := b.compiler.config.Prefix; p != "" && strings.HasPrefix(name, "--"+p+"-") {
 				name = "--" + name[len(p)+3:]
 			}
-			if b.themeValue(name) != "" {
+			_, defined := b.compiler.config.Theme[name]
+			if defined || b.themeValue(name) != "" {
 				b.used[name] = true
 			}
 			s = tail[end+1:]

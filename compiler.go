@@ -309,7 +309,9 @@ func (b *buildContext) themeValue(key string) string {
 func (b *buildContext) theme(key string) string {
 	value := b.themeValue(key)
 	if value == "" {
-		return ""
+		if _, defined := b.compiler.config.Theme[key]; !defined {
+			return ""
+		}
 	}
 	flags := b.compiler.themeFlags[key]
 	if b.compiler.config.InlineTheme || strings.Contains(flags, "inline") {
@@ -319,7 +321,7 @@ func (b *buildContext) theme(key string) string {
 	if p := b.compiler.config.Prefix; p != "" {
 		key = "--" + p + "-" + key[2:]
 	}
-	if strings.Contains(flags, "reference") {
+	if strings.Contains(flags, "reference") && value != "" {
 		return "var(" + Escape(key) + ", " + value + ")"
 	}
 	return "var(" + Escape(key) + ")"

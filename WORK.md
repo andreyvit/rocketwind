@@ -371,6 +371,21 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Full Go tests pass. Whole-project coverage, final performance, the v3 profile
   and Bubblehouse integration remain open.
 
+### Configuration and error recovery
+
+- Expanded browser checks to 287 inputs and 2,272 comparisons. The browser
+  implementation now has 100% statement coverage, including recovery paths.
+- Expanded additional compiler fixtures from 37 to 60. Fixed empty theme
+  variables, default precedence, removed variables reappearing during function
+  resolution, the obsolete `@apply ... !important` form, empty plugin variants
+  and raw-content configuration diagnostics to match the pinned compiler.
+- Added Go API tests for module handlers, configured variants, theme tuples,
+  mutable lookup results, plugin option errors and ignored theme-cycle errors.
+- `scripts/check-coverage.py` runs the complete suite, combines package and
+  instrumented CLI subprocess coverage, and fails below 100%. Current combined
+  coverage: 10,695/10,797 statements (99.055%). All tests pass; 102 statements
+  remain uncovered. Coverage and integration gates remain open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

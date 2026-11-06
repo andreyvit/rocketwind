@@ -263,8 +263,8 @@ shorter color spelling used by Lightning CSS.
 All 64 applicable cases from the upstream CLI integration suite pass in Go,
 including watch sequences, plugin callbacks and source-map positions. Four
 cases require JavaScript execution; two others are already skipped upstream.
-Both optimizer modes pass 2,234 additional comparisons against Tailwind's
-optimizer, including 268 inputs for browser transforms and error handling.
+Both optimizer modes pass 2,272 additional comparisons against Tailwind's
+optimizer, including 287 inputs for browser transforms and error handling.
 
 Applications can call `cli.Run` with Go modules registered in `cli.Options`.
 Use `ResolveModule` for configuration that changes on disk; report its dependency
@@ -333,7 +333,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,234 additional comparisons. The full coverage and performance gates remain open. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,272 additional comparisons. The full coverage and performance gates remain open. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

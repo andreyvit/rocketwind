@@ -32,9 +32,32 @@ const cases = [
  {css:'@theme {--background-image-pattern:linear-gradient(red,blue);} @tailwind utilities;',classes:['bg-pattern']},
  {css:'@theme {--text-brand:1rem;--text-brand--letter-spacing:.1em;} @tailwind utilities;',classes:['text-brand']},
  {css:'@tailwind utilities;',classes:['stroke-[length:var(--width)]','stroke-[number:2]','stroke-[3px]']},
+ {css:'@source inline("flex text-xl"); @tailwind utilities;'},
+ ...[
+  '.a{@apply flex !important;}', '.a{@apply !flex;}',
+  '.a{@apply missing:flex;}', '@tailwind utilities;.a{@apply missing;}',
+  '@utility same {color:blue;} @utility same {@apply missing;}',
+  '@utility demo-* {width:--value(integer);@apply missing;}',
+  '@utility demo-* {@apply demo-1;} .a{@apply demo-1;}',
+  '@utility demo-* {@apply other-1;} @utility other-* {@apply demo-1;} .a{@apply demo-1;}',
+  '@utility demo-* {@apply flex;} .a{@apply demo-1;}',
+ ].map(css=>({css})),
+ {css:'@theme {--color-blank:;} @tailwind utilities;',classes:['text-blank','bg-blank']},
+ {css:'@theme inline {--color-blank:;} @tailwind utilities;',classes:['bg-blank']},
+ {css:'@theme {--color-blank:;} @theme default{--color-blank:red;} @tailwind utilities;',classes:['bg-blank']},
+ {css:'@theme reference {--color-blank:;} @tailwind utilities;',classes:['bg-blank']},
+ {css:'@tailwind utilities;',classes:['supports-[not_(display:grid)]:flex','supports-[selector_(a)]:flex','supports-[font-format_(opentype)]:flex','group-min-missing:flex','not-before:flex','not-has-before:flex','has-hover/foo:flex']},
+ {css:'@custom-variant mixed {&:hover {color:red;@slot;}} @tailwind utilities;',classes:['not-mixed:flex']},
+ {css:'@custom-variant pseudo (&::before);@tailwind utilities;',classes:['not-pseudo:flex']},
+ ...[
+  {darkMode:['variant',[]]}, {darkMode:['variant','.dark']}, {darkMode:['variant','[data-dark]']},
+  {content:[{raw:'<div class="flex">'}]}, {content:[{base:'/templates',pattern:'*.html'}]},
+  {theme:{screens:{blank:[null,false]}}},
+ ].map(config=>({css:'@config "config";@tailwind utilities;',config,classes:['dark:flex']})),
 ]
 for (const c of cases) {
  const options = {}
+ if(c.config)options.loadModule=async()=>({base:'',module:c.config})
  if (c.sheets || c.loadError) options.loadStylesheet = async id => {
   if(c.loadError)throw Error(c.loadError)
   if (!(id in c.sheets))throw Error('missing fixture stylesheet: '+id)

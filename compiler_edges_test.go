@@ -17,15 +17,19 @@ func TestCompilerEdgesAgainstUpstream(t *testing.T) {
 		CSS, LoadError, Result, Error string
 		Sheets                        map[string]string
 		Classes                       []string
+		Config                        ConfigObject
 	}
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 37 {
+	if len(cases) != 60 {
 		t.Fatalf("got %d compiler cases", len(cases))
 	}
 	for _, c := range cases {
 		config := Config{}
+		if c.Config != nil {
+			config.LoadModule = func(id, base, kind string) (Module, error) { return Module{Legacy: c.Config}, nil }
+		}
 		if c.Sheets != nil || c.LoadError != "" {
 			config.LoadStylesheet = func(id, base string) (Stylesheet, error) {
 				if c.LoadError != "" {

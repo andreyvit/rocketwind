@@ -392,9 +392,6 @@ func (b *buildContext) compareParsedVariant(a, z *parsedVariant) int {
 		return 0
 	}
 	if a == nil {
-		if z == nil {
-			return 0
-		}
 		return -1
 	}
 	if z == nil {

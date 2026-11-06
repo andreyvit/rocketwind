@@ -205,5 +205,186 @@
       "stroke-[3px]"
     ],
     "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.stroke-\\[3px\\] {\n  stroke-width: 3px;\n}\n.stroke-\\[length\\:var\\(--width\\)\\] {\n  stroke-width: var(--width);\n}\n.stroke-\\[number\\:2\\] {\n  stroke-width: 2;\n}\n"
+  },
+  {
+    "css": "@source inline(\"flex text-xl\"); @tailwind utilities;",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.flex {\n  display: flex;\n}\n"
+  },
+  {
+    "css": ".a{@apply flex !important;}",
+    "error": "Cannot apply unknown utility class `!important`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": ".a{@apply !flex;}",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.a {\n  display: flex !important;\n}\n"
+  },
+  {
+    "css": ".a{@apply missing:flex;}",
+    "error": "Cannot apply utility class `missing:flex` because the `missing` variant does not exist."
+  },
+  {
+    "css": "@tailwind utilities;.a{@apply missing;}",
+    "error": "Cannot apply unknown utility class `missing`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@utility same {color:blue;} @utility same {@apply missing;}",
+    "error": "Cannot apply unknown utility class `missing`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@utility demo-* {width:--value(integer);@apply missing;}",
+    "error": "Cannot apply unknown utility class `missing`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@utility demo-* {@apply demo-1;} .a{@apply demo-1;}",
+    "error": "You cannot `@apply` the `demo-1` utility here because it creates a circular dependency."
+  },
+  {
+    "css": "@utility demo-* {@apply other-1;} @utility other-* {@apply demo-1;} .a{@apply demo-1;}",
+    "error": "You cannot `@apply` the `other-1` utility here because it creates a circular dependency."
+  },
+  {
+    "css": "@utility demo-* {@apply flex;} .a{@apply demo-1;}",
+    "error": "Cannot apply unknown utility class `demo-1`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive"
+  },
+  {
+    "css": "@theme {--color-blank:;} @tailwind utilities;",
+    "classes": [
+      "text-blank",
+      "bg-blank"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-blank: ;\n}\n.bg-blank {\n  background-color: var(--color-blank);\n}\n.text-blank {\n  color: var(--color-blank);\n}\n"
+  },
+  {
+    "css": "@theme inline {--color-blank:;} @tailwind utilities;",
+    "classes": [
+      "bg-blank"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@theme {--color-blank:;} @theme default{--color-blank:red;} @tailwind utilities;",
+    "classes": [
+      "bg-blank"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-blank: ;\n}\n.bg-blank {\n  background-color: var(--color-blank);\n}\n"
+  },
+  {
+    "css": "@theme reference {--color-blank:;} @tailwind utilities;",
+    "classes": [
+      "bg-blank"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.bg-blank {\n  background-color: var(--color-blank);\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "supports-[not_(display:grid)]:flex",
+      "supports-[selector_(a)]:flex",
+      "supports-[font-format_(opentype)]:flex",
+      "group-min-missing:flex",
+      "not-before:flex",
+      "not-has-before:flex",
+      "has-hover/foo:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@supports font-format (opentype) {\n  .supports-\\[font-format_\\(opentype\\)\\]\\:flex {\n    display: flex;\n  }\n}\n@supports not (display:grid) {\n  .supports-\\[not_\\(display\\:grid\\)\\]\\:flex {\n    display: flex;\n  }\n}\n@supports selector (a) {\n  .supports-\\[selector_\\(a\\)\\]\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "css": "@custom-variant mixed {&:hover {color:red;@slot;}} @tailwind utilities;",
+    "classes": [
+      "not-mixed:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@custom-variant pseudo (&::before);@tailwind utilities;",
+    "classes": [
+      "not-pseudo:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "darkMode": [
+        "variant",
+        []
+      ]
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "darkMode": [
+        "variant",
+        ".dark"
+      ]
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@media (prefers-color-scheme: dark) {\n  .dark\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "darkMode": [
+        "variant",
+        "[data-dark]"
+      ]
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@media (prefers-color-scheme: dark) {\n  .dark\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "content": [
+        {
+          "raw": "<div class=\"flex\">"
+        }
+      ]
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "error": "Error in the config file/plugin/preset. The `content` key contains a `raw` entry:\n\n{\n  \"raw\": \"<div class=\\\"flex\\\">\"\n}\n\nThis feature is not currently supported."
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "content": [
+        {
+          "base": "/templates",
+          "pattern": "*.html"
+        }
+      ]
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@media (prefers-color-scheme: dark) {\n  .dark\\:flex {\n    display: flex;\n  }\n}\n"
+  },
+  {
+    "css": "@config \"config\";@tailwind utilities;",
+    "config": {
+      "theme": {
+        "screens": {
+          "blank": [
+            null,
+            false
+          ]
+        }
+      }
+    },
+    "classes": [
+      "dark:flex"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@media (prefers-color-scheme: dark) {\n  .dark\\:flex {\n    display: flex;\n  }\n}\n"
   }
 ]

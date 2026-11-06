@@ -70,12 +70,7 @@ func (c *Compiler) resolveApplies() error {
 					}
 				}
 				var normal, mixins []string
-				important := false
 				for _, raw := range candidates {
-					if raw == "!important" {
-						important = true
-						continue
-					}
 					if strings.HasPrefix(raw, "--") {
 						mixins = append(mixins, raw)
 					} else {
@@ -145,8 +140,8 @@ func (c *Compiler) resolveApplies() error {
 				}
 				for _, r := range rules {
 					content := r.node.Nodes
-					if important || n.source != nil {
-						content = cloneNodes(content, "", important)
+					if n.source != nil {
+						content = cloneNodes(content, "", false)
 					}
 					if n.source != nil {
 						src := location(n)

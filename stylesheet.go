@@ -139,7 +139,8 @@ func Compile(input string, config Config) (*Compiler, error) {
 							}
 							continue
 						}
-						if strings.Contains(n.Value, "default") && c.config.Theme[d.Name] != "" && !strings.Contains(c.themeFlags[d.Name], "default") {
+						_, defined := c.config.Theme[d.Name]
+						if strings.Contains(n.Value, "default") && defined && !strings.Contains(c.themeFlags[d.Name], "default") {
 							continue
 						}
 						if d.Value == "initial" {
@@ -260,7 +261,11 @@ func Compile(input string, config Config) (*Compiler, error) {
 	}
 	b := buildContext{compiler: c, used: map[string]bool{}}
 	for _, key := range c.themeOrder {
-		value := parseValue(c.config.Theme[key])
+		stored, present := c.config.Theme[key]
+		if !present {
+			continue
+		}
+		value := parseValue(stored)
 		if !b.evaluateFunctions(value, false, 0) {
 			return nil, b.err
 		}

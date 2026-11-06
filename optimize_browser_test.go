@@ -137,3 +137,13 @@ func TestOptimizeBrowserSourceMap(t *testing.T) {
 		t.Fatalf("missing mapped transforms: prefix=%v query=%v", foundPrefix, foundQuery)
 	}
 }
+
+func TestBrowserQueryUnterminatedToken(t *testing.T) {
+	// Recovery must stop at EOF even when a future caller supplies an
+	// incomplete condition directly, before the outer stylesheet parser.
+	for _, input := range []string{`(width > calc(1px`, `"unfinished`, `(name: "a\\"b"`} {
+		if end := queryGroupEnd(input, 0); end != len(input) {
+			t.Errorf("%q: stopped at %d instead of EOF", input, end)
+		}
+	}
+}

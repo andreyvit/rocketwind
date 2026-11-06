@@ -171,7 +171,8 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 			plugins = append(plugins, ConfigObject{{"handler", p.fn}, {"reference", p.reference}, {"src", nil}})
 		}
 		plugins = append(plugins, ConfigObject{{"handler", Plugin(func(api *PluginAPI) error {
-			return api.compiler.configureDarkMode(api.compiler.legacyConfig.Get("darkMode"))
+			api.compiler.configureDarkMode(api.compiler.legacyConfig.Get("darkMode"))
+			return nil
 		})}, {"reference", true}, {"src", nil}})
 		c.legacyConfig.set("plugins", plugins)
 	}
@@ -232,6 +233,10 @@ func (api *PluginAPI) AddUtility(name string, nodes []*Node) {
 // AddVariant registers a selector list, at-rule, or a body containing @slot.
 func (api *PluginAPI) AddVariant(name string, template []*Node) error {
 	if hasMergeSelector(template) {
+		return nil
+	}
+	if len(template) == 0 && validVariantName(name) {
+		api.compiler.registerVariantTemplate(name, nil)
 		return nil
 	}
 	return api.compiler.registerCustomVariant(&Node{Kind: "at-rule", Name: "@custom-variant", Value: name, Nodes: cloneNodes(template, "", false)})

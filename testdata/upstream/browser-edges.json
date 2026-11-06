@@ -242,6 +242,18 @@
       "compact": ".a{text-decoration:underline}"
     },
     {
+      "test": "browser edges: .a{text-decoration:underline 2px}",
+      "css": ".a{text-decoration:underline 2px}",
+      "pretty": ".a {\n  text-decoration: underline;\n  text-decoration-thickness: 2px;\n}\n",
+      "compact": ".a{text-decoration:underline;text-decoration-thickness:2px}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline calc(1px + 1em)}",
+      "css": ".a{text-decoration:underline calc(1px + 1em)}",
+      "pretty": ".a {\n  text-decoration: underline;\n  text-decoration-thickness: calc(1px + 1em);\n}\n",
+      "compact": ".a{text-decoration:underline;text-decoration-thickness:calc(1px + 1em)}"
+    },
+    {
       "test": "browser edges: .a{text-decoration:var(--value)}",
       "css": ".a{text-decoration:var(--value)}",
       "pretty": ".a {\n  -webkit-text-decoration: var(--value);\n  -webkit-text-decoration: var(--value);\n  text-decoration: var(--value);\n}\n",
@@ -360,6 +372,12 @@
       "css": ".a{text-decoration-thickness:0%}",
       "pretty": ".a {\n  text-decoration-thickness: 2.93874e-39em;\n}\n",
       "compact": ".a{text-decoration-thickness:2.93874e-39em}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:-0%}",
+      "css": ".a{text-decoration-thickness:-0%}",
+      "pretty": ".a {\n  text-decoration-thickness: -2.93874e-39em;\n}\n",
+      "compact": ".a{text-decoration-thickness:-2.93874e-39em}"
     },
     {
       "test": "browser edges: .a{text-decoration-thickness:0.1234567%}",
@@ -776,6 +794,12 @@
       "compact": ".a{-webkit-mask-composite:source-out,xor;-webkit-mask-source-type:auto,alpha;-webkit-mask:url(a),url(b);-webkit-mask-composite:source-out,xor;-webkit-mask-source-type:auto,alpha;mask:url(a) subtract,url(b) exclude alpha}"
     },
     {
+      "test": "browser edges: .a{mask:url(a) intersect match-source}",
+      "css": ".a{mask:url(a) intersect match-source}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-in;\n  -webkit-mask: url(\"a\");\n  -webkit-mask-composite: source-in;\n  mask: url(\"a\") intersect;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-in;-webkit-mask:url(a);-webkit-mask-composite:source-in;mask:url(a) intersect}"
+    },
+    {
       "test": "browser edges: .a{mask:var(--value)}",
       "css": ".a{mask:var(--value)}",
       "pretty": ".a {\n  -webkit-mask: var(--value);\n  -webkit-mask: var(--value);\n  mask: var(--value);\n}\n",
@@ -1098,6 +1122,36 @@
       "css": ".a{background:linear-gradient(red,blue) text}",
       "pretty": ".a {\n  background: linear-gradient(red, #00f);\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n",
       "compact": ".a{background:linear-gradient(red,#00f);-webkit-background-clip:text;background-clip:text}"
+    },
+    {
+      "test": "browser edges: .a{background:text}",
+      "css": ".a{background:text}",
+      "pretty": ".a {\n  background: none;\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n",
+      "compact": ".a{background:0 0;-webkit-background-clip:text;background-clip:text}"
+    },
+    {
+      "test": "browser edges: .a{background:black image-set(\"a.png\" 1x)}",
+      "css": ".a{background:black image-set(\"a.png\" 1x)}",
+      "pretty": ".a {\n  background: #000 -webkit-image-set(url(\"a.png\") 1x);\n  background: #000 image-set(\"a.png\" 1x);\n}\n",
+      "compact": ".a{background:#000 -webkit-image-set(url(a.png) 1x);background:#000 image-set(\"a.png\" 1x)}"
+    },
+    {
+      "test": "browser edges: .a{user-select:foo;hyphens:foo;box-decoration-break:foo;text-size-adjust:foo;print-color-adjust:foo;text-decoration-skip-ink:foo}",
+      "css": ".a{user-select:foo;hyphens:foo;box-decoration-break:foo;text-size-adjust:foo;print-color-adjust:foo;text-decoration-skip-ink:foo}",
+      "pretty": ".a {\n  user-select: foo;\n  hyphens: foo;\n  box-decoration-break: foo;\n  text-size-adjust: foo;\n  print-color-adjust: foo;\n  text-decoration-skip-ink: foo;\n}\n",
+      "compact": ".a{user-select:foo;hyphens:foo;box-decoration-break:foo;text-size-adjust:foo;print-color-adjust:foo;text-decoration-skip-ink:foo}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:foo;mask-mode:foo}",
+      "css": ".a{mask-composite:foo;mask-mode:foo}",
+      "pretty": ".a {\n  mask-composite: foo;\n  mask-mode: foo;\n}\n",
+      "compact": ".a{mask-composite:foo;mask-mode:foo}"
+    },
+    {
+      "test": "browser edges: .a{background-image:cross-fade(image-set(\"a\" 1x),url(b),50%)}",
+      "css": ".a{background-image:cross-fade(image-set(\"a\" 1x),url(b),50%)}",
+      "pretty": ".a {\n  background-image: cross-fade(image-set(\"a\" 1x),url(\"b\"),50%);\n}\n",
+      "compact": ".a{background-image:cross-fade(image-set(\"a\" 1x),url(b),50%)}"
     },
     {
       "test": "browser edges: .a{--x:stretch;--y:image-set(url(a) 1x);--z:\"text-decoration\"}",
@@ -1526,6 +1580,12 @@
       "compact": "@container style(--color:\"wide > short\"){.a{display:block}}"
     },
     {
+      "test": "browser edges: @container style(--color: \"wide \\\" short\"){.a{display:block}}",
+      "css": "@container style(--color: \"wide \\\" short\"){.a{display:block}}",
+      "pretty": "@container style(--color: \"wide \\\" short\") {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container style(--color:\"wide \\\" short\"){.a{display:block}}"
+    },
+    {
       "test": "browser edges: @container (--foo){.a{display:block}}",
       "css": "@container (--foo){.a{display:block}}",
       "pretty": "@container (--foo) {\n  .a {\n    display: block;\n  }\n}\n",
@@ -1542,6 +1602,30 @@
       "css": "@media only screen and (width>=4px){.a{display:block}}",
       "pretty": "@media only screen and (min-width: 4px) {\n  .a {\n    display: block;\n  }\n}\n",
       "compact": "@media only screen and (min-width:4px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not not (color){.a{display:block}}",
+      "css": "@media not not (color){.a{display:block}}",
+      "pretty": "\n",
+      "compact": ""
+    },
+    {
+      "test": "browser edges: @media not (not (color)){.a{display:block}}",
+      "css": "@media not (not (color)){.a{display:block}}",
+      "pretty": "@media (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (1 < 2){.a{display:block}}",
+      "css": "@media (1 < 2){.a{display:block}}",
+      "pretty": "@media (1 < 2) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (1 < 2){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (>=){.a{display:block}}",
+      "css": "@media (>=){.a{display:block}}",
+      "pretty": "@media (>=) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (>=){.a{display:block}}"
     },
     {
       "test": "browser edges: @custom-media --a (width>=1px); @media (--a){.a{display:block}}",
@@ -1605,6 +1689,31 @@
       "test": "browser edges: @custom-media --a print, screen; @media (--a){.a{display:block}}",
       "css": "@custom-media --a print, screen; @media (--a){.a{display:block}}",
       "error": "Boolean logic with media types in @custom-media rules is not supported by Lightning CSS"
+    },
+    {
+      "test": "browser edges: @media all and (--missing){.a{display:block}}",
+      "css": "@media all and (--missing){.a{display:block}}",
+      "error": "Custom media query --missing is not defined"
+    },
+    {
+      "test": "browser edges: @media screen and (--missing){.a{display:block}}",
+      "css": "@media screen and (--missing){.a{display:block}}",
+      "error": "Custom media query --missing is not defined"
+    },
+    {
+      "test": "browser edges: @media (color) and (--missing){.a{display:block}}",
+      "css": "@media (color) and (--missing){.a{display:block}}",
+      "error": "Custom media query --missing is not defined"
+    },
+    {
+      "test": "browser edges: @media not (--missing){.a{display:block}}",
+      "css": "@media not (--missing){.a{display:block}}",
+      "error": "Custom media query --missing is not defined"
+    },
+    {
+      "test": "browser edges: @layer a{@media (--missing){.a{display:block}}}",
+      "css": "@layer a{@media (--missing){.a{display:block}}}",
+      "error": "Custom media query --missing is not defined"
     }
   ]
 }

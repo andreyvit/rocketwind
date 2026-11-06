@@ -44,19 +44,20 @@ func (o *ConfigObject) set(key string, value any) {
 
 func (o ConfigObject) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
+	encoder := json.NewEncoder(&buf)
+	encoder.SetEscapeHTML(false)
 	buf.WriteByte('{')
 	for i, entry := range o {
 		if i > 0 {
 			buf.WriteByte(',')
 		}
-		key, _ := json.Marshal(entry.Key)
-		value, err := json.Marshal(entry.Value)
-		if err != nil {
+		_ = encoder.Encode(entry.Key)
+		buf.Truncate(buf.Len() - 1)
+		buf.WriteByte(':')
+		if err := encoder.Encode(entry.Value); err != nil {
 			return nil, err
 		}
-		buf.Write(key)
-		buf.WriteByte(':')
-		buf.Write(value)
+		buf.Truncate(buf.Len() - 1)
 	}
 	buf.WriteByte('}')
 	return buf.Bytes(), nil

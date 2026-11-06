@@ -66,16 +66,30 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 		copy.Name, copy.Value = name, value
 		output = append(output, &copy)
 	}
-	name, value := node.Name, node.Value
+	name, value := strings.ToLower(node.Name), node.Value
 	switch name {
 	case "backdrop-filter", "mask-image", "mask-position", "mask-size", "mask-repeat", "mask-clip", "mask-origin":
 		add("-webkit-"+name, value)
 	case "user-select", "hyphens", "box-decoration-break", "print-color-adjust", "text-decoration-skip-ink":
-		if !browserUnparsedValue(value) {
+		words := ""
+		switch name {
+		case "user-select":
+			words = "auto text none contain all"
+		case "hyphens":
+			words = "none manual auto"
+		case "box-decoration-break":
+			words = "slice clone"
+		case "print-color-adjust":
+			words = "economy exact"
+		case "text-decoration-skip-ink":
+			words = "auto none all"
+		}
+		if containsWord(words, strings.ToLower(value)) {
 			add("-webkit-"+name, value)
 		}
 	case "text-size-adjust":
-		if !browserUnparsedValue(value) {
+		_, unit, number := dimension(value)
+		if containsWord("auto none", value) || number && unit == "%" {
 			add("-webkit-"+name, value)
 			add("-moz-"+name, value)
 		}
@@ -110,11 +124,11 @@ func prefixBrowserDeclaration(output []*Node, node *Node) []*Node {
 			add("-webkit-"+name, value)
 		}
 	case "mask-composite":
-		if !browserUnparsedValue(value) {
+		if browserKeywordList(value, "add subtract intersect exclude") {
 			add("-webkit-mask-composite", replaceBrowserKeywords(value, map[string]string{"add": "source-over", "subtract": "source-out", "intersect": "source-in", "exclude": "xor"}))
 		}
 	case "mask-mode":
-		if !browserUnparsedValue(value) {
+		if browserKeywordList(value, "alpha luminance match-source") {
 			add("-webkit-mask-source-type", replaceBrowserKeywords(value, map[string]string{"match-source": "auto"}))
 		}
 	case "text-decoration-thickness":
@@ -252,13 +266,18 @@ func prefixBrowserImages(nodes []*valueNode) bool {
 					arg.kind, arg.nodes, arg.value = 'f', []*valueNode{{kind: 'w', value: arg.value}}, "url"
 				}
 			}
-		} else {
-			if prefixBrowserImages(node.nodes) {
-				changed = true
-			}
 		}
 	}
 	return changed
+}
+
+func browserKeywordList(value, words string) bool {
+	for item := range Segments(value, ',') {
+		if !containsWord(words, strings.TrimSpace(item)) {
+			return false
+		}
+	}
+	return true
 }
 
 func browserUnparsedValue(value string) bool {

@@ -68,13 +68,17 @@ func (c *Compiler) registerCustomVariant(n *Node) error {
 		}
 		template = append(template, atRules...)
 	}
+	c.registerVariantTemplate(name, template)
+	return nil
+}
+
+func (c *Compiler) registerVariantTemplate(name string, template []*Node) {
 	order := 100 + len(c.customVariants)
 	if previous, ok := c.variantDefinition(name); ok {
 		order = previous.Order
 	}
 	c.customVariants[name] = variantDefinition{Kind: "static", Order: order, Compounds: variantCompounds(template), Nodes: template}
 	c.variantOrder = append(c.variantOrder, name)
-	return nil
 }
 
 func (c *Compiler) resolveVariants() error {

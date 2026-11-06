@@ -18,10 +18,10 @@ const properties={
  'hyphens':['auto','none'], 'box-decoration-break':['clone','slice'],
  'print-color-adjust':['exact','economy'], 'text-size-adjust':['100%','none'],
  'text-decoration-skip-ink':['auto','none'],
- 'text-decoration':['underline','underline dotted','underline red','underline 12%','underline solid currentColor'],
+ 'text-decoration':['underline','underline dotted','underline red','underline 12%','underline solid currentColor','underline 2px','underline calc(1px + 1em)'],
  'text-decoration-color':['red','currentColor','color-mix(in oklab, red, blue)','color-mix(in oklab, currentColor, blue)'],
  'text-decoration-style':['wavy'], 'text-decoration-line':['underline'],
- 'text-decoration-thickness':['12%','0%','0.1234567%','calc(10% + 2px)'],
+ 'text-decoration-thickness':['12%','0%','-0%','0.1234567%','calc(10% + 2px)'],
  'background-clip':['border-box','text','padding-box, text'],
  'mask-image':['none','url(a)','linear-gradient(red, blue)'],
  'mask-position':['center','0 0'], 'mask-position-x':['left'], 'mask-position-y':['top'],
@@ -29,7 +29,7 @@ const properties={
  'mask-clip':['border-box','no-clip'], 'mask-origin':['content-box','fill-box'],
  'mask-composite':['add','subtract','intersect','exclude','add, intersect'],
  'mask-mode':['alpha','luminance','match-source','alpha, match-source'],
- 'mask':['url(a)','url(a) luminance subtract','linear-gradient(red,blue) center / cover no-repeat add alpha','url(a) subtract, url(b) exclude alpha'],
+ 'mask':['url(a)','url(a) luminance subtract','linear-gradient(red,blue) center / cover no-repeat add alpha','url(a) subtract, url(b) exclude alpha','url(a) intersect match-source'],
  'mask-border':['url(a) 20 / 2 stretch luminance'],
  'mask-border-source':['url(a)'], 'mask-border-slice':['20 fill'],
  'mask-border-width':['2'], 'mask-border-outset':['1'], 'mask-border-repeat':['round'],
@@ -46,6 +46,11 @@ for(const css of [
  '.a{-webkit-user-select:none;user-select:none}',
  '.a{user-select:none;user-select:text}',
  '.a{background:linear-gradient(red,blue) text}',
+ '.a{background:text}',
+ '.a{background:black image-set("a.png" 1x)}',
+ '.a{user-select:foo;hyphens:foo;box-decoration-break:foo;text-size-adjust:foo;print-color-adjust:foo;text-decoration-skip-ink:foo}',
+ '.a{mask-composite:foo;mask-mode:foo}',
+ '.a{background-image:cross-fade(image-set("a" 1x),url(b),50%)}',
  '.a{--x:stretch;--y:image-set(url(a) 1x);--z:"text-decoration"}',
 ])add(css)
 const conditions=[
@@ -64,9 +69,14 @@ for(const condition of conditions){
 }
 for(const css of [
  '@container style(--color: "wide > short"){.a{display:block}}',
+ '@container style(--color: "wide \\" short"){.a{display:block}}',
  '@container (--foo){.a{display:block}}',
  '@media not print and (width>4px), (color){.a{display:block}}',
  '@media only screen and (width>=4px){.a{display:block}}',
+ '@media not not (color){.a{display:block}}',
+ '@media not (not (color)){.a{display:block}}',
+ '@media (1 < 2){.a{display:block}}',
+ '@media (>=){.a{display:block}}',
  '@custom-media --a (width>=1px); @media (--a){.a{display:block}}',
  '@custom-media --a (width>=1px), (color); @media (--a) and (height<2px){.a{display:block}}',
  '@custom-media --a screen and (width>=1px); @media (--a){.a{display:block}}',
@@ -78,6 +88,11 @@ for(const css of [
  '@media (--missing){.a{display:block}}',
  '@custom-media --a (--b); @custom-media --b (--a); @media (--a){.a{display:block}}',
  '@custom-media --a print, screen; @media (--a){.a{display:block}}',
+ '@media all and (--missing){.a{display:block}}',
+ '@media screen and (--missing){.a{display:block}}',
+ '@media (color) and (--missing){.a{display:block}}',
+ '@media not (--missing){.a{display:block}}',
+ '@layer a{@media (--missing){.a{display:block}}}',
 ])add(css)
 fs.writeFileSync('testdata/upstream/browser-edges.json',JSON.stringify({tailwind:require('tailwindcss/package.json').version,cases},null,2)+'\n')
 console.log(`${cases.length} browser inputs, ${cases.filter(test=>test.error).length} expected errors`)
