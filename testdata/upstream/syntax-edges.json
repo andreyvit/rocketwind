@@ -1,0 +1,407 @@
+[
+  {
+    "kind": "selector",
+    "input": "a[foo[bar]]",
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "a"
+          },
+          {
+            "kind": "selector",
+            "value": "[foo[bar]]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": "a[foo[bar]baz]",
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "a"
+          },
+          {
+            "kind": "selector",
+            "value": "[foo[bar]baz]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": "'a\\'b'",
+    "result": [
+      {
+        "kind": "selector",
+        "value": "'a\\'b'"
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": "a\"b\\\"c\"",
+    "result": [
+      {
+        "kind": "selector",
+        "value": "a\"b\\\"c\""
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": "a\\",
+    "result": [
+      {
+        "kind": "selector",
+        "value": "a\\undefined"
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": "a[foo[bar",
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "a"
+          },
+          {
+            "kind": "selector",
+            "value": "["
+          },
+          {
+            "kind": "selector",
+            "value": "foo"
+          },
+          {
+            "kind": "selector",
+            "value": "["
+          },
+          {
+            "kind": "selector",
+            "value": "bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": ":is('a')",
+    "result": [
+      {
+        "kind": "function",
+        "value": ":is",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "'a'"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": ":is(\"a\\\"b\")",
+    "result": [
+      {
+        "kind": "function",
+        "value": ":is",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "\"a\\\"b\""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": ":where(a[foo[bar]], 'b')",
+    "result": [
+      {
+        "kind": "function",
+        "value": ":where",
+        "nodes": [
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": "a"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": "[foo[bar]]"
+                  }
+                ]
+              },
+              {
+                "kind": "selector",
+                "value": "'b'"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": ":is(a",
+    "result": [
+      {
+        "kind": "function",
+        "value": ":is",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "selector",
+    "input": ":nth-child(2n of a\\)",
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "2n of "
+          },
+          {
+            "kind": "selector",
+            "value": "a\\undefined"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "kind": "attribute",
+    "input": "[a\\:b=x]",
+    "result": {
+      "attribute": "a\\:b",
+      "operator": "=",
+      "quote": null,
+      "value": "x",
+      "sensitivity": null
+    }
+  },
+  {
+    "kind": "attribute",
+    "input": "[a='b\\'c']",
+    "result": {
+      "attribute": "a",
+      "operator": "=",
+      "quote": "'",
+      "value": "b\\'c",
+      "sensitivity": null
+    }
+  },
+  {
+    "kind": "attribute",
+    "input": "[a=\"b\\\"c\"]",
+    "result": {
+      "attribute": "a",
+      "operator": "=",
+      "quote": "\"",
+      "value": "b\\\"c",
+      "sensitivity": null
+    }
+  },
+  {
+    "kind": "attribute",
+    "input": "[a\\]",
+    "result": null
+  },
+  {
+    "kind": "attribute",
+    "input": "[a=\"b\\\"]",
+    "result": null
+  },
+  {
+    "kind": "value",
+    "input": "a\\",
+    "result": [
+      {
+        "kind": "word",
+        "value": "a\\undefined"
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": "'a\\'b'",
+    "result": [
+      {
+        "kind": "word",
+        "value": "'a\\'b'"
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": "a\"b\\\"c\"",
+    "result": [
+      {
+        "kind": "word",
+        "value": "a\"b\\\"c\""
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": "var(--a\\)",
+    "result": [
+      {
+        "kind": "function",
+        "value": "var",
+        "nodes": []
+      },
+      {
+        "kind": "word",
+        "value": "--a\\)"
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": ":",
+    "result": [
+      {
+        "kind": "separator",
+        "value": ":"
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": "()",
+    "result": [
+      {
+        "kind": "function",
+        "value": "",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "kind": "value",
+    "input": "var()",
+    "result": [
+      {
+        "kind": "function",
+        "value": "var",
+        "nodes": []
+      }
+    ]
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(a)}",
+    "base": "/a b/with\"quote",
+    "root": "/",
+    "result": ".a {\n  background: url(\"./a b/with\\\"quote/a\");\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url('a.png')}",
+    "base": "/can't",
+    "root": "/",
+    "result": ".a {\n  background: url(\"./can't/a.png\");\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url('a\"b.png')}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url('./src/a\"b.png');\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(foo/bar(a).png)}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url(./src/foo/bar(a).png);\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(HTTP://example.com/a)}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url(./src/HTTP:/example.com/a);\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(Abc://a)}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url(./src/Abc:/a);\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:image-set(, url(a.png) 1x, )}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: image-set(url(./src/a.png) 1x);\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(a)",
+    "base": "/src",
+    "root": "/",
+    "error": "Missing closing } at .a"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:image-set(\"a\\\"b.png\" 1x)}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: image-set(url(\"./src/a\\\"b.png\") 1x);\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(a\\ b.png)}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url(\"./src/a\\ b.png\");\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {background:url(a); mask:url(var(--mask))}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  background: url(./src/a);\n  mask: url(var(--mask));\n}\n"
+  },
+  {
+    "kind": "url",
+    "input": ".a {color:red; &:hover {background: url(a)}}",
+    "base": "/src",
+    "root": "/",
+    "result": ".a {\n  color: red;\n  &:hover {\n    background: url(./src/a);\n  }\n}\n"
+  }
+]

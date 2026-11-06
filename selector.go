@@ -247,26 +247,3 @@ func selectorCSSMode(nodes []*selectorNode, minify bool) string {
 	write(nodes)
 	return out.String()
 }
-func normalizeSelector(s string) string {
-	nodes := parseSelector(s)
-	var simplify func([]*selectorNode)
-	simplify = func(nodes []*selectorNode) {
-		for _, n := range nodes {
-			simplify(n.Nodes)
-			if n.Kind == "compound" && len(n.Nodes) > 1 {
-				var children []*selectorNode
-				for _, child := range n.Nodes {
-					if child.Kind == "selector" && child.Value == "*" {
-						continue
-					}
-					children = append(children, child)
-				}
-				if len(children) > 0 {
-					n.Nodes = children
-				}
-			}
-		}
-	}
-	simplify(nodes)
-	return selectorCSS(nodes)
-}

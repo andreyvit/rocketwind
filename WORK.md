@@ -341,6 +341,18 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Go tests pass, including defaults referenced from a spacing callback and
   multiple CSS objects overriding the same prose declaration.
 
+### Additional parser and validation checks
+
+- Replayed 257 Go-fuzzer inputs against the pinned Rust extractor and all 14
+  preprocessors: 3,855 additional comparisons pass. Added 35 selector, value,
+  attribute and URL cases, and 37 compiler validation cases against Tailwind.
+- Those checks found a color fallback difference when a theme reference leads
+  to an empty `var()`. The Go output now matches the original compiler.
+- Removed an unused selector normalizer and a second implementation of custom
+  property shorthand parsing that the candidate parser could never call.
+- Full Go tests pass. Coverage across packages is 98.5%; this does not yet
+  include the separately instrumented CLI binary. The 100% gate remains open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

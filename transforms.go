@@ -78,7 +78,7 @@ func (b *buildContext) colorFallback(value string) (string, bool) {
 					if child.kind == 'w' && strings.EqualFold(child.value, "currentcolor") {
 						required, current = true, true
 					}
-					if child.kind == 'f' && child.value == "var" && len(child.nodes) > 0 {
+					if child.kind == 'f' && child.value == "var" && len(child.nodes) > 0 && child.nodes[0].kind == 'w' {
 						required = true
 						v := child
 						seen := make(map[string]bool)
@@ -100,8 +100,7 @@ func (b *buildContext) colorFallback(value string) (string, bool) {
 							}
 							if strings.HasPrefix(resolved, "var(") {
 								parsed := parseValue(resolved)
-								if len(parsed) == 0 || len(parsed[0].nodes) == 0 {
-									unresolved = true
+								if len(parsed[0].nodes) == 0 || parsed[0].nodes[0].kind != 'w' {
 									break
 								}
 								v = parsed[0]

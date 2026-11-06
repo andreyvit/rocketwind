@@ -330,7 +330,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning and CLI helper tests also pass. Both optimizer modes pass 1,698 additional stylesheet comparisons. Browser-specific transforms and full CLI integration checks remain open, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 1,698 additional stylesheet comparisons. Browser-specific transforms remain open, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

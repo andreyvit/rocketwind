@@ -19,37 +19,24 @@ func parseArbitrary(s string) (value, dataType string, ok bool) {
 	if len(s) < 3 {
 		return
 	}
-	if s[0] == '[' && s[len(s)-1] == ']' {
-		if !validArbitrary(s[1 : len(s)-1]) {
-			return "", "", false
-		}
-		value = DecodeArbitraryValue(s[1 : len(s)-1])
-		for i := 0; i < len(value); i++ {
-			c := value[i]
-			if c == ':' {
-				dataType = value[:i]
-				value = value[i+1:]
-				if dataType == "" {
-					return "", "", false
-				}
-				break
+	// The candidate parser has already selected brackets and expanded the
+	// parenthesized custom-property shorthand before calling this helper.
+	if !validArbitrary(s[1 : len(s)-1]) {
+		return "", "", false
+	}
+	value = DecodeArbitraryValue(s[1 : len(s)-1])
+	for i := 0; i < len(value); i++ {
+		c := value[i]
+		if c == ':' {
+			dataType, value = value[:i], value[i+1:]
+			if dataType == "" {
+				return "", "", false
 			}
-			if c != '-' && !(c >= 'a' && c <= 'z') {
-				break
-			}
+			break
 		}
-	} else if s[0] == '(' && s[len(s)-1] == ')' {
-		value = s[1 : len(s)-1]
-		if a, z, found := strings.Cut(value, ":"); found {
-			dataType = a
-			value = z
+		if c != '-' && !(c >= 'a' && c <= 'z') {
+			break
 		}
-		if !strings.HasPrefix(value, "--") {
-			return "", "", false
-		}
-		value = "var(" + value + ")"
-	} else {
-		return
 	}
 	ok = strings.TrimSpace(value) != "" && validArbitrary(value)
 	return

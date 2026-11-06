@@ -1,0 +1,209 @@
+[
+  {
+    "css": "@media screen {@import \"card\";}",
+    "sheets": {
+      "card": ".card {color:red}"
+    },
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n@media screen {\n  .card {\n    color: red;\n  }\n}\n"
+  },
+  {
+    "css": "@import \"missing\";",
+    "error": "No `loadStylesheet` function provided to `compile`"
+  },
+  {
+    "css": "@import \"missing\";",
+    "loadError": "stylesheet unavailable",
+    "error": "stylesheet unavailable"
+  },
+  {
+    "css": "@import \"bad\";",
+    "sheets": {
+      "bad": ".a{"
+    },
+    "error": "Missing closing } at .a"
+  },
+  {
+    "css": "@media screen {@import \"missing\";}",
+    "loadError": "stylesheet unavailable",
+    "error": "stylesheet unavailable"
+  },
+  {
+    "css": "@import file;",
+    "sheets": {
+      "card": ".card {color:red}"
+    },
+    "result": "@import file;"
+  },
+  {
+    "css": "@import layer(x);",
+    "sheets": {
+      "card": ".card {color:red}"
+    },
+    "result": "@import layer(x);"
+  },
+  {
+    "css": "@import \"card\" layer(a) layer(b);",
+    "sheets": {
+      "card": ".card {color:red}"
+    },
+    "result": "@import \"card\" layer(a) layer(b);"
+  },
+  {
+    "css": "@import \"card\" supports(display:grid) supports(display:flex);",
+    "sheets": {
+      "card": ".card {color:red}"
+    },
+    "result": "@import \"card\" supports(display:grid) supports(display:flex);"
+  },
+  {
+    "css": "@source \"a\" {color:red}",
+    "error": "`@source` cannot have a body."
+  },
+  {
+    "css": ".a {@source \"a\";}",
+    "error": "`@source` cannot be nested."
+  },
+  {
+    "css": "@source a;",
+    "error": "`@source` paths must be quoted."
+  },
+  {
+    "css": "@source inline(\"{a,{1..3..0}}\");",
+    "error": "Step cannot be zero in sequence expansion."
+  },
+  {
+    "css": "@media prefix(tw) {@theme prefix(no) {--color-a:red}}",
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@media reference {@source a;}",
+    "error": "`@source` paths must be quoted."
+  },
+  {
+    "css": "@theme {--color-*:red;}",
+    "error": "Invalid theme value `red` for namespace `--color-*`"
+  },
+  {
+    "css": "@theme {--color-brand:theme(colors.missing);}",
+    "error": "Could not resolve value for theme function: `theme(colors.missing)`. Consider checking if the path is correct or provide a fallback value to silence this error."
+  },
+  {
+    "css": "@import \"a\" theme(reference);",
+    "sheets": {
+      "a": "@media screen {.a{color:red}}"
+    },
+    "error": "Files imported with `@import \"…\" theme(reference)` must only contain `@theme` blocks.\nUse `@reference \"…\";` instead."
+  },
+  {
+    "css": "@utility bad%name {color:red;}",
+    "error": "`@utility bad%name` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility bad.name {color:red;}",
+    "error": "`@utility bad.name` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility bad..name {color:red;}",
+    "error": "`@utility bad..name` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility bad. {color:red;}",
+    "error": "`@utility bad.` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility bad.letter {color:red;}",
+    "error": "`@utility bad.letter` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility bad-% {color:red;}",
+    "error": "`@utility bad-%` defines an invalid utility name. Utilities should be alphanumeric and start with a lowercase letter."
+  },
+  {
+    "css": "@utility demo-* {&:hover {width:--value(integer);}} @tailwind utilities;",
+    "classes": [
+      "demo-red"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@utility demo-* {width:--value(--size-*-*,--missing-*,[length]);} @tailwind utilities;",
+    "classes": [
+      "demo-[3px]",
+      "demo-4"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.demo-\\[3px\\] {\n  width: 3px;\n}\n"
+  },
+  {
+    "css": "@utility demo-* {width:--value(ratio); &:hover {height:--modifier(integer);}} @tailwind utilities;",
+    "classes": [
+      "demo-3/4"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n"
+  },
+  {
+    "css": "@custom-variant x ();",
+    "error": "`@custom-variant x ()` selector is invalid."
+  },
+  {
+    "css": "@variant min-missing { .a { color:red; }}",
+    "error": "Cannot use `@variant` with variant: min-missing"
+  },
+  {
+    "css": "@utility demo-* {@variant min-missing {width:--value(integer);}} @tailwind utilities;",
+    "classes": [
+      "demo-1"
+    ],
+    "error": "Cannot use `@variant` with variant: min-missing"
+  },
+  {
+    "css": "@utility demo {color:blue;} @utility demo {@variant min-missing {color:red;}} @tailwind utilities;",
+    "classes": [
+      "demo"
+    ],
+    "error": "Cannot use `@variant` with variant: min-missing"
+  },
+  {
+    "css": "@theme {--color-a:var(--color-b);--color-b:var(--color-a);} @tailwind utilities;",
+    "classes": [
+      "bg-a/50"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-a: var(--color-b);\n  --color-b: var(--color-a);\n}\n.bg-a\\/50 {\n  background-color: var(--color-a);\n  @supports (color: color-mix(in lab, red, red)) {\n    background-color: color-mix(in oklab, var(--color-a) 50%, transparent);\n  }\n}\n"
+  },
+  {
+    "css": "@theme {--color-a:var(--color-b);--color-b:currentColor;} @tailwind utilities;",
+    "classes": [
+      "bg-a/50"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-a: var(--color-b);\n  --color-b: currentColor;\n}\n.bg-a\\/50 {\n  background-color: var(--color-a);\n  @supports (color: color-mix(in lab, red, red)) {\n    background-color: color-mix(in oklab, var(--color-a) 50%, transparent);\n  }\n}\n"
+  },
+  {
+    "css": "@theme {--color-a:var(--color-b);--color-b:var();} @tailwind utilities;",
+    "classes": [
+      "bg-a/50"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --color-a: var(--color-b);\n  --color-b: var();\n}\n.bg-a\\/50 {\n  background-color: color-mix(in srgb, var(--color-a) 50%, transparent);\n  @supports (color: color-mix(in lab, red, red)) {\n    background-color: color-mix(in oklab, var(--color-a) 50%, transparent);\n  }\n}\n"
+  },
+  {
+    "css": "@theme {--background-image-pattern:linear-gradient(red,blue);} @tailwind utilities;",
+    "classes": [
+      "bg-pattern"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --background-image-pattern: linear-gradient(red,blue);\n}\n.bg-pattern {\n  background-image: var(--background-image-pattern);\n}\n"
+  },
+  {
+    "css": "@theme {--text-brand:1rem;--text-brand--letter-spacing:.1em;} @tailwind utilities;",
+    "classes": [
+      "text-brand"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n:root, :host {\n  --text-brand: 1rem;\n  --text-brand--letter-spacing: .1em;\n}\n.text-brand {\n  font-size: var(--text-brand);\n  letter-spacing: var(--tw-tracking, var(--text-brand--letter-spacing));\n}\n"
+  },
+  {
+    "css": "@tailwind utilities;",
+    "classes": [
+      "stroke-[length:var(--width)]",
+      "stroke-[number:2]",
+      "stroke-[3px]"
+    ],
+    "result": "/*! tailwindcss v4.3.4 | MIT License | https://tailwindcss.com */\n.stroke-\\[3px\\] {\n  stroke-width: 3px;\n}\n.stroke-\\[length\\:var\\(--width\\)\\] {\n  stroke-width: var(--width);\n}\n.stroke-\\[number\\:2\\] {\n  stroke-width: 2;\n}\n"
+  }
+]
