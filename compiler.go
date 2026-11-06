@@ -114,6 +114,21 @@ func New(config Config) *Compiler {
 	return c
 }
 
+// Candidates returns a sorted, unique manifest of potential class names,
+// including inline sources and safelists, with configured exclusions removed.
+// Unknown names are retained: Build ignores them, and a later configuration may
+// define them. The returned slice is independent of the compiler and input.
+func (c *Compiler) Candidates(classes []string) []string {
+	result := make([]string, 0, len(classes)+len(c.inlineCandidates))
+	result = append(result, classes...)
+	result = append(result, c.inlineCandidates...)
+	result = slices.DeleteFunc(result, func(name string) bool {
+		return name == "" || c.blocklist[name] || c.excludedCandidates[name] || c.config.ExistingClasses.Contains(name)
+	})
+	slices.Sort(result)
+	return slices.Compact(result)
+}
+
 // Build generates CSS for exactly these candidates. Calls are independent and
 // may run concurrently. Use NewBuilder for incremental, cumulative builds.
 func (c *Compiler) Build(candidates []string) (string, error) {

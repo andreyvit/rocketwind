@@ -4,6 +4,8 @@
 package rocketwind
 
 import (
+	"fmt"
+	"net/url"
 	"path"
 	"path/filepath"
 	"strings"
@@ -24,6 +26,32 @@ func RewriteURLs(input, base, root string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	return rewriteURLs(input, func(raw string) (string, bool) { return rewriteAssetURL(raw, base, root) })
+}
+
+// ResolveURLs makes relative asset URLs absolute against the stylesheet's
+// original URL. Use it when moving CSS to a different route or origin.
+// External URLs, root-relative paths, fragments and data URLs are preserved.
+func ResolveURLs(input, baseURL string) (string, error) {
+	base, err := url.Parse(baseURL)
+	if err != nil {
+		return "", err
+	}
+	if !base.IsAbs() {
+		return "", fmt.Errorf("stylesheet URL must be absolute: %q", baseURL)
+	}
+	return rewriteURLs(input, func(raw string) (string, bool) {
+		return rewriteAssetURLUsing(raw, func(raw string) (string, error) {
+			ref, err := url.Parse(raw)
+			if err != nil {
+				return "", err
+			}
+			return base.ResolveReference(ref).String(), nil
+		})
+	})
+}
+
+func rewriteURLs(input string, rewrite func(string) (string, bool)) (string, error) {
 	nodes, err := ParseCSS(input, "")
 	if err != nil {
 		return "", err
@@ -32,7 +60,7 @@ func RewriteURLs(input, base, root string) (string, error) {
 	walk = func(nodes []*Node) {
 		for _, node := range nodes {
 			if node.Kind == "declaration" {
-				node.Value = rewriteAssetValue(node.Value, base, root)
+				node.Value = rewriteAssetValue(node.Value, rewrite)
 			}
 			walk(node.Nodes)
 		}
@@ -43,7 +71,7 @@ func RewriteURLs(input, base, root string) (string, error) {
 	return out.String(), nil
 }
 
-func rewriteAssetValue(value, base, root string) string {
+func rewriteAssetValue(value string, rewrite func(string) (string, bool)) string {
 	if !strings.Contains(value, "url(") && !strings.Contains(value, "image-set(") {
 		return value
 	}
@@ -57,7 +85,7 @@ func rewriteAssetValue(value, base, root string) string {
 			switch node.value {
 			case "url":
 				raw := strings.TrimSpace(valueCSS(node.nodes))
-				if replacement, ok := rewriteAssetURL(raw, base, root); ok {
+				if replacement, ok := rewrite(raw); ok {
 					node.kind = 'w'
 					node.value = replacement
 					node.nodes = nil
@@ -77,7 +105,7 @@ func rewriteAssetValue(value, base, root string) string {
 						for end < len(values) && values[end].kind != 's' {
 							end++
 						}
-						if replacement, ok := rewriteAssetURL(valueCSS(values[:end]), base, root); ok {
+						if replacement, ok := rewrite(valueCSS(values[:end])); ok {
 							values = append([]*valueNode{{kind: 'w', value: replacement}}, values[end:]...)
 						}
 					}
@@ -96,6 +124,21 @@ func rewriteAssetValue(value, base, root string) string {
 }
 
 func rewriteAssetURL(raw, base, root string) (string, bool) {
+	return rewriteAssetURLUsing(raw, func(raw string) (string, error) {
+		absolute := path.Join(strings.ReplaceAll(base, `\`, "/"), raw)
+		relative, err := filepath.Rel(strings.ReplaceAll(root, `\`, "/"), absolute)
+		if err != nil {
+			return "", err
+		}
+		relative = filepath.ToSlash(relative)
+		if !strings.HasPrefix(relative, ".") {
+			relative = "./" + relative
+		}
+		return relative, nil
+	})
+}
+
+func rewriteAssetURLUsing(raw string, resolve func(string) (string, error)) (string, bool) {
 	quote := byte(0)
 	if len(raw) > 1 && (raw[0] == '\'' || raw[0] == '"') {
 		quote = raw[0]
@@ -126,14 +169,9 @@ func rewriteAssetURL(raw, base, root string) (string, bool) {
 			return "", false
 		}
 	}
-	absolute := path.Join(strings.ReplaceAll(base, `\`, "/"), raw)
-	relative, err := filepath.Rel(strings.ReplaceAll(root, `\`, "/"), absolute)
+	relative, err := resolve(raw)
 	if err != nil {
 		return "", false
-	}
-	relative = filepath.ToSlash(relative)
-	if !strings.HasPrefix(relative, ".") {
-		relative = "./" + relative
 	}
 	needsQuote := false
 	for _, ch := range relative {

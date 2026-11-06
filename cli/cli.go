@@ -37,16 +37,16 @@ type flags struct {
 	content, exclude, classes         []string
 	poll                              time.Duration
 	silent, help, version             bool
-	minify, optimize                  bool
+	minify, optimize, scan, known     bool
 	compatibility                     rocketwind.Compatibility
 }
 
 const usage = `Rocketwind — Tailwind CSS 4.3.4 compiler for Go
 
-Usage: rocketwind [build] [options]
+Usage: rocketwind [build|scan] [options]
 
   -i, --input FILE     Input CSS; use - for stdin
-  -o, --output FILE    Output CSS; defaults to stdout
+  -o, --output FILE    Output file; defaults to stdout
   -w, --watch         Rebuild on changes; --watch=always survives stdin closing
       --poll[=MS]     Poll interval in milliseconds (default: 250)
       --cwd DIR       Source search directory (default: current directory)
@@ -55,12 +55,16 @@ Usage: rocketwind [build] [options]
       --content GLOB  Explicit source pattern; may be repeated
       --exclude FILE  Omit helpers already defined in this CSS; may be repeated
       --classes LIST  Additional complete class names; may be repeated
+      --known         For scan, keep only classes recognized by this configuration
   -m, --minify         Optimize and compact the output
       --optimize       Optimize while keeping readable output
       --map[=FILE]    Generate an inline source map, or write one to FILE
       --silent        Suppress progress messages
   -h, --help          Show this help
       --version       Show supported Tailwind version
+
+scan writes sorted, unique class candidates, one per line, instead of CSS.
+It includes safelists and inline sources; unknown names are kept for runtime builds.
 
 Without --input, Rocketwind compiles @import "tailwindcss".
 JavaScript plugins and configuration require Go implementations.
@@ -103,7 +107,8 @@ func Run(ctx context.Context, args []string, options Options) int {
 
 func parseFlags(args []string) (flags, error) {
 	f := flags{output: "-", cwd: ".", poll: 250 * time.Millisecond}
-	explicitBuild := len(args) > 0 && args[0] == "build"
+	f.scan = len(args) > 0 && args[0] == "scan"
+	explicitBuild := f.scan || len(args) > 0 && args[0] == "build"
 	if explicitBuild {
 		args = args[1:]
 	}
@@ -122,12 +127,14 @@ func parseFlags(args []string) (flags, error) {
 		"--compat":   {Type: "string"},
 		"--minify":   {Type: "boolean", Alias: "-m"},
 		"--optimize": {Type: "boolean"},
+		"--known":    {Type: "boolean"},
 	}, raw, positional)
 	str := func(key string) string { value, _ := values[key].(string); return value }
 	enabled := func(key string) bool { return values[key] == true }
 	f.input, f.output, f.cwd, f.config = str("--input"), str("--output"), str("--cwd"), str("--config")
 	f.silent, f.help, f.version = enabled("--silent"), enabled("--help"), enabled("--version")
 	f.minify, f.optimize = enabled("--minify"), enabled("--optimize")
+	f.known = enabled("--known")
 	switch str("--compat") {
 	case "", "4", "4.3.4":
 	case "3", "3.4.17":
@@ -156,6 +163,9 @@ func parseFlags(args []string) (flags, error) {
 	}
 	f.inlineMap = enabled("--map")
 	f.sourceMap = str("--map")
+	if f.scan && (f.inlineMap || f.sourceMap != "") {
+		return f, errors.New("Source maps are only available for CSS builds.")
+	}
 	if f.sourceMap == "-" {
 		return f, errors.New("Use --map without a value to inline the source map.")
 	}
@@ -234,6 +244,7 @@ func build(ctx context.Context, f flags, options Options) error {
 		}
 		input = string(data)
 	}
+	var compiler *rocketwind.Compiler
 	var builder *rocketwind.Builder
 	var scanner *rocketwind.Scanner
 	dependencies := map[string]stamp{}
@@ -323,6 +334,7 @@ func build(ctx context.Context, f flags, options Options) error {
 		if executable, err := os.Executable(); err == nil {
 			sources = append(sources, rocketwind.Source{Base: filepath.Dir(executable), Pattern: filepath.Base(executable), Negated: true})
 		}
+		compiler = compiled
 		builder = compiled.NewBuilder()
 		features = compiled.Features()
 		scanner = rocketwind.NewScanner(sources, rocketwind.ScannerOptions{Base: base, Compatibility: f.compatibility})
@@ -334,7 +346,22 @@ func build(ctx context.Context, f flags, options Options) error {
 		classes := append(scanner.Scan(), f.classes...)
 		var css, rawMap string
 		var err error
-		if f.inlineMap || f.sourceMap != "" {
+		if f.scan {
+			names := compiler.Candidates(classes)
+			if f.known {
+				order := compiler.ClassOrder(names)
+				valid := names[:0]
+				for i, name := range names {
+					if order[i] >= 0 {
+						valid = append(valid, name)
+					}
+				}
+				names = valid
+			}
+			if len(names) > 0 {
+				css = strings.Join(names, "\n") + "\n"
+			}
+		} else if f.inlineMap || f.sourceMap != "" {
 			var sourceMap *rocketwind.SourceMap
 			css, sourceMap, err = builder.BuildWithSourceMap(classes)
 			if err == nil && features != 0 {

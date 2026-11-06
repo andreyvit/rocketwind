@@ -3,6 +3,7 @@ package rocketwind
 import (
 	"encoding/json"
 	"fmt"
+	iofs "io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -12,6 +13,9 @@ import (
 // Root rebases imported asset URLs to the entry stylesheet's directory. Leave
 // it empty to preserve URLs. OnDependency receives files used during compilation.
 type Filesystem struct {
+	// FS optionally supplies files, for example an embed.FS. Paths are relative
+	// to its root. A nil FS uses the operating system filesystem.
+	FS            iofs.FS
 	Compatibility Compatibility
 	Root          string
 	Modules       map[string]Module
@@ -124,20 +128,43 @@ func (fs Filesystem) jsonPlugins(object ConfigObject, base string, module *Modul
 }
 
 func (fs Filesystem) read(name string) ([]byte, error) {
-	data, err := os.ReadFile(name)
+	var data []byte
+	var err error
+	if fs.FS != nil {
+		data, err = iofs.ReadFile(fs.FS, filepath.ToSlash(name))
+	} else {
+		data, err = os.ReadFile(name)
+	}
 	if err == nil && fs.OnDependency != nil {
 		fs.OnDependency(name)
 	}
 	return data, err
 }
 
+func (fs Filesystem) stat(name string) (iofs.FileInfo, error) {
+	if fs.FS != nil {
+		return iofs.Stat(fs.FS, filepath.ToSlash(name))
+	}
+	return os.Stat(name)
+}
+
+func (fs Filesystem) canonical(name string) (string, error) {
+	if fs.FS != nil {
+		return filepath.ToSlash(name), nil
+	}
+	return filepath.EvalSymlinks(name)
+}
+
 func (fs Filesystem) resolve(id, base, extension string) (string, error) {
 	if base == "" {
 		base = "."
 	}
-	base, err := filepath.Abs(base)
-	if err != nil {
-		return "", err
+	if fs.FS == nil {
+		var err error
+		base, err = filepath.Abs(base)
+		if err != nil {
+			return "", err
+		}
 	}
 	if filepath.IsAbs(id) || strings.HasPrefix(id, ".") {
 		name := id
@@ -169,8 +196,8 @@ func (fs Filesystem) resolveFile(name, extension string, depth int) string {
 		return ""
 	}
 	for _, candidate := range []string{name, name + extension} {
-		if info, err := os.Stat(candidate); err == nil && info.Mode().IsRegular() {
-			if real, err := filepath.EvalSymlinks(candidate); err == nil {
+		if info, err := fs.stat(candidate); err == nil && info.Mode().IsRegular() {
+			if real, err := fs.canonical(candidate); err == nil {
 				return real
 			}
 		}
@@ -183,8 +210,8 @@ func (fs Filesystem) resolveFile(name, extension string, depth int) string {
 			}
 		}
 	}
-	if info, err := os.Stat(filepath.Join(name, "index"+extension)); err == nil && info.Mode().IsRegular() {
-		real, _ := filepath.EvalSymlinks(filepath.Join(name, "index"+extension))
+	if info, err := fs.stat(filepath.Join(name, "index"+extension)); err == nil && info.Mode().IsRegular() {
+		real, _ := fs.canonical(filepath.Join(name, "index"+extension))
 		return real
 	}
 	return ""

@@ -14,6 +14,39 @@ See [TESTING.md](TESTING.md) for compatibility evidence and the JavaScript-only
 exceptions. Application integration is tracked in [WORK.md](WORK.md).
 
 
+Compile after your binary starts
+-------------------------------
+
+You can collect class names at build time and generate CSS at runtime:
+
+```sh
+rocketwind scan -i assets/app.css --config theme.json -o assets/classes.txt
+```
+
+The output is sorted, unique, and one name per line. Embed it with your CSS
+source and JSON configuration. `rocketwind.Filesystem{FS: embeddedFiles}` loads
+imports, configuration and standard Go plugins directly from `embed.FS`.
+Compile the stylesheet, then call `compiler.Build(strings.Fields(classList))`.
+No source tree, Node installation or temporary files are needed at runtime.
+
+`scan` accepts the same source patterns, compatibility profile, safelists,
+inline sources, exclusions and watch options as `build`. It keeps potential
+class names that the current configuration doesn't recognize; the compiler
+ignores them. This also preserves application class names and leaves room for
+configuration changes. `compiler.Candidates(names)` provides the same sorted
+manifest in Go, including configured safelists and inline sources.
+
+`scan --known` omits names that the current configuration does not recognize.
+This produces a smaller embedded manifest when configuration is fixed at build
+time. It also recognizes utilities and components registered by Go plugins.
+
+For an account-specific stylesheet, compile its additional classes while
+excluding classes already in the shared stylesheet, then append its CSS after
+the shared rules. Keep that order when combining files. If the combined CSS
+moves to another route, `ResolveURLs(css, originalStylesheetURL)` preserves
+relative asset locations. Font imports still need to precede ordinary rules.
+
+
 Why?
 ----
 
