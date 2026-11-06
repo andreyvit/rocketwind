@@ -560,3 +560,22 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
   namespaces; checked against the original compiler and added a regression.
 - The complete Go suite, race suite, vet and strict 12,352/12,352 statement
   coverage gate pass.
+
+### Application profiling and source scanning
+
+- Profiled real embedded Bubblehouse assets and large loyalty-page tenant loads.
+  CSS startup fell from 920 to 131 ms; startup allocations fell from 520 to
+  123 MB and from 5.37 million to 994 thousand. Legacy tenant load remains
+  dominated by work outside Rocketwind; its original theming engine stays on.
+- Source extraction and disk reads use bounded workers with stable output.
+  The fresh-process known-class CLI scan fell from 551 to 170 ms. Runtime
+  candidates, the 960-class source manifest and 216,307-byte CSS are identical.
+- Parser visitors, indexed theme setup, build-local color conversion and
+  one-time safelist expansion reduce repeated work without changing public
+  APIs. Temporary theme caches preserve copies passed to plugin callbacks.
+- The 592-class forms/typography fixture takes 5.50 ms per fresh optimized build,
+  versus about 12 ms for official Tailwind 4.3.4. The legacy application input
+  takes 49.8 ms versus 341 ms with official Tailwind 3.4.17 plus current browser
+  optimization. PERFORMANCE.md records scope and reproduction commands.
+- Full Go and race suites pass; statement coverage is 12,658/12,658. The DFA
+  extractor passed 32,768 deterministic cases and 266,822 fuzz executions.

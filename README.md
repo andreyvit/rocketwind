@@ -438,17 +438,23 @@ On an Apple M5 Max with Go 1.27.3, three-run medians:
 
 | Work | Time | Allocations |
 | --- | --- | --- |
-| Compile 10 classes | 27 us | 525 |
-| Compile 100 classes | 146 us | 3,036 |
-| Compile 586 classes, including variants | 1.29 ms | 27,801 |
-| Resolve and render a prepared account template | 2.08 us | 59 |
-| Repeat an unchanged incremental build of 586 classes | 3.50 us | 0 |
-| Extract candidates from 27.9 KB of templates | 135 us | 0 |
-| Optimize 40 KB of CSS | 314 us | 4,082 |
+| Compile 10 classes | 23 us | 402 |
+| Compile 100 classes | 108 us | 1,833 |
+| Compile 586 classes, including variants | 1.03 ms | 20,765 |
+| Configure forms and typography, compile 592 classes, optimize CSS | 5.50 ms | 91,634 |
+| Resolve and render a prepared account template | 2.05 us | 59 |
+| Repeat an unchanged incremental build of 586 classes | 3.48 us | 0 |
+| Optimize 40 KB of CSS | 295 us | 4,082 |
 
-These are local measurements, not guarantees for every template. The benchmarks
-live in `benchmark_test.go`. Reuse compilers and prepared templates; use an
-incremental builder when the set of classes grows over time.
+The same fresh 592-class build takes about 12 ms with the official Tailwind
+4.3.4 compiler and optimizer. Both use the same classes, theme and standard
+plugins. This is one reproducible workload, not a claim about every build.
+[Performance measurements](PERFORMANCE.md) explain the comparison and the
+larger application profiles, including source scanning.
+
+Reuse compilers and prepared templates. Use an incremental builder when the
+set of classes grows over time. Scanning a large source tree uses bounded
+workers; small inputs avoid their overhead.
 
 
 License

@@ -16,7 +16,7 @@ python3 scripts/check-coverage.py
 
 The coverage script includes the real CLI subprocess. It requires **100% of
 statements across all Go packages**, with no source exclusions. The current
-checkpoint covers 12,442 of 12,442 statements. Generated registrations are
+checkpoint covers 12,658 of 12,658 statements. Generated registrations are
 source-derived data; they do not look up expected CSS by candidate name.
 
 ## Tailwind 4
@@ -63,6 +63,20 @@ compiler: 11,344 named utilities, 2,759 arbitrary values, 848 variant builds,
 complete completion lists. It also runs the original 45 extractor tests,
 57 normalization tests and six duplicate-declaration tests. Another 1,500
 deterministic extractor inputs check the native plain-text scanning path.
+The bounded legacy state tables also have 32,768 deterministic differential
+inputs and a fuzz target; the profiling pass ran 266,822 fuzz executions.
+Unicode and unrepresented states retain the original regexp path. Regenerate
+and verify the tables with:
+
+```sh
+ROCKETWIND_REGENERATE_DFA=1 go test -run '^TestGeneratedLegacyExtractorDFA$'
+go test -run '^$' -fuzz '^FuzzLegacyExtractorDFA$' -fuzztime=3m
+```
+
+The generated tables are checked by ordinary tests on Go 1.25 and 1.27.
+Large scans check serial/concurrent equality, incremental updates, disappearing
+disk files and custom-filesystem errors. Theme tests check that temporary caches
+preserve ordered overrides and never share mutable values with plugin callbacks.
 
 This is an application migration profile, not a claim that the entire original
 Tailwind 3 suite has been ported. Removed core-plugin switches, experimental
