@@ -34,13 +34,23 @@ func appendExtractedV3(dst []Extracted, input string) []Extracted {
 	if !strings.ContainsAny(input, "[:") && strings.IndexFunc(input, func(r rune) bool { return r >= 128 }) < 0 {
 		dst = appendV3PlainTokens(dst, input)
 		patterns = nil
-	} else if !strings.ContainsRune(input, '[') {
-		patterns = v3SimpleRegexps
+	} else if !strings.ContainsRune(input, '[') || !strings.ContainsRune(input, ':') && !strings.Contains(input, "-[") {
+		dst = appendV3VariantTokens(dst, input, false)
+		dst = appendV3VariantTokens(dst, input, true)
+		patterns = v3SimpleRegexps[2:]
 	}
 	for _, pattern := range patterns {
-		for _, span := range pattern.FindAllStringIndex(input, -1) {
-			value := v3ClipCandidate(input[span[0]:span[1]])
-			dst = append(dst, Extracted{Kind: "candidate", Value: value, Start: span[0], End: span[0] + len(value)})
+		// Only whole-match offsets are needed. FindAllStringIndex collects
+		// every match and pads unused capture groups in the legacy patterns.
+		for offset := 0; offset < len(input); {
+			span := pattern.FindStringIndex(input[offset:])
+			if span == nil {
+				break
+			}
+			begin, end := offset+span[0], offset+span[1]
+			value := v3ClipCandidate(input[begin:end])
+			dst = append(dst, Extracted{Kind: "candidate", Value: value, Start: begin, End: begin + len(value)})
+			offset = end
 		}
 	}
 	end := len(dst)
@@ -66,6 +76,65 @@ func appendExtractedV3(dst []Extracted, input string) []Extracted {
 		}
 	}
 	return dst
+}
+
+// A bracket-free variant prefix greedily ends at the last colon followed by a
+// utility. Inspect that boundary once, then scan the remaining plain words.
+func appendV3VariantTokens(dst []Extracted, input string, quotedVariants bool) []Extracted {
+	separator := func(ch byte) bool {
+		return ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r' || ch == '\f' || ch == '`' || ch == '\\' || !quotedVariants && (ch == '\'' || ch == '"')
+	}
+	for at := 0; at < len(input); {
+		if separator(input[at]) {
+			at++
+			continue
+		}
+		end := at + 1
+		for end < len(input) && !separator(input[end]) {
+			end++
+		}
+		for colon := strings.LastIndexByte(input[at:end], ':'); colon > 0; colon = strings.LastIndexByte(input[at:at+colon], ':') {
+			if stop := v3UtilityEnd(input, at+colon+1); stop > at+colon+1 {
+				dst = append(dst, Extracted{Kind: "candidate", Value: input[at:stop], Start: at, End: stop})
+				at = stop
+				break
+			}
+		}
+		for at < end {
+			stop := v3UtilityEnd(input, at)
+			if stop == at {
+				at++
+				continue
+			}
+			dst = append(dst, Extracted{Kind: "candidate", Value: input[at:stop], Start: at, End: stop})
+			at = stop
+		}
+	}
+	return dst
+}
+
+func v3UtilityEnd(input string, start int) int {
+	i := start
+	if i < len(input) && input[i] == '!' {
+		i++
+	}
+	if i < len(input) && (input[i] == '-' || input[i] == '@') {
+		i++
+	}
+	word := func(ch byte) bool { return asciiLetter(ch) || digit(ch) || ch == '_' }
+	if i == len(input) || !word(input[i]) {
+		return start
+	}
+	for i < len(input) && word(input[i]) {
+		i++
+	}
+	if i < len(input) && (input[i] == '-' || input[i] == '/') {
+		i++
+		for i < len(input) && !strings.ContainsRune(" \t\n\r\f'\"`\\$={><", rune(input[i])) {
+			i++
+		}
+	}
+	return i
 }
 
 func v3ClipCandidate(input string) string {

@@ -65,9 +65,11 @@ func (c *Compiler) NewScanner(base string) *Scanner {
 func (s *Scanner) Scan() []string {
 	s.discovered = false
 	s.scanned = nil
+	batch := scanBatch{scanner: s}
 	for _, content := range s.discover() {
-		s.addContent(content, true, nil)
+		s.addContent(content, true, nil, &batch)
 	}
+	batch.finish()
 	return slices.Sorted(maps.Keys(s.candidates))
 }
 
@@ -101,13 +103,13 @@ func (s *Scanner) ScanContent(contents []Content) []string {
 				}
 			}
 		}
-		s.addContent(content, false, &added)
+		s.addContent(content, false, &added, nil)
 	}
 	slices.Sort(added)
 	return added
 }
 
-func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string) {
+func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string, batch *scanBatch) {
 	text, ok := readScanContent(content)
 	if !ok {
 		return
@@ -129,23 +131,21 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string) {
 				if s.v3Chunks[chunk] {
 					continue
 				}
-				s.v3Chunks[strings.Clone(chunk)] = true
-				s.buffer = appendExtractedV3(s.buffer, chunk)
-			}
-		} else if cssOnly && content.Extension == "css" {
-			s.buffer = append(s.buffer[:0], CSSVariables(line)...)
-		} else {
-			s.buffer = AppendExtracted(s.buffer[:0], line)
-		}
-		for _, token := range s.buffer {
-			if !s.candidates[token.Value] && utf8.ValidString(token.Value) {
-				value := strings.Clone(token.Value)
-				s.candidates[value] = true
-				if added != nil {
-					*added = append(*added, value)
+				chunk = strings.Clone(chunk)
+				s.v3Chunks[chunk] = true
+				if batch != nil {
+					batch.add(chunk, false)
+				} else {
+					s.buffer = appendExtractedV3(s.buffer, chunk)
 				}
 			}
+		} else if batch != nil {
+			batch.add(line, cssOnly && content.Extension == "css")
+			s.buffer = s.buffer[:0]
+		} else {
+			s.buffer = extractScanText(s.buffer[:0], scanText{line, s.compatibility, cssOnly && content.Extension == "css"})
 		}
+		addScanTokens(s.candidates, s.buffer, added)
 	}
 	clear(s.buffer)
 }

@@ -272,7 +272,7 @@ func TestStylesheetScanner(t *testing.T) {
 	if got := s.Positions(Content{Path: root}); len(got) != 0 {
 		t.Fatal(got)
 	}
-	s.addContent(Content{Path: filepath.Join(root, "missing.html")}, false, nil)
+	s.addContent(Content{Path: filepath.Join(root, "missing.html")}, false, nil, nil)
 	if got := s.Scan(); !slices.Equal(got, []string{"flex"}) {
 		t.Fatal(got)
 	}

@@ -2,7 +2,9 @@ package rocketwind
 
 import (
 	"errors"
+	"fmt"
 	"io/fs"
+	"runtime"
 	"slices"
 	"strings"
 	"testing"
@@ -60,3 +62,34 @@ func TestScanFSReportsInputErrors(t *testing.T) {
 type failingScanRoot struct{}
 
 func (failingScanRoot) Open(string) (fs.File, error) { return nil, fs.ErrPermission }
+
+func TestLargeScanMatchesSequentialExtraction(t *testing.T) {
+	for _, procs := range []int{1, 4} {
+		before := runtime.GOMAXPROCS(procs)
+		for _, compat := range []Compatibility{Tailwind3, Tailwind4} {
+			files := fstest.MapFS{}
+			var contents []Content
+			for i := range 1500 {
+				text := fmt.Sprintf(`<article class="flex hover:bg-red-500 w-[%dpx]"><p class="sm:prose">こんにちは</p></article>`, i)
+				files[fmt.Sprintf("views/%04d.html", i)] = &fstest.MapFile{Data: []byte(text)}
+				contents = append(contents, Content{Text: text, Extension: "html"})
+			}
+			s := NewScanner(nil, ScannerOptions{Compatibility: compat})
+			want := NewScanner(nil, ScannerOptions{Compatibility: compat}).ScanContent(contents)
+			got, err := s.ScanFS(files)
+			if err != nil || !slices.Equal(got, want) {
+				t.Fatalf("GOMAXPROCS=%d, compatibility=%d: %d != %d candidates, %v", procs, compat, len(got), len(want), err)
+			}
+			if got, err := s.ScanFS(files); err != nil || !slices.Equal(got, want) {
+				t.Fatal("repeated scan", err)
+			}
+			if _, err := s.ScanFS(files, failingScanRoot{}); !errors.Is(err, fs.ErrPermission) {
+				t.Fatal("partial scan", err)
+			}
+			if got := s.ScanContent([]Content{{Text: "z-[12345]"}}); !slices.Contains(got, "z-[12345]") {
+				t.Fatal("incremental scan", got)
+			}
+		}
+		runtime.GOMAXPROCS(before)
+	}
+}

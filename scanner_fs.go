@@ -13,6 +13,16 @@ import (
 // binary assets, CSS, lockfiles and dependency directories. Sources configured
 // for disk scanning do not apply. Results include all previously seen candidates.
 func (s *Scanner) ScanFS(filesystems ...fs.FS) ([]string, error) {
+	batch := scanBatch{scanner: s}
+	err := s.scanFS(&batch, filesystems)
+	batch.finish()
+	if err != nil {
+		return nil, err
+	}
+	return slices.Sorted(maps.Keys(s.candidates)), nil
+}
+
+func (s *Scanner) scanFS(batch *scanBatch, filesystems []fs.FS) error {
 	for _, files := range filesystems {
 		err := fs.WalkDir(files, ".", func(name string, entry fs.DirEntry, err error) error {
 			if err != nil {
@@ -31,12 +41,12 @@ func (s *Scanner) ScanFS(filesystems ...fs.FS) ([]string, error) {
 			if err != nil {
 				return err
 			}
-			s.addContent(Content{Text: string(data), Extension: strings.TrimPrefix(path.Ext(name), ".")}, true, nil)
+			s.addContent(Content{Text: string(data), Extension: strings.TrimPrefix(path.Ext(name), ".")}, true, nil, batch)
 			return nil
 		})
 		if err != nil {
-			return nil, err
+			return err
 		}
 	}
-	return slices.Sorted(maps.Keys(s.candidates)), nil
+	return nil
 }
