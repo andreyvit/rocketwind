@@ -1,0 +1,142 @@
+[
+  {
+    "input": "p",
+    "result": [
+      null,
+      "p"
+    ]
+  },
+  {
+    "input": "p::before",
+    "result": [
+      "::before",
+      "p"
+    ]
+  },
+  {
+    "input": "p::marker::before",
+    "result": [
+      "::marker::before",
+      "p"
+    ]
+  },
+  {
+    "input": "p::before, q::before",
+    "result": [
+      "::before",
+      "p, q"
+    ]
+  },
+  {
+    "input": "p::before, q::after",
+    "result": [
+      null,
+      "p::before, q::after"
+    ]
+  },
+  {
+    "input": "p::before, q",
+    "result": [
+      "::before",
+      "p, q"
+    ]
+  },
+  {
+    "input": "p, q::before",
+    "result": [
+      null,
+      "p, q::before"
+    ]
+  },
+  {
+    "input": "p::marker::before, q::before",
+    "result": [
+      "::marker::before",
+      "p, q"
+    ]
+  },
+  {
+    "input": "p::before, q::marker::before",
+    "result": [
+      "::before",
+      "p, q::marker"
+    ]
+  },
+  {
+    "input": "p::part(foo), q::part(bar)",
+    "result": [
+      "::part(foo)",
+      "p, q"
+    ]
+  },
+  {
+    "input": "p::before:hover",
+    "result": [
+      null,
+      "p::before:hover"
+    ]
+  },
+  {
+    "input": "p::before q",
+    "result": [
+      null,
+      "p::before q"
+    ]
+  },
+  {
+    "input": "[data-x=\"::before\"]::after",
+    "result": [
+      "::after",
+      "[data-x=\"::before\"]"
+    ]
+  },
+  {
+    "input": ":is(p,q)::before",
+    "result": [
+      "::before",
+      ":is(p,q)"
+    ]
+  },
+  {
+    "input": "p\\:x::after",
+    "result": [
+      "::after",
+      "p\\:x"
+    ]
+  },
+  {
+    "input": "p::before   ",
+    "result": [
+      "::before   ",
+      "p"
+    ]
+  },
+  {
+    "input": "p::before  , q::before",
+    "result": [
+      "::before  ",
+      "p, q"
+    ]
+  },
+  {
+    "input": "p::before + q::before",
+    "result": [
+      "::before",
+      "p::before + q"
+    ]
+  },
+  {
+    "input": "p::x::before, q::y::before",
+    "result": [
+      "::before",
+      "p::x, q::y"
+    ]
+  },
+  {
+    "input": "p::before::x, q::before::y",
+    "result": [
+      null,
+      "p::before::x, q::before::y"
+    ]
+  }
+]

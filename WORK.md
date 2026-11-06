@@ -33,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 95.7%.
+- Core Go suite, race detector and vet pass. Statement coverage: 96.0%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -54,6 +54,11 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Forms v0.5.11 port implemented from pinned source registrations. All 24
   differential CSS fixtures and 20 SVG encoder fixtures pass. No forms tests
   exist in that upstream release. New forms code has 100% statement coverage.
+- Typography v0.5.20 port implemented from pinned source defaults. All 16
+  original upstream tests pass on their pinned Tailwind 3.2.2 dependency;
+  20 latest-Tailwind differential CSS fixtures and 20 selector cases pass.
+  Original v3 output is retained for the pending compatibility profile.
+  New typography code has 100% statement coverage.
 - Remaining: full internal and compatibility test suites,
   standard plugins, scanning/CLI, coverage/performance
   and integration gates.

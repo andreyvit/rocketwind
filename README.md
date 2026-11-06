@@ -8,8 +8,8 @@ process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
-Go plugin API work, along with typed settings, named classes and the forms
-plugin. The other standard plugins, CLI and compatibility profiles are still
+Go plugin API work, along with typed settings, named classes, forms and
+typography. The other standard plugins, CLI and compatibility profiles are still
 being built.
 See [WORK.md](WORK.md) for the implementation gates.
 
@@ -138,7 +138,14 @@ in a stylesheet, with the same `strategy: "base"` or `strategy: "class"` option,
 or pass `rocketwind.Forms(rocketwind.FormsOptions{})` to `NewWithPlugins`.
 Its CSS matches 24 differential cases against the real plugin, plus 20 SVG
 encoding cases. This upstream release contains no automated tests to import.
-Typography and the remaining standard plugins are still in progress.
+
+`@tailwindcss/typography` **0.5.20** is also built in, including prose modifiers,
+element variants, custom class names and the legacy selector option. In Go, use
+`Typography(TypographyOptions{})`; `Styles` replaces its defaults and `Extend`
+customizes selected declarations or selectors. All 16 original upstream tests
+pass with their pinned Tailwind 3.2.2 dependency. The same cases plus four default
+configurations match Tailwind 4.3.4 output; 20 selector cases also match.
+The remaining standard plugins are still in progress.
 
 
 Tailwind compatibility
