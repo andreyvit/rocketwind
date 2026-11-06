@@ -9,8 +9,8 @@ class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
 Go plugin API work, along with typed settings, named classes, forms and
-typography and the other standard plugins. The CLI works; browser-specific
-optimization, compatibility profiles and the full coverage gate remain open.
+typography and the other standard plugins. The CLI and browser transforms work;
+compatibility profiles and the full coverage gate remain open.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -249,8 +249,10 @@ the original input, result and whether it changed. Streaming processes one group
 per line as it arrives. Use `--css` to supply the theme and custom utilities.
 
 Use `--minify` (or `-m`) for compact CSS, or `--optimize` to keep readable
-indentation. Both lower nested rules and preserve license comments, fallbacks
-and custom property names. They work with source maps and watch mode.
+indentation. Both lower nested rules and media ranges, expand custom media,
+and add browser prefixes. They preserve license comments, fallbacks and custom
+property names, and work with source maps and watch mode. Browser targets match
+Tailwind 4.3.4: Safari and iOS 16.4, Firefox 128 and Chrome 111.
 
 The same operations are available in Go as `Optimize(css, options)` and
 `OptimizeWithSourceMap(css, options, sourceMap)`. Pass the map returned by
@@ -261,7 +263,8 @@ shorter color spelling used by Lightning CSS.
 All 64 applicable cases from the upstream CLI integration suite pass in Go,
 including watch sequences, plugin callbacks and source-map positions. Four
 cases require JavaScript execution; two others are already skipped upstream.
-Browser-specific optimization transforms are still being checked.
+Both optimizer modes pass 2,234 additional comparisons against Tailwind's
+optimizer, including 268 inputs for browser transforms and error handling.
 
 Applications can call `cli.Run` with Go modules registered in `cli.Options`.
 Use `ResolveModule` for configuration that changes on disk; report its dependency
@@ -330,7 +333,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 1,698 additional stylesheet comparisons. Browser-specific transforms remain open, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 17,895 captured upstream calls pass. Every core compiler test suite has a Go counterpart, including syntax, utilities, variants, configuration, source maps and canonicalization. Source scanning, CLI helpers and all 64 applicable CLI integration cases pass. Both optimizer modes pass 2,234 additional comparisons. The full coverage and performance gates remain open. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

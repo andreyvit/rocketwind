@@ -12,9 +12,11 @@ type OptimizeOptions struct {
 	From   string
 }
 
-// Optimize lowers CSS nesting, combines adjacent rules with the same selector,
-// and removes comments other than license comments. Minify also removes optional
-// whitespace. Values retain their precision, custom properties and fallbacks.
+// Optimize lowers CSS nesting and media ranges, expands custom media, adds
+// browser prefixes, and removes comments other than license comments. Browser
+// targets match Tailwind 4.3: Safari/iOS 16.4, Firefox 128 and Chrome 111.
+// Minify also removes optional whitespace. Values retain their precision,
+// custom properties and fallbacks.
 func Optimize(css string, options OptimizeOptions) (string, error) {
 	output, _, err := optimizeCSS(css, options, nil, false)
 	return output, err
@@ -48,6 +50,10 @@ func optimizeCSS(css string, options OptimizeOptions, sourceMap *SourceMap, trac
 	}
 	groupOpaqueRules(nodes)
 	nodes = flattenRulesMode(nodes, "", true)
+	nodes, err = optimizeBrowserCSS(nodes)
+	if err != nil {
+		return "", nil, err
+	}
 	writer := optimizedCSSWriter{compact: options.Minify, track: track}
 	writer.out.Grow(len(css))
 	writer.write(nodes, 0)

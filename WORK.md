@@ -353,6 +353,24 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Full Go tests pass. Coverage across packages is 98.5%; this does not yet
   include the separately instrumented CLI binary. The 100% gate remains open.
 
+### Browser optimization
+
+- Added native property prefixes, legacy mask shorthands, image-set and stretch
+  fallbacks, percentage decoration widths, media/container range lowering and
+  custom-media expansion with undefined-reference and cycle errors. Transforms
+  retain source locations and repeated optimization is idempotent.
+- Tightened the independent check: it no longer runs Tailwind's browser
+  transforms on Go output. All 849 core outputs and 268 additional browser
+  inputs pass in both modes: 2,234 comparisons, including expected errors.
+  Comparison preserves ordinary fallback order; it accounts for selector-list
+  grouping, movable custom-property definitions and redundant legacy prefixes.
+- Saved Go snapshots only after all reference comparisons passed. The Go tests
+  verify their input hashes, both output modes, repeated optimization and
+  source maps without invoking a reference compiler. Separate raw-output
+  assertions check fallbacks that the comparison normalizer can itself supply.
+- Full Go tests pass. Whole-project coverage, final performance, the v3 profile
+  and Bubblehouse integration remain open.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:

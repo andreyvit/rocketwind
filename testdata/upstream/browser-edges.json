@@ -1,0 +1,1610 @@
+{
+  "tailwind": "4.3.4",
+  "cases": [
+    {
+      "test": "browser edges: .a{backdrop-filter:blur(1px)}",
+      "css": ".a{backdrop-filter:blur(1px)}",
+      "pretty": ".a {\n  -webkit-backdrop-filter: blur(1px);\n  backdrop-filter: blur(1px);\n}\n",
+      "compact": ".a{-webkit-backdrop-filter:blur(1px);backdrop-filter:blur(1px)}"
+    },
+    {
+      "test": "browser edges: .a{backdrop-filter:none}",
+      "css": ".a{backdrop-filter:none}",
+      "pretty": ".a {\n  -webkit-backdrop-filter: none;\n  backdrop-filter: none;\n}\n",
+      "compact": ".a{-webkit-backdrop-filter:none;backdrop-filter:none}"
+    },
+    {
+      "test": "browser edges: .a{backdrop-filter:var(--value)}",
+      "css": ".a{backdrop-filter:var(--value)}",
+      "pretty": ".a {\n  -webkit-backdrop-filter: var(--value);\n  backdrop-filter: var(--value);\n}\n",
+      "compact": ".a{-webkit-backdrop-filter:var(--value);backdrop-filter:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{backdrop-filter:inherit}",
+      "css": ".a{backdrop-filter:inherit}",
+      "pretty": ".a {\n  -webkit-backdrop-filter: inherit;\n  backdrop-filter: inherit;\n}\n",
+      "compact": ".a{-webkit-backdrop-filter:inherit;backdrop-filter:inherit}"
+    },
+    {
+      "test": "browser edges: .a{backdrop-filter:blur(1px)!important}",
+      "css": ".a{backdrop-filter:blur(1px)!important}",
+      "pretty": ".a {\n  -webkit-backdrop-filter: blur(1px) !important;\n  backdrop-filter: blur(1px) !important;\n}\n",
+      "compact": ".a{-webkit-backdrop-filter:blur(1px)!important;backdrop-filter:blur(1px)!important}"
+    },
+    {
+      "test": "browser edges: .a{user-select:none}",
+      "css": ".a{user-select:none}",
+      "pretty": ".a {\n  -webkit-user-select: none;\n  user-select: none;\n}\n",
+      "compact": ".a{-webkit-user-select:none;user-select:none}"
+    },
+    {
+      "test": "browser edges: .a{user-select:text}",
+      "css": ".a{user-select:text}",
+      "pretty": ".a {\n  -webkit-user-select: text;\n  user-select: text;\n}\n",
+      "compact": ".a{-webkit-user-select:text;user-select:text}"
+    },
+    {
+      "test": "browser edges: .a{user-select:var(--value)}",
+      "css": ".a{user-select:var(--value)}",
+      "pretty": ".a {\n  user-select: var(--value);\n}\n",
+      "compact": ".a{user-select:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{user-select:inherit}",
+      "css": ".a{user-select:inherit}",
+      "pretty": ".a {\n  user-select: inherit;\n}\n",
+      "compact": ".a{user-select:inherit}"
+    },
+    {
+      "test": "browser edges: .a{user-select:none!important}",
+      "css": ".a{user-select:none!important}",
+      "pretty": ".a {\n  -webkit-user-select: none !important;\n  user-select: none !important;\n}\n",
+      "compact": ".a{-webkit-user-select:none!important;user-select:none!important}"
+    },
+    {
+      "test": "browser edges: .a{hyphens:auto}",
+      "css": ".a{hyphens:auto}",
+      "pretty": ".a {\n  -webkit-hyphens: auto;\n  hyphens: auto;\n}\n",
+      "compact": ".a{-webkit-hyphens:auto;hyphens:auto}"
+    },
+    {
+      "test": "browser edges: .a{hyphens:none}",
+      "css": ".a{hyphens:none}",
+      "pretty": ".a {\n  -webkit-hyphens: none;\n  hyphens: none;\n}\n",
+      "compact": ".a{-webkit-hyphens:none;hyphens:none}"
+    },
+    {
+      "test": "browser edges: .a{hyphens:var(--value)}",
+      "css": ".a{hyphens:var(--value)}",
+      "pretty": ".a {\n  hyphens: var(--value);\n}\n",
+      "compact": ".a{hyphens:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{hyphens:inherit}",
+      "css": ".a{hyphens:inherit}",
+      "pretty": ".a {\n  hyphens: inherit;\n}\n",
+      "compact": ".a{hyphens:inherit}"
+    },
+    {
+      "test": "browser edges: .a{hyphens:auto!important}",
+      "css": ".a{hyphens:auto!important}",
+      "pretty": ".a {\n  -webkit-hyphens: auto !important;\n  hyphens: auto !important;\n}\n",
+      "compact": ".a{-webkit-hyphens:auto!important;hyphens:auto!important}"
+    },
+    {
+      "test": "browser edges: .a{box-decoration-break:clone}",
+      "css": ".a{box-decoration-break:clone}",
+      "pretty": ".a {\n  -webkit-box-decoration-break: clone;\n  box-decoration-break: clone;\n}\n",
+      "compact": ".a{-webkit-box-decoration-break:clone;box-decoration-break:clone}"
+    },
+    {
+      "test": "browser edges: .a{box-decoration-break:slice}",
+      "css": ".a{box-decoration-break:slice}",
+      "pretty": ".a {\n  -webkit-box-decoration-break: slice;\n  box-decoration-break: slice;\n}\n",
+      "compact": ".a{-webkit-box-decoration-break:slice;box-decoration-break:slice}"
+    },
+    {
+      "test": "browser edges: .a{box-decoration-break:var(--value)}",
+      "css": ".a{box-decoration-break:var(--value)}",
+      "pretty": ".a {\n  box-decoration-break: var(--value);\n}\n",
+      "compact": ".a{box-decoration-break:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{box-decoration-break:inherit}",
+      "css": ".a{box-decoration-break:inherit}",
+      "pretty": ".a {\n  box-decoration-break: inherit;\n}\n",
+      "compact": ".a{box-decoration-break:inherit}"
+    },
+    {
+      "test": "browser edges: .a{box-decoration-break:clone!important}",
+      "css": ".a{box-decoration-break:clone!important}",
+      "pretty": ".a {\n  -webkit-box-decoration-break: clone !important;\n  box-decoration-break: clone !important;\n}\n",
+      "compact": ".a{-webkit-box-decoration-break:clone!important;box-decoration-break:clone!important}"
+    },
+    {
+      "test": "browser edges: .a{print-color-adjust:exact}",
+      "css": ".a{print-color-adjust:exact}",
+      "pretty": ".a {\n  -webkit-print-color-adjust: exact;\n  print-color-adjust: exact;\n}\n",
+      "compact": ".a{-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+    },
+    {
+      "test": "browser edges: .a{print-color-adjust:economy}",
+      "css": ".a{print-color-adjust:economy}",
+      "pretty": ".a {\n  -webkit-print-color-adjust: economy;\n  print-color-adjust: economy;\n}\n",
+      "compact": ".a{-webkit-print-color-adjust:economy;print-color-adjust:economy}"
+    },
+    {
+      "test": "browser edges: .a{print-color-adjust:var(--value)}",
+      "css": ".a{print-color-adjust:var(--value)}",
+      "pretty": ".a {\n  print-color-adjust: var(--value);\n}\n",
+      "compact": ".a{print-color-adjust:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{print-color-adjust:inherit}",
+      "css": ".a{print-color-adjust:inherit}",
+      "pretty": ".a {\n  print-color-adjust: inherit;\n}\n",
+      "compact": ".a{print-color-adjust:inherit}"
+    },
+    {
+      "test": "browser edges: .a{print-color-adjust:exact!important}",
+      "css": ".a{print-color-adjust:exact!important}",
+      "pretty": ".a {\n  -webkit-print-color-adjust: exact !important;\n  print-color-adjust: exact !important;\n}\n",
+      "compact": ".a{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}"
+    },
+    {
+      "test": "browser edges: .a{text-size-adjust:100%}",
+      "css": ".a{text-size-adjust:100%}",
+      "pretty": ".a {\n  -webkit-text-size-adjust: 100%;\n  -moz-text-size-adjust: 100%;\n  text-size-adjust: 100%;\n}\n",
+      "compact": ".a{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}"
+    },
+    {
+      "test": "browser edges: .a{text-size-adjust:none}",
+      "css": ".a{text-size-adjust:none}",
+      "pretty": ".a {\n  -webkit-text-size-adjust: none;\n  -moz-text-size-adjust: none;\n  text-size-adjust: none;\n}\n",
+      "compact": ".a{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;text-size-adjust:none}"
+    },
+    {
+      "test": "browser edges: .a{text-size-adjust:var(--value)}",
+      "css": ".a{text-size-adjust:var(--value)}",
+      "pretty": ".a {\n  text-size-adjust: var(--value);\n}\n",
+      "compact": ".a{text-size-adjust:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-size-adjust:inherit}",
+      "css": ".a{text-size-adjust:inherit}",
+      "pretty": ".a {\n  text-size-adjust: inherit;\n}\n",
+      "compact": ".a{text-size-adjust:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-size-adjust:100%!important}",
+      "css": ".a{text-size-adjust:100%!important}",
+      "pretty": ".a {\n  -webkit-text-size-adjust: 100% !important;\n  -moz-text-size-adjust: 100% !important;\n  text-size-adjust: 100% !important;\n}\n",
+      "compact": ".a{-webkit-text-size-adjust:100%!important;-moz-text-size-adjust:100%!important;text-size-adjust:100%!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-skip-ink:auto}",
+      "css": ".a{text-decoration-skip-ink:auto}",
+      "pretty": ".a {\n  -webkit-text-decoration-skip-ink: auto;\n  text-decoration-skip-ink: auto;\n}\n",
+      "compact": ".a{-webkit-text-decoration-skip-ink:auto;text-decoration-skip-ink:auto}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-skip-ink:none}",
+      "css": ".a{text-decoration-skip-ink:none}",
+      "pretty": ".a {\n  -webkit-text-decoration-skip-ink: none;\n  text-decoration-skip-ink: none;\n}\n",
+      "compact": ".a{-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-skip-ink:var(--value)}",
+      "css": ".a{text-decoration-skip-ink:var(--value)}",
+      "pretty": ".a {\n  text-decoration-skip-ink: var(--value);\n}\n",
+      "compact": ".a{text-decoration-skip-ink:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-skip-ink:inherit}",
+      "css": ".a{text-decoration-skip-ink:inherit}",
+      "pretty": ".a {\n  text-decoration-skip-ink: inherit;\n}\n",
+      "compact": ".a{text-decoration-skip-ink:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-skip-ink:auto!important}",
+      "css": ".a{text-decoration-skip-ink:auto!important}",
+      "pretty": ".a {\n  -webkit-text-decoration-skip-ink: auto !important;\n  text-decoration-skip-ink: auto !important;\n}\n",
+      "compact": ".a{-webkit-text-decoration-skip-ink:auto!important;text-decoration-skip-ink:auto!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline}",
+      "css": ".a{text-decoration:underline}",
+      "pretty": ".a {\n  text-decoration: underline;\n}\n",
+      "compact": ".a{text-decoration:underline}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline dotted}",
+      "css": ".a{text-decoration:underline dotted}",
+      "pretty": ".a {\n  -webkit-text-decoration: underline dotted;\n  text-decoration: underline dotted;\n}\n",
+      "compact": ".a{-webkit-text-decoration:underline dotted;text-decoration:underline dotted}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline red}",
+      "css": ".a{text-decoration:underline red}",
+      "pretty": ".a {\n  -webkit-text-decoration: underline red;\n  text-decoration: underline red;\n}\n",
+      "compact": ".a{-webkit-text-decoration:underline red;text-decoration:underline red}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline 12%}",
+      "css": ".a{text-decoration:underline 12%}",
+      "pretty": ".a {\n  text-decoration: underline;\n  text-decoration-thickness: .12em;\n}\n",
+      "compact": ".a{text-decoration:underline;text-decoration-thickness:.12em}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline solid currentColor}",
+      "css": ".a{text-decoration:underline solid currentColor}",
+      "pretty": ".a {\n  text-decoration: underline;\n}\n",
+      "compact": ".a{text-decoration:underline}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:var(--value)}",
+      "css": ".a{text-decoration:var(--value)}",
+      "pretty": ".a {\n  -webkit-text-decoration: var(--value);\n  -webkit-text-decoration: var(--value);\n  text-decoration: var(--value);\n}\n",
+      "compact": ".a{-webkit-text-decoration:var(--value);-webkit-text-decoration:var(--value);text-decoration:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:inherit}",
+      "css": ".a{text-decoration:inherit}",
+      "pretty": ".a {\n  -webkit-text-decoration: inherit;\n  -webkit-text-decoration: inherit;\n  text-decoration: inherit;\n}\n",
+      "compact": ".a{-webkit-text-decoration:inherit;-webkit-text-decoration:inherit;text-decoration:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration:underline!important}",
+      "css": ".a{text-decoration:underline!important}",
+      "pretty": ".a {\n  text-decoration: underline !important;\n}\n",
+      "compact": ".a{text-decoration:underline!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:red}",
+      "css": ".a{text-decoration-color:red}",
+      "pretty": ".a {\n  text-decoration-color: red;\n}\n",
+      "compact": ".a{text-decoration-color:red}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:currentColor}",
+      "css": ".a{text-decoration-color:currentColor}",
+      "pretty": ".a {\n  text-decoration-color: currentColor;\n}\n",
+      "compact": ".a{text-decoration-color:currentColor}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:color-mix(in oklab, red, blue)}",
+      "css": ".a{text-decoration-color:color-mix(in oklab, red, blue)}",
+      "pretty": ".a {\n  text-decoration-color: oklab(53.9985% .096203 -.0928409);\n}\n",
+      "compact": ".a{text-decoration-color:oklab(53.9985% .096203 -.0928409)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:color-mix(in oklab, currentColor, blue)}",
+      "css": ".a{text-decoration-color:color-mix(in oklab, currentColor, blue)}",
+      "pretty": ".a {\n  -webkit-text-decoration-color: color-mix(in oklab, currentColor, blue);\n  -webkit-text-decoration-color: color-mix(in oklab, currentColor, blue);\n  text-decoration-color: color-mix(in oklab, currentColor, blue);\n}\n",
+      "compact": ".a{-webkit-text-decoration-color:color-mix(in oklab, currentColor, blue);-webkit-text-decoration-color:color-mix(in oklab, currentColor, blue);text-decoration-color:color-mix(in oklab, currentColor, blue)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:var(--value)}",
+      "css": ".a{text-decoration-color:var(--value)}",
+      "pretty": ".a {\n  -webkit-text-decoration-color: var(--value);\n  -webkit-text-decoration-color: var(--value);\n  text-decoration-color: var(--value);\n}\n",
+      "compact": ".a{-webkit-text-decoration-color:var(--value);-webkit-text-decoration-color:var(--value);text-decoration-color:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:inherit}",
+      "css": ".a{text-decoration-color:inherit}",
+      "pretty": ".a {\n  -webkit-text-decoration-color: inherit;\n  -webkit-text-decoration-color: inherit;\n  text-decoration-color: inherit;\n}\n",
+      "compact": ".a{-webkit-text-decoration-color:inherit;-webkit-text-decoration-color:inherit;text-decoration-color:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-color:red!important}",
+      "css": ".a{text-decoration-color:red!important}",
+      "pretty": ".a {\n  text-decoration-color: red !important;\n}\n",
+      "compact": ".a{text-decoration-color:red!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-style:wavy}",
+      "css": ".a{text-decoration-style:wavy}",
+      "pretty": ".a {\n  text-decoration-style: wavy;\n}\n",
+      "compact": ".a{text-decoration-style:wavy}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-style:var(--value)}",
+      "css": ".a{text-decoration-style:var(--value)}",
+      "pretty": ".a {\n  -webkit-text-decoration-style: var(--value);\n  -webkit-text-decoration-style: var(--value);\n  text-decoration-style: var(--value);\n}\n",
+      "compact": ".a{-webkit-text-decoration-style:var(--value);-webkit-text-decoration-style:var(--value);text-decoration-style:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-style:inherit}",
+      "css": ".a{text-decoration-style:inherit}",
+      "pretty": ".a {\n  -webkit-text-decoration-style: inherit;\n  -webkit-text-decoration-style: inherit;\n  text-decoration-style: inherit;\n}\n",
+      "compact": ".a{-webkit-text-decoration-style:inherit;-webkit-text-decoration-style:inherit;text-decoration-style:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-style:wavy!important}",
+      "css": ".a{text-decoration-style:wavy!important}",
+      "pretty": ".a {\n  text-decoration-style: wavy !important;\n}\n",
+      "compact": ".a{text-decoration-style:wavy!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-line:underline}",
+      "css": ".a{text-decoration-line:underline}",
+      "pretty": ".a {\n  text-decoration-line: underline;\n}\n",
+      "compact": ".a{text-decoration-line:underline}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-line:var(--value)}",
+      "css": ".a{text-decoration-line:var(--value)}",
+      "pretty": ".a {\n  -webkit-text-decoration-line: var(--value);\n  -webkit-text-decoration-line: var(--value);\n  text-decoration-line: var(--value);\n}\n",
+      "compact": ".a{-webkit-text-decoration-line:var(--value);-webkit-text-decoration-line:var(--value);text-decoration-line:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-line:inherit}",
+      "css": ".a{text-decoration-line:inherit}",
+      "pretty": ".a {\n  -webkit-text-decoration-line: inherit;\n  -webkit-text-decoration-line: inherit;\n  text-decoration-line: inherit;\n}\n",
+      "compact": ".a{-webkit-text-decoration-line:inherit;-webkit-text-decoration-line:inherit;text-decoration-line:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-line:underline!important}",
+      "css": ".a{text-decoration-line:underline!important}",
+      "pretty": ".a {\n  text-decoration-line: underline !important;\n}\n",
+      "compact": ".a{text-decoration-line:underline!important}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:12%}",
+      "css": ".a{text-decoration-thickness:12%}",
+      "pretty": ".a {\n  text-decoration-thickness: .12em;\n}\n",
+      "compact": ".a{text-decoration-thickness:.12em}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:0%}",
+      "css": ".a{text-decoration-thickness:0%}",
+      "pretty": ".a {\n  text-decoration-thickness: 2.93874e-39em;\n}\n",
+      "compact": ".a{text-decoration-thickness:2.93874e-39em}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:0.1234567%}",
+      "css": ".a{text-decoration-thickness:0.1234567%}",
+      "pretty": ".a {\n  text-decoration-thickness: .00123457em;\n}\n",
+      "compact": ".a{text-decoration-thickness:.00123457em}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:calc(10% + 2px)}",
+      "css": ".a{text-decoration-thickness:calc(10% + 2px)}",
+      "pretty": ".a {\n  text-decoration-thickness: calc(10% + 2px);\n}\n",
+      "compact": ".a{text-decoration-thickness:calc(10% + 2px)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:var(--value)}",
+      "css": ".a{text-decoration-thickness:var(--value)}",
+      "pretty": ".a {\n  text-decoration-thickness: var(--value);\n}\n",
+      "compact": ".a{text-decoration-thickness:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:inherit}",
+      "css": ".a{text-decoration-thickness:inherit}",
+      "pretty": ".a {\n  text-decoration-thickness: inherit;\n}\n",
+      "compact": ".a{text-decoration-thickness:inherit}"
+    },
+    {
+      "test": "browser edges: .a{text-decoration-thickness:12%!important}",
+      "css": ".a{text-decoration-thickness:12%!important}",
+      "pretty": ".a {\n  text-decoration-thickness: .12em !important;\n}\n",
+      "compact": ".a{text-decoration-thickness:.12em!important}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:border-box}",
+      "css": ".a{background-clip:border-box}",
+      "pretty": ".a {\n  background-clip: border-box;\n}\n",
+      "compact": ".a{background-clip:border-box}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:text}",
+      "css": ".a{background-clip:text}",
+      "pretty": ".a {\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n",
+      "compact": ".a{-webkit-background-clip:text;background-clip:text}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:padding-box, text}",
+      "css": ".a{background-clip:padding-box, text}",
+      "pretty": ".a {\n  -webkit-background-clip: padding-box, text;\n  background-clip: padding-box, text;\n}\n",
+      "compact": ".a{-webkit-background-clip:padding-box,text;background-clip:padding-box,text}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:var(--value)}",
+      "css": ".a{background-clip:var(--value)}",
+      "pretty": ".a {\n  background-clip: var(--value);\n}\n",
+      "compact": ".a{background-clip:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:inherit}",
+      "css": ".a{background-clip:inherit}",
+      "pretty": ".a {\n  background-clip: inherit;\n}\n",
+      "compact": ".a{background-clip:inherit}"
+    },
+    {
+      "test": "browser edges: .a{background-clip:border-box!important}",
+      "css": ".a{background-clip:border-box!important}",
+      "pretty": ".a {\n  background-clip: border-box !important;\n}\n",
+      "compact": ".a{background-clip:border-box!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:none}",
+      "css": ".a{mask-image:none}",
+      "pretty": ".a {\n  -webkit-mask-image: none;\n  mask-image: none;\n}\n",
+      "compact": ".a{-webkit-mask-image:none;mask-image:none}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:url(a)}",
+      "css": ".a{mask-image:url(a)}",
+      "pretty": ".a {\n  -webkit-mask-image: url(\"a\");\n  mask-image: url(\"a\");\n}\n",
+      "compact": ".a{-webkit-mask-image:url(a);mask-image:url(a)}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:linear-gradient(red, blue)}",
+      "css": ".a{mask-image:linear-gradient(red, blue)}",
+      "pretty": ".a {\n  -webkit-mask-image: linear-gradient(red, #00f);\n  mask-image: linear-gradient(red, #00f);\n}\n",
+      "compact": ".a{-webkit-mask-image:linear-gradient(red,#00f);mask-image:linear-gradient(red,#00f)}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:var(--value)}",
+      "css": ".a{mask-image:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-image: var(--value);\n  -webkit-mask-image: var(--value);\n  mask-image: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-image:var(--value);-webkit-mask-image:var(--value);mask-image:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:inherit}",
+      "css": ".a{mask-image:inherit}",
+      "pretty": ".a {\n  -webkit-mask-image: inherit;\n  -webkit-mask-image: inherit;\n  mask-image: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-image:inherit;-webkit-mask-image:inherit;mask-image:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-image:none!important}",
+      "css": ".a{mask-image:none!important}",
+      "pretty": ".a {\n  -webkit-mask-image: none !important;\n  mask-image: none !important;\n}\n",
+      "compact": ".a{-webkit-mask-image:none!important;mask-image:none!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-position:center}",
+      "css": ".a{mask-position:center}",
+      "pretty": ".a {\n  -webkit-mask-position: center;\n  mask-position: center;\n}\n",
+      "compact": ".a{-webkit-mask-position:50%;mask-position:50%}"
+    },
+    {
+      "test": "browser edges: .a{mask-position:0 0}",
+      "css": ".a{mask-position:0 0}",
+      "pretty": ".a {\n  -webkit-mask-position: 0 0;\n  mask-position: 0 0;\n}\n",
+      "compact": ".a{-webkit-mask-position:0 0;mask-position:0 0}"
+    },
+    {
+      "test": "browser edges: .a{mask-position:var(--value)}",
+      "css": ".a{mask-position:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-position: var(--value);\n  -webkit-mask-position: var(--value);\n  mask-position: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-position:var(--value);-webkit-mask-position:var(--value);mask-position:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-position:inherit}",
+      "css": ".a{mask-position:inherit}",
+      "pretty": ".a {\n  -webkit-mask-position: inherit;\n  -webkit-mask-position: inherit;\n  mask-position: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-position:inherit;-webkit-mask-position:inherit;mask-position:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-position:center!important}",
+      "css": ".a{mask-position:center!important}",
+      "pretty": ".a {\n  -webkit-mask-position: center !important;\n  mask-position: center !important;\n}\n",
+      "compact": ".a{-webkit-mask-position:50%!important;mask-position:50%!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-x:left}",
+      "css": ".a{mask-position-x:left}",
+      "pretty": ".a {\n  mask-position-x: left;\n}\n",
+      "compact": ".a{mask-position-x:left}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-x:var(--value)}",
+      "css": ".a{mask-position-x:var(--value)}",
+      "pretty": ".a {\n  mask-position-x: var(--value);\n}\n",
+      "compact": ".a{mask-position-x:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-x:inherit}",
+      "css": ".a{mask-position-x:inherit}",
+      "pretty": ".a {\n  mask-position-x: inherit;\n}\n",
+      "compact": ".a{mask-position-x:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-x:left!important}",
+      "css": ".a{mask-position-x:left!important}",
+      "pretty": ".a {\n  mask-position-x: left !important;\n}\n",
+      "compact": ".a{mask-position-x:left!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-y:top}",
+      "css": ".a{mask-position-y:top}",
+      "pretty": ".a {\n  mask-position-y: top;\n}\n",
+      "compact": ".a{mask-position-y:top}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-y:var(--value)}",
+      "css": ".a{mask-position-y:var(--value)}",
+      "pretty": ".a {\n  mask-position-y: var(--value);\n}\n",
+      "compact": ".a{mask-position-y:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-y:inherit}",
+      "css": ".a{mask-position-y:inherit}",
+      "pretty": ".a {\n  mask-position-y: inherit;\n}\n",
+      "compact": ".a{mask-position-y:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-position-y:top!important}",
+      "css": ".a{mask-position-y:top!important}",
+      "pretty": ".a {\n  mask-position-y: top !important;\n}\n",
+      "compact": ".a{mask-position-y:top!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-size:cover}",
+      "css": ".a{mask-size:cover}",
+      "pretty": ".a {\n  -webkit-mask-size: cover;\n  mask-size: cover;\n}\n",
+      "compact": ".a{-webkit-mask-size:cover;mask-size:cover}"
+    },
+    {
+      "test": "browser edges: .a{mask-size:20px 30px}",
+      "css": ".a{mask-size:20px 30px}",
+      "pretty": ".a {\n  -webkit-mask-size: 20px 30px;\n  mask-size: 20px 30px;\n}\n",
+      "compact": ".a{-webkit-mask-size:20px 30px;mask-size:20px 30px}"
+    },
+    {
+      "test": "browser edges: .a{mask-size:var(--value)}",
+      "css": ".a{mask-size:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-size: var(--value);\n  -webkit-mask-size: var(--value);\n  mask-size: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-size:var(--value);-webkit-mask-size:var(--value);mask-size:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-size:inherit}",
+      "css": ".a{mask-size:inherit}",
+      "pretty": ".a {\n  -webkit-mask-size: inherit;\n  -webkit-mask-size: inherit;\n  mask-size: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-size:inherit;-webkit-mask-size:inherit;mask-size:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-size:cover!important}",
+      "css": ".a{mask-size:cover!important}",
+      "pretty": ".a {\n  -webkit-mask-size: cover !important;\n  mask-size: cover !important;\n}\n",
+      "compact": ".a{-webkit-mask-size:cover!important;mask-size:cover!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-repeat:no-repeat}",
+      "css": ".a{mask-repeat:no-repeat}",
+      "pretty": ".a {\n  -webkit-mask-repeat: no-repeat;\n  mask-repeat: no-repeat;\n}\n",
+      "compact": ".a{-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}"
+    },
+    {
+      "test": "browser edges: .a{mask-repeat:repeat-x}",
+      "css": ".a{mask-repeat:repeat-x}",
+      "pretty": ".a {\n  -webkit-mask-repeat: repeat-x;\n  mask-repeat: repeat-x;\n}\n",
+      "compact": ".a{-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x}"
+    },
+    {
+      "test": "browser edges: .a{mask-repeat:var(--value)}",
+      "css": ".a{mask-repeat:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-repeat: var(--value);\n  -webkit-mask-repeat: var(--value);\n  mask-repeat: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-repeat:var(--value);-webkit-mask-repeat:var(--value);mask-repeat:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-repeat:inherit}",
+      "css": ".a{mask-repeat:inherit}",
+      "pretty": ".a {\n  -webkit-mask-repeat: inherit;\n  -webkit-mask-repeat: inherit;\n  mask-repeat: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-repeat:inherit;-webkit-mask-repeat:inherit;mask-repeat:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-repeat:no-repeat!important}",
+      "css": ".a{mask-repeat:no-repeat!important}",
+      "pretty": ".a {\n  -webkit-mask-repeat: no-repeat !important;\n  mask-repeat: no-repeat !important;\n}\n",
+      "compact": ".a{-webkit-mask-repeat:no-repeat!important;mask-repeat:no-repeat!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-clip:border-box}",
+      "css": ".a{mask-clip:border-box}",
+      "pretty": ".a {\n  -webkit-mask-clip: border-box;\n  mask-clip: border-box;\n}\n",
+      "compact": ".a{-webkit-mask-clip:border-box;mask-clip:border-box}"
+    },
+    {
+      "test": "browser edges: .a{mask-clip:no-clip}",
+      "css": ".a{mask-clip:no-clip}",
+      "pretty": ".a {\n  -webkit-mask-clip: no-clip;\n  mask-clip: no-clip;\n}\n",
+      "compact": ".a{-webkit-mask-clip:no-clip;mask-clip:no-clip}"
+    },
+    {
+      "test": "browser edges: .a{mask-clip:var(--value)}",
+      "css": ".a{mask-clip:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-clip: var(--value);\n  -webkit-mask-clip: var(--value);\n  mask-clip: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-clip:var(--value);-webkit-mask-clip:var(--value);mask-clip:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-clip:inherit}",
+      "css": ".a{mask-clip:inherit}",
+      "pretty": ".a {\n  -webkit-mask-clip: inherit;\n  -webkit-mask-clip: inherit;\n  mask-clip: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-clip:inherit;-webkit-mask-clip:inherit;mask-clip:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-clip:border-box!important}",
+      "css": ".a{mask-clip:border-box!important}",
+      "pretty": ".a {\n  -webkit-mask-clip: border-box !important;\n  mask-clip: border-box !important;\n}\n",
+      "compact": ".a{-webkit-mask-clip:border-box!important;mask-clip:border-box!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-origin:content-box}",
+      "css": ".a{mask-origin:content-box}",
+      "pretty": ".a {\n  -webkit-mask-origin: content-box;\n  mask-origin: content-box;\n}\n",
+      "compact": ".a{-webkit-mask-origin:content-box;mask-origin:content-box}"
+    },
+    {
+      "test": "browser edges: .a{mask-origin:fill-box}",
+      "css": ".a{mask-origin:fill-box}",
+      "pretty": ".a {\n  -webkit-mask-origin: fill-box;\n  mask-origin: fill-box;\n}\n",
+      "compact": ".a{-webkit-mask-origin:fill-box;mask-origin:fill-box}"
+    },
+    {
+      "test": "browser edges: .a{mask-origin:var(--value)}",
+      "css": ".a{mask-origin:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-origin: var(--value);\n  -webkit-mask-origin: var(--value);\n  mask-origin: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-origin:var(--value);-webkit-mask-origin:var(--value);mask-origin:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-origin:inherit}",
+      "css": ".a{mask-origin:inherit}",
+      "pretty": ".a {\n  -webkit-mask-origin: inherit;\n  -webkit-mask-origin: inherit;\n  mask-origin: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-origin:inherit;-webkit-mask-origin:inherit;mask-origin:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-origin:content-box!important}",
+      "css": ".a{mask-origin:content-box!important}",
+      "pretty": ".a {\n  -webkit-mask-origin: content-box !important;\n  mask-origin: content-box !important;\n}\n",
+      "compact": ".a{-webkit-mask-origin:content-box!important;mask-origin:content-box!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:add}",
+      "css": ".a{mask-composite:add}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-over;\n  -webkit-mask-composite: source-over;\n  mask-composite: add;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-over;-webkit-mask-composite:source-over;mask-composite:add}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:subtract}",
+      "css": ".a{mask-composite:subtract}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-out;\n  -webkit-mask-composite: source-out;\n  mask-composite: subtract;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-out;-webkit-mask-composite:source-out;mask-composite:subtract}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:intersect}",
+      "css": ".a{mask-composite:intersect}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-in;\n  -webkit-mask-composite: source-in;\n  mask-composite: intersect;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-in;-webkit-mask-composite:source-in;mask-composite:intersect}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:exclude}",
+      "css": ".a{mask-composite:exclude}",
+      "pretty": ".a {\n  -webkit-mask-composite: xor;\n  -webkit-mask-composite: xor;\n  mask-composite: exclude;\n}\n",
+      "compact": ".a{-webkit-mask-composite:xor;-webkit-mask-composite:xor;mask-composite:exclude}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:add, intersect}",
+      "css": ".a{mask-composite:add, intersect}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-over, source-in;\n  -webkit-mask-composite: source-over, source-in;\n  mask-composite: add, intersect;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-over,source-in;-webkit-mask-composite:source-over,source-in;mask-composite:add,intersect}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:var(--value)}",
+      "css": ".a{mask-composite:var(--value)}",
+      "pretty": ".a {\n  mask-composite: var(--value);\n}\n",
+      "compact": ".a{mask-composite:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:inherit}",
+      "css": ".a{mask-composite:inherit}",
+      "pretty": ".a {\n  mask-composite: inherit;\n}\n",
+      "compact": ".a{mask-composite:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-composite:add!important}",
+      "css": ".a{mask-composite:add!important}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-over !important;\n  -webkit-mask-composite: source-over !important;\n  mask-composite: add !important;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-over!important;-webkit-mask-composite:source-over!important;mask-composite:add!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:alpha}",
+      "css": ".a{mask-mode:alpha}",
+      "pretty": ".a {\n  -webkit-mask-source-type: alpha;\n  -webkit-mask-source-type: alpha;\n  mask-mode: alpha;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:alpha;-webkit-mask-source-type:alpha;mask-mode:alpha}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:luminance}",
+      "css": ".a{mask-mode:luminance}",
+      "pretty": ".a {\n  -webkit-mask-source-type: luminance;\n  -webkit-mask-source-type: luminance;\n  mask-mode: luminance;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:luminance;-webkit-mask-source-type:luminance;mask-mode:luminance}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:match-source}",
+      "css": ".a{mask-mode:match-source}",
+      "pretty": ".a {\n  -webkit-mask-source-type: auto;\n  -webkit-mask-source-type: auto;\n  mask-mode: match-source;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:auto;-webkit-mask-source-type:auto;mask-mode:match-source}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:alpha, match-source}",
+      "css": ".a{mask-mode:alpha, match-source}",
+      "pretty": ".a {\n  -webkit-mask-source-type: alpha, auto;\n  -webkit-mask-source-type: alpha, auto;\n  mask-mode: alpha, match-source;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:alpha,auto;-webkit-mask-source-type:alpha,auto;mask-mode:alpha,match-source}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:var(--value)}",
+      "css": ".a{mask-mode:var(--value)}",
+      "pretty": ".a {\n  mask-mode: var(--value);\n}\n",
+      "compact": ".a{mask-mode:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:inherit}",
+      "css": ".a{mask-mode:inherit}",
+      "pretty": ".a {\n  mask-mode: inherit;\n}\n",
+      "compact": ".a{mask-mode:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-mode:alpha!important}",
+      "css": ".a{mask-mode:alpha!important}",
+      "pretty": ".a {\n  -webkit-mask-source-type: alpha !important;\n  -webkit-mask-source-type: alpha !important;\n  mask-mode: alpha !important;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:alpha!important;-webkit-mask-source-type:alpha!important;mask-mode:alpha!important}"
+    },
+    {
+      "test": "browser edges: .a{mask:url(a)}",
+      "css": ".a{mask:url(a)}",
+      "pretty": ".a {\n  -webkit-mask: url(\"a\");\n  mask: url(\"a\");\n}\n",
+      "compact": ".a{-webkit-mask:url(a);mask:url(a)}"
+    },
+    {
+      "test": "browser edges: .a{mask:url(a) luminance subtract}",
+      "css": ".a{mask:url(a) luminance subtract}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-out;\n  -webkit-mask-source-type: luminance;\n  -webkit-mask: url(\"a\");\n  -webkit-mask-composite: source-out;\n  -webkit-mask-source-type: luminance;\n  mask: url(\"a\") subtract luminance;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-out;-webkit-mask-source-type:luminance;-webkit-mask:url(a);-webkit-mask-composite:source-out;-webkit-mask-source-type:luminance;mask:url(a) subtract luminance}"
+    },
+    {
+      "test": "browser edges: .a{mask:linear-gradient(red,blue) center / cover no-repeat add alpha}",
+      "css": ".a{mask:linear-gradient(red,blue) center / cover no-repeat add alpha}",
+      "pretty": ".a {\n  -webkit-mask-source-type: alpha;\n  -webkit-mask: linear-gradient(red, #00f) center / cover no-repeat;\n  -webkit-mask-source-type: alpha;\n  mask: linear-gradient(red, #00f) center / cover no-repeat alpha;\n}\n",
+      "compact": ".a{-webkit-mask-source-type:alpha;-webkit-mask:linear-gradient(red,#00f) 50%/cover no-repeat;-webkit-mask-source-type:alpha;mask:linear-gradient(red,#00f) 50%/cover no-repeat alpha}"
+    },
+    {
+      "test": "browser edges: .a{mask:url(a) subtract, url(b) exclude alpha}",
+      "css": ".a{mask:url(a) subtract, url(b) exclude alpha}",
+      "pretty": ".a {\n  -webkit-mask-composite: source-out, xor;\n  -webkit-mask-source-type: auto, alpha;\n  -webkit-mask: url(\"a\"), url(\"b\");\n  -webkit-mask-composite: source-out, xor;\n  -webkit-mask-source-type: auto, alpha;\n  mask: url(\"a\") subtract, url(\"b\") exclude alpha;\n}\n",
+      "compact": ".a{-webkit-mask-composite:source-out,xor;-webkit-mask-source-type:auto,alpha;-webkit-mask:url(a),url(b);-webkit-mask-composite:source-out,xor;-webkit-mask-source-type:auto,alpha;mask:url(a) subtract,url(b) exclude alpha}"
+    },
+    {
+      "test": "browser edges: .a{mask:var(--value)}",
+      "css": ".a{mask:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask: var(--value);\n  -webkit-mask: var(--value);\n  mask: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask:var(--value);-webkit-mask:var(--value);mask:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask:inherit}",
+      "css": ".a{mask:inherit}",
+      "pretty": ".a {\n  -webkit-mask: inherit;\n  -webkit-mask: inherit;\n  mask: inherit;\n}\n",
+      "compact": ".a{-webkit-mask:inherit;-webkit-mask:inherit;mask:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask:url(a)!important}",
+      "css": ".a{mask:url(a)!important}",
+      "pretty": ".a {\n  -webkit-mask: url(\"a\") !important;\n  mask: url(\"a\") !important;\n}\n",
+      "compact": ".a{-webkit-mask:url(a)!important;mask:url(a)!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border:url(a) 20 / 2 stretch luminance}",
+      "css": ".a{mask-border:url(a) 20 / 2 stretch luminance}",
+      "pretty": ".a {\n  -webkit-mask-box-image: url(\"a\") 20 / 2;\n  mask-border: url(\"a\") 20 / 2 luminance;\n}\n",
+      "compact": ".a{-webkit-mask-box-image:url(a) 20/2;mask-border:url(a) 20/2 luminance}"
+    },
+    {
+      "test": "browser edges: .a{mask-border:var(--value)}",
+      "css": ".a{mask-border:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image: var(--value);\n  -webkit-mask-box-image: var(--value);\n  mask-border: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image:var(--value);-webkit-mask-box-image:var(--value);mask-border:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border:inherit}",
+      "css": ".a{mask-border:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image: inherit;\n  -webkit-mask-box-image: inherit;\n  mask-border: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image:inherit;-webkit-mask-box-image:inherit;mask-border:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border:url(a) 20 / 2 stretch luminance!important}",
+      "css": ".a{mask-border:url(a) 20 / 2 stretch luminance!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image: url(\"a\") 20 / 2 !important;\n  mask-border: url(\"a\") 20 / 2 luminance !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image:url(a) 20/2!important;mask-border:url(a) 20/2 luminance!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-source:url(a)}",
+      "css": ".a{mask-border-source:url(a)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-source: url(\"a\");\n  mask-border-source: url(\"a\");\n}\n",
+      "compact": ".a{-webkit-mask-box-image-source:url(a);mask-border-source:url(a)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-source:var(--value)}",
+      "css": ".a{mask-border-source:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-source: var(--value);\n  -webkit-mask-box-image-source: var(--value);\n  mask-border-source: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image-source:var(--value);-webkit-mask-box-image-source:var(--value);mask-border-source:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-source:inherit}",
+      "css": ".a{mask-border-source:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image-source: inherit;\n  -webkit-mask-box-image-source: inherit;\n  mask-border-source: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-source:inherit;-webkit-mask-box-image-source:inherit;mask-border-source:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-source:url(a)!important}",
+      "css": ".a{mask-border-source:url(a)!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image-source: url(\"a\") !important;\n  mask-border-source: url(\"a\") !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-source:url(a)!important;mask-border-source:url(a)!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-slice:20 fill}",
+      "css": ".a{mask-border-slice:20 fill}",
+      "pretty": ".a {\n  -webkit-mask-box-image-slice: 20 fill;\n  mask-border-slice: 20 fill;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-slice:20 fill;mask-border-slice:20 fill}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-slice:var(--value)}",
+      "css": ".a{mask-border-slice:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-slice: var(--value);\n  -webkit-mask-box-image-slice: var(--value);\n  mask-border-slice: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image-slice:var(--value);-webkit-mask-box-image-slice:var(--value);mask-border-slice:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-slice:inherit}",
+      "css": ".a{mask-border-slice:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image-slice: inherit;\n  -webkit-mask-box-image-slice: inherit;\n  mask-border-slice: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-slice:inherit;-webkit-mask-box-image-slice:inherit;mask-border-slice:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-slice:20 fill!important}",
+      "css": ".a{mask-border-slice:20 fill!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image-slice: 20 fill !important;\n  mask-border-slice: 20 fill !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-slice:20 fill!important;mask-border-slice:20 fill!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-width:2}",
+      "css": ".a{mask-border-width:2}",
+      "pretty": ".a {\n  -webkit-mask-box-image-width: 2;\n  mask-border-width: 2;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-width:2;mask-border-width:2}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-width:var(--value)}",
+      "css": ".a{mask-border-width:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-width: var(--value);\n  -webkit-mask-box-image-width: var(--value);\n  mask-border-width: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image-width:var(--value);-webkit-mask-box-image-width:var(--value);mask-border-width:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-width:inherit}",
+      "css": ".a{mask-border-width:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image-width: inherit;\n  -webkit-mask-box-image-width: inherit;\n  mask-border-width: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-width:inherit;-webkit-mask-box-image-width:inherit;mask-border-width:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-width:2!important}",
+      "css": ".a{mask-border-width:2!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image-width: 2 !important;\n  mask-border-width: 2 !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-width:2!important;mask-border-width:2!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-outset:1}",
+      "css": ".a{mask-border-outset:1}",
+      "pretty": ".a {\n  -webkit-mask-box-image-outset: 1;\n  mask-border-outset: 1;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-outset:1;mask-border-outset:1}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-outset:var(--value)}",
+      "css": ".a{mask-border-outset:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-outset: var(--value);\n  -webkit-mask-box-image-outset: var(--value);\n  mask-border-outset: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image-outset:var(--value);-webkit-mask-box-image-outset:var(--value);mask-border-outset:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-outset:inherit}",
+      "css": ".a{mask-border-outset:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image-outset: inherit;\n  -webkit-mask-box-image-outset: inherit;\n  mask-border-outset: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-outset:inherit;-webkit-mask-box-image-outset:inherit;mask-border-outset:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-outset:1!important}",
+      "css": ".a{mask-border-outset:1!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image-outset: 1 !important;\n  mask-border-outset: 1 !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-outset:1!important;mask-border-outset:1!important}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-repeat:round}",
+      "css": ".a{mask-border-repeat:round}",
+      "pretty": ".a {\n  -webkit-mask-box-image-repeat: round;\n  mask-border-repeat: round;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-repeat:round;mask-border-repeat:round}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-repeat:var(--value)}",
+      "css": ".a{mask-border-repeat:var(--value)}",
+      "pretty": ".a {\n  -webkit-mask-box-image-repeat: var(--value);\n  -webkit-mask-box-image-repeat: var(--value);\n  mask-border-repeat: var(--value);\n}\n",
+      "compact": ".a{-webkit-mask-box-image-repeat:var(--value);-webkit-mask-box-image-repeat:var(--value);mask-border-repeat:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-repeat:inherit}",
+      "css": ".a{mask-border-repeat:inherit}",
+      "pretty": ".a {\n  -webkit-mask-box-image-repeat: inherit;\n  -webkit-mask-box-image-repeat: inherit;\n  mask-border-repeat: inherit;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-repeat:inherit;-webkit-mask-box-image-repeat:inherit;mask-border-repeat:inherit}"
+    },
+    {
+      "test": "browser edges: .a{mask-border-repeat:round!important}",
+      "css": ".a{mask-border-repeat:round!important}",
+      "pretty": ".a {\n  -webkit-mask-box-image-repeat: round !important;\n  mask-border-repeat: round !important;\n}\n",
+      "compact": ".a{-webkit-mask-box-image-repeat:round!important;mask-border-repeat:round!important}"
+    },
+    {
+      "test": "browser edges: .a{width:stretch}",
+      "css": ".a{width:stretch}",
+      "pretty": ".a {\n  width: -webkit-fill-available;\n  width: -moz-available;\n  width: stretch;\n}\n",
+      "compact": ".a{width:-webkit-fill-available;width:-moz-available;width:stretch}"
+    },
+    {
+      "test": "browser edges: .a{width:fill-available}",
+      "css": ".a{width:fill-available}",
+      "pretty": ".a {\n  width: fill-available;\n}\n",
+      "compact": ".a{width:fill-available}"
+    },
+    {
+      "test": "browser edges: .a{width:min-content}",
+      "css": ".a{width:min-content}",
+      "pretty": ".a {\n  width: min-content;\n}\n",
+      "compact": ".a{width:min-content}"
+    },
+    {
+      "test": "browser edges: .a{width:max-content}",
+      "css": ".a{width:max-content}",
+      "pretty": ".a {\n  width: max-content;\n}\n",
+      "compact": ".a{width:max-content}"
+    },
+    {
+      "test": "browser edges: .a{width:fit-content}",
+      "css": ".a{width:fit-content}",
+      "pretty": ".a {\n  width: fit-content;\n}\n",
+      "compact": ".a{width:fit-content}"
+    },
+    {
+      "test": "browser edges: .a{width:var(--value)}",
+      "css": ".a{width:var(--value)}",
+      "pretty": ".a {\n  width: var(--value);\n}\n",
+      "compact": ".a{width:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{width:inherit}",
+      "css": ".a{width:inherit}",
+      "pretty": ".a {\n  width: inherit;\n}\n",
+      "compact": ".a{width:inherit}"
+    },
+    {
+      "test": "browser edges: .a{width:stretch!important}",
+      "css": ".a{width:stretch!important}",
+      "pretty": ".a {\n  width: -webkit-fill-available !important;\n  width: -moz-available !important;\n  width: stretch !important;\n}\n",
+      "compact": ".a{width:-webkit-fill-available!important;width:-moz-available!important;width:stretch!important}"
+    },
+    {
+      "test": "browser edges: .a{background-image:image-set(\"a.png\" 1x, \"b.png\" 2x)}",
+      "css": ".a{background-image:image-set(\"a.png\" 1x, \"b.png\" 2x)}",
+      "pretty": ".a {\n  background-image: -webkit-image-set(url(\"a.png\") 1x, url(\"b.png\") 2x);\n  background-image: image-set(\"a.png\" 1x, \"b.png\" 2x);\n}\n",
+      "compact": ".a{background-image:-webkit-image-set(url(a.png) 1x,url(b.png) 2x);background-image:image-set(\"a.png\" 1x,\"b.png\" 2x)}"
+    },
+    {
+      "test": "browser edges: .a{background-image:image-set(url(a) 1x, url(b) 2x)}",
+      "css": ".a{background-image:image-set(url(a) 1x, url(b) 2x)}",
+      "pretty": ".a {\n  background-image: -webkit-image-set(url(\"a\") 1x, url(\"b\") 2x);\n  background-image: image-set(\"a\" 1x, \"b\" 2x);\n}\n",
+      "compact": ".a{background-image:-webkit-image-set(url(a) 1x,url(b) 2x);background-image:image-set(\"a\" 1x,\"b\" 2x)}"
+    },
+    {
+      "test": "browser edges: .a{background-image:cross-fade(url(a),url(b),50%)}",
+      "css": ".a{background-image:cross-fade(url(a),url(b),50%)}",
+      "pretty": ".a {\n  background-image: cross-fade(url(\"a\"),url(\"b\"),50%);\n}\n",
+      "compact": ".a{background-image:cross-fade(url(a),url(b),50%)}"
+    },
+    {
+      "test": "browser edges: .a{background-image:element(#foo)}",
+      "css": ".a{background-image:element(#foo)}",
+      "pretty": ".a {\n  background-image: element(#foo);\n}\n",
+      "compact": ".a{background-image:element(#foo)}"
+    },
+    {
+      "test": "browser edges: .a{background-image:var(--value)}",
+      "css": ".a{background-image:var(--value)}",
+      "pretty": ".a {\n  background-image: var(--value);\n}\n",
+      "compact": ".a{background-image:var(--value)}"
+    },
+    {
+      "test": "browser edges: .a{background-image:inherit}",
+      "css": ".a{background-image:inherit}",
+      "pretty": ".a {\n  background-image: inherit;\n}\n",
+      "compact": ".a{background-image:inherit}"
+    },
+    {
+      "test": "browser edges: .a{background-image:image-set(\"a.png\" 1x, \"b.png\" 2x)!important}",
+      "css": ".a{background-image:image-set(\"a.png\" 1x, \"b.png\" 2x)!important}",
+      "pretty": ".a {\n  background-image: -webkit-image-set(url(\"a.png\") 1x, url(\"b.png\") 2x) !important;\n  background-image: image-set(\"a.png\" 1x, \"b.png\" 2x) !important;\n}\n",
+      "compact": ".a{background-image:-webkit-image-set(url(a.png) 1x,url(b.png) 2x)!important;background-image:image-set(\"a.png\" 1x,\"b.png\" 2x)!important}"
+    },
+    {
+      "test": "browser edges: .a{width:stretch}",
+      "css": ".a{width:stretch}",
+      "pretty": ".a {\n  width: -webkit-fill-available;\n  width: -moz-available;\n  width: stretch;\n}\n",
+      "compact": ".a{width:-webkit-fill-available;width:-moz-available;width:stretch}"
+    },
+    {
+      "test": "browser edges: .a{height:stretch}",
+      "css": ".a{height:stretch}",
+      "pretty": ".a {\n  height: -webkit-fill-available;\n  height: -moz-available;\n  height: stretch;\n}\n",
+      "compact": ".a{height:-webkit-fill-available;height:-moz-available;height:stretch}"
+    },
+    {
+      "test": "browser edges: .a{min-width:stretch}",
+      "css": ".a{min-width:stretch}",
+      "pretty": ".a {\n  min-width: -webkit-fill-available;\n  min-width: -moz-available;\n  min-width: stretch;\n}\n",
+      "compact": ".a{min-width:-webkit-fill-available;min-width:-moz-available;min-width:stretch}"
+    },
+    {
+      "test": "browser edges: .a{max-height:stretch}",
+      "css": ".a{max-height:stretch}",
+      "pretty": ".a {\n  max-height: -webkit-fill-available;\n  max-height: -moz-available;\n  max-height: stretch;\n}\n",
+      "compact": ".a{max-height:-webkit-fill-available;max-height:-moz-available;max-height:stretch}"
+    },
+    {
+      "test": "browser edges: .a{inline-size:stretch}",
+      "css": ".a{inline-size:stretch}",
+      "pretty": ".a {\n  inline-size: -webkit-fill-available;\n  inline-size: -moz-available;\n  inline-size: stretch;\n}\n",
+      "compact": ".a{inline-size:-webkit-fill-available;inline-size:-moz-available;inline-size:stretch}"
+    },
+    {
+      "test": "browser edges: .a{block-size:stretch}",
+      "css": ".a{block-size:stretch}",
+      "pretty": ".a {\n  block-size: -webkit-fill-available;\n  block-size: -moz-available;\n  block-size: stretch;\n}\n",
+      "compact": ".a{block-size:-webkit-fill-available;block-size:-moz-available;block-size:stretch}"
+    },
+    {
+      "test": "browser edges: .a{min-block-size:stretch}",
+      "css": ".a{min-block-size:stretch}",
+      "pretty": ".a {\n  min-block-size: -webkit-fill-available;\n  min-block-size: -moz-available;\n  min-block-size: stretch;\n}\n",
+      "compact": ".a{min-block-size:-webkit-fill-available;min-block-size:-moz-available;min-block-size:stretch}"
+    },
+    {
+      "test": "browser edges: .a{flex-basis:stretch}",
+      "css": ".a{flex-basis:stretch}",
+      "pretty": ".a {\n  flex-basis: stretch;\n}\n",
+      "compact": ".a{flex-basis:stretch}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-user-select:text;user-select:none}",
+      "css": ".a{-webkit-user-select:text;user-select:none}",
+      "pretty": ".a {\n  -webkit-user-select: none;\n  user-select: none;\n}\n",
+      "compact": ".a{-webkit-user-select:none;user-select:none}"
+    },
+    {
+      "test": "browser edges: .a{-webkit-user-select:none;user-select:none}",
+      "css": ".a{-webkit-user-select:none;user-select:none}",
+      "pretty": ".a {\n  -webkit-user-select: none;\n  user-select: none;\n}\n",
+      "compact": ".a{-webkit-user-select:none;user-select:none}"
+    },
+    {
+      "test": "browser edges: .a{user-select:none;user-select:text}",
+      "css": ".a{user-select:none;user-select:text}",
+      "pretty": ".a {\n  -webkit-user-select: text;\n  user-select: text;\n}\n",
+      "compact": ".a{-webkit-user-select:text;user-select:text}"
+    },
+    {
+      "test": "browser edges: .a{background:linear-gradient(red,blue) text}",
+      "css": ".a{background:linear-gradient(red,blue) text}",
+      "pretty": ".a {\n  background: linear-gradient(red, #00f);\n  -webkit-background-clip: text;\n  background-clip: text;\n}\n",
+      "compact": ".a{background:linear-gradient(red,#00f);-webkit-background-clip:text;background-clip:text}"
+    },
+    {
+      "test": "browser edges: .a{--x:stretch;--y:image-set(url(a) 1x);--z:\"text-decoration\"}",
+      "css": ".a{--x:stretch;--y:image-set(url(a) 1x);--z:\"text-decoration\"}",
+      "pretty": ".a {\n  --x: stretch;\n  --y: image-set(url(\"a\") 1x);\n  --z: \"text-decoration\";\n}\n",
+      "compact": ".a{--x:stretch;--y:image-set(url(a) 1x);--z:\"text-decoration\"}"
+    },
+    {
+      "test": "browser edges: @media (width >= 40rem){.a{display:block}}",
+      "css": "@media (width >= 40rem){.a{display:block}}",
+      "pretty": "@media (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width >= 40rem){.a{display:block}}",
+      "css": "@media screen and (width >= 40rem){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width >= 40rem){.a{display:block}}",
+      "css": "@container name (width >= 40rem){.a{display:block}}",
+      "pretty": "@container name (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width > 40rem){.a{display:block}}",
+      "css": "@media (width > 40rem){.a{display:block}}",
+      "pretty": "@media not all and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width > 40rem){.a{display:block}}",
+      "css": "@media screen and (width > 40rem){.a{display:block}}",
+      "pretty": "@media screen and not (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width > 40rem){.a{display:block}}",
+      "css": "@container name (width > 40rem){.a{display:block}}",
+      "pretty": "@container name not (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width <= 40rem){.a{display:block}}",
+      "css": "@media (width <= 40rem){.a{display:block}}",
+      "pretty": "@media (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width <= 40rem){.a{display:block}}",
+      "css": "@media screen and (width <= 40rem){.a{display:block}}",
+      "pretty": "@media screen and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width <= 40rem){.a{display:block}}",
+      "css": "@container name (width <= 40rem){.a{display:block}}",
+      "pretty": "@container name (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width < 40rem){.a{display:block}}",
+      "css": "@media (width < 40rem){.a{display:block}}",
+      "pretty": "@media not all and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width < 40rem){.a{display:block}}",
+      "css": "@media screen and (width < 40rem){.a{display:block}}",
+      "pretty": "@media screen and not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width < 40rem){.a{display:block}}",
+      "css": "@container name (width < 40rem){.a{display:block}}",
+      "pretty": "@container name not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width = 40rem){.a{display:block}}",
+      "css": "@media (width = 40rem){.a{display:block}}",
+      "pretty": "@media (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width = 40rem){.a{display:block}}",
+      "css": "@media screen and (width = 40rem){.a{display:block}}",
+      "pretty": "@media screen and (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width = 40rem){.a{display:block}}",
+      "css": "@container name (width = 40rem){.a{display:block}}",
+      "pretty": "@container name (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem > width){.a{display:block}}",
+      "css": "@media (40rem > width){.a{display:block}}",
+      "pretty": "@media not all and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem > width){.a{display:block}}",
+      "css": "@media screen and (40rem > width){.a{display:block}}",
+      "pretty": "@media screen and not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem > width){.a{display:block}}",
+      "css": "@container name (40rem > width){.a{display:block}}",
+      "pretty": "@container name not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem >= width){.a{display:block}}",
+      "css": "@media (40rem >= width){.a{display:block}}",
+      "pretty": "@media (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem >= width){.a{display:block}}",
+      "css": "@media screen and (40rem >= width){.a{display:block}}",
+      "pretty": "@media screen and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem >= width){.a{display:block}}",
+      "css": "@container name (40rem >= width){.a{display:block}}",
+      "pretty": "@container name (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem < width){.a{display:block}}",
+      "css": "@media (40rem < width){.a{display:block}}",
+      "pretty": "@media not all and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem < width){.a{display:block}}",
+      "css": "@media screen and (40rem < width){.a{display:block}}",
+      "pretty": "@media screen and not (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem < width){.a{display:block}}",
+      "css": "@container name (40rem < width){.a{display:block}}",
+      "pretty": "@container name not (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem <= width){.a{display:block}}",
+      "css": "@media (40rem <= width){.a{display:block}}",
+      "pretty": "@media (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem <= width){.a{display:block}}",
+      "css": "@media screen and (40rem <= width){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem <= width){.a{display:block}}",
+      "css": "@container name (40rem <= width){.a{display:block}}",
+      "pretty": "@container name (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem = width){.a{display:block}}",
+      "css": "@media (40rem = width){.a{display:block}}",
+      "pretty": "@media (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem = width){.a{display:block}}",
+      "css": "@media screen and (40rem = width){.a{display:block}}",
+      "pretty": "@media screen and (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem = width){.a{display:block}}",
+      "css": "@container name (40rem = width){.a{display:block}}",
+      "pretty": "@container name (width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (1rem < width <= 40rem){.a{display:block}}",
+      "css": "@media (1rem < width <= 40rem){.a{display:block}}",
+      "pretty": "@media (not (max-width: 1rem)) and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (not (max-width:1rem)) and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (1rem < width <= 40rem){.a{display:block}}",
+      "css": "@media screen and (1rem < width <= 40rem){.a{display:block}}",
+      "pretty": "@media screen and (not (max-width: 1rem)) and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (not (max-width:1rem)) and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (1rem < width <= 40rem){.a{display:block}}",
+      "css": "@container name (1rem < width <= 40rem){.a{display:block}}",
+      "pretty": "@container name (not (max-width: 1rem)) and (max-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (not (max-width:1rem)) and (max-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (1rem <= width < 40rem){.a{display:block}}",
+      "css": "@media (1rem <= width < 40rem){.a{display:block}}",
+      "pretty": "@media (min-width: 1rem) and (not (min-width: 40rem)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:1rem) and (not (min-width:40rem)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (1rem <= width < 40rem){.a{display:block}}",
+      "css": "@media screen and (1rem <= width < 40rem){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 1rem) and (not (min-width: 40rem)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:1rem) and (not (min-width:40rem)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (1rem <= width < 40rem){.a{display:block}}",
+      "css": "@container name (1rem <= width < 40rem){.a{display:block}}",
+      "pretty": "@container name (min-width: 1rem) and (not (min-width: 40rem)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (min-width:1rem) and (not (min-width:40rem)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (40rem > width >= 1rem){.a{display:block}}",
+      "css": "@media (40rem > width >= 1rem){.a{display:block}}",
+      "pretty": "@media (not (min-width: 40rem)) and (min-width: 1rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (not (min-width:40rem)) and (min-width:1rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (40rem > width >= 1rem){.a{display:block}}",
+      "css": "@media screen and (40rem > width >= 1rem){.a{display:block}}",
+      "pretty": "@media screen and (not (min-width: 40rem)) and (min-width: 1rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (not (min-width:40rem)) and (min-width:1rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (40rem > width >= 1rem){.a{display:block}}",
+      "css": "@container name (40rem > width >= 1rem){.a{display:block}}",
+      "pretty": "@container name (not (min-width: 40rem)) and (min-width: 1rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (not (min-width:40rem)) and (min-width:1rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width > calc(40rem + 1px)){.a{display:block}}",
+      "css": "@media (width > calc(40rem + 1px)){.a{display:block}}",
+      "pretty": "@media not all and (max-width: calc(40rem + 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (max-width:calc(40rem + 1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width > calc(40rem + 1px)){.a{display:block}}",
+      "css": "@media screen and (width > calc(40rem + 1px)){.a{display:block}}",
+      "pretty": "@media screen and not (max-width: calc(40rem + 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (max-width:calc(40rem + 1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width > calc(40rem + 1px)){.a{display:block}}",
+      "css": "@container name (width > calc(40rem + 1px)){.a{display:block}}",
+      "pretty": "@container name not (max-width: calc(40rem + 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (max-width:calc(40rem + 1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (aspect-ratio > 16/9){.a{display:block}}",
+      "css": "@media (aspect-ratio > 16/9){.a{display:block}}",
+      "pretty": "@media not all and (max-aspect-ratio: 16 / 9) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (max-aspect-ratio:16/9){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (aspect-ratio > 16/9){.a{display:block}}",
+      "css": "@media screen and (aspect-ratio > 16/9){.a{display:block}}",
+      "pretty": "@media screen and not (max-aspect-ratio: 16 / 9) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (max-aspect-ratio:16/9){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (aspect-ratio > 16/9){.a{display:block}}",
+      "css": "@container name (aspect-ratio > 16/9){.a{display:block}}",
+      "pretty": "@container name not (max-aspect-ratio: 16 / 9) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (max-aspect-ratio:16/9){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (resolution >= 2dppx){.a{display:block}}",
+      "css": "@media (resolution >= 2dppx){.a{display:block}}",
+      "pretty": "@media (min-resolution: 2x) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-resolution:2x){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (resolution >= 2dppx){.a{display:block}}",
+      "css": "@media screen and (resolution >= 2dppx){.a{display:block}}",
+      "pretty": "@media screen and (min-resolution: 2x) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-resolution:2x){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (resolution >= 2dppx){.a{display:block}}",
+      "css": "@container name (resolution >= 2dppx){.a{display:block}}",
+      "pretty": "@container name (min-resolution: 2x) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (min-resolution:2x){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not (width < 40rem){.a{display:block}}",
+      "css": "@media not (width < 40rem){.a{display:block}}",
+      "pretty": "@media (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and not (width < 40rem){.a{display:block}}",
+      "css": "@media screen and not (width < 40rem){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name not (width < 40rem){.a{display:block}}",
+      "css": "@container name not (width < 40rem){.a{display:block}}",
+      "pretty": "@container name not (not (min-width: 40rem)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (not (min-width:40rem)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not (width >= 40rem){.a{display:block}}",
+      "css": "@media not (width >= 40rem){.a{display:block}}",
+      "pretty": "@media not all and (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and not (width >= 40rem){.a{display:block}}",
+      "css": "@media screen and not (width >= 40rem){.a{display:block}}",
+      "pretty": "@media screen and not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name not (width >= 40rem){.a{display:block}}",
+      "css": "@container name not (width >= 40rem){.a{display:block}}",
+      "pretty": "@container name not (min-width: 40rem) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (min-width:40rem){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not (color){.a{display:block}}",
+      "css": "@media not (color){.a{display:block}}",
+      "pretty": "@media not all and (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and not (color){.a{display:block}}",
+      "css": "@media screen and not (color){.a{display:block}}",
+      "pretty": "@media screen and not (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name not (color){.a{display:block}}",
+      "css": "@container name not (color){.a{display:block}}",
+      "pretty": "@container name not (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not (color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width>4px) or (height<4px){.a{display:block}}",
+      "css": "@media (width>4px) or (height<4px){.a{display:block}}",
+      "pretty": "@media (not (max-width: 4px)) or (not (min-height: 4px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (not (max-width:4px)) or (not (min-height:4px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width>4px) or (height<4px){.a{display:block}}",
+      "css": "@media screen and (width>4px) or (height<4px){.a{display:block}}",
+      "pretty": "@media screen and (width>4px) or (height<4px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (width>4px) or (height<4px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width>4px) or (height<4px){.a{display:block}}",
+      "css": "@container name (width>4px) or (height<4px){.a{display:block}}",
+      "pretty": "@container name (not (max-width: 4px)) or (not (min-height: 4px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (not (max-width:4px)) or (not (min-height:4px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not ((width>4px) or (height<4px)){.a{display:block}}",
+      "css": "@media not ((width>4px) or (height<4px)){.a{display:block}}",
+      "pretty": "@media not all and ((not (max-width: 4px)) or (not (min-height: 4px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and ((not (max-width:4px)) or (not (min-height:4px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and not ((width>4px) or (height<4px)){.a{display:block}}",
+      "css": "@media screen and not ((width>4px) or (height<4px)){.a{display:block}}",
+      "pretty": "@media screen and not ((not (max-width: 4px)) or (not (min-height: 4px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not ((not (max-width:4px)) or (not (min-height:4px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name not ((width>4px) or (height<4px)){.a{display:block}}",
+      "css": "@container name not ((width>4px) or (height<4px)){.a{display:block}}",
+      "pretty": "@container name not ((not (max-width: 4px)) or (not (min-height: 4px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name not ((not (max-width:4px)) or (not (min-height:4px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "css": "@media (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "pretty": "@media (not (max-width: 1rem)) and (max-width: 40rem) and (not (max-height: 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (not (max-width:1rem)) and (max-width:40rem) and (not (max-height:1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "css": "@media screen and (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "pretty": "@media screen and (not (max-width: 1rem)) and (max-width: 40rem) and (not (max-height: 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (not (max-width:1rem)) and (max-width:40rem) and (not (max-height:1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "css": "@container name (1rem < width <= 40rem) and (height>1px){.a{display:block}}",
+      "pretty": "@container name (not (max-width: 1rem)) and (max-width: 40rem) and (not (max-height: 1px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (not (max-width:1rem)) and (max-width:40rem) and (not (max-height:1px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "css": "@media (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "pretty": "@media (min-width: 1px) and ((color) or (not (min-width: 2px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:1px) and ((color) or (not (min-width:2px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media screen and (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "css": "@media screen and (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 1px) and ((color) or (not (min-width: 2px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:1px) and ((color) or (not (min-width:2px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container name (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "css": "@container name (width>=1px) and ((color) or (width<2px)){.a{display:block}}",
+      "pretty": "@container name (min-width: 1px) and ((color) or (not (min-width: 2px))) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container name (min-width:1px) and ((color) or (not (min-width:2px))){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container style(--color: \"wide > short\"){.a{display:block}}",
+      "css": "@container style(--color: \"wide > short\"){.a{display:block}}",
+      "pretty": "@container style(--color: \"wide > short\") {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container style(--color:\"wide > short\"){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @container (--foo){.a{display:block}}",
+      "css": "@container (--foo){.a{display:block}}",
+      "pretty": "@container (--foo) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@container (--foo){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media not print and (width>4px), (color){.a{display:block}}",
+      "css": "@media not print and (width>4px), (color){.a{display:block}}",
+      "pretty": "@media not print and not (max-width: 4px), (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not print and not (max-width:4px),(color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media only screen and (width>=4px){.a{display:block}}",
+      "css": "@media only screen and (width>=4px){.a{display:block}}",
+      "pretty": "@media only screen and (min-width: 4px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media only screen and (min-width:4px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a (width>=1px); @media (--a){.a{display:block}}",
+      "css": "@custom-media --a (width>=1px); @media (--a){.a{display:block}}",
+      "pretty": "@media (min-width: 1px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (min-width:1px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a (width>=1px), (color); @media (--a) and (height<2px){.a{display:block}}",
+      "css": "@custom-media --a (width>=1px), (color); @media (--a) and (height<2px){.a{display:block}}",
+      "pretty": "@media ((min-width: 1px) or (color)) and (not (min-height: 2px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media ((min-width:1px) or (color)) and (not (min-height:2px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a screen and (width>=1px); @media (--a){.a{display:block}}",
+      "css": "@custom-media --a screen and (width>=1px); @media (--a){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 1px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:1px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a screen and (width>=1px); @media (--a) and (height<2px){.a{display:block}}",
+      "css": "@custom-media --a screen and (width>=1px); @media (--a) and (height<2px){.a{display:block}}",
+      "pretty": "@media screen and (min-width: 1px) and (not (min-height: 2px)) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and (min-width:1px) and (not (min-height:2px)){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a screen and (width>=1px); @media not (--a){.a{display:block}}",
+      "css": "@custom-media --a screen and (width>=1px); @media not (--a){.a{display:block}}",
+      "pretty": "@media screen and not (min-width: 1px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media screen and not (min-width:1px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a (--b); @custom-media --b (color); @media (--a){.a{display:block}}",
+      "css": "@custom-media --a (--b); @custom-media --b (color); @media (--a){.a{display:block}}",
+      "pretty": "@media (color) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media (color){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a true; @media (--a){.a{display:block}}",
+      "css": "@custom-media --a true; @media (--a){.a{display:block}}",
+      "pretty": "@media true {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media true{.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @custom-media --a (color); @custom-media --a (width>4px); @media (--a){.a{display:block}}",
+      "css": "@custom-media --a (color); @custom-media --a (width>4px); @media (--a){.a{display:block}}",
+      "pretty": "@media not all and (max-width: 4px) {\n  .a {\n    display: block;\n  }\n}\n",
+      "compact": "@media not all and (max-width:4px){.a{display:block}}"
+    },
+    {
+      "test": "browser edges: @media (--missing){.a{display:block}}",
+      "css": "@media (--missing){.a{display:block}}",
+      "error": "Custom media query --missing is not defined"
+    },
+    {
+      "test": "browser edges: @custom-media --a (--b); @custom-media --b (--a); @media (--a){.a{display:block}}",
+      "css": "@custom-media --a (--b); @custom-media --b (--a); @media (--a){.a{display:block}}",
+      "error": "Circular custom media query --a detected"
+    },
+    {
+      "test": "browser edges: @custom-media --a print, screen; @media (--a){.a{display:block}}",
+      "css": "@custom-media --a print, screen; @media (--a){.a{display:block}}",
+      "error": "Boolean logic with media types in @custom-media rules is not supported by Lightning CSS"
+    }
+  ]
+}
