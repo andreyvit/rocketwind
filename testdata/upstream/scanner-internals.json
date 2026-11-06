@@ -1,0 +1,1533 @@
+[
+  {
+    "test": "glob::tests::it_should_branch_expandable_folders",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/bar"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 2,
+          "path": "$ROOT0/projects/foo"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "foo/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "bar/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/bar",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/foo",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_expand_a_complex_example",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/b"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/b/d"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/b/d/e"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/a/b/d/e/g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/b/d/f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 2,
+          "path": "$ROOT0/projects/a/b/d/f/g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/c"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/c/d"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/c/d/e"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 3,
+          "path": "$ROOT0/projects/a/c/d/e/g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a/c/d/f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 4,
+          "path": "$ROOT0/projects/a/c/d/f/g"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a/b/d/e/g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a/b/d/f/g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a/c/d/e/g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a/c/d/f/g/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/a/b/d/e/g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a/b/d/f/g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a/c/d/e/g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a/c/d/f/g",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_expand_multiple_expansions_in_the_same_folder",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/a-b-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 2,
+          "path": "$ROOT0/projects/a-b-d-f-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 3,
+          "path": "$ROOT0/projects/a-c-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 4,
+          "path": "$ROOT0/projects/a-c-d-f-g"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-b-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-b-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-f-g/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/a-b-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-b-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-d-f-g",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_keep_globs_that_start_with_file_wildcards_as_is",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_keep_globs_that_start_with_folder_wildcards_as_is",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "**/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "**/*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_keep_the_negation_symbol_for_all_new_patterns",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "!foo/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "!bar/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "{!bar/*.html,!foo/*.html}"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_move_the_starting_folder_to_the_path",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/example"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "example/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/example",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_move_the_starting_folders_to_the_path",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/example"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/example/other"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "example/other/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/example/other",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::it_should_stop_expanding_once_we_hit_a_wildcard",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/bar"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/bar/example"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/foo"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 2,
+          "path": "$ROOT0/projects/foo/example"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "foo/example/**/baz/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "foo/example/**/qux/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "bar/example/**/baz/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "bar/example/**/qux/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/bar/example",
+            "pattern": "{**/baz/*.html,**/qux/*.html}"
+          },
+          {
+            "base": "$ROOT0/projects/foo/example",
+            "pattern": "{**/baz/*.html,**/qux/*.html}"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "glob::tests::multiple_expansions_per_folder_starting_at_the_root",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a-c-d-f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/projects/a-c-d-f/b-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 2,
+          "path": "$ROOT0/projects/a-c-d-f/b-d-f-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 3,
+          "path": "$ROOT0/projects/a-c-d-f/c-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 4,
+          "path": "$ROOT0/projects/a-c-d-f/c-d-f-g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/a-c-e-f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 5,
+          "path": "$ROOT0/projects/a-c-e-f/b-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 6,
+          "path": "$ROOT0/projects/a-c-e-f/b-d-f-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 7,
+          "path": "$ROOT0/projects/a-c-e-f/c-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 8,
+          "path": "$ROOT0/projects/a-c-e-f/c-d-f-g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/b-c-d-f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 9,
+          "path": "$ROOT0/projects/b-c-d-f/b-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 10,
+          "path": "$ROOT0/projects/b-c-d-f/b-d-f-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 11,
+          "path": "$ROOT0/projects/b-c-d-f/c-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 12,
+          "path": "$ROOT0/projects/b-c-d-f/c-d-f-g"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/projects/b-c-e-f"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 13,
+          "path": "$ROOT0/projects/b-c-e-f/b-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 14,
+          "path": "$ROOT0/projects/b-c-e-f/b-d-f-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 15,
+          "path": "$ROOT0/projects/b-c-e-f/c-d-e-g"
+        },
+        {
+          "content": "",
+          "kind": "file",
+          "mtime": 16,
+          "path": "$ROOT0/projects/b-c-e-f/c-d-f-g"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-f/b-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-f/b-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-f/c-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-d-f/c-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-e-f/b-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-e-f/b-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-e-f/c-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "a-c-e-f/c-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-d-f/b-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-d-f/b-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-d-f/c-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-d-f/c-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-e-f/b-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-e-f/b-d-f-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-e-f/c-d-e-g/*.html"
+          },
+          {
+            "base": "$ROOT0/projects",
+            "pattern": "b-c-e-f/c-d-f-g/*.html"
+          }
+        ],
+        "method": "optimize_globs",
+        "result": [
+          {
+            "base": "$ROOT0/projects/a-c-d-f/b-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-d-f/b-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-d-f/c-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-d-f/c-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-e-f/b-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-e-f/b-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-e-f/c-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/a-c-e-f/c-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-d-f/b-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-d-f/b-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-d-f/c-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-d-f/c-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-e-f/b-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-e-f/b-d-f-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-e-f/c-d-e-g",
+            "pattern": "*.html"
+          },
+          {
+            "base": "$ROOT0/projects/b-c-e-f/c-d-f-g",
+            "pattern": "*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::auto_detected_folders_become_auto_sources",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/src",
+            "negated": false,
+            "pattern": "**/*"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "auto",
+            "pattern": "/**/*"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::concrete_patterns_are_expanded_to_restrict_their_base",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0",
+            "negated": false,
+            "pattern": "src/foo.html"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "ignored",
+            "pattern": "*"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "pattern",
+            "pattern": "/foo.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::folders_ignored_by_a_parent_gitignore_become_external_sources",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "generated/\n",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/.gitignore"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/packages"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/packages/app"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/packages/app/generated"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/packages/app/generated",
+            "negated": false,
+            "pattern": "**/*"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/packages/app/generated",
+            "kind": "external",
+            "pattern": "/**/*"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::folders_ignored_by_default_become_external_sources",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/node_modules"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/node_modules/my-lib"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/node_modules/my-lib",
+            "negated": false,
+            "pattern": "**/*"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/node_modules/my-lib",
+            "kind": "external",
+            "pattern": "/**/*"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::folders_ignored_by_gitignore_become_external_sources",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "dist/\n",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/.gitignore"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/dist"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/dist",
+            "negated": false,
+            "pattern": "**/*"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/dist",
+            "kind": "external",
+            "pattern": "/**/*"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::folders_not_ignored_by_gitignore_stay_auto_sources",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/.git"
+        },
+        {
+          "content": "dist/\n",
+          "kind": "file",
+          "mtime": 1,
+          "path": "$ROOT0/.gitignore"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/src",
+            "negated": false,
+            "pattern": "**/*"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "auto",
+            "pattern": "/**/*"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::optimize_hoists_folder_patterns",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src/examples"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": {
+          "base": "$ROOT0",
+          "negated": false,
+          "pattern": "src/examples"
+        },
+        "method": "normalize_source",
+        "result": {
+          "base": "$ROOT0/src/examples",
+          "negated": false,
+          "pattern": "/**/*"
+        },
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::optimize_hoists_static_directories_and_keeps_files_in_the_pattern",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src/examples"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": {
+          "base": "$ROOT0",
+          "negated": false,
+          "pattern": "src/examples/index.html"
+        },
+        "method": "normalize_source",
+        "result": {
+          "base": "$ROOT0/src/examples",
+          "negated": false,
+          "pattern": "/index.html"
+        },
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::optimize_keeps_wildcards_in_the_pattern",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": {
+          "base": "$ROOT0",
+          "negated": false,
+          "pattern": "src/**/*.html"
+        },
+        "method": "normalize_source",
+        "result": {
+          "base": "$ROOT0/src",
+          "negated": false,
+          "pattern": "/**/*.html"
+        },
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::path_to_posix_string_serializes_empty_paths",
+    "roots": 0,
+    "states": [
+      []
+    ],
+    "steps": [
+      {
+        "args": "",
+        "method": "posix_path",
+        "result": "",
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::path_to_posix_string_serializes_relative_paths",
+    "roots": 0,
+    "states": [
+      []
+    ],
+    "steps": [
+      {
+        "args": "src/**/*.html",
+        "method": "posix_path",
+        "result": "src/**/*.html",
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::path_to_posix_string_serializes_rooted_paths",
+    "roots": 0,
+    "states": [
+      []
+    ],
+    "steps": [
+      {
+        "args": "/src/**/*.html",
+        "method": "posix_path",
+        "result": "/src/**/*.html",
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::restricted_parent_bases_do_not_open_unrelated_siblings",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/Users"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/Users/robin"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/Users/robin/docus-test"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0/Users/robin/docus-test",
+            "negated": false,
+            "pattern": "**/*"
+          },
+          {
+            "base": "$ROOT0/Users/robin/docus-test",
+            "negated": false,
+            "pattern": "../../app.config.ts"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/Users/robin/docus-test",
+            "kind": "auto",
+            "pattern": "/**/*"
+          },
+          {
+            "base": "$ROOT0/Users",
+            "kind": "ignored",
+            "pattern": "/*"
+          },
+          {
+            "base": "$ROOT0/Users",
+            "kind": "pattern",
+            "pattern": "/app.config.ts"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::restricted_patterns_include_parent_directory_allow_rules",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0",
+            "negated": false,
+            "pattern": "src/ef*/*.html"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "ignored",
+            "pattern": "*"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "ignored",
+            "pattern": "!/ef*/"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "pattern",
+            "pattern": "/ef*/*.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::restricted_patterns_preserve_source_order",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0",
+            "negated": false,
+            "pattern": "src/foo.html"
+          },
+          {
+            "base": "$ROOT0",
+            "negated": true,
+            "pattern": "src/foo.html"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "ignored",
+            "pattern": "*"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "pattern",
+            "pattern": "/foo.html"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "ignored",
+            "pattern": "/foo.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::sources::tests::unrestricted_sources_do_not_expand_patterns_for_the_same_base",
+    "roots": 1,
+    "states": [
+      [
+        {
+          "kind": "dir",
+          "path": "$ROOT0"
+        },
+        {
+          "kind": "dir",
+          "path": "$ROOT0/src"
+        }
+      ]
+    ],
+    "steps": [
+      {
+        "args": [
+          {
+            "base": "$ROOT0",
+            "negated": false,
+            "pattern": "src"
+          },
+          {
+            "base": "$ROOT0",
+            "negated": false,
+            "pattern": "src/foo.html"
+          }
+        ],
+        "method": "prepare_sources",
+        "result": [
+          {
+            "base": "$ROOT0/src",
+            "kind": "auto",
+            "pattern": "/**/*"
+          },
+          {
+            "base": "$ROOT0/src",
+            "kind": "pattern",
+            "pattern": "/foo.html"
+          }
+        ],
+        "state": 0
+      }
+    ]
+  },
+  {
+    "test": "scanner::tests::test_positions",
+    "roots": 0,
+    "states": [
+      []
+    ],
+    "steps": [
+      {
+        "args": [],
+        "method": "new",
+        "result": null,
+        "state": 0
+      },
+      {
+        "args": {
+          "content": "<div class=\"!tw__flex sm:!tw__block tw__bg-gradient-to-t flex tw:[color:red] group-[]:tw__flex",
+          "extension": "html"
+        },
+        "method": "positions",
+        "result": [
+          [
+            "class",
+            5
+          ],
+          [
+            "!tw__flex",
+            12
+          ],
+          [
+            "sm:!tw__block",
+            22
+          ],
+          [
+            "tw__bg-gradient-to-t",
+            36
+          ],
+          [
+            "flex",
+            57
+          ],
+          [
+            "tw:[color:red]",
+            62
+          ],
+          [
+            "group-[]:tw__flex",
+            77
+          ]
+        ],
+        "state": 0
+      },
+      {
+        "args": {
+          "content": "<div class=\"tw:flex! tw:sm:block! tw:bg-linear-to-t flex tw:[color:red] tw:in-[.tw\\:group]:flex\"></div>",
+          "extension": "html"
+        },
+        "method": "positions",
+        "result": [
+          [
+            "class",
+            5
+          ],
+          [
+            "tw:flex!",
+            12
+          ],
+          [
+            "tw:sm:block!",
+            21
+          ],
+          [
+            "tw:bg-linear-to-t",
+            34
+          ],
+          [
+            "flex",
+            52
+          ],
+          [
+            "tw:[color:red]",
+            57
+          ],
+          [
+            "tw:in-[.tw\\:group]:flex",
+            72
+          ]
+        ],
+        "state": 0
+      }
+    ]
+  }
+]

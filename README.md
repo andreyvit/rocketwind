@@ -153,6 +153,26 @@ offsets. `Extract` returns tokens with their source offsets; `AppendExtracted`
 reuses a caller-owned buffer without allocating. `CSSVariables` extracts only
 `var(...)` references from CSS.
 
+For files on disk, a scanner applies the stylesheet's `@source` directives,
+automatic source root and ignore rules:
+
+```go
+scanner := compiler.NewScanner(projectDirectory)
+css, err := compiler.Build(scanner.Scan())
+```
+
+Use `NewScanner([]rocketwind.Source{...})` to supply sources directly. The scanner
+follows symlinks, respects `.gitignore` and `.ignore`, and skips binary files and
+common generated directories. Explicit sources can include otherwise ignored
+files. CSS files contribute variable references, rather than class definitions.
+
+Keep a scanner with an incremental builder for watch mode. `Scan` returns all
+candidates found so far; `ScanContent` returns additions from supplied files or
+text. Removed candidates remain until you create a new scanner, as in Tailwind.
+`Files`, `Globs` and `ScannedFiles` expose watch inputs and the files read by the
+last scan. Each scanner belongs to one build session; do not share it between
+concurrent builds or accounts.
+
 
 Reuse existing CSS
 ------------------
@@ -209,7 +229,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,246 syntax, normalization, CSS nesting, configuration and helper calls, and 2,968 Rust extraction/preprocessing calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 4,545 captured compiler checks from fourteen upstream suites pass, covering CSS, errors, source discovery and feature flags, plus 6,246 syntax, normalization, CSS nesting, configuration and helper calls, 2,968 Rust extraction/preprocessing calls and 411 filesystem scanner calls. The full upstream suite is not yet ported, so complete compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including

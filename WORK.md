@@ -124,6 +124,27 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Captured upstream calls checked: 13,759, plus standard plugin and additional
   variable-reference fixtures. Filesystem scanning and CLI are next.
 
+### Filesystem scanning
+
+- All 125 original Rust unit tests and 71 filesystem tests pass; twelve
+  upstream performance tests remain ignored upstream. Captured and ported
+  411 filesystem/source/glob calls, plus the cursor test directly. Every
+  non-ignored original Oxide test now has a passing Go counterpart.
+- Fixture capture retains file contents, invalid UTF-8, timestamps, directory
+  changes and symlinks. macOS `/var` and `/private/var` aliases normalize to one
+  fixture path; resulting duplicate file identities are collapsed.
+- Added scanner APIs for stylesheet sources, raw content, incremental files,
+  byte positions and watch globs. Tests cover explicit sources, ignore rules,
+  repository boundaries, CSS variables, new files and recursive symlinks.
+- Profiled a cached scan of 1,000 files. Avoiding repeated symlink resolution
+  and regular expressions for simple globs reduced median time from 37.7 ms
+  to 4.56 ms, allocations from 45,538 to 6,841, and allocated bytes from
+  4.64 MB to 742 KB. Repeating unchanged raw content uses zero allocations.
+- Captured upstream calls checked: 14,170, plus standard plugin fixtures,
+  variable-reference fixtures and directly ported tests. CLI, remaining
+  TypeScript internals, coverage and integration gates remain open.
+- Go tests, race detector and vet pass; overall statement coverage is 96.3%.
+
 ## Initial compiler performance measurements
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
