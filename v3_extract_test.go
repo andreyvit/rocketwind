@@ -3,7 +3,9 @@ package rocketwind
 import (
 	"compress/gzip"
 	"encoding/json"
+	"math/rand/v2"
 	"os"
+	"reflect"
 	"slices"
 	"testing"
 )
@@ -34,6 +36,10 @@ func TestTailwind3OriginalExtractor(t *testing.T) {
 			}
 			slices.Sort(got)
 			got = slices.Compact(got)
+			scanner := NewScanner(nil, ScannerOptions{Compatibility: Tailwind3})
+			if scanned := scanner.ScanContent([]Content{{Text: tt.Input}}); !slices.Equal(scanned, tt.Results) {
+				t.Fatalf("scanner = %q; want %q", scanned, tt.Results)
+			}
 			if !slices.Equal(got, tt.Results) {
 				var missing, extra []string
 				for _, v := range tt.Results {
@@ -49,5 +55,24 @@ func TestTailwind3OriginalExtractor(t *testing.T) {
 				t.Fatalf("missing %q; extra %q", missing, extra)
 			}
 		})
+	}
+}
+
+func TestTailwind3BracketFreeExpressions(t *testing.T) {
+	random := rand.New(rand.NewPCG(1729, 42))
+	alphabet := []rune("abcZ01!@:-/.$={}<>\\\"'`()#%; \t\v\n\r\f]é日\u2003")
+	for range 2048 {
+		text := make([]rune, random.IntN(128))
+		for i := range text {
+			text[i] = alphabet[random.IntN(len(alphabet))]
+		}
+		input := string(text)
+		for i, fast := range v3SimpleRegexps[:2] {
+			want := v3ExtractRegexps[i].FindAllStringIndex(input, -1)
+			got := fast.FindAllStringIndex(input, -1)
+			if !reflect.DeepEqual(got, want) {
+				t.Fatalf("pattern %d, input %q: %v != %v", i, input, got, want)
+			}
+		}
 	}
 }

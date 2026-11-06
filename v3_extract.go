@@ -20,12 +20,22 @@ var v3ExtractRegexps = func() []*regexp.Regexp {
 	return result
 }()
 
+// Without an opening bracket, all arbitrary-value alternatives are impossible.
+// Keep the two upstream variant forms, including their different quote rules.
+var v3SimpleRegexps = []*regexp.Regexp{
+	regexp.MustCompile("(?:[^\\s\"'`\\[\\\\]+:)*!?(?:-?\\w+|@\\w+)(?:[-/][^\\s'\"`\\\\$={><]*)?"),
+	regexp.MustCompile("(?:[^\\s`\\[\\\\]+:)*!?(?:-?\\w+|@\\w+)(?:[-/][^\\s'\"`\\\\$={><]*)?"),
+	v3ExtractRegexps[2],
+}
+
 func appendExtractedV3(dst []Extracted, input string) []Extracted {
 	start := len(dst)
 	patterns := v3ExtractRegexps
 	if !strings.ContainsAny(input, "[:") && strings.IndexFunc(input, func(r rune) bool { return r >= 128 }) < 0 {
 		dst = appendV3PlainTokens(dst, input)
 		patterns = nil
+	} else if !strings.ContainsRune(input, '[') {
+		patterns = v3SimpleRegexps
 	}
 	for _, pattern := range patterns {
 		for _, span := range pattern.FindAllStringIndex(input, -1) {

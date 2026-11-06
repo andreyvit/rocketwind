@@ -28,7 +28,7 @@ type Scanner struct {
 	scanned                 []string
 	discovered              bool
 	buffer                  []Extracted
-	v3Lines                 map[string]bool
+	v3Chunks                map[string]bool
 }
 
 // ScannerOptions controls filesystem discovery. Base is the working directory
@@ -115,14 +115,23 @@ func (s *Scanner) addContent(content Content, cssOnly bool, added *[]string) {
 	for line := range strings.SplitSeq(text, "\n") {
 		if s.compatibility == Tailwind3 {
 			line = strings.TrimSpace(line)
-			if line == "" || s.v3Lines[line] {
+			if line == "" {
 				continue
 			}
-			if s.v3Lines == nil {
-				s.v3Lines = map[string]bool{}
+			if s.v3Chunks == nil {
+				s.v3Chunks = map[string]bool{}
 			}
-			s.v3Lines[strings.Clone(line)] = true
-			s.buffer = appendExtractedV3(s.buffer[:0], line)
+			s.buffer = s.buffer[:0]
+			// None of the legacy expressions cross ASCII whitespace. Smaller
+			// inputs avoid the regexp engine's large-input NFA and let repeated
+			// template fragments and bundled JavaScript share extraction work.
+			for chunk := range strings.FieldsFuncSeq(line, func(r rune) bool { return r < 128 && cssSpace(byte(r)) }) {
+				if s.v3Chunks[chunk] {
+					continue
+				}
+				s.v3Chunks[strings.Clone(chunk)] = true
+				s.buffer = appendExtractedV3(s.buffer, chunk)
+			}
 		} else if cssOnly && content.Extension == "css" {
 			s.buffer = append(s.buffer[:0], CSSVariables(line)...)
 		} else {

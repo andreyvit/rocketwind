@@ -330,3 +330,17 @@ func BenchmarkScanner(b *testing.B) {
 		}
 	})
 }
+
+func BenchmarkScannerLegacyBundledJavaScript(b *testing.B) {
+	var source strings.Builder
+	for i := range 1000 {
+		fmt.Fprintf(&source, `const component%d={view:"<div class='flex p-4 hover:text-red-500 w-[var(--card-width)]'> Card </div>",data:{id:%d,kind:"card"}}; `, i, i)
+	}
+	input := []Content{{Text: source.String(), Extension: "js"}}
+	b.SetBytes(int64(source.Len()))
+	b.ReportAllocs()
+	for b.Loop() {
+		scanner := NewScanner(nil, ScannerOptions{Compatibility: Tailwind3})
+		scanner.ScanContent(input)
+	}
+}
