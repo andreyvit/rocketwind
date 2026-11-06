@@ -23,11 +23,19 @@ fs.writeFileSync(setup, `
 import fs from 'node:fs'
 import { afterAll, expect } from 'vitest'
 const records = []
+const candidateRegistries = new Map()
 globalThis.__rocketwindRecord = (kind, args, result, error) => {
   const testPath = expect.getState().testPath
   if (kind === 'css.parse' && !testPath.endsWith('/css-parser.test.ts')) return
   if (kind === 'value.decode' && !testPath.endsWith('/decode-arbitrary-value.test.ts')) return
-  records.push({ test: expect.getState().currentTestName, kind, args, result, error })
+  if (kind.startsWith('internal:') && !testPath.endsWith('/' + kind.split(':')[1] + '.test.ts')) return
+  if (kind.startsWith('internal:candidate:')) {
+    const key = JSON.stringify(args[1])
+    const found = candidateRegistries.get(key)
+    if (found !== undefined) args[1] = {$registry:found}
+    else {const id = candidateRegistries.size;candidateRegistries.set(key,id);args[1] = {$registry:id,definition:args[1]}}
+  }
+  records.push(JSON.parse(JSON.stringify({ test: expect.getState().currentTestName, kind, args, result, error }, (key,value)=>typeof value === 'function' ? { $function:value.toString() } : value)))
 }
 afterAll(() => {
   const name = expect.getState().testPath.replaceAll('\\\\', '/').split('/src/')[1].replaceAll('/', '_')
@@ -41,6 +49,79 @@ export default defineConfig({
   plugins: [{
     name: 'rocketwind-record', enforce: 'pre',
     transform(code, id) {
+      const pure = {
+        'value-parser': ['parse', 'toCss'],
+        'selector-parser': ['parse', 'toCss'],
+        'attribute-selector-parser': ['parse'],
+        'utils/segment': ['segment'],
+        'utils/escape': ['escape', 'unescape'],
+        'utils/brace-expansion': ['expand'],
+        'utils/compare': ['compare'],
+        'utils/to-key-path': ['toKeyPath'],
+        'utils/replace-shadow-colors': ['replaceShadowColors'],
+      }
+      for (const [file, names] of Object.entries(pure)) {
+        if (!id.endsWith('/src/' + file + '.ts')) continue
+        for (const name of names) {
+          code = code.replace('export function ' + name + '(', 'function original_' + name + '(')
+          code += \`
+export function \${name}(...args) {
+            try {
+              const result = original_\${name}(...args)
+              globalThis.__rocketwindRecord?.('internal:\${file}:\${name}', args, result, undefined)
+              return result
+            } catch (error) {
+              globalThis.__rocketwindRecord?.('internal:\${file}:\${name}', args, undefined, error.message)
+              throw error
+            }
+          }\`
+        }
+        return code
+      }
+      if (id.endsWith('/src/ast.ts')) {
+        code = code.replace('export function optimizeAst(', 'function originalOptimizeAst(')
+        code = code.replace('export function handleNesting(', 'function originalHandleNesting(')
+        code = code.replace('export function toCss(', 'function originalAstToCss(')
+        return code + \`
+          export function handleNesting(ast) {
+            const input = JSON.parse(JSON.stringify(ast))
+            const result = originalHandleNesting(ast)
+            globalThis.__rocketwindRecord?.('internal:ast:nesting',[input],originalAstToCss(result),undefined)
+            return result
+          }
+          export function optimizeAst(ast, design, polyfills) {
+            const input = JSON.parse(JSON.stringify(ast))
+            const result = originalOptimizeAst(ast,design,polyfills)
+            globalThis.__rocketwindRecord?.('internal:ast:optimize',[input,{prefix:design.theme.prefix,theme:[...design.theme.values]},polyfills],originalAstToCss(result),undefined)
+            return result
+          }
+          export function toCss(...args) {
+            const input = JSON.parse(JSON.stringify(args))
+            const result = originalAstToCss(...args)
+            globalThis.__rocketwindRecord?.('internal:ast:print',input,result,undefined)
+            return result
+          }
+        \`
+      }
+      if (id.endsWith('/src/candidate.ts')) {
+        code = code.replace('export function* parseCandidate(', 'function* originalParseCandidate(')
+        code = code.replace('export function printCandidate(', 'function originalPrintCandidate(')
+        return code + \`
+          function candidateMetadata(design) {
+            return {prefix:design.theme.prefix, static:design.utilities.keys('static'), functional:design.utilities.keys('functional'), variants:[...design.variants.variants].map(([root,v])=>({root,kind:v.kind,order:v.order,compounds:v.compounds,compoundsWith:v.compoundsWith})), theme:[...design.theme.values]}
+          }
+          export function* parseCandidate(input, design) {
+            const result = [...originalParseCandidate(input,design)]
+            globalThis.__rocketwindRecord?.('internal:candidate:parse', [input,candidateMetadata(design)], result, undefined)
+            yield* result
+          }
+          export function printCandidate(design,candidate) {
+            const result = originalPrintCandidate(design,candidate)
+            globalThis.__rocketwindRecord?.('internal:candidate:print', [candidate,candidateMetadata(design)], result, undefined)
+            return result
+          }
+        \`
+      }
       if (id.endsWith('/tailwindcss/src/index.ts')) {
         code = code.replace('export async function compile(', 'async function compileOriginal(')
         return code + \`

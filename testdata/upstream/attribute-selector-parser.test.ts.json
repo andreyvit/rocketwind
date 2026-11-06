@@ -1,0 +1,224 @@
+[
+  {
+    "test": "parse > should parse an invalid attribute selector () as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      ""
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector (]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "["
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector (=\"value\") as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "=\"value\""
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector (data-foo]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "data-foo]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo=\"foo]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo=\"foo]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo * = foo]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo * = foo]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo*=]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo*=]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo=value x]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo=value x]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse an invalid attribute selector ([data-foo=value ix]) as `null`",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo=value ix]"
+    ],
+    "result": null
+  },
+  {
+    "test": "parse > should parse correctly: [data-foo]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-foo]"
+    ],
+    "result": {
+      "attribute": "data-foo",
+      "operator": null,
+      "quote": null,
+      "value": null,
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [ data-foo ]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[ data-foo ]"
+    ],
+    "result": {
+      "attribute": "data-foo",
+      "operator": null,
+      "quote": null,
+      "value": null,
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-état]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-état]"
+    ],
+    "result": {
+      "attribute": "data-état",
+      "operator": null,
+      "quote": null,
+      "value": null,
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-state=expanded]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-state=expanded]"
+    ],
+    "result": {
+      "attribute": "data-state",
+      "operator": "=",
+      "quote": null,
+      "value": "expanded",
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-state = expanded ]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-state = expanded ]"
+    ],
+    "result": {
+      "attribute": "data-state",
+      "operator": "=",
+      "quote": null,
+      "value": "expanded",
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-state*=\"expanded\"]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-state*=\"expanded\"]"
+    ],
+    "result": {
+      "attribute": "data-state",
+      "operator": "*=",
+      "quote": "\"",
+      "value": "expanded",
+      "sensitivity": null
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-state*=\"expanded\"i]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-state*=\"expanded\"i]"
+    ],
+    "result": {
+      "attribute": "data-state",
+      "operator": "*=",
+      "quote": "\"",
+      "value": "expanded",
+      "sensitivity": "i"
+    }
+  },
+  {
+    "test": "parse > should parse correctly: [data-state*=expanded i]",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-state*=expanded i]"
+    ],
+    "result": {
+      "attribute": "data-state",
+      "operator": "*=",
+      "quote": null,
+      "value": "expanded",
+      "sensitivity": "i"
+    }
+  },
+  {
+    "test": "parse > should work with a real-world example",
+    "kind": "internal:attribute-selector-parser:parse",
+    "args": [
+      "[data-url$=\".com\"i]"
+    ],
+    "result": {
+      "attribute": "data-url",
+      "operator": "$=",
+      "quote": "\"",
+      "value": ".com",
+      "sensitivity": "i"
+    }
+  }
+]

@@ -1,0 +1,194 @@
+[
+  {
+    "test": "should result in a single segment when the separator is not present",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "foo",
+      ":"
+    ],
+    "result": [
+      "foo"
+    ]
+  },
+  {
+    "test": "should split by the separator",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "foo:bar:baz",
+      ":"
+    ],
+    "result": [
+      "foo",
+      "bar",
+      "baz"
+    ]
+  },
+  {
+    "test": "should not split inside of parens",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:(b:c):d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "(b:c)",
+      "d"
+    ]
+  },
+  {
+    "test": "should not split inside of brackets",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:[b:c]:d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "[b:c]",
+      "d"
+    ]
+  },
+  {
+    "test": "should not split inside of curlies",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:{b:c}:d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "{b:c}",
+      "d"
+    ]
+  },
+  {
+    "test": "should not split inside of double quotes",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:\"b:c\":d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "\"b:c\"",
+      "d"
+    ]
+  },
+  {
+    "test": "should not split inside of single quotes",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:'b:c':d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "'b:c'",
+      "d"
+    ]
+  },
+  {
+    "test": "should not crash when double quotes are unbalanced",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:\"b:c:d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "\"b:c:d"
+    ]
+  },
+  {
+    "test": "should not crash when single quotes are unbalanced",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:'b:c:d",
+      ":"
+    ],
+    "result": [
+      "a",
+      "'b:c:d"
+    ]
+  },
+  {
+    "test": "should skip escaped double quotes",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:\"b:c\\\":d\":e",
+      ":"
+    ],
+    "result": [
+      "a",
+      "\"b:c\\\":d\"",
+      "e"
+    ]
+  },
+  {
+    "test": "should skip escaped single quotes",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a:'b:c\\':d':e",
+      ":"
+    ],
+    "result": [
+      "a",
+      "'b:c\\':d'",
+      "e"
+    ]
+  },
+  {
+    "test": "should split by the escape sequence which is escape as well",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a\\b\\c\\d",
+      "\\"
+    ],
+    "result": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ]
+  },
+  {
+    "test": "should split by the escape sequence which is escape as well",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a\\(b\\c)\\d",
+      "\\"
+    ],
+    "result": [
+      "a",
+      "(b\\c)",
+      "d"
+    ]
+  },
+  {
+    "test": "should split by the escape sequence which is escape as well",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a\\[b\\c]\\d",
+      "\\"
+    ],
+    "result": [
+      "a",
+      "[b\\c]",
+      "d"
+    ]
+  },
+  {
+    "test": "should split by the escape sequence which is escape as well",
+    "kind": "internal:utils/segment:segment",
+    "args": [
+      "a\\{b\\c}\\d",
+      "\\"
+    ],
+    "result": [
+      "a",
+      "{b\\c}",
+      "d"
+    ]
+  }
+]

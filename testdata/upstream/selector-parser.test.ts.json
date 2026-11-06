@@ -1,0 +1,2887 @@
+[
+  {
+    "test": "parse > should parse a simple selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo"
+    ],
+    "result": [
+      {
+        "kind": "selector",
+        "value": ".foo"
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse a compound selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo.bar:hover#id"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          },
+          {
+            "kind": "selector",
+            "value": ":hover"
+          },
+          {
+            "kind": "selector",
+            "value": "#id"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse a pseudo-element selector with double ::",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo::before"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": "::before"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse a selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should safely parse an invalid selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "compound",
+            "nodes": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should safely parse an invalid selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ",.foo"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "compound",
+            "nodes": []
+          },
+          {
+            "kind": "selector",
+            "value": ".foo"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should safely parse an invalid selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ",.foo,"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "compound",
+            "nodes": []
+          },
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "compound",
+            "nodes": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should safely parse an invalid selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "compound",
+            "nodes": []
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists with whitespace around the comma",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo, .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists with whitespace around the comma",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo , .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists with whitespace around the comma",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo ,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse a list of attribute selectors",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "[foo],[bar]"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "[foo]"
+          },
+          {
+            "kind": "selector",
+            "value": "[bar]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse a list of selectors with just functions",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":is(.a),:is(.b)"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "function",
+            "value": ":is",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".a"
+              }
+            ]
+          },
+          {
+            "kind": "function",
+            "value": ":is",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".b"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists with more than two selectors",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,.bar,.baz"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          },
+          {
+            "kind": "selector",
+            "value": ".baz"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should group selectors with combinators in a selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".a+.b, .c .d[attr], .e"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".a"
+              },
+              {
+                "kind": "combinator",
+                "value": "+"
+              },
+              {
+                "kind": "selector",
+                "value": ".b"
+              }
+            ]
+          },
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".c"
+              },
+              {
+                "kind": "combinator",
+                "value": " "
+              },
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".d"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": "[attr]"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "selector",
+            "value": ".e"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse complex selectors in a selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "#a.b > .c, .d"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": "#a"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": ".b"
+                  }
+                ]
+              },
+              {
+                "kind": "combinator",
+                "value": ">"
+              },
+              {
+                "kind": "selector",
+                "value": ".c"
+              }
+            ]
+          },
+          {
+            "kind": "selector",
+            "value": ".d"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should combine everything within attribute selectors",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo[bar=\"baz\"]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": "[bar=\"baz\"]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse functions",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo:hover:not(.bar:focus)"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ":hover"
+          },
+          {
+            "kind": "function",
+            "value": ":not",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".bar"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": ":focus"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists in functions",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":is(.foo, .bar)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":is",
+        "nodes": [
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".foo"
+              },
+              {
+                "kind": "selector",
+                "value": ".bar"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists in vendor-prefixed functions (:-moz-any)",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":-moz-any(&, .foo)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":-moz-any",
+        "nodes": [
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": "&"
+              },
+              {
+                "kind": "selector",
+                "value": ".foo"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists in vendor-prefixed functions (:-webkit-any)",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":-webkit-any(&, .foo)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":-webkit-any",
+        "nodes": [
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": "&"
+              },
+              {
+                "kind": "selector",
+                "value": ".foo"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should handle next-children combinator",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo + p"
+    ],
+    "result": [
+      {
+        "kind": "complex",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "combinator",
+            "value": "+"
+          },
+          {
+            "kind": "selector",
+            "value": "p"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should normalize combinators",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo + .bar"
+    ],
+    "result": [
+      {
+        "kind": "complex",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "combinator",
+            "value": "+"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should normalize combinators",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo  \n\t .bar"
+    ],
+    "result": [
+      {
+        "kind": "complex",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "combinator",
+            "value": " "
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should handle escaped characters",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "foo\\.bar"
+    ],
+    "result": [
+      {
+        "kind": "selector",
+        "value": "foo\\.bar"
+      }
+    ]
+  },
+  {
+    "test": "parse > parses :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(n+1)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "n+1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "&"
+    ],
+    "result": [
+      {
+        "kind": "selector",
+        "value": "&"
+      }
+    ]
+  },
+  {
+    "test": "parse > parses :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(2 of &)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "2 of "
+          },
+          {
+            "kind": "selector",
+            "value": "&"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo, .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(2n + 1 of .foo, .bar)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "2n + 1 of "
+          },
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".foo"
+              },
+              {
+                "kind": "selector",
+                "value": ".bar"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses &:has(.child:nth-child(2))",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "&:has(.child:nth-child(2))"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "&"
+          },
+          {
+            "kind": "function",
+            "value": ":has",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".child"
+                  },
+                  {
+                    "kind": "function",
+                    "value": ":nth-child",
+                    "nodes": [
+                      {
+                        "kind": "value",
+                        "value": "2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses &:has(:nth-child(2))",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "&:has(:nth-child(2))"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "&"
+          },
+          {
+            "kind": "function",
+            "value": ":has",
+            "nodes": [
+              {
+                "kind": "function",
+                "value": ":nth-child",
+                "nodes": [
+                  {
+                    "kind": "value",
+                    "value": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses nesting selector before attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "&[data-foo]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "&"
+          },
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses nesting selector after an attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "[data-foo]&"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          },
+          {
+            "kind": "selector",
+            "value": "&"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses universal selector before attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "*[data-foo]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "*"
+          },
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses the universal selector after an attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "[data-foo]*"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          },
+          {
+            "kind": "selector",
+            "value": "*"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses another attribute selector after an attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "[data-foo][data-bar]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          },
+          {
+            "kind": "selector",
+            "value": "[data-bar]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses a type selector before an attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "div[data-foo]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "div"
+          },
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > parses a type selector after an attribute selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "[data-foo]div"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": "[data-foo]"
+          },
+          {
+            "kind": "selector",
+            "value": "div"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "parse > should parse selector lists as real selectors",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo[attr], .bar#id, .baz + .qux"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "compound",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".foo"
+              },
+              {
+                "kind": "selector",
+                "value": "[attr]"
+              }
+            ]
+          },
+          {
+            "kind": "compound",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".bar"
+              },
+              {
+                "kind": "selector",
+                "value": "#id"
+              }
+            ]
+          },
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".baz"
+              },
+              {
+                "kind": "combinator",
+                "value": "+"
+              },
+              {
+                "kind": "selector",
+                "value": ".qux"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a simple selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo"
+    ],
+    "result": [
+      {
+        "kind": "selector",
+        "value": ".foo"
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a simple selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ]
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a compound selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo.bar:hover#id"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          },
+          {
+            "kind": "selector",
+            "value": ":hover"
+          },
+          {
+            "kind": "selector",
+            "value": "#id"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a compound selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        },
+        {
+          "kind": "selector",
+          "value": ".bar"
+        },
+        {
+          "kind": "selector",
+          "value": ":hover"
+        },
+        {
+          "kind": "selector",
+          "value": "#id"
+        }
+      ],
+      false
+    ],
+    "result": ".foo.bar:hover#id"
+  },
+  {
+    "test": "toCss > should print a compound selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            },
+            {
+              "kind": "selector",
+              "value": ":hover"
+            },
+            {
+              "kind": "selector",
+              "value": "#id"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo.bar:hover#id"
+  },
+  {
+    "test": "toCss > should print a selector list",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo, .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo, .bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo, .bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo, .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo, .bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo , .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo, .bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo ,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list with normalized commas",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo, .bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo, .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      true
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      true
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".foo,.bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo , .bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      true
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      true
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".foo,.bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo ,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      true
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      true
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print a selector list but minimized",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".foo,.bar"
+  },
+  {
+    "test": "toCss > should print an attribute selectors",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo[bar=\"baz\"]"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": "[bar=\"baz\"]"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print an attribute selectors",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        },
+        {
+          "kind": "selector",
+          "value": "[bar=\"baz\"]"
+        }
+      ],
+      false
+    ],
+    "result": ".foo[bar=\"baz\"]"
+  },
+  {
+    "test": "toCss > should print an attribute selectors",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": "[bar=\"baz\"]"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo[bar=\"baz\"]"
+  },
+  {
+    "test": "toCss > should print a function",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo:hover:not(.bar:focus)"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ":hover"
+          },
+          {
+            "kind": "function",
+            "value": ":not",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".bar"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": ":focus"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print a function",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        },
+        {
+          "kind": "selector",
+          "value": ":focus"
+        }
+      ],
+      false
+    ],
+    "result": ".bar:focus"
+  },
+  {
+    "test": "toCss > should print a function",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".bar"
+            },
+            {
+              "kind": "selector",
+              "value": ":focus"
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": ".bar:focus"
+  },
+  {
+    "test": "toCss > should print a function",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        },
+        {
+          "kind": "selector",
+          "value": ":hover"
+        },
+        {
+          "kind": "function",
+          "value": ":not",
+          "nodes": [
+            {
+              "kind": "compound",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".bar"
+                },
+                {
+                  "kind": "selector",
+                  "value": ":focus"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": ".foo:hover:not(.bar:focus)"
+  },
+  {
+    "test": "toCss > should print a function",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ":hover"
+            },
+            {
+              "kind": "function",
+              "value": ":not",
+              "nodes": [
+                {
+                  "kind": "compound",
+                  "nodes": [
+                    {
+                      "kind": "selector",
+                      "value": ".bar"
+                    },
+                    {
+                      "kind": "selector",
+                      "value": ":focus"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo:hover:not(.bar:focus)"
+  },
+  {
+    "test": "toCss > should print escaped characters",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      "foo\\.bar"
+    ],
+    "result": [
+      {
+        "kind": "selector",
+        "value": "foo\\.bar"
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print escaped characters",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": "foo\\.bar"
+        }
+      ]
+    ],
+    "result": "foo\\.bar"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(n+1)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "n+1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "value",
+          "value": "n+1"
+        }
+      ],
+      false
+    ],
+    "result": "n+1"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "function",
+          "value": ":nth-child",
+          "nodes": [
+            {
+              "kind": "value",
+              "value": "n+1"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ":nth-child(n+1)"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(+2)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "+2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "value",
+          "value": "+2"
+        }
+      ],
+      false
+    ],
+    "result": "+2"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "function",
+          "value": ":nth-child",
+          "nodes": [
+            {
+              "kind": "value",
+              "value": "+2"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ":nth-child(+2)"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo,.bar"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ".bar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ":nth-child(2n + 1 of .foo,.bar)"
+    ],
+    "result": [
+      {
+        "kind": "function",
+        "value": ":nth-child",
+        "nodes": [
+          {
+            "kind": "value",
+            "value": "2n + 1 of "
+          },
+          {
+            "kind": "list",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".foo"
+              },
+              {
+                "kind": "selector",
+                "value": ".bar"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        }
+      ],
+      false
+    ],
+    "result": ".foo"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".bar"
+        }
+      ],
+      false
+    ],
+    "result": ".bar"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "value",
+          "value": "2n + 1 of "
+        },
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ".bar"
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": "2n + 1 of .foo, .bar"
+  },
+  {
+    "test": "toCss > should print :nth-child()",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "function",
+          "value": ":nth-child",
+          "nodes": [
+            {
+              "kind": "value",
+              "value": "2n + 1 of "
+            },
+            {
+              "kind": "list",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".foo"
+                },
+                {
+                  "kind": "selector",
+                  "value": ".bar"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ":nth-child(2n + 1 of .foo, .bar)"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".a+.b, .c .d[attr], .e"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".a"
+              },
+              {
+                "kind": "combinator",
+                "value": "+"
+              },
+              {
+                "kind": "selector",
+                "value": ".b"
+              }
+            ]
+          },
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".c"
+              },
+              {
+                "kind": "combinator",
+                "value": " "
+              },
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".d"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": "[attr]"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "selector",
+            "value": ".e"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".a"
+        },
+        {
+          "kind": "combinator",
+          "value": "+"
+        },
+        {
+          "kind": "selector",
+          "value": ".b"
+        }
+      ],
+      false
+    ],
+    "result": ".a + .b"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "complex",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".a"
+            },
+            {
+              "kind": "combinator",
+              "value": "+"
+            },
+            {
+              "kind": "selector",
+              "value": ".b"
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": ".a + .b"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".d"
+        },
+        {
+          "kind": "selector",
+          "value": "[attr]"
+        }
+      ],
+      false
+    ],
+    "result": ".d[attr]"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".c"
+        },
+        {
+          "kind": "combinator",
+          "value": " "
+        },
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".d"
+            },
+            {
+              "kind": "selector",
+              "value": "[attr]"
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": ".c .d[attr]"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "complex",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".c"
+            },
+            {
+              "kind": "combinator",
+              "value": " "
+            },
+            {
+              "kind": "compound",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".d"
+                },
+                {
+                  "kind": "selector",
+                  "value": "[attr]"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      false
+    ],
+    "result": ".c .d[attr]"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".e"
+        }
+      ],
+      false
+    ],
+    "result": ".e"
+  },
+  {
+    "test": "toCss > should pretty print a complex selector",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "complex",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".a"
+                },
+                {
+                  "kind": "combinator",
+                  "value": "+"
+                },
+                {
+                  "kind": "selector",
+                  "value": ".b"
+                }
+              ]
+            },
+            {
+              "kind": "complex",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".c"
+                },
+                {
+                  "kind": "combinator",
+                  "value": " "
+                },
+                {
+                  "kind": "compound",
+                  "nodes": [
+                    {
+                      "kind": "selector",
+                      "value": ".d"
+                    },
+                    {
+                      "kind": "selector",
+                      "value": "[attr]"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "selector",
+              "value": ".e"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".a + .b, .c .d[attr], .e"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".a+.b, .c .d[attr], .e"
+    ],
+    "result": [
+      {
+        "kind": "list",
+        "nodes": [
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".a"
+              },
+              {
+                "kind": "combinator",
+                "value": "+"
+              },
+              {
+                "kind": "selector",
+                "value": ".b"
+              }
+            ]
+          },
+          {
+            "kind": "complex",
+            "nodes": [
+              {
+                "kind": "selector",
+                "value": ".c"
+              },
+              {
+                "kind": "combinator",
+                "value": " "
+              },
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".d"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": "[attr]"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "selector",
+            "value": ".e"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".a"
+        },
+        {
+          "kind": "combinator",
+          "value": "+"
+        },
+        {
+          "kind": "selector",
+          "value": ".b"
+        }
+      ],
+      true
+    ],
+    "result": ".a+.b"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "complex",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".a"
+            },
+            {
+              "kind": "combinator",
+              "value": "+"
+            },
+            {
+              "kind": "selector",
+              "value": ".b"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".a+.b"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".d"
+        },
+        {
+          "kind": "selector",
+          "value": "[attr]"
+        }
+      ],
+      true
+    ],
+    "result": ".d[attr]"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".c"
+        },
+        {
+          "kind": "combinator",
+          "value": " "
+        },
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".d"
+            },
+            {
+              "kind": "selector",
+              "value": "[attr]"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".c .d[attr]"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "complex",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".c"
+            },
+            {
+              "kind": "combinator",
+              "value": " "
+            },
+            {
+              "kind": "compound",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".d"
+                },
+                {
+                  "kind": "selector",
+                  "value": "[attr]"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".c .d[attr]"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".e"
+        }
+      ],
+      true
+    ],
+    "result": ".e"
+  },
+  {
+    "test": "toCss > should minify a complex selector during printing",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "list",
+          "nodes": [
+            {
+              "kind": "complex",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".a"
+                },
+                {
+                  "kind": "combinator",
+                  "value": "+"
+                },
+                {
+                  "kind": "selector",
+                  "value": ".b"
+                }
+              ]
+            },
+            {
+              "kind": "complex",
+              "nodes": [
+                {
+                  "kind": "selector",
+                  "value": ".c"
+                },
+                {
+                  "kind": "combinator",
+                  "value": " "
+                },
+                {
+                  "kind": "compound",
+                  "nodes": [
+                    {
+                      "kind": "selector",
+                      "value": ".d"
+                    },
+                    {
+                      "kind": "selector",
+                      "value": "[attr]"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "selector",
+              "value": ".e"
+            }
+          ]
+        }
+      ],
+      true
+    ],
+    "result": ".a+.b,.c .d[attr],.e"
+  },
+  {
+    "test": "walk > can be used to replace a function call",
+    "kind": "internal:selector-parser:parse",
+    "args": [
+      ".foo:hover:not(.bar:focus)"
+    ],
+    "result": [
+      {
+        "kind": "compound",
+        "nodes": [
+          {
+            "kind": "selector",
+            "value": ".foo"
+          },
+          {
+            "kind": "selector",
+            "value": ":hover"
+          },
+          {
+            "kind": "function",
+            "value": ":not",
+            "nodes": [
+              {
+                "kind": "compound",
+                "nodes": [
+                  {
+                    "kind": "selector",
+                    "value": ".bar"
+                  },
+                  {
+                    "kind": "selector",
+                    "value": ":focus"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "test": "walk > can be used to replace a function call",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "selector",
+          "value": ".foo"
+        },
+        {
+          "kind": "selector",
+          "value": ":hover"
+        },
+        {
+          "kind": "selector",
+          "value": ".inverted-bar"
+        }
+      ],
+      false
+    ],
+    "result": ".foo:hover.inverted-bar"
+  },
+  {
+    "test": "walk > can be used to replace a function call",
+    "kind": "internal:selector-parser:toCss",
+    "args": [
+      [
+        {
+          "kind": "compound",
+          "nodes": [
+            {
+              "kind": "selector",
+              "value": ".foo"
+            },
+            {
+              "kind": "selector",
+              "value": ":hover"
+            },
+            {
+              "kind": "selector",
+              "value": ".inverted-bar"
+            }
+          ]
+        }
+      ]
+    ],
+    "result": ".foo:hover.inverted-bar"
+  }
+]

@@ -29,8 +29,13 @@ be excluded; core behavior and standard plugins must be implemented in Go.
   API; functional test callbacks have explicit Go ports. No Go conformance skips.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
-  skipped upstream. Sorting uses compileAst and still needs capture coverage.
-- Core Go suite, race detector and vet pass. Statement coverage: 94.1%.
+  skipped upstream. Sorting uses the design-system API and still needs capture coverage.
+- Core Go suite, race detector and vet pass. Statement coverage: 94.8%.
+- Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
+  tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
+- Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
+  covers values, selectors, attributes, braces, escaping, segmenting, comparison,
+  theme paths and shadow colors. Total captured calls checked: 7,677.
 - Remaining: full internal and compatibility test suites, dynamic settings,
   standard plugins, scanning/CLI, existing-CSS exclusion, coverage/performance
   and integration gates.

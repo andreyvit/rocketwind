@@ -7,9 +7,9 @@ import (
 )
 
 type variantDefinition struct {
-	Kind             string
-	Order, Compounds int
-	Nodes            []*Node
+	Kind                            string
+	Order, Compounds, CompoundsWith int
+	Nodes                           []*Node
 }
 type parsedVariant struct {
 	root, value, modifier string
@@ -20,129 +20,29 @@ type parsedVariant struct {
 }
 
 func (b *buildContext) parseVariant(raw string) *parsedVariant {
-	if len(raw) > 2 && raw[0] == '[' && raw[len(raw)-1] == ']' {
-		value := raw[1 : len(raw)-1]
-		if !validArbitrary(value) || value[0] == '@' && strings.Contains(value, "&") {
-			return nil
-		}
-		value = DecodeArbitraryValue(value)
-		if strings.TrimSpace(value) == "" {
-			return nil
-		}
-		relative := strings.ContainsRune(">+~", rune(value[0]))
-		if !relative && value[0] != '@' && !strings.Contains(value, "&") {
-			value = "&:is(" + value + ")"
-		}
-		compounds := 2
-		if value[0] == '@' {
-			compounds = 1
-		}
-		if strings.Contains(value, "::") {
-			compounds = 0
-		}
-		return &parsedVariant{root: "[]", value: value, arbitrary: true, relative: relative, definition: variantDefinition{Kind: "arbitrary", Order: 10000, Compounds: compounds}}
-	}
-	parts := slices.Collect(Segments(raw, '/'))
-	if len(parts) > 2 {
+	return b.compiledVariant(parseVariantSyntax(raw, b.compiler.variantDefinition))
+}
+
+func (b *buildContext) compiledVariant(v *CandidateVariant) *parsedVariant {
+	if v == nil {
 		return nil
 	}
-	raw = parts[0]
-	modifier := ""
-	if len(parts) == 2 {
-		modifier = parts[1]
-		if modifier == "" {
-			return nil
-		}
-		if modifier[0] == '[' || modifier[0] == '(' {
-			var ok bool
-			modifier, ok = parseModifier(modifier)
-			if !ok {
-				return nil
-			}
-		} else if !validNamed(modifier) {
-			return nil
-		}
+	r := &parsedVariant{root: v.Root, relative: v.Relative, definition: v.definition}
+	if v.Kind == "arbitrary" {
+		r.root = "[]"
+		r.value = v.Selector
+		r.arbitrary = true
 	}
-	for end := len(raw); end > 0; {
-		root, value := raw[:end], ""
-		if end < len(raw) {
-			value = raw[end+1:]
-		}
-		if strings.HasPrefix(raw, "@") && root == "@" && len(raw) > 1 {
-			value = raw[1:]
-		}
-		d, ok := b.compiler.variantDefinition(root)
-		if ok {
-			v := &parsedVariant{root: root, value: value, modifier: modifier, definition: d}
-			if match := b.compiler.matchingVariants[root]; match != nil {
-				v.matcher = match
-			}
-			switch d.Kind {
-			case "static":
-				if value != "" || modifier != "" {
-					return nil
-				}
-				return v
-			case "compound":
-				if value == "" {
-					return nil
-				}
-				if modifier != "" && (root == "not" || root == "has" || root == "in") {
-					value += "/" + modifier
-					v.modifier = ""
-				}
-				v.child = b.parseVariant(value)
-				if v.child == nil || v.child.definition.Compounds == 0 {
-					return nil
-				}
-				if root != "not" && v.child.definition.Compounds&2 == 0 {
-					return nil
-				}
-				return v
-			case "functional":
-				if strings.HasPrefix(value, "[") || strings.HasPrefix(value, "(") {
-					var ok bool
-					v.value, ok = parseModifier(value)
-					if !ok {
-						return nil
-					}
-					v.arbitrary = true
-				} else if !validNamed(value) {
-					return nil
-				}
-				return v
-			}
-		}
-		end = strings.LastIndexByte(raw[:end], '-')
-		if end < 0 && strings.HasPrefix(raw, "@") {
-			end = 1
-		}
-		if root == "@" {
-			break
-		}
+	if v.Value != nil {
+		r.value = v.Value.Value
+		r.arbitrary = v.Value.Kind == "arbitrary"
 	}
-	return nil
-}
-func parseModifier(raw string) (string, bool) {
-	if len(raw) < 3 {
-		return "", false
+	if v.Modifier != nil {
+		r.modifier = v.Modifier.Value
 	}
-	if raw[0] == '[' && raw[len(raw)-1] == ']' {
-		v := raw[1 : len(raw)-1]
-		if !validArbitrary(v) {
-			return "", false
-		}
-		v = DecodeArbitraryValue(v)
-		return v, strings.TrimSpace(v) != ""
-	}
-	if raw[0] == '(' && raw[len(raw)-1] == ')' {
-		v := raw[1 : len(raw)-1]
-		if !strings.HasPrefix(v, "--") || !validArbitrary(v) {
-			return "", false
-		}
-		return DecodeArbitraryValue("var(" + v + ")"), true
-	}
-	return "", false
+	r.child = b.compiledVariant(v.Variant)
+	r.matcher = b.compiler.matchingVariants[v.Root]
+	return r
 }
 func (c *Compiler) variantDefinition(name string) (variantDefinition, bool) {
 	if d, ok := c.customVariants[name]; ok {
@@ -342,42 +242,8 @@ func quoteAttributeValue(input string) string {
 	}
 	return parts[0] + "=\"" + value + "\"" + suffix
 }
-func validAttributeSelector(s string) bool {
-	// Full attribute parser is shared with selector handling below.
-	body := s[1 : len(s)-1]
-	parts := slices.Collect(Segments(body, '='))
-	name := strings.TrimSpace(parts[0])
-	if name != "" && strings.ContainsRune("~|^$*", rune(name[len(name)-1])) && parts[0] != strings.TrimRight(parts[0], " \t\n") {
-		return false
-	}
-	name = strings.TrimRight(name, "~|^$*")
-	name = strings.TrimSpace(name)
-	if name == "" || strings.ContainsAny(name, " []()\"'<>!@#%&+,;:{}") {
-		return false
-	}
-	if len(parts) > 1 {
-		v := strings.TrimSpace(strings.Join(parts[1:], "="))
-		if len(v) < 2 || (v[0] != '\'' && v[0] != '"') {
-			return false
-		}
-		q := v[0]
-		i := 1
-		for i < len(v) && v[i] != q {
-			if v[i] == '\\' {
-				i++
-			}
-			i++
-		}
-		if i >= len(v) {
-			return false
-		}
-		tail := strings.TrimSpace(v[i+1:])
-		if tail != "" && !containsWord("i I s S", tail) {
-			return false
-		}
-	}
-	return true
-}
+func validAttributeSelector(s string) bool { return parseAttribute(s) != nil }
+
 func (b *buildContext) compoundVariant(nodes []*Node, v *parsedVariant, depth int) ([]*Node, bool) {
 	if v.modifier != "" && v.root != "group" && v.root != "peer" {
 		return nil, false

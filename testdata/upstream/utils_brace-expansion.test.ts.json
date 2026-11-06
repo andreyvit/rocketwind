@@ -1,0 +1,1735 @@
+[
+  {
+    "test": "expand(…) > should expand a/b/c (0)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/b/c"
+    ],
+    "result": [
+      "a/b/c"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{x,y,z}/b (1)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x"
+    ],
+    "result": [
+      "x"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{x,y,z}/b (1)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "y"
+    ],
+    "result": [
+      "y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{x,y,z}/b (1)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "z"
+    ],
+    "result": [
+      "z"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{x,y,z}/b (1)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{x,y,z}/b (1)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{x,y,z}/b"
+    ],
+    "result": [
+      "a/x/b",
+      "a/y/b",
+      "a/z/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a"
+    ],
+    "result": [
+      "a"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x"
+    ],
+    "result": [
+      "x"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "y"
+    ],
+    "result": [
+      "y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/{x,y}"
+    ],
+    "result": [
+      "/x",
+      "/y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {a,b}/{x,y} (2)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{a,b}/{x,y}"
+    ],
+    "result": [
+      "a/x",
+      "b/x",
+      "a/y",
+      "b/y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "xs"
+    ],
+    "result": [
+      "xs"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "sm"
+    ],
+    "result": [
+      "sm"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "md"
+    ],
+    "result": [
+      "md"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "lg"
+    ],
+    "result": [
+      "lg"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ":"
+    ],
+    "result": [
+      ":"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{xs,sm,md,lg}:"
+    ],
+    "result": [
+      "xs:",
+      "sm:",
+      "md:",
+      "lg:"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "hidden"
+    ],
+    "result": [
+      "hidden"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {{xs,sm,md,lg}:,}hidden (3)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{{xs,sm,md,lg}:,}hidden"
+    ],
+    "result": [
+      "xs:hidden",
+      "sm:hidden",
+      "md:hidden",
+      "lg:hidden",
+      "hidden"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "1"
+    ],
+    "result": [
+      "1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "2"
+    ],
+    "result": [
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "3"
+    ],
+    "result": [
+      "3"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "4"
+    ],
+    "result": [
+      "4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5}/b (4)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{0..5}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/1/b",
+      "a/2/b",
+      "a/3/b",
+      "a/4/b",
+      "a/5/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-5"
+    ],
+    "result": [
+      "-5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-4"
+    ],
+    "result": [
+      "-4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-3"
+    ],
+    "result": [
+      "-3"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-2"
+    ],
+    "result": [
+      "-2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-1"
+    ],
+    "result": [
+      "-1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{-5..0}/b (5)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{-5..0}/b"
+    ],
+    "result": [
+      "a/-5/b",
+      "a/-4/b",
+      "a/-3/b",
+      "a/-2/b",
+      "a/-1/b",
+      "a/0/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-1"
+    ],
+    "result": [
+      "-1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-2"
+    ],
+    "result": [
+      "-2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-3"
+    ],
+    "result": [
+      "-3"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-4"
+    ],
+    "result": [
+      "-4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "-5"
+    ],
+    "result": [
+      "-5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..-5}/b (6)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{0..-5}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/-1/b",
+      "a/-2/b",
+      "a/-3/b",
+      "a/-4/b",
+      "a/-5/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..5}/b (7)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..5}/b (7)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..5}/b (7)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "10"
+    ],
+    "result": [
+      "10"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..5}/b (7)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..5}/b (7)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{0..10..5}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/5/b",
+      "a/10/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..-5}/b (8)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..-5}/b (8)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..-5}/b (8)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "10"
+    ],
+    "result": [
+      "10"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..-5}/b (8)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..10..-5}/b (8)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{0..10..-5}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/5/b",
+      "a/10/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..5}/b (9)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "10"
+    ],
+    "result": [
+      "10"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..5}/b (9)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..5}/b (9)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..5}/b (9)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..5}/b (9)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{10..0..5}/b"
+    ],
+    "result": [
+      "a/10/b",
+      "a/5/b",
+      "a/0/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..-5}/b (10)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "10"
+    ],
+    "result": [
+      "10"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..-5}/b (10)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..-5}/b (10)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..-5}/b (10)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{10..0..-5}/b (10)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{10..0..-5}/b"
+    ],
+    "result": [
+      "a/10/b",
+      "a/5/b",
+      "a/0/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "1"
+    ],
+    "result": [
+      "1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "2"
+    ],
+    "result": [
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "3"
+    ],
+    "result": [
+      "3"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "4"
+    ],
+    "result": [
+      "4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{00..05}/b (11)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{00..05}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/1/b",
+      "a/2/b",
+      "a/3/b",
+      "a/4/b",
+      "a/5/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "1"
+    ],
+    "result": [
+      "1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "2"
+    ],
+    "result": [
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "3"
+    ],
+    "result": [
+      "3"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "4"
+    ],
+    "result": [
+      "4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "5"
+    ],
+    "result": [
+      "5"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "6"
+    ],
+    "result": [
+      "6"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "7"
+    ],
+    "result": [
+      "7"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "8"
+    ],
+    "result": [
+      "8"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "9"
+    ],
+    "result": [
+      "9"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{001..9}b (12)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{001..9}b"
+    ],
+    "result": [
+      "a1b",
+      "a2b",
+      "a3b",
+      "a4b",
+      "a5b",
+      "a6b",
+      "a7b",
+      "a8b",
+      "a9b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5..2}/b (13)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5..2}/b (13)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "2"
+    ],
+    "result": [
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5..2}/b (13)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "4"
+    ],
+    "result": [
+      "4"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5..2}/b (13)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/b"
+    ],
+    "result": [
+      "/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a/{0..5..2}/b (13)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a/{0..5..2}/b"
+    ],
+    "result": [
+      "a/0/b",
+      "a/2/b",
+      "a/4/b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "100"
+    ],
+    "result": [
+      "100"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "200"
+    ],
+    "result": [
+      "200"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "300"
+    ],
+    "result": [
+      "300"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "400"
+    ],
+    "result": [
+      "400"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "500"
+    ],
+    "result": [
+      "500"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "600"
+    ],
+    "result": [
+      "600"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "700"
+    ],
+    "result": [
+      "700"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "800"
+    ],
+    "result": [
+      "800"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "900"
+    ],
+    "result": [
+      "900"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{100..900..100} (14)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "bg-red-{100..900..100}"
+    ],
+    "result": [
+      "bg-red-100",
+      "bg-red-200",
+      "bg-red-300",
+      "bg-red-400",
+      "bg-red-500",
+      "bg-red-600",
+      "bg-red-700",
+      "bg-red-800",
+      "bg-red-900"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "c"
+    ],
+    "result": [
+      "c"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x"
+    ],
+    "result": [
+      "x"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "y"
+    ],
+    "result": [
+      "y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/{x,y}"
+    ],
+    "result": [
+      "/x",
+      "/y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/e"
+    ],
+    "result": [
+      "/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y}}/e (15)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{b,c,/{x,y}}/e"
+    ],
+    "result": [
+      "ab/e",
+      "ac/e",
+      "a/x/e",
+      "a/y/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "c"
+    ],
+    "result": [
+      "c"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x"
+    ],
+    "result": [
+      "x"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "y"
+    ],
+    "result": [
+      "y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/{x,y}"
+    ],
+    "result": [
+      "/x",
+      "/y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "z"
+    ],
+    "result": [
+      "z"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "w"
+    ],
+    "result": [
+      "w"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{z,w}"
+    ],
+    "result": [
+      "z",
+      "w"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/e"
+    ],
+    "result": [
+      "/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{z,w}}/e (16)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{b,c,/{x,y},{z,w}}/e"
+    ],
+    "result": [
+      "ab/e",
+      "ac/e",
+      "a/x/e",
+      "a/y/e",
+      "az/e",
+      "aw/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "c"
+    ],
+    "result": [
+      "c"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x"
+    ],
+    "result": [
+      "x"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "y"
+    ],
+    "result": [
+      "y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/{x,y}"
+    ],
+    "result": [
+      "/x",
+      "/y"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "0"
+    ],
+    "result": [
+      "0"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "1"
+    ],
+    "result": [
+      "1"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "2"
+    ],
+    "result": [
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{0..2}"
+    ],
+    "result": [
+      "0",
+      "1",
+      "2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "/e"
+    ],
+    "result": [
+      "/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand a{b,c,/{x,y},{0..2}}/e (17)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{b,c,/{x,y},{0..2}}/e"
+    ],
+    "result": [
+      "ab/e",
+      "ac/e",
+      "a/x/e",
+      "a/y/e",
+      "a0/e",
+      "a1/e",
+      "a2/e"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "50"
+    ],
+    "result": [
+      "50"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "100"
+    ],
+    "result": [
+      "100"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "200"
+    ],
+    "result": [
+      "200"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "300"
+    ],
+    "result": [
+      "300"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "400"
+    ],
+    "result": [
+      "400"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "500"
+    ],
+    "result": [
+      "500"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "600"
+    ],
+    "result": [
+      "600"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "700"
+    ],
+    "result": [
+      "700"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "800"
+    ],
+    "result": [
+      "800"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "900"
+    ],
+    "result": [
+      "900"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{100..900..100}"
+    ],
+    "result": [
+      "100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "600",
+      "700",
+      "800",
+      "900"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "950"
+    ],
+    "result": [
+      "950"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand bg-red-{50,{100..900..100},950} (18)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "bg-red-{50,{100..900..100},950}"
+    ],
+    "result": [
+      "bg-red-50",
+      "bg-red-100",
+      "bg-red-200",
+      "bg-red-300",
+      "bg-red-400",
+      "bg-red-500",
+      "bg-red-600",
+      "bg-red-700",
+      "bg-red-800",
+      "bg-red-900",
+      "bg-red-950"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {1.1..2.2} (19)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "1.1..2.2"
+    ],
+    "result": [
+      "1.1..2.2"
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {1.1..2.2} (19)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > should expand {1.1..2.2} (19)",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{1.1..2.2}"
+    ],
+    "result": [
+      "1.1..2.2"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "b"
+    ],
+    "result": [
+      "b"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "d"
+    ],
+    "result": [
+      "d"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "e"
+    ],
+    "result": [
+      "e"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      ""
+    ],
+    "result": [
+      ""
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "c{d,e}"
+    ],
+    "result": [
+      "cd",
+      "ce"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "f"
+    ],
+    "result": [
+      "f"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "g"
+    ],
+    "result": [
+      "g"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "h"
+    ],
+    "result": [
+      "h"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "{f,g}h"
+    ],
+    "result": [
+      "fh",
+      "gh"
+    ]
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "x{y,z"
+    ],
+    "error": "The pattern `x{y,z` is not balanced."
+  },
+  {
+    "test": "expand(…) > throws on unbalanced braces",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{b,c{d,e},{f,g}h}x{y,z"
+    ],
+    "error": "The pattern `x{y,z` is not balanced."
+  },
+  {
+    "test": "expand(…) > throws when step is set to zero",
+    "kind": "internal:utils/brace-expansion:expand",
+    "args": [
+      "a{0..5..0}/b"
+    ],
+    "error": "Step cannot be zero in sequence expansion."
+  }
+]

@@ -136,7 +136,7 @@ go+='\nvar builtinVariants=map[string]variantDefinition{\n'
 for(const [name,v] of variants.variants) {
   let nodes=[]
   if(v.kind==='static') {const r={kind:'rule',selector:'&',nodes:[{kind:'slot'}]};v.applyFn(r,{kind:'static',root:name});nodes=r.nodes}
-  go+=q(name)+':{Kind:'+q(v.kind)+',Order:'+v.order+',Compounds:'+v.compounds+',Nodes:'+nodesGo(nodes)+'},\n'
+  go+=q(name)+':{Kind:'+q(v.kind)+',Order:'+v.order+',Compounds:'+v.compounds+',CompoundsWith:'+v.compoundsWith+',Nodes:'+nodesGo(nodes)+'},\n'
 }
 go+='}\n'
 const legacyDefaults = {}

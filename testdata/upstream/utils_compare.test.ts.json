@@ -1,0 +1,8597 @@
+[
+  {
+    "test": "should compare \"abc\" with \"abc\" as \"0\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "abc",
+      "abc"
+    ],
+    "result": 0
+  },
+  {
+    "test": "should compare \"abc\" with \"abcd\" as \"-1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "abc",
+      "abcd"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should compare \"abcd\" with \"abc\" as \"1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "abcd",
+      "abc"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should compare \"1\" with \"1\" as \"0\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "1",
+      "1"
+    ],
+    "result": 0
+  },
+  {
+    "test": "should compare \"1\" with \"2\" as \"-1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "1",
+      "2"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should compare \"2\" with \"1\" as \"1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "2",
+      "1"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should compare \"1\" with \"10\" as \"-1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "1",
+      "10"
+    ],
+    "result": -9
+  },
+  {
+    "test": "should compare \"10\" with \"1\" as \"1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "10",
+      "1"
+    ],
+    "result": 9
+  },
+  {
+    "test": "should compare \"75\" with \"700\" as \"-1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "75",
+      "700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "should compare \"700\" with \"75\" as \"1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "700",
+      "75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "should compare \"75\" with \"770\" as \"-1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "75",
+      "770"
+    ],
+    "result": -695
+  },
+  {
+    "test": "should compare \"770\" with \"75\" as \"1\"",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "770",
+      "75"
+    ],
+    "result": 695
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-20",
+      "p-1"
+    ],
+    "result": 19
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-12",
+      "p-20"
+    ],
+    "result": -8
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-12",
+      "p-20"
+    ],
+    "result": -8
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-12",
+      "p-1"
+    ],
+    "result": 11
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-1.5",
+      "p-12"
+    ],
+    "result": -11
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-1.5",
+      "p-1"
+    ],
+    "result": 2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-2",
+      "p-12"
+    ],
+    "result": -10
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-2",
+      "p-1.5"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0.5",
+      "p-2"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0.5",
+      "p-1.5"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0.5",
+      "p-1"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0",
+      "p-2"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0",
+      "p-1"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-0",
+      "p-0.5"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-10",
+      "p-1.5"
+    ],
+    "result": 9
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-10",
+      "p-12"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-10",
+      "p-2"
+    ],
+    "result": 8
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-21",
+      "p-2"
+    ],
+    "result": 19
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-21",
+      "p-12"
+    ],
+    "result": 9
+  },
+  {
+    "test": "should sort strings with numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "p-21",
+      "p-20"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/60",
+      "bg-red-50/70"
+    ],
+    "result": 450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl/loose",
+      "bg-red-500/60"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/60",
+      "text-6xl/loose"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/60",
+      "bg-red-500/60"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/60",
+      "bg-red-50/70"
+    ],
+    "result": -10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl",
+      "bg-red-500/60"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl",
+      "text-6xl/loose"
+    ],
+    "result": -6
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500",
+      "bg-red-500/60"
+    ],
+    "result": -3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500",
+      "bg-red-50/70"
+    ],
+    "result": 450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "bg-red-500/60"
+    ],
+    "result": 10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "text-6xl/loose"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/70",
+      "text-6xl"
+    ],
+    "result": -18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/50",
+      "bg-red-500/60"
+    ],
+    "result": -10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/50",
+      "bg-red-50/70"
+    ],
+    "result": 450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-500/50",
+      "bg-red-500"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-500/60"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-500"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-50/70"
+    ],
+    "result": -3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50",
+      "bg-red-50/60"
+    ],
+    "result": -3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "bg-red-500/50"
+    ],
+    "result": -450
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "bg-red-50/70"
+    ],
+    "result": -20
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "bg-red-50/60"
+    ],
+    "result": -10
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "bg-red-50/50",
+      "bg-red-50"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "bg-red-500/50"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "text-6xl"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-5xl",
+      "bg-red-500/70"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl/wide",
+      "bg-red-500/50"
+    ],
+    "result": 18
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl/wide",
+      "text-5xl"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with modifiers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "text-6xl/wide",
+      "text-6xl/loose"
+    ],
+    "result": 11
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-124-bar-456-baz-788",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": 112
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-457-baz-789",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-457-baz-789",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-457-baz-789",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": 111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": 111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-127-bar-456-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": 4
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-127-bar-456-baz-789",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-125-bar-456-baz-790",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": 2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-125-bar-456-baz-790",
+      "foo-127-bar-456-baz-789"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-125-bar-456-baz-790",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-455-baz-789",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-455-baz-789",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-455-baz-789",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": 111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-4",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-4",
+      "foo-123-bar-455-baz-789"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-4",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": -41
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-788",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-788",
+      "foo-123-bar-455-baz-789"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-788",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-790",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-790",
+      "foo-125-bar-456-baz-790"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-790",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-790",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": 3
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-125-bar-456-baz-790"
+    ],
+    "result": 1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-126-bar-455-baz-789",
+      "foo-127-bar-456-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-456",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-456",
+      "foo-123-bar-455-baz-789"
+    ],
+    "result": -111
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-12-bar-34-baz-456",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": 411
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-1-bar-2-baz-3",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": -122
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-1-bar-2-baz-3",
+      "foo-123-bar-455-baz-789"
+    ],
+    "result": -122
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-1-bar-2-baz-3",
+      "foo-12-bar-34-baz-45"
+    ],
+    "result": -11
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-1-bar-2-baz-3",
+      "foo-12-bar-34-baz-4"
+    ],
+    "result": -11
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": 0
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-125-bar-456-baz-790"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": 0
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-125-bar-456-baz-790"
+    ],
+    "result": -2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-457-baz-789"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-123-bar-456-baz-789",
+      "foo-123-bar-456-baz-790"
+    ],
+    "result": -1
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-128-bar-457-baz-789",
+      "foo-123-bar-456-baz-789"
+    ],
+    "result": 5
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-128-bar-457-baz-789",
+      "foo-124-bar-456-baz-788"
+    ],
+    "result": 4
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-128-bar-457-baz-789",
+      "foo-126-bar-455-baz-789"
+    ],
+    "result": 2
+  },
+  {
+    "test": "should sort strings with multiple numbers consistently using the `compare` function",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "foo-128-bar-457-baz-789",
+      "foo-127-bar-456-baz-789"
+    ],
+    "result": 1
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-150"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-75"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-initial"
+    ],
+    "result": -56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-initial"
+    ],
+    "result": -50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-75"
+    ],
+    "result": 625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-700"
+    ],
+    "result": -550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-700"
+    ],
+    "result": -625
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-700"
+    ],
+    "result": 300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-150"
+    ],
+    "result": 850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-150"
+    ],
+    "result": -75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-1000",
+      "duration-75"
+    ],
+    "result": 925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-75",
+      "duration-1000"
+    ],
+    "result": -925
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-1000"
+    ],
+    "result": -850
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-150",
+      "duration-75"
+    ],
+    "result": 75
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-150"
+    ],
+    "result": 550
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-700",
+      "duration-1000"
+    ],
+    "result": -300
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-700"
+    ],
+    "result": 50
+  },
+  {
+    "test": "sort is stable",
+    "kind": "internal:utils/compare:compare",
+    "args": [
+      "duration-initial",
+      "duration-1000"
+    ],
+    "result": 56
+  }
+]

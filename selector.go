@@ -196,7 +196,8 @@ func parseSelector(input string) []*selectorNode {
 	}
 	return ast
 }
-func selectorCSS(nodes []*selectorNode) string {
+func selectorCSS(nodes []*selectorNode) string { return selectorCSSMode(nodes, false) }
+func selectorCSSMode(nodes []*selectorNode, minify bool) string {
 	var out strings.Builder
 	var write func([]*selectorNode)
 	write = func(nodes []*selectorNode) {
@@ -205,8 +206,8 @@ func selectorCSS(nodes []*selectorNode) string {
 			case "selector", "value":
 				out.WriteString(n.Value)
 			case "combinator":
-				if n.Value == " " {
-					out.WriteByte(' ')
+				if n.Value == " " || minify {
+					out.WriteString(n.Value)
 				} else {
 					out.WriteByte(' ')
 					out.WriteString(n.Value)
@@ -220,7 +221,11 @@ func selectorCSS(nodes []*selectorNode) string {
 			case "list":
 				for i, child := range n.Nodes {
 					if i > 0 {
-						out.WriteString(", ")
+						if minify {
+							out.WriteByte(',')
+						} else {
+							out.WriteString(", ")
+						}
 					}
 					write([]*selectorNode{child})
 				}

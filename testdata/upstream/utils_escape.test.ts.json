@@ -1,0 +1,154 @@
+[
+  {
+    "test": "escape > adds backslashes",
+    "kind": "internal:utils/escape:escape",
+    "args": [
+      "red-1/2"
+    ],
+    "result": "red-1\\/2"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\0",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\0"
+    ],
+    "result": "�"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\1",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\1"
+    ],
+    "result": "\u0001"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\9",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\9"
+    ],
+    "result": "\t"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\a",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\a"
+    ],
+    "result": "\n"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\A",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\A"
+    ],
+    "result": "\n"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\c",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\c"
+    ],
+    "result": "\f"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\C",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\C"
+    ],
+    "result": "\f"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\f",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\f"
+    ],
+    "result": "\u000f"
+  },
+  {
+    "test": "unescape > decodes a single hexadecimal digit in \\F",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\F"
+    ],
+    "result": "\u000f"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\a b",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\a b"
+    ],
+    "result": "\nb"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\00000a",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\00000a"
+    ],
+    "result": "\n"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\41",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\41"
+    ],
+    "result": "A"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\0 ",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\0 "
+    ],
+    "result": "�"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\!",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\!"
+    ],
+    "result": "!"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\g",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\g"
+    ],
+    "result": "g"
+  },
+  {
+    "test": "unescape > preserves escape handling in \\\\",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "\\\\"
+    ],
+    "result": "\\"
+  },
+  {
+    "test": "unescape > removes backslashes",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "red-1\\/2"
+    ],
+    "result": "red-1/2"
+  },
+  {
+    "test": "unescape > replaces out-of-range escaped code points",
+    "kind": "internal:utils/escape:unescape",
+    "args": [
+      "--Coding-Projects-CharacterMapper-Master-Workspace\\d8819554-4725-4235-9d22-2d0ed572e924"
+    ],
+    "result": "--Coding-Projects-CharacterMapper-Master-Workspace�54-4725-4235-9d22-2d0ed572e924"
+  }
+]

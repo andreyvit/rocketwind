@@ -224,25 +224,7 @@ var legacyNamespaces = map[string]string{
 }
 
 func legacyThemeKey(path string) string {
-	var parts []string
-	for part := range Segments(path, '.') {
-		for part != "" {
-			i := strings.IndexByte(part, '[')
-			if i < 0 {
-				parts = append(parts, part)
-				break
-			}
-			if i > 0 {
-				parts = append(parts, part[:i])
-			}
-			end := strings.IndexByte(part[i:], ']')
-			if end < 0 {
-				return ""
-			}
-			parts = append(parts, part[i+1:i+end])
-			part = part[i+end+1:]
-		}
-	}
+	parts := themeKeyPath(path)
 	if len(parts) == 0 || parts[0] == "container" {
 		return ""
 	}
@@ -293,4 +275,36 @@ func (b *buildContext) legacyThemeValue(path, key string) string {
 		}
 	}
 	return legacyDefaultTheme[path]
+}
+
+func themeKeyPath(path string) []string {
+	keys := []string{}
+	for part := range Segments(path, '.') {
+		if !strings.Contains(part, "[") {
+			keys = append(keys, part)
+			continue
+		}
+		start := 0
+		for {
+			left := strings.IndexByte(part[start:], '[')
+			if left < 0 {
+				break
+			}
+			left += start
+			right := strings.IndexByte(part[left:], ']')
+			if right < 0 {
+				break
+			}
+			right += left
+			if left > start {
+				keys = append(keys, part[start:left])
+			}
+			keys = append(keys, part[left+1:right])
+			start = right + 1
+		}
+		if start < len(part) {
+			keys = append(keys, part[start:])
+		}
+	}
+	return keys
 }

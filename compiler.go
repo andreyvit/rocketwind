@@ -106,26 +106,30 @@ func (b *buildContext) compileRules(candidates []string) []compiledRule {
 			continue
 		}
 		seen[raw] = true
-		base, variants, important, ok := parseClass(raw, b.compiler.config.Prefix)
-		if !ok {
-			continue
-		}
-		for _, nodes := range b.utilityGroups(base) {
-			nodes = b.evaluateNodes(nodes)
-			if len(nodes) == 0 {
-				continue
+		_, variants, _, _ := parseClass(raw, b.compiler.config.Prefix)
+		for candidate := range b.compiler.Parse(raw) {
+			for _, nodes := range b.candidateGroups(candidate) {
+				nodes = b.evaluateNodes(nodes)
+				if len(nodes) == 0 {
+					continue
+				}
+				order, count := sortProperties(nodes)
+				n := &Node{Kind: "rule", Name: "." + Escape(raw), Nodes: nodes}
+				if candidate.Important || b.compiler.config.Important && !b.inApply {
+					n = cloneNode(n, "", true)
+				}
+				valid := true
+				for _, variant := range candidate.Variants {
+					n.Nodes, valid = b.applyParsedVariant(n.Nodes, b.compiledVariant(variant), 0)
+					if !valid {
+						break
+					}
+				}
+				if !valid {
+					continue
+				}
+				rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: variants})
 			}
-			order, count := sortProperties(nodes)
-			n := &Node{Kind: "rule", Name: "." + Escape(raw), Nodes: nodes}
-			if important || b.compiler.config.Important && !b.inApply {
-				n = cloneNode(n, "", true)
-			}
-			var valid bool
-			n.Nodes, valid = b.applyVariants(n.Nodes, variants)
-			if !valid {
-				continue
-			}
-			rules = append(rules, compiledRule{raw: raw, node: n, order: order, count: count, variants: variants})
 		}
 	}
 	slices.SortStableFunc(rules, func(a, z compiledRule) int {
@@ -237,92 +241,41 @@ func (b *buildContext) resolve(value string, keys []string) string {
 	return ""
 }
 
-func (b *buildContext) utility(base string) []*Node {
-	var nodes []*Node
-	for _, group := range b.utilityGroups(base) {
-		nodes = append(nodes, group...)
+func (b *buildContext) candidateGroups(candidate Candidate) [][]*Node {
+	modifier := ""
+	modifierArbitrary := false
+	if candidate.Modifier != nil {
+		modifier, modifierArbitrary = candidate.Modifier.Value, candidate.Modifier.Kind == "arbitrary"
 	}
-	return nodes
-}
-
-func (b *buildContext) utilityGroups(base string) [][]*Node {
-	var result [][]*Node
-	if nodes := b.compiler.custom[base]; len(nodes) > 0 {
-		result = append(result, nodes)
-	}
-	if base == "container" {
-		result = append(result, b.container())
-	} else {
-		if nodes := builtinStatic[base]; len(nodes) > 0 {
+	switch candidate.Kind {
+	case "static":
+		var result [][]*Node
+		if nodes := b.compiler.custom[candidate.Root]; len(nodes) > 0 {
 			result = append(result, nodes)
 		}
-	}
-	parts := slices.Collect(Segments(base, '/'))
-	if len(parts) > 2 {
-		return nil
-	}
-	base = parts[0]
-	mod := ""
-	modArbitrary := false
-	if len(parts) == 2 {
-		mod = parts[1]
-		if mod == "" {
-			return nil
+		if candidate.Root == "container" {
+			result = append(result, b.container())
+		} else if nodes := builtinStatic[candidate.Root]; len(nodes) > 0 {
+			result = append(result, nodes)
 		}
-		if mod[0] == '[' || mod[0] == '(' {
-			var ok bool
-			mod, _, ok = parseArbitrary(mod)
-			if !ok {
-				return nil
-			}
-			modArbitrary = true
-		}
-	}
-	if strings.HasPrefix(base, "[") && strings.HasSuffix(base, "]") {
-		property, value, ok := strings.Cut(base[1:len(base)-1], ":")
-		if !ok || property == "" || value == "" || !(property[0] == '-' || property[0] >= 'a' && property[0] <= 'z') {
-			return nil
-		}
-		value = DecodeArbitraryValue(value)
-		if !validArbitrary(value) {
-			return nil
-		}
-		if mod != "" {
-			value = b.colorAlpha(value, mod, modArbitrary)
+		return result
+	case "arbitrary":
+		value := candidate.Value.Value
+		if modifier != "" {
+			value = b.colorAlpha(value, modifier, modifierArbitrary)
 			if value == "" {
 				return nil
 			}
 		}
-		return [][]*Node{declarations(property, value)}
+		return [][]*Node{declarations(candidate.Property, value)}
+	case "functional":
+		value, dataType, arbitrary := "", "", false
+		if candidate.Value != nil {
+			value, dataType, arbitrary = candidate.Value.Value, candidate.Value.DataType, candidate.Value.Kind == "arbitrary"
+		}
+		return b.functionalGroups(candidate.Root, value, modifier, dataType, arbitrary, modifierArbitrary)
 	}
-	root, value := "", ""
-	arbitrary := false
-	dataType := ""
-	if i := strings.Index(base, "-["); i >= 0 || strings.Contains(base, "-(") {
-		if i < 0 {
-			i = strings.Index(base, "-(")
-		}
-		root = base[:i]
-		var ok bool
-		value, dataType, ok = parseArbitrary(base[i+1:])
-		if !ok {
-			return nil
-		}
-		arbitrary = true
-		return append(result, b.functionalGroups(root, value, mod, dataType, arbitrary, modArbitrary)...)
-	}
-	for end := len(base); end > 0; {
-		root = base[:end]
-		value = ""
-		if end < len(base) {
-			value = base[end+1:]
-		}
-		if validNamed(value) {
-			result = append(result, b.functionalGroups(root, value, mod, dataType, false, modArbitrary)...)
-		}
-		end = strings.LastIndexByte(base[:end], '-')
-	}
-	return result
+	return nil
 }
 
 func (b *buildContext) functionalGroups(root, value, mod, dataType string, arbitrary, modArbitrary bool) [][]*Node {

@@ -20,6 +20,9 @@ func parseArbitrary(s string) (value, dataType string, ok bool) {
 		return
 	}
 	if s[0] == '[' && s[len(s)-1] == ']' {
+		if !validArbitrary(s[1 : len(s)-1]) {
+			return "", "", false
+		}
 		value = DecodeArbitraryValue(s[1 : len(s)-1])
 		for i := 0; i < len(value); i++ {
 			c := value[i]
@@ -73,21 +76,22 @@ func validArbitrary(s string) bool {
 					break
 				}
 			}
-			if i >= len(s) {
-				return false
-			}
 		case '(':
 			stack = append(stack, ')')
 		case '[':
 			stack = append(stack, ']')
 		case '{':
-			stack = append(stack, '}')
+			// A brace never opens a valid arbitrary-value context.
 		case ')', ']', '}':
-			if len(stack) == 0 || stack[len(stack)-1] != c {
+			if len(stack) == 0 {
 				return false
 			}
-			stack = stack[:len(stack)-1]
-		case ';', '!':
+			if stack[len(stack)-1] == c {
+				stack = stack[:len(stack)-1]
+			} else if c != '}' {
+				return false
+			}
+		case ';':
 			if len(stack) == 0 {
 				return false
 			}
