@@ -81,6 +81,42 @@ func BenchmarkTemplate(b *testing.B) {
 	}
 }
 
+func BenchmarkTemplateValueModes(b *testing.B) {
+	for _, tc := range []struct {
+		name, gap, size, color string
+		mode                   ValueMode
+	}{
+		{"AutoTokens", "2", "xl", "red-500", ValueModeAuto},
+		{"StrictTokens", "2", "xl", "red-500", ValueModeToken},
+		{"AutoCSS", "8px", "20px", "var(--brand)", ValueModeAuto},
+		{"LiteralCSS", "8px", "20px", "var(--brand)", ValueModeLiteral},
+	} {
+		b.Run(tc.name, func(b *testing.B) {
+			c := New(Config{InlineTheme: true})
+			template, err := c.Prepare("flex items-center rounded-lg p-{gap} text-{size} text-{color} hover:bg-{color}", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{"gap": TypeLength, "size": TypeLength, "color": TypeColor})})
+			if err != nil {
+				b.Fatal(err)
+			}
+			resolve := func(p Parameter) (Value, error) {
+				value := tc.color
+				if p.Expression == "gap" {
+					value = tc.gap
+				} else if p.Expression == "size" {
+					value = tc.size
+				}
+				return Value{CSS: value, Mode: tc.mode}, nil
+			}
+			b.ReportAllocs()
+			for b.Loop() {
+				benchmarkCSS, err = template.CSS(".account-card", resolve)
+				if err != nil {
+					b.Fatal(err)
+				}
+			}
+		})
+	}
+}
+
 func BenchmarkIncrementalUnchanged(b *testing.B) {
 	classes := benchmarkCandidates()
 	builder := New(Config{}).NewBuilder()

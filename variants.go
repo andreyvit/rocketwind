@@ -14,6 +14,7 @@ type variantDefinition struct {
 type parsedVariant struct {
 	root, value, modifier string
 	arbitrary, relative   bool
+	auto                  bool
 	child                 *parsedVariant
 	definition            variantDefinition
 	matcher               *Variant
@@ -36,6 +37,7 @@ func (b *buildContext) compiledVariant(v *CandidateVariant) *parsedVariant {
 	if v.Value != nil {
 		r.value = v.Value.Value
 		r.arbitrary = v.Value.Kind == "arbitrary"
+		r.auto = v.Value.Kind == "auto"
 	}
 	if v.Modifier != nil {
 		r.modifier = v.Modifier.Value
@@ -106,6 +108,16 @@ func slotNodes(template, content []*Node) []*Node {
 	return result
 }
 func (b *buildContext) applyParsedVariant(nodes []*Node, v *parsedVariant, depth int) ([]*Node, bool) {
+	if v.auto {
+		resolved := *v
+		resolved.auto = false
+		result, valid := b.applyParsedVariant(nodes, &resolved, depth)
+		if valid || b.err != nil {
+			return result, valid
+		}
+		resolved.arbitrary = true
+		return b.applyParsedVariant(nodes, &resolved, depth)
+	}
 	if b.compiler.config.Compatibility == Tailwind3 && v.matcher == nil {
 		return b.applyV3Variant(nodes, v, depth)
 	}

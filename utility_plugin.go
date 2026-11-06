@@ -111,12 +111,12 @@ func (api *PluginAPI) MatchUtility(utility Utility) error {
 
 func (b *buildContext) matchUtility(m *utilityMatcher, candidate Candidate) ([]*Node, bool) {
 	arbitrary := candidate.Value != nil && candidate.Value.Kind == "arbitrary"
-	if arbitrary && !slices.Contains(m.Types, TypeAny) {
+	if candidate.Value != nil && !slices.Contains(m.Types, TypeAny) {
 		kind := ValueType(candidate.Value.DataType)
 		if kind != "" && !slices.Contains(m.Types, kind) {
 			return nil, false
 		}
-		if kind == "" {
+		if kind == "" && arbitrary {
 			found := false
 			for _, kind := range m.Types {
 				if inferType(candidate.Value.Value, string(kind)) != "" {

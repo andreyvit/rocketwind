@@ -189,7 +189,7 @@ func TestTemplateNamedFractionMatcher(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	css, err := template.CSS(".half", func(Parameter) (Value, error) { return Value{CSS: "1", Named: true}, nil })
+	css, err := template.CSS(".half", func(Parameter) (Value, error) { return Value{CSS: "1", Mode: ValueModeToken}, nil })
 	if err != nil || !strings.Contains(css, "width: 50%") {
 		t.Fatalf("%s %v", css, err)
 	}

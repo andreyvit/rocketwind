@@ -326,9 +326,28 @@ schema, editor, lookup, inheritance and validation. Types are available before
 values: `text-{size}` with `TypeLength` means font size; `text-{color}` with
 `TypeColor` means color, even when both resolve to CSS variables.
 
-Values are literal CSS, preserving spaces and underscores. Use `Named: true`
-for a theme token such as `xl`, or `Omit: true` to leave out an unset setting.
-Parameters also work inside arbitrary values, such as `w-[calc(100%_-_{gap})]`.
+Return `Value{CSS: "xl"}` for a theme token or `Value{CSS: "1.25rem"}` for literal
+CSS. The default mode tries the utility's named values first, then uses the
+string as CSS. An empty string omits the containing utility, so `Value{}` works
+for an unset setting. Spaces and underscores in resolved CSS stay intact.
+
+Use brackets to request literal CSS: `opacity-[{amount}]` with `"1"` means fully
+opaque; `opacity-{amount}` with `"1"` uses Tailwind 4's `opacity-1` (1%).
+Parameters inside expressions, such as `w-[calc(100%_-_{gap})]`, also substitute
+literal CSS. An empty parameter omits the whole utility, including inside an
+expression.
+
+The resolver can choose a mode explicitly with `Value{CSS: value, Mode: ...}`:
+
+| Mode | Resolution |
+| --- | --- |
+| `ValueModeAuto` (default) | Named values first, then literal CSS. Inside `[...]`, literal CSS. |
+| `ValueModeToken` | Require a named value; an unknown token is an error. Overrides brackets. |
+| `ValueModeLiteral` | Use literal CSS without looking up tokens. |
+
+Token mode requires the parameter to fill a whole utility value, modifier, or
+variant value: `text-{size}`, `text-xl/{leading}`, or `min-{breakpoint}:flex`.
+It cannot expand a token inside a larger expression such as `calc(100% - {gap})`.
 
 A whole-class parameter such as `hover:{button.styles}` has type `TypeClasses`.
 Return `Value{Classes: anotherTemplate}` to inline it. Its `Resolve` field can

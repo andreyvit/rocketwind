@@ -107,7 +107,7 @@ func (b *buildContext) v3Functional(root, value, modifier, hint string, arbitrar
 	root = strings.TrimPrefix(root, "-")
 	var result [][]*Node
 	definitions := v3Functional[root]
-	if arbitrary {
+	if arbitrary || hint != "" {
 		definitions = v3SelectDefinitions(definitions, value, hint)
 	}
 	for _, d := range definitions {

@@ -116,6 +116,13 @@ func (b *buildContext) shadow(root, value, mod, dataType string, arbitrary, modA
 			prefix = "inset"
 		}
 	} else {
+		if dataType == "color" {
+			namespace := "--" + root + "-color"
+			if root == "shadow" || root == "inset-shadow" {
+				namespace = "--box-shadow-color"
+			}
+			return color(b.colorAlpha(b.resolveColor(value, []string{namespace, "--color"}), mod, modArbitrary))
+		}
 		if value == "inherit" {
 			if mod != "" {
 				return nil
@@ -155,7 +162,7 @@ func (b *buildContext) shadow(root, value, mod, dataType string, arbitrary, modA
 			if root == "shadow" || root == "inset-shadow" {
 				namespace = "--box-shadow-color"
 			}
-			if value == "" {
+			if value == "" || dataType != "" {
 				return nil
 			}
 			return color(b.colorAlpha(b.resolveColor(value, []string{namespace, "--color"}), mod, modArbitrary))

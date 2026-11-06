@@ -39,13 +39,26 @@ type Parameter struct {
 	Type       ValueType
 }
 
-// Value supplies literal CSS, a named theme token, or another prepared class
-// list. Omit removes the containing utility. Resolve gives an inline class list
-// its own settings scope; nil inherits the caller's resolver.
+// ValueMode controls how a parameter becomes a CSS value.
+type ValueMode uint8
+
+const (
+	// ValueModeAuto tries the utility's named values first, then literal CSS.
+	// Inside explicit brackets, such as p-[{gap}], it uses literal CSS.
+	ValueModeAuto ValueMode = iota
+	// ValueModeToken requires a named value, including Tailwind's numeric scales.
+	// The parameter must fill a whole utility value, modifier, or variant value.
+	ValueModeToken
+	// ValueModeLiteral uses CSS directly, preserving spaces and underscores.
+	ValueModeLiteral
+)
+
+// Value supplies CSS or another prepared class list. An empty CSS string with
+// no Classes omits the containing utility. Resolve gives an inline class list
+// its own settings scope; nil inherits the caller's resolver. Mode applies to CSS.
 type Value struct {
 	CSS     string
-	Named   bool
-	Omit    bool
+	Mode    ValueMode
 	Classes *Template
 	Resolve ResolveFunc
 }
@@ -177,16 +190,20 @@ func (c *Compiler) Prepare(classes string, options TemplateOptions) (*Template, 
 				rewritten.WriteString(word[start:i])
 				if bracketDepth == 0 {
 					rewritten.WriteByte('[')
-					if i >= baseStart && i > 0 && word[i-1] == '-' && p.Type != TypeAny {
-						rewritten.WriteString(string(p.Type))
-						rewritten.WriteByte(':')
-					}
+				}
+				typedValue := bracketDepth == 0 && i > 0 && word[i-1] == '-' ||
+					bracketDepth == 1 && i > 1 && word[i-2:i] == "-[" && end+1 < len(word) && word[end+1] == ']'
+				if i >= baseStart && typedValue && p.Type != TypeAny {
+					rewritten.WriteString(string(p.Type))
+					rewritten.WriteByte(':')
 				}
 				rewritten.WriteString(t.marker)
 				rewritten.WriteString(strconv.Itoa(index))
-				rewritten.WriteByte('Z')
 				if bracketDepth == 0 {
+					rewritten.WriteByte('Z')
 					rewritten.WriteByte(']')
+				} else {
+					rewritten.WriteByte('L')
 				}
 				start, i = end+1, end
 			}
@@ -302,24 +319,27 @@ func (r *templateResolution) get(index int) (Value, error) {
 	if err != nil {
 		return Value{}, fmt.Errorf("parameter {%s}: %w", p.Expression, err)
 	}
-	if !value.Omit {
+	if value.Mode > ValueModeLiteral {
+		return Value{}, fmt.Errorf("parameter {%s} has invalid value mode %d", p.Expression, value.Mode)
+	}
+	if value.CSS != "" || value.Classes != nil {
 		if p.Type == TypeClasses {
 			if value.Classes == nil {
 				return Value{}, fmt.Errorf("parameter {%s} needs a class list", p.Expression)
 			}
-		} else if value.Classes != nil || value.CSS == "" {
-			return Value{}, fmt.Errorf("parameter {%s} needs a CSS value (use Omit for an unset setting)", p.Expression)
+		} else if value.Classes != nil {
+			return Value{}, fmt.Errorf("parameter {%s} needs a CSS value", p.Expression)
 		}
 	}
 	r.values[index], r.resolved[index] = value, true
 	return value, nil
 }
 
-func (r *templateResolution) text(input string) (value string, named, omit bool, err error) {
+func (r *templateResolution) text(input string) (value string, mode ValueMode, omit bool, err error) {
 	marker := r.template.marker
 	index := strings.Index(input, marker)
 	if index < 0 {
-		return input, false, false, nil
+		return input, ValueModeLiteral, false, nil
 	}
 	var out strings.Builder
 	for index >= 0 {
@@ -331,14 +351,18 @@ func (r *templateResolution) text(input string) (value string, named, omit bool,
 		// can introduce one into this scan.
 		parameter, _ := strconv.Atoi(input[index+len(marker) : end])
 		resolved, err := r.get(parameter)
-		if err != nil || resolved.Omit {
-			return "", false, resolved.Omit, err
+		if err != nil || resolved.CSS == "" {
+			return "", ValueModeLiteral, true, err
 		}
-		if resolved.Named {
-			if index != 0 || end+1 != len(input) || out.Len() != 0 {
-				return "", false, false, fmt.Errorf("named token for {%s} must fill the whole value", r.template.parameters[parameter].Expression)
+		if index == 0 && end+1 == len(input) && out.Len() == 0 {
+			mode := resolved.Mode
+			if mode == ValueModeAuto && (input[end] == 'L' || !validTemplateToken(resolved.CSS)) {
+				mode = ValueModeLiteral
 			}
-			return resolved.CSS, true, false, nil
+			return resolved.CSS, mode, false, nil
+		}
+		if resolved.Mode == ValueModeToken {
+			return "", ValueModeLiteral, false, fmt.Errorf("named token for {%s} must fill the whole value", r.template.parameters[parameter].Expression)
 		}
 		out.WriteString(input[:index])
 		out.WriteString(resolved.CSS)
@@ -346,24 +370,34 @@ func (r *templateResolution) text(input string) (value string, named, omit bool,
 		index = strings.Index(input, marker)
 	}
 	out.WriteString(input)
-	return out.String(), false, false, nil
+	return out.String(), ValueModeLiteral, false, nil
+}
+
+func validTemplateToken(value string) bool {
+	if validNamed(value) {
+		return true
+	}
+	numerator, denominator, ok := strings.Cut(value, "/")
+	return ok && numerator != "" && denominator != "" && validNamed(numerator) && validNamed(denominator)
 }
 
 func (r *templateResolution) candidateValue(input *CandidateValue) (*CandidateValue, bool, error) {
 	if input == nil {
 		return nil, false, nil
 	}
-	value, named, omit, err := r.text(input.Value)
+	value, mode, omit, err := r.text(input.Value)
 	if err != nil || omit {
 		return nil, omit, err
 	}
-	if value == input.Value && !named {
+	if value == input.Value && mode == ValueModeLiteral {
 		return input, false, nil
 	}
 	result := *input
 	result.Value = value
-	if named {
+	if mode == ValueModeToken {
 		result.Kind, result.Fraction = "named", ""
+	} else if mode == ValueModeAuto {
+		result.Kind, result.Fraction = "auto", ""
 	}
 	return &result, false, nil
 }
@@ -372,17 +406,19 @@ func (r *templateResolution) modifier(input *CandidateModifier) (*CandidateModif
 	if input == nil {
 		return nil, false, nil
 	}
-	value, named, omit, err := r.text(input.Value)
+	value, mode, omit, err := r.text(input.Value)
 	if err != nil || omit {
 		return nil, omit, err
 	}
-	if value == input.Value && !named {
+	if value == input.Value && mode == ValueModeLiteral {
 		return input, false, nil
 	}
 	result := *input
 	result.Value = value
-	if named {
+	if mode == ValueModeToken {
 		result.Kind = "named"
+	} else if mode == ValueModeAuto {
+		result.Kind = "auto"
 	}
 	return &result, false, nil
 }
@@ -429,7 +465,7 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 			if err != nil {
 				return nil, err
 			}
-			if value.Omit {
+			if value.Classes == nil {
 				continue
 			}
 			childResolver := value.Resolve
@@ -454,6 +490,9 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 				}
 				var valid bool
 				nodes, valid = b.applyParsedVariant(nodes, b.compiledVariant(resolved), 0)
+				if b.err != nil {
+					return nil, b.err
+				}
 				if !valid {
 					return nil, fmt.Errorf("invalid variant in %q", entry.raw)
 				}
@@ -482,11 +521,6 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 				accepted = true
 				continue
 			}
-			if candidate.Value != nil && candidate.Value.Kind == "named" && candidate.Modifier != nil && candidate.Modifier.Kind == "named" {
-				value := *candidate.Value
-				value.Fraction = value.Value + "/" + candidate.Modifier.Value
-				candidate.Value = &value
-			}
 			candidate.Variants = make([]*CandidateVariant, 0, len(input.Variants))
 			for _, variant := range input.Variants {
 				var value *CandidateVariant
@@ -503,7 +537,10 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 				accepted = true
 				continue
 			}
-			groups := b.candidateGroups(candidate)
+			groups := b.templateCandidateGroups(candidate)
+			if b.err != nil {
+				return nil, b.err
+			}
 			accepted = accepted || len(groups) > 0
 			for _, nodes := range groups {
 				nodes = b.evaluateNodes(nodes)
@@ -513,6 +550,9 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 				for _, variant := range candidate.Variants {
 					var valid bool
 					nodes, valid = b.applyParsedVariant(nodes, b.compiledVariant(variant), 0)
+					if b.err != nil {
+						return nil, b.err
+					}
 					if !valid {
 						return nil, fmt.Errorf("invalid variant in %q", entry.raw)
 					}
@@ -525,6 +565,68 @@ func (b *buildContext) renderTemplate(t *Template, resolve ResolveFunc, stack []
 		}
 	}
 	return result, b.err
+}
+
+// Try named values before literals, independently for the value and modifier.
+// Keep these interpretations local; prepared candidates are shared by renders.
+func (b *buildContext) templateCandidateGroups(candidate Candidate) [][]*Node {
+	value, modifier := candidate.Value, candidate.Modifier
+	if candidate.Kind == "arbitrary" && value.Kind == "named" {
+		return nil // Arbitrary CSS properties have no token namespace.
+	}
+	valueAuto := value != nil && value.Kind == "auto"
+	modifierAuto := modifier != nil && modifier.Kind == "auto"
+	// A resolved fraction uses the same named-value path as w-1/2. Retain
+	// the original string in case Auto needs the literal interpretation.
+	fraction := ""
+	if value != nil && value.Kind != "arbitrary" && modifier == nil {
+		if numerator, denominator, ok := strings.Cut(value.Value, "/"); ok && numerator != "" && denominator != "" && validNamed(numerator) && validNamed(denominator) {
+			fraction = value.Value
+			copy := *value
+			copy.Value = numerator
+			value, candidate.Value = &copy, &copy
+			modifier = &CandidateModifier{Kind: "named", Value: denominator}
+			candidate.Modifier = modifier
+		}
+	}
+	if value != nil && value.Kind == "named" && modifier != nil {
+		copy := *value
+		value, candidate.Value = &copy, &copy
+	}
+	// Auto values were allocated by resolution and belong to this render.
+	if valueAuto {
+		value.Kind = "named"
+	}
+	for {
+		if modifierAuto {
+			modifier.Kind = "named"
+		}
+		for {
+			if value != nil && value.Kind == "named" && modifier != nil {
+				value.Fraction = ""
+				if modifier.Kind == "named" {
+					value.Fraction = value.Value + "/" + modifier.Value
+				}
+			}
+			groups := b.candidateGroups(candidate)
+			if len(groups) > 0 || b.err != nil {
+				return groups
+			}
+			if !modifierAuto || modifier.Kind == "arbitrary" {
+				break
+			}
+			modifier.Kind = "arbitrary"
+		}
+		if !valueAuto || value.Kind == "arbitrary" {
+			return nil
+		}
+		value.Kind = "arbitrary"
+		value.Fraction = ""
+		if fraction != "" {
+			value.Value = fraction
+			modifier, candidate.Modifier = nil, nil
+		}
+	}
 }
 
 func expressionEnd(input string, start int) (int, error) {

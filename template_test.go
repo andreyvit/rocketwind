@@ -138,7 +138,7 @@ func TestTemplateReferences(t *testing.T) {
 
 func TestTemplateExpressions(t *testing.T) {
 	c := New(Config{InlineTheme: true, DisablePolyfills: PolyfillAll})
-	template, err := c.Prepare("w-[calc(100%_-_{gap})] text-{size}/{leading} min-{breakpoint}:bg-{color} [--label:'hello_{name}'] content-['literal_{braces}']", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{
+	template, err := c.Prepare("w-[calc(100%_-_{gap})] text-{size}/[{leading}] min-{breakpoint}:bg-{color} [--label:'hello_{name}'] content-['literal_{braces}']", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{
 		"gap": TypeLength, "size": TypeLength, "leading": TypeNumber, "breakpoint": TypeLength, "color": TypeColor, "name": TypeAny, "braces": TypeAny,
 	})})
 	if err != nil {
@@ -156,7 +156,7 @@ func TestTemplateExpressions(t *testing.T) {
 	}
 }
 
-func TestTemplateOmitAndNamedTokens(t *testing.T) {
+func TestTemplateEmptyAndNamedValues(t *testing.T) {
 	c := New(Config{InlineTheme: true, DisablePolyfills: PolyfillAll})
 	template, err := c.Prepare("text-{size} bg-{color} w-[calc(1px_+_{missing})] hover:{empty} p-1", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{"size": TypeLength, "color": TypeColor, "missing": TypeLength, "empty": TypeClasses})})
 	if err != nil {
@@ -165,11 +165,11 @@ func TestTemplateOmitAndNamedTokens(t *testing.T) {
 	css, err := template.CSS(".x", func(p Parameter) (Value, error) {
 		switch p.Expression {
 		case "size":
-			return Value{CSS: "xl", Named: true}, nil
+			return Value{CSS: "xl", Mode: ValueModeToken}, nil
 		case "color":
-			return Value{CSS: "red-500", Named: true}, nil
+			return Value{CSS: "red-500", Mode: ValueModeToken}, nil
 		default:
-			return Value{Omit: true}, nil
+			return Value{}, nil
 		}
 	})
 	if err != nil {
@@ -352,17 +352,16 @@ func TestTemplateResolutionFailuresAndOmissions(t *testing.T) {
 		resolve ResolveFunc
 		want    string
 	}{
-		{"{list}", func(Parameter) (Value, error) { return Value{}, nil }, "class list"},
+		{"{list}", func(Parameter) (Value, error) { return Value{CSS: "invalid"}, nil }, "class list"},
 		{"{list}", func(Parameter) (Value, error) { return Value{}, boom }, "failed"},
 		{"{list}", func(Parameter) (Value, error) { return Value{Classes: foreign}, nil }, "different compiler"},
-		{"p-{x}", func(Parameter) (Value, error) { return Value{}, nil }, "CSS value"},
 		{"p-{x}", func(Parameter) (Value, error) { return Value{Classes: child}, nil }, "CSS value"},
-		{"p-[calc(1px_+_{x})]", func(Parameter) (Value, error) { return Value{CSS: "4", Named: true}, nil }, "whole value"},
+		{"p-[calc(1px_+_{x})]", func(Parameter) (Value, error) { return Value{CSS: "4", Mode: ValueModeToken}, nil }, "whole value"},
 		{"text-xl/{x}", func(Parameter) (Value, error) { return Value{}, boom }, "failed"},
 		{"min-{x}:flex", func(Parameter) (Value, error) { return Value{}, boom }, "failed"},
 		{"group-hover/{x}:flex", func(Parameter) (Value, error) { return Value{}, boom }, "failed"},
 		{"[&_{x}]:flex", func(Parameter) (Value, error) { return Value{}, boom }, "failed"},
-		{"text-{x}", func(Parameter) (Value, error) { return Value{CSS: "missing", Named: true}, nil }, "invalid value"},
+		{"text-{x}", func(Parameter) (Value, error) { return Value{CSS: "missing", Mode: ValueModeToken}, nil }, "invalid value"},
 		{"min-{x}:{list}", func(p Parameter) (Value, error) {
 			if p.Type == TypeClasses {
 				return Value{Classes: child}, nil
@@ -395,7 +394,7 @@ func TestTemplateResolutionFailuresAndOmissions(t *testing.T) {
 			if p.Type == TypeClasses {
 				return Value{Classes: child}, nil
 			}
-			return Value{Omit: true}, nil
+			return Value{}, nil
 		})
 		if err != nil || css != "" {
 			t.Errorf("%s: css=%s err=%v", input, css, err)
@@ -456,7 +455,7 @@ func TestTemplateNamedModifier(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	css, err := template.CSS(".x", func(Parameter) (Value, error) { return Value{CSS: "none", Named: true}, nil })
+	css, err := template.CSS(".x", func(Parameter) (Value, error) { return Value{CSS: "none", Mode: ValueModeToken}, nil })
 	if err != nil || !strings.Contains(css, "line-height: 1;") {
 		t.Fatalf("%s: %v", css, err)
 	}
