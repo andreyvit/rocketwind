@@ -307,12 +307,17 @@ does not count as a class definition. Exclusion applies to generated helpers;
 `@apply` and named rules still resolve those utilities. Imported stylesheets
 must be passed separately.
 
-When old and new Tailwind output share a page, set
-`Config.InternalVariablePrefix: "gox"` on the new compiler. Its reserved
-`--tw-*` properties become `--gox-tw-*`, including property registrations and
+To isolate the internal variables of independent widgets, set
+`Config.InternalVariablePrefix: "widget"` on the new compiler. Its reserved
+`--tw-*` properties become `--widget-tw-*`, including property registrations and
 fallbacks. Class names, quoted strings and application variables such as
-`--brand` stay unchanged. This prevents the new transform or shadow defaults
-from changing older helpers already on the page.
+`--brand` stay unchanged.
+
+Keep the default shared variables when old and new utilities need to compose
+on the same element. An old ring and a new shadow, or an old prose class and a
+new prose color modifier, must use the same variables. Namespacing prevents that
+composition. Avoid adding a second preflight or global forms reset to an
+existing page, and check the combined CSS in a browser.
 
 Rocketwind does not compare declaration values:
 when a class already exists, the supplied stylesheet owns its behavior.

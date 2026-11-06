@@ -20,6 +20,28 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 
 ## Current state
 
+All nine implementation gates are complete. The library targets Tailwind
+4.3.4, with the documented 3.4.17 migration profile. All 44 original core suites
+ran successfully; 17,895 captured calls and the applicable CLI, extractor,
+plugin and browser-optimizer comparisons pass. The full Go suite, race suite,
+vet and strict 12,352/12,352 statement coverage gate pass. See TESTING.md for
+exact scope and JavaScript-host exceptions.
+
+Bubblehouse's static build now uses the Go compiler. Independent comparisons
+match every selector and declaration on committed and working source snapshots,
+with updated prefixing and no conflicting cascade inversions. Browser checks
+match 585,144 computed properties against the original build and preserve
+584,955 properties on existing helpers when modern utilities are appended.
+
+GoX class metadata now contributes tenant CSS, excluding classes already in the
+main stylesheet. Draft/publication lifecycle, tenant isolation, cache updates
+and mixed rings/shadows are tested. Application package tests, race checks,
+the broad quick suite, 525 JavaScript tests and 222 browser tests pass locally.
+The broader widget-theme replacement is proven against its old baseline and
+remains disabled for a separate rollout. No application deployment was made.
+
+## Implementation history
+
 - Public repository created; SSH clone initialized.
 - Upstream v4.3.4 checked out for reference.
 - CSS parser: 222 upstream calls passing. Arbitrary value decoder: 66 passing.
