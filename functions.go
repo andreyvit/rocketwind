@@ -152,7 +152,11 @@ func (b *buildContext) evaluateFunction(name string, args []string, atRule bool)
 	}
 	if name == "theme" && !strings.HasPrefix(path, "--") {
 		if b.compiler.legacyTheme != nil {
-			value = themeString(b.compiler.themeLookup(path))
+			resolved := b.compiler.themeLookup(path)
+			if object := configObject(resolved); object != nil {
+				resolved = object.Get("DEFAULT")
+			}
+			value = themeString(resolved)
 		} else {
 			if value == "" || strings.Contains(b.compiler.themeFlags[key], "default") {
 				if legacy := b.legacyThemeValue(path, key); legacy != "" {

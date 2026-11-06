@@ -67,6 +67,28 @@ func TestPluginCannotHideThemeCycle(t *testing.T) {
 	}
 }
 
+func TestStylesheetThemeUnwrapsNamespaceDefaults(t *testing.T) {
+	c, err := Compile(`@config "settings"; .card { max-width: theme("measure"); box-shadow: theme("boxShadow"); }`, Config{
+		LoadModule: func(_, _, _ string) (Module, error) {
+			return Module{Legacy: ConfigObject{{"theme", ConfigObject{
+				{"measure", "60ch"},
+				{"boxShadow", ConfigObject{{"DEFAULT", "0 1px 2px #0003"}, {"large", "0 2px 4px #0003"}}},
+			}}}}, nil
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	css, err := c.Build(nil)
+	want := ".card {\n  max-width: 60ch;\n  box-shadow: 0 1px 2px #0003;\n}\n"
+	if err != nil || css != want {
+		t.Fatalf("%v\n%s", err, css)
+	}
+	if value := configObject(c.themeLookup("boxShadow")).Get("DEFAULT"); value != "0 1px 2px #0003" {
+		t.Fatalf("plugin namespace lost its object shape: %#v", value)
+	}
+}
+
 func TestCSSThemeTuplesThroughPluginAPI(t *testing.T) {
 	_, err := NewWithPlugins(Config{NoDefaultTheme: true, Theme: map[string]string{
 		"--text-caption": "1rem", "--text-caption--line-height": "1.4", "--text-caption--letter-spacing": ".1em",

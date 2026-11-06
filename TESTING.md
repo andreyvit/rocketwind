@@ -16,7 +16,7 @@ python3 scripts/check-coverage.py
 
 The coverage script includes the real CLI subprocess. It requires **100% of
 statements across all Go packages**, with no source exclusions. The current
-checkpoint covers 12,349 of 12,349 statements. Generated registrations are
+checkpoint covers 12,352 of 12,352 statements. Generated registrations are
 source-derived data; they do not look up expected CSS by candidate name.
 
 ## Tailwind 4

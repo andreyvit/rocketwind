@@ -529,3 +529,12 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
   gate pass.
   The application adapter matches its old CSS baseline and every legacy
   utility/token/variant combination. The broad runtime replacement stays off.
+
+### Stylesheet namespace defaults
+
+- An application migration exposed a missing Tailwind 4 behavior: stylesheet
+  `theme()` calls unwrap a namespace's DEFAULT value, while the plugin theme
+  API keeps the object. Fixed this for custom scalar settings and object
+  namespaces; checked against the original compiler and added a regression.
+- The complete Go suite, race suite, vet and strict 12,352/12,352 statement
+  coverage gate pass.
