@@ -403,5 +403,64 @@
     "base": "/src",
     "root": "/",
     "result": ".a {\n  color: red;\n  &:hover {\n    background: url(./src/a);\n  }\n}\n"
+  },
+  {
+    "kind": "type",
+    "input": "linear-gradient(red,blue),var(--image)",
+    "types": [
+      "image"
+    ],
+    "result": "image"
+  },
+  {
+    "kind": "type",
+    "input": "left var(--position)",
+    "types": [
+      "position"
+    ],
+    "result": "position"
+  },
+  {
+    "kind": "type",
+    "input": "20px 30px",
+    "types": [
+      "bg-size"
+    ],
+    "result": "bg-size"
+  },
+  {
+    "kind": "type",
+    "input": "anything",
+    "types": [
+      "any",
+      "*",
+      "unknown"
+    ],
+    "result": null
+  },
+  {
+    "kind": "type",
+    "input": "var(--x)",
+    "types": [
+      "image",
+      "position"
+    ],
+    "result": null
+  },
+  {
+    "kind": "type",
+    "input": "var(--x),url(a)",
+    "types": [
+      "image"
+    ],
+    "result": null
+  },
+  {
+    "kind": "type",
+    "input": "cover,20px",
+    "types": [
+      "bg-size"
+    ],
+    "result": "bg-size"
   }
 ]

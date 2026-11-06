@@ -444,6 +444,20 @@ func samePath(a, b string) bool {
 }
 
 func outputFile(name, css string) error {
+	return outputFileUsing(name, css, func(dir, pattern string) (outputTemp, error) { return os.CreateTemp(dir, pattern) })
+}
+
+type outputTemp interface {
+	io.Writer
+	Name() string
+	Chmod(os.FileMode) error
+	Close() error
+}
+
+// Keep the temporary-file operations together so failures at any stage leave
+// the last successful stylesheet intact. The creator also permits deterministic
+// I/O failure tests without racing the real filesystem.
+func outputFileUsing(name, css string, create func(string, string) (outputTemp, error)) error {
 	if info, err := os.Lstat(name); err == nil && info.Mode()&os.ModeSymlink != 0 {
 		if target, err := filepath.EvalSymlinks(name); err == nil {
 			name = target
@@ -454,7 +468,7 @@ func outputFile(name, css string) error {
 	if err := os.MkdirAll(filepath.Dir(name), 0755); err != nil {
 		return err
 	}
-	file, err := os.CreateTemp(filepath.Dir(name), ".rocketwind-*.css")
+	file, err := create(filepath.Dir(name), ".rocketwind-*.css")
 	if err != nil {
 		return err
 	}

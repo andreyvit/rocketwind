@@ -69,8 +69,6 @@ func inferType(s string, types ...string) string {
 }
 func matchesType(s, t string) bool {
 	switch t {
-	case "any", "*":
-		return true
 	case "color":
 		return isColor(s)
 	case "number":

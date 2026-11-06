@@ -15,11 +15,12 @@ func TestSyntaxEdgesAgainstUpstream(t *testing.T) {
 	var cases []struct {
 		Kind, Input, Base, Root, Error string
 		Result                         json.RawMessage
+		Types                          []string
 	}
 	if err := json.Unmarshal(data, &cases); err != nil {
 		t.Fatal(err)
 	}
-	if len(cases) != 35 {
+	if len(cases) != 42 {
 		t.Fatalf("got %d syntax cases", len(cases))
 	}
 	for _, c := range cases {
@@ -34,6 +35,10 @@ func TestSyntaxEdgesAgainstUpstream(t *testing.T) {
 			got = encodeValues(parseValue(c.Input))
 		case "url":
 			got, err = RewriteURLs(c.Input, c.Base, c.Root)
+		case "type":
+			if value := inferType(c.Input, c.Types...); value != "" {
+				got = value
+			}
 		default:
 			t.Fatal(c.Kind)
 		}

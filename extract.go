@@ -331,13 +331,12 @@ func scanModifier(c *scanCursor) (scanSpan, bool) {
 	if !scanAlnum(c.curr()) {
 		return scanSpan{}, false
 	}
-	for c.pos < len(c.input) {
+	for {
 		if ch := c.next(); !scanAlnum(ch) && ch != '-' && ch != '_' && ch != '.' {
 			return scanDone(start, c)
 		}
 		c.pos++
 	}
-	return scanSpan{}, false
 }
 
 func scanNamedUtility(c *scanCursor) (scanSpan, bool) {
@@ -539,12 +538,12 @@ func (m *scanVariantMachine) next(c *scanCursor) (scanSpan, bool) {
 }
 
 type scanCandidateMachine struct {
-	start, last int
-	hasLast     bool
-	variant     scanVariantMachine
+	start   int
+	hasLast bool
+	variant scanVariantMachine
 }
 
-func (m *scanCandidateMachine) reset() { m.start = 0; m.last = 0; m.hasLast = false }
+func (m *scanCandidateMachine) reset() { m.start = 0; m.hasLast = false }
 func (m *scanCandidateMachine) next(c *scanCursor) (scanSpan, bool) {
 	for c.pos < len(c.input) {
 		ch := c.curr()
@@ -574,10 +573,9 @@ func (m *scanCandidateMachine) next(c *scanCursor) (scanSpan, bool) {
 			c.move(uc.pos + 1)
 			span := utility
 			if m.hasLast {
-				if m.last+1 != utility.start {
-					m.reset()
-					return scanSpan{}, false
-				}
+				// Both child scanners start at c.pos. After a variant, c.pos
+				// is exactly one byte past it; every intervening skip resets
+				// hasLast. No separate adjacency check or end offset is needed.
 				span.start = m.start
 			}
 			m.reset()
@@ -587,12 +585,7 @@ func (m *scanCandidateMachine) next(c *scanCursor) (scanSpan, bool) {
 			return span, true
 		case vok && uok:
 			c.move(vc.pos + 1)
-			if m.hasLast {
-				if m.last+1 != variant.start {
-					m.reset()
-					return scanSpan{}, false
-				}
-			} else {
+			if !m.hasLast {
 				if after := c.at(utility.end + 1); cssSpace(after) || after == 0 {
 					c.move(uc.pos + 2)
 					m.reset()
@@ -600,19 +593,12 @@ func (m *scanCandidateMachine) next(c *scanCursor) (scanSpan, bool) {
 				}
 				m.start = variant.start
 			}
-			m.last = vc.pos
 			m.hasLast = true
 		case vok:
 			c.move(vc.pos + 1)
-			if m.hasLast {
-				if m.last+1 > variant.start {
-					m.reset()
-					return scanSpan{}, false
-				}
-			} else {
+			if !m.hasLast {
 				m.start = variant.start
 			}
-			m.last = vc.pos
 			m.hasLast = true
 		default:
 			if vc.pos > c.pos || uc.pos > c.pos {

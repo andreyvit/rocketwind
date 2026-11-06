@@ -24,10 +24,6 @@ func isTypeSelector(n *selectorNode) bool {
 	return n.Kind == "selector" && (n.Value == "" || !strings.ContainsRune("*&.#:[", rune(n.Value[0])))
 }
 
-func nestSelector(selector, parent string) string {
-	return nestSelectorMode(selector, parent, false)
-}
-
 func nestSelectorMode(selector, parent string, cssEscapes bool) string {
 	parentAST := parseSelectorMode(parent, cssEscapes)
 	list := len(parentAST) == 1 && parentAST[0].Kind == "list"

@@ -68,10 +68,12 @@ func TestCommandErrors(t *testing.T) {
 	root := t.TempDir()
 	write(t, root, "input.css", `@tailwind utilities;`)
 	write(t, root, "bad.css", `@theme {color:red}`)
+	write(t, root, "bad-existing.css", `.invalid {`)
 	for _, args := range [][]string{
 		{"-i"}, {"--poll=0"}, {"--poll=foo"},
 		{"--input", "missing.css"}, {"--input", "input.css", "--output", "./input.css"},
 		{"--input", "bad.css"}, {"--exclude", "missing.css"}, {"--cwd", filepath.Join(root, "missing")},
+		{"--exclude", "bad-existing.css"},
 		{"--input", "input.css", "--output", "input.css/child"},
 	} {
 		var out, stderr bytes.Buffer
@@ -138,6 +140,16 @@ func TestWatchRebuildsContentAndDependencies(t *testing.T) {
 	if !first.ModTime().Equal(last.ModTime()) {
 		t.Fatal("unchanged CSS was rewritten")
 	}
+	before = read()
+	if err := os.Remove(filepath.Join(root, "input.css")); err != nil {
+		t.Fatal(err)
+	}
+	await(t, func() bool { return strings.Contains(stderr.String(), "no such file") })
+	if read() != before {
+		t.Fatal("removed input replaced the last successful output")
+	}
+	write(t, root, "input.css", `@tailwind utilities; @source inline("justify-center");`)
+	await(t, func() bool { return strings.Contains(read(), ".justify-center") })
 }
 
 func TestWatchStopsWhenStdinCloses(t *testing.T) {

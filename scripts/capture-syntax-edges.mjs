@@ -12,6 +12,7 @@ const output = path.resolve('testdata/upstream/syntax-edges.json')
 const selectors = [`a[foo[bar]]`, `a[foo[bar]baz]`, `'a\\'b'`, `a"b\\"c"`, `a\\`, `a[foo[bar`, `:is('a')`, `:is("a\\"b")`, `:where(a[foo[bar]], 'b')`, `:is(a`, `:nth-child(2n of a\\)`]
 const attributes = [`[a\\:b=x]`, `[a='b\\'c']`, `[a="b\\"c"]`, `[a\\]`, `[a="b\\"]`]
 const values = [`a\\`, `'a\\'b'`, `a"b\\"c"`, `var(--a\\)`, `:`, `()`, `var()`]
+const types=[['linear-gradient(red,blue),var(--image)',['image']],['left var(--position)',['position']],['20px 30px',['bg-size']],['anything',['any','*','unknown']],['var(--x)',['image','position']],['var(--x),url(a)',['image']],['cover,20px',['bg-size']]]
 const urls = [
  ['.a {background:url(a)}', '/a b/with"quote', '/'],
  [`.a {background:url('a.png')}`, "/can't", '/'],
@@ -33,6 +34,7 @@ import * as selector from ${JSON.stringify(source+'/tailwindcss/src/selector-par
 import * as attribute from ${JSON.stringify(source+'/tailwindcss/src/attribute-selector-parser')}
 import * as value from ${JSON.stringify(source+'/tailwindcss/src/value-parser')}
 import {rewriteUrls} from ${JSON.stringify(source+'/@tailwindcss-node/src/urls')}
+import {inferDataType} from ${JSON.stringify(source+'/tailwindcss/src/utils/infer-data-type')}
 test('capture parser edges', async()=>{
  const records=[]
  for(const [kind,inputs,parse] of [['selector',${JSON.stringify(selectors)},selector.parse],['attribute',${JSON.stringify(attributes)},attribute.parse],['value',${JSON.stringify(values)},value.parse]]) {
@@ -42,6 +44,7 @@ test('capture parser edges', async()=>{
   try { records.push({kind:'url',input,base,root,result:await rewriteUrls({css:input,base,root})}) }
   catch(error) { records.push({kind:'url',input,base,root,error:error.message}) }
  }
+ for(const [input,types] of ${JSON.stringify(types)})records.push({kind:'type',input,types,result:inferDataType(input,types)})
  fs.writeFileSync(${JSON.stringify(output)},JSON.stringify(records,null,2)+'\\n')
 })
 `)
