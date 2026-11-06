@@ -8,8 +8,9 @@ process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
 **Work in progress.** Core utilities, variants, stylesheet directives and the
-Go plugin API work, along with typed settings and named classes. Standard
-plugins, the CLI and compatibility profiles are still being built.
+Go plugin API work, along with typed settings, named classes and the forms
+plugin. The other standard plugins, CLI and compatibility profiles are still
+being built.
 See [WORK.md](WORK.md) for the implementation gates.
 
 
@@ -129,6 +130,17 @@ must be passed separately. Rocketwind does not compare declaration values:
 when a class already exists, the supplied stylesheet owns its behavior.
 
 
+Standard plugins
+----------------
+
+`@tailwindcss/forms` **0.5.11** is built in. Use `@plugin "@tailwindcss/forms"`
+in a stylesheet, with the same `strategy: "base"` or `strategy: "class"` option,
+or pass `rocketwind.Forms(rocketwind.FormsOptions{})` to `NewWithPlugins`.
+Its CSS matches 24 differential cases against the real plugin, plus 20 SVG
+encoding cases. This upstream release contains no automated tests to import.
+Typography and the remaining standard plugins are still in progress.
+
+
 Tailwind compatibility
 ----------------------
 
@@ -157,4 +169,5 @@ License
 MIT. Copyright (c) 2026, Andrey Tarantsov.
 
 Parts adapted from Tailwind CSS retain Tailwind Labs' MIT license; see
-[the upstream license](testdata/upstream/LICENSE).
+[the upstream license](testdata/upstream/LICENSE). Plugin sources and the small
+SVG encoder retain their licenses under [testdata/plugins](testdata/plugins).

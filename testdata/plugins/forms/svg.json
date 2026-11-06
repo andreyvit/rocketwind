@@ -1,0 +1,82 @@
+[
+  {
+    "input": "#000",
+    "result": "data:image/svg+xml,black"
+  },
+  {
+    "input": "#000f",
+    "result": "data:image/svg+xml,black"
+  },
+  {
+    "input": "#000000",
+    "result": "data:image/svg+xml,black"
+  },
+  {
+    "input": "#000000ff",
+    "result": "data:image/svg+xml,black"
+  },
+  {
+    "input": "#FFF",
+    "result": "data:image/svg+xml,white"
+  },
+  {
+    "input": "#ffff",
+    "result": "data:image/svg+xml,white"
+  },
+  {
+    "input": "#ffffff",
+    "result": "data:image/svg+xml,white"
+  },
+  {
+    "input": "#ffffffff",
+    "result": "data:image/svg+xml,white"
+  },
+  {
+    "input": "#f00",
+    "result": "data:image/svg+xml,red"
+  },
+  {
+    "input": "#ff0000",
+    "result": "data:image/svg+xml,red"
+  },
+  {
+    "input": "#00f",
+    "result": "data:image/svg+xml,blue"
+  },
+  {
+    "input": "#0ff",
+    "result": "data:image/svg+xml,aqua"
+  },
+  {
+    "input": "#0fff",
+    "result": "data:image/svg+xml,aqua"
+  },
+  {
+    "input": "#00ffffff",
+    "result": "data:image/svg+xml,aqua"
+  },
+  {
+    "input": "#ff000088",
+    "result": "data:image/svg+xml,%23ff000088"
+  },
+  {
+    "input": "#ff0000zz",
+    "result": "data:image/svg+xml,%23ff0000zz"
+  },
+  {
+    "input": "#f00_",
+    "result": "data:image/svg+xml,%23f00_"
+  },
+  {
+    "input": "﻿ #abcdef \n\t<svg \"quoted\">é</svg>",
+    "result": "data:image/svg+xml,%23abcdef %3csvg 'quoted'%3e%c3%a9%3c/svg%3e"
+  },
+  {
+    "input": "rgb(10 20 30 / 1)",
+    "result": "data:image/svg+xml,rgb(10 20 30 / 1)"
+  },
+  {
+    "input": "var(--custom)",
+    "result": "data:image/svg+xml,var(--custom)"
+  }
+]

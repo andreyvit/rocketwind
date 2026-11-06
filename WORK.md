@@ -10,6 +10,9 @@ Target: Tailwind CSS v4.3.4. Bubblehouse's existing build targets v3.4.17.
 6. Benchmark, allocation profiling, race tests, fuzzing, 100% Go coverage.
 7. Bubblehouse CSS generation tests and disabled runtime integration proof.
 8. Bubblehouse compiler replacement after CSS equivalence verification.
+9. GoX blocks contribute their Tailwind classes to tenant CSS, excluding classes
+   already defined in admin.css. Keep the broader runtime theming replacement
+   disabled; test tenant isolation and CSS cache invalidation.
 
 Do not mark a gate complete while tests fail or cases remain unported.
 Only JavaScript execution itself and JavaScript-specific host integrations may
@@ -30,7 +33,7 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Original upstream runs: 400 utility tests, 104 variant tests, and 376 tests in
   the eight additional source files pass. One upstream sorting test is already
   skipped upstream. All 14 captured class-order calls now pass.
-- Core Go suite, race detector and vet pass. Statement coverage: 95.5%.
+- Core Go suite, race detector and vet pass. Statement coverage: 95.7%.
 - Candidate syntax/normalization: all 2,672 captured calls from 1,388 upstream
   tests pass. CSS generation now uses the same parser exposed by Compiler.Parse.
 - Nine more syntax/helper suites: 2,573 calls from 169 upstream tests pass;
@@ -48,6 +51,9 @@ be excluded; core behavior and standard plugins must be implemented in Go.
 - Removed repeated variant parsing during sorting and unnecessary CSS tree copies.
 - Programmatic plugin construction, component selector registration and typed
   utility matching implemented; new Go plugin code has 100% statement coverage.
+- Forms v0.5.11 port implemented from pinned source registrations. All 24
+  differential CSS fixtures and 20 SVG encoder fixtures pass. No forms tests
+  exist in that upstream release. New forms code has 100% statement coverage.
 - Remaining: full internal and compatibility test suites,
   standard plugins, scanning/CLI, coverage/performance
   and integration gates.

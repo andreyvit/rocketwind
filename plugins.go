@@ -77,13 +77,18 @@ func (c *Compiler) loadModules(requests []moduleRequest) error {
 			}
 			module := Module{Plugin: c.config.Plugins[request.name]}
 			if module.Plugin == nil {
-				if c.config.LoadModule == nil {
-					return fmt.Errorf("%s requires a Go configuration or plugin", kind)
-				}
-				var err error
-				module, err = c.config.LoadModule(request.name, n.base, kind[1:])
-				if err != nil {
-					return err
+				if c.config.LoadModule != nil {
+					var err error
+					module, err = c.config.LoadModule(request.name, n.base, kind[1:])
+					if err != nil {
+						return err
+					}
+				} else {
+					var ok bool
+					module, ok = standardModule(request.name)
+					if !ok || kind != "@plugin" {
+						return fmt.Errorf("%s requires a Go configuration or plugin", kind)
+					}
 				}
 			}
 			for key, value := range module.Theme {

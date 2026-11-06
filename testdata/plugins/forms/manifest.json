@@ -1,0 +1,6 @@
+{
+  "repository": "https://github.com/tailwindlabs/tailwindcss-forms",
+  "tag": "v0.5.11",
+  "commit": "e1b609d57954eb0036c4c2e7ae9c9c2ba558146b",
+  "tests": "No automated test suite is present in this upstream release. Differential fixtures exercise strategies, helpers, variants, prefixes, important, colors and SVG fallback."
+}

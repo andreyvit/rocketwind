@@ -150,11 +150,7 @@ func Compile(input string, config Config) (*Compiler, error) {
 							continue
 						}
 						c.hasUtilities = true
-						for part := range Segments(n.Value, ' ') {
-							if part == "important" {
-								c.config.Important = true
-							}
-						}
+
 						n = &Node{Kind: "utilities"}
 					}
 				case "@utility":
