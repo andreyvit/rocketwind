@@ -1,0 +1,530 @@
+[
+  {
+    "test": "decoding arbitrary values > should replace an underscore with a space",
+    "kind": "value.decode",
+    "args": [
+      "foo_bar"
+    ],
+    "result": "foo bar"
+  },
+  {
+    "test": "decoding arbitrary values > should replace multiple underscores with spaces",
+    "kind": "value.decode",
+    "args": [
+      "__foo__bar__"
+    ],
+    "result": "  foo  bar  "
+  },
+  {
+    "test": "decoding arbitrary values > should replace escaped underscores with a normal underscore",
+    "kind": "value.decode",
+    "args": [
+      "foo\\_bar"
+    ],
+    "result": "foo_bar"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in url()",
+    "kind": "value.decode",
+    "args": [
+      "url(./my_file.jpg)"
+    ],
+    "result": "url(./my_file.jpg)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in url()",
+    "kind": "value.decode",
+    "args": [
+      "no-repeat_url(./my_file.jpg)"
+    ],
+    "result": "no-repeat url(./my_file.jpg)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of var()",
+    "kind": "value.decode",
+    "args": [
+      "var(--spacing-1_5)"
+    ],
+    "result": "var(--spacing-1_5)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of var()",
+    "kind": "value.decode",
+    "args": [
+      "var(--spacing-1_5,_1rem)"
+    ],
+    "result": "var(--spacing-1_5, 1rem)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of var()",
+    "kind": "value.decode",
+    "args": [
+      "var(--spacing-1_5,_var(--spacing-2_5,_1rem))"
+    ],
+    "result": "var(--spacing-1_5, var(--spacing-2_5, 1rem))"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of theme()",
+    "kind": "value.decode",
+    "args": [
+      "theme(--spacing-1_5)"
+    ],
+    "result": "theme(--spacing-1_5)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of theme()",
+    "kind": "value.decode",
+    "args": [
+      "theme(--spacing-1_5,_1rem)"
+    ],
+    "result": "theme(--spacing-1_5, 1rem)"
+  },
+  {
+    "test": "decoding arbitrary values > should not replace underscores in the first argument of theme()",
+    "kind": "value.decode",
+    "args": [
+      "theme(--spacing-1_5,_theme(--spacing-2_5,_1rem))"
+    ],
+    "result": "theme(--spacing-1_5, theme(--spacing-2_5, 1rem))"
+  },
+  {
+    "test": "decoding arbitrary values > should leave var(…) as is",
+    "kind": "value.decode",
+    "args": [
+      "var(--foo)"
+    ],
+    "result": "var(--foo)"
+  },
+  {
+    "test": "decoding arbitrary values > should leave var(…) as is",
+    "kind": "value.decode",
+    "args": [
+      "var(--headings-h1-size)"
+    ],
+    "result": "var(--headings-h1-size)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(1+2)",
+    "kind": "value.decode",
+    "args": [
+      "calc(1+2)"
+    ],
+    "result": "calc(1 + 2)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(100%+1rem)",
+    "kind": "value.decode",
+    "args": [
+      "calc(100%+1rem)"
+    ],
+    "result": "calc(100% + 1rem)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(1+calc(100%-20px))",
+    "kind": "value.decode",
+    "args": [
+      "calc(1+calc(100%-20px))"
+    ],
+    "result": "calc(1 + calc(100% - 20px))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(var(--headings-h1-size)*100)",
+    "kind": "value.decode",
+    "args": [
+      "calc(var(--headings-h1-size)*100)"
+    ],
+    "result": "calc(var(--headings-h1-size) * 100)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(var(--headings-h1-size)*calc(100%+50%))",
+    "kind": "value.decode",
+    "args": [
+      "calc(var(--headings-h1-size)*calc(100%+50%))"
+    ],
+    "result": "calc(var(--headings-h1-size) * calc(100% + 50%))"
+  },
+  {
+    "test": "adds spaces around math operators > min(1+2)",
+    "kind": "value.decode",
+    "args": [
+      "min(1+2)"
+    ],
+    "result": "min(1 + 2)"
+  },
+  {
+    "test": "adds spaces around math operators > max(1+2)",
+    "kind": "value.decode",
+    "args": [
+      "max(1+2)"
+    ],
+    "result": "max(1 + 2)"
+  },
+  {
+    "test": "adds spaces around math operators > clamp(1+2,1+3,1+4)",
+    "kind": "value.decode",
+    "args": [
+      "clamp(1+2,1+3,1+4)"
+    ],
+    "result": "clamp(1 + 2, 1 + 3, 1 + 4)"
+  },
+  {
+    "test": "adds spaces around math operators > var(--width, calc(100%+1rem))",
+    "kind": "value.decode",
+    "args": [
+      "var(--width, calc(100%+1rem))"
+    ],
+    "result": "var(--width, calc(100% + 1rem))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(1px*(7--12/24))",
+    "kind": "value.decode",
+    "args": [
+      "calc(1px*(7--12/24))"
+    ],
+    "result": "calc(1px * (7 - -12 / 24))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((7-32)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((7-32)/(1400-782))"
+    ],
+    "result": "calc((7 - 32) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((7-3)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((7-3)/(1400-782))"
+    ],
+    "result": "calc((7 - 3) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((7-32)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((7-32)/(1400-782))"
+    ],
+    "result": "calc((7 - 32) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((70-3)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((70-3)/(1400-782))"
+    ],
+    "result": "calc((70 - 3) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((70-32)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((70-32)/(1400-782))"
+    ],
+    "result": "calc((70 - 32) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((704-3)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((704-3)/(1400-782))"
+    ],
+    "result": "calc((704 - 3) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((704-320))",
+    "kind": "value.decode",
+    "args": [
+      "calc((704-320))"
+    ],
+    "result": "calc((704 - 320))"
+  },
+  {
+    "test": "adds spaces around math operators > calc((704-320)/1)",
+    "kind": "value.decode",
+    "args": [
+      "calc((704-320)/1)"
+    ],
+    "result": "calc((704 - 320) / 1)"
+  },
+  {
+    "test": "adds spaces around math operators > calc((704-320)/(1400-782))",
+    "kind": "value.decode",
+    "args": [
+      "calc((704-320)/(1400-782))"
+    ],
+    "result": "calc((704 - 320) / (1400 - 782))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(24px+-1rem)",
+    "kind": "value.decode",
+    "args": [
+      "calc(24px+-1rem)"
+    ],
+    "result": "calc(24px + -1rem)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(24px+(-1rem))",
+    "kind": "value.decode",
+    "args": [
+      "calc(24px+(-1rem))"
+    ],
+    "result": "calc(24px + (-1rem))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(24px_+_-1rem)",
+    "kind": "value.decode",
+    "args": [
+      "calc(24px_+_-1rem)"
+    ],
+    "result": "calc(24px + -1rem)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(24px+(-1rem))",
+    "kind": "value.decode",
+    "args": [
+      "calc(24px+(-1rem))"
+    ],
+    "result": "calc(24px + (-1rem))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(24px_+_(-1rem))",
+    "kind": "value.decode",
+    "args": [
+      "calc(24px_+_(-1rem))"
+    ],
+    "result": "calc(24px + (-1rem))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(var(--10-10px,calc(-20px-(-30px--40px)-50px)))",
+    "kind": "value.decode",
+    "args": [
+      "calc(var(--10-10px,calc(-20px-(-30px--40px)-50px)))"
+    ],
+    "result": "calc(var(--10-10px,calc(-20px - (-30px - -40px) - 50px)))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(theme(spacing.1-bar))",
+    "kind": "value.decode",
+    "args": [
+      "calc(theme(spacing.1-bar))"
+    ],
+    "result": "calc(theme(spacing.1-bar))"
+  },
+  {
+    "test": "adds spaces around math operators > theme(spacing.1-bar)",
+    "kind": "value.decode",
+    "args": [
+      "theme(spacing.1-bar)"
+    ],
+    "result": "theme(spacing.1-bar)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(theme(spacing.1-bar))",
+    "kind": "value.decode",
+    "args": [
+      "calc(theme(spacing.1-bar))"
+    ],
+    "result": "calc(theme(spacing.1-bar))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(1rem-theme(spacing.1-bar))",
+    "kind": "value.decode",
+    "args": [
+      "calc(1rem-theme(spacing.1-bar))"
+    ],
+    "result": "calc(1rem - theme(spacing.1-bar))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(theme(spacing.foo-2))",
+    "kind": "value.decode",
+    "args": [
+      "calc(theme(spacing.foo-2))"
+    ],
+    "result": "calc(theme(spacing.foo-2))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(theme(spacing.foo-bar))",
+    "kind": "value.decode",
+    "args": [
+      "calc(theme(spacing.foo-bar))"
+    ],
+    "result": "calc(theme(spacing.foo-bar))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(100%-var(--foo))",
+    "kind": "value.decode",
+    "args": [
+      "calc(100%-var(--foo))"
+    ],
+    "result": "calc(100% - var(--foo))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(100PX-theme(spacing.1))",
+    "kind": "value.decode",
+    "args": [
+      "calc(100PX-theme(spacing.1))"
+    ],
+    "result": "calc(100PX - theme(spacing.1))"
+  },
+  {
+    "test": "adds spaces around math operators > min(fit-content,calc(100dvh-4rem))",
+    "kind": "value.decode",
+    "args": [
+      "min(fit-content,calc(100dvh-4rem))"
+    ],
+    "result": "min(fit-content, calc(100dvh - 4rem))"
+  },
+  {
+    "test": "adds spaces around math operators > min(theme(spacing.foo-bar),fit-content,calc(20*calc(40-30)))",
+    "kind": "value.decode",
+    "args": [
+      "min(theme(spacing.foo-bar),fit-content,calc(20*calc(40-30)))"
+    ],
+    "result": "min(theme(spacing.foo-bar), fit-content, calc(20 * calc(40 - 30)))"
+  },
+  {
+    "test": "adds spaces around math operators > min(fit-content,calc(100dvh-4rem)-calc(50dvh--2px))",
+    "kind": "value.decode",
+    "args": [
+      "min(fit-content,calc(100dvh-4rem)-calc(50dvh--2px))"
+    ],
+    "result": "min(fit-content, calc(100dvh - 4rem) - calc(50dvh - -2px))"
+  },
+  {
+    "test": "adds spaces around math operators > min(-3.4e-2-var(--foo),calc-size(auto))",
+    "kind": "value.decode",
+    "args": [
+      "min(-3.4e-2-var(--foo),calc-size(auto))"
+    ],
+    "result": "min(-3.4e-2 - var(--foo), calc-size(auto))"
+  },
+  {
+    "test": "adds spaces around math operators > clamp(-10e3-var(--foo),calc-size(max-content),var(--foo)+-10e3)",
+    "kind": "value.decode",
+    "args": [
+      "clamp(-10e3-var(--foo),calc-size(max-content),var(--foo)+-10e3)"
+    ],
+    "result": "clamp(-10e3 - var(--foo), calc-size(max-content), var(--foo) + -10e3)"
+  },
+  {
+    "test": "adds spaces around math operators > clamp(-3px+4px,-3px+4px,-3px+4px)",
+    "kind": "value.decode",
+    "args": [
+      "clamp(-3px+4px,-3px+4px,-3px+4px)"
+    ],
+    "result": "clamp(-3px + 4px, -3px + 4px, -3px + 4px)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(var(--foo-bar-bar)*2)",
+    "kind": "value.decode",
+    "args": [
+      "calc(var(--foo-bar-bar)*2)"
+    ],
+    "result": "calc(var(--foo-bar-bar) * 2)"
+  },
+  {
+    "test": "adds spaces around math operators > calc(env(safe-area-inset-bottom)*2)",
+    "kind": "value.decode",
+    "args": [
+      "calc(env(safe-area-inset-bottom)*2)"
+    ],
+    "result": "calc(env(safe-area-inset-bottom) * 2)"
+  },
+  {
+    "test": "adds spaces around math operators > fit-content(min(max-content,max(min-content,calc(20px+1em))))",
+    "kind": "value.decode",
+    "args": [
+      "fit-content(min(max-content,max(min-content,calc(20px+1em))))"
+    ],
+    "result": "fit-content(min(max-content, max(min-content, calc(20px + 1em))))"
+  },
+  {
+    "test": "adds spaces around math operators > env(safe-area-inset-bottom,calc(10px+20px))",
+    "kind": "value.decode",
+    "args": [
+      "env(safe-area-inset-bottom,calc(10px+20px))"
+    ],
+    "result": "env(safe-area-inset-bottom,calc(10px + 20px))"
+  },
+  {
+    "test": "adds spaces around math operators > calc(env(safe-area-inset-bottom,calc(10px+20px))+5px)",
+    "kind": "value.decode",
+    "args": [
+      "calc(env(safe-area-inset-bottom,calc(10px+20px))+5px)"
+    ],
+    "result": "calc(env(safe-area-inset-bottom,calc(10px + 20px)) + 5px)"
+  },
+  {
+    "test": "adds spaces around math operators > minmax(min-content,25%)",
+    "kind": "value.decode",
+    "args": [
+      "minmax(min-content,25%)"
+    ],
+    "result": "minmax(min-content,25%)"
+  },
+  {
+    "test": "adds spaces around math operators > radial-gradient(calc(1+2)),radial-gradient(calc(1+2))",
+    "kind": "value.decode",
+    "args": [
+      "radial-gradient(calc(1+2)),radial-gradient(calc(1+2))"
+    ],
+    "result": "radial-gradient(calc(1 + 2)),radial-gradient(calc(1 + 2))"
+  },
+  {
+    "test": "adds spaces around math operators > w-[calc(anchor-size(width)+8px)]",
+    "kind": "value.decode",
+    "args": [
+      "w-[calc(anchor-size(width)+8px)]"
+    ],
+    "result": "w-[calc(anchor-size(width) + 8px)]"
+  },
+  {
+    "test": "adds spaces around math operators > w-[calc(anchor-size(foo(bar))+8px)]",
+    "kind": "value.decode",
+    "args": [
+      "w-[calc(anchor-size(foo(bar))+8px)]"
+    ],
+    "result": "w-[calc(anchor-size(foo(bar)) + 8px)]"
+  },
+  {
+    "test": "adds spaces around math operators > [content-start]_calc(100%-1px)_[content-end]_minmax(1rem,1fr)",
+    "kind": "value.decode",
+    "args": [
+      "[content-start]_calc(100%-1px)_[content-end]_minmax(1rem,1fr)"
+    ],
+    "result": "[content-start] calc(100% - 1px) [content-end] minmax(1rem,1fr)"
+  },
+  {
+    "test": "adds spaces around math operators > round(1+2,1+3)",
+    "kind": "value.decode",
+    "args": [
+      "round(1+2,1+3)"
+    ],
+    "result": "round(1 + 2, 1 + 3)"
+  },
+  {
+    "test": "adds spaces around math operators > round(to-zero,1+2,1+3)",
+    "kind": "value.decode",
+    "args": [
+      "round(to-zero,1+2,1+3)"
+    ],
+    "result": "round(to-zero, 1 + 2, 1 + 3)"
+  },
+  {
+    "test": "adds spaces around math operators > env((safe-area-inset-bottom))",
+    "kind": "value.decode",
+    "args": [
+      "env((safe-area-inset-bottom))"
+    ],
+    "result": "env((safe-area-inset-bottom))"
+  },
+  {
+    "test": "adds spaces around math operators > atan(1 + -infinity)",
+    "kind": "value.decode",
+    "args": [
+      "atan(1 + -infinity)"
+    ],
+    "result": "atan(1 + -infinity)"
+  }
+]

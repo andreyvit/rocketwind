@@ -24,6 +24,9 @@ import fs from 'node:fs'
 import { afterAll, expect } from 'vitest'
 const records = []
 globalThis.__rocketwindRecord = (kind, args, result, error) => {
+  const testPath = expect.getState().testPath
+  if (kind === 'css.parse' && !testPath.endsWith('/css-parser.test.ts')) return
+  if (kind === 'value.decode' && !testPath.endsWith('/decode-arbitrary-value.test.ts')) return
   records.push({ test: expect.getState().currentTestName, kind, args, result, error })
 }
 afterAll(() => {
@@ -38,6 +41,41 @@ export default defineConfig({
   plugins: [{
     name: 'rocketwind-record', enforce: 'pre',
     transform(code, id) {
+      if (id.endsWith('/tailwindcss/src/index.ts')) {
+        code = code.replace('export async function compile(', 'async function compileOriginal(')
+        return code + \`
+          export async function compile(css, options = {}) {
+            try {
+              const api = await compileOriginal(css, options)
+              const builds = []
+              return {...api, build(candidates) {
+                builds.push([...candidates])
+                try {
+                  const result = api.build(candidates)
+                  globalThis.__rocketwindRecord?.('compile.build', [css, options, builds.slice()], result, undefined)
+                  return result
+                } catch (error) {
+                  globalThis.__rocketwindRecord?.('compile.build', [css, options, builds.slice()], undefined, error.message)
+                  throw error
+                }
+              }}
+            } catch (error) {
+              globalThis.__rocketwindRecord?.('compile', [css, options], undefined, error.message)
+              throw error
+            }
+          }
+        \`
+      }
+      if (id.endsWith('/src/utils/decode-arbitrary-value.ts')) {
+        code = code.replace('export function decodeArbitraryValue(', 'function decodeOriginal(')
+        return code + \`
+          export function decodeArbitraryValue(...args) {
+            const result = decodeOriginal(...args)
+            globalThis.__rocketwindRecord?.('value.decode', args, result, undefined)
+            return result
+          }
+        \`
+      }
       if (!id.endsWith('/src/css-parser.ts')) return
       code = code.replace('export function parse(', 'function parseOriginal(')
       return code + \`

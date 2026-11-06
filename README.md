@@ -7,9 +7,9 @@ Rocketwind is being built to compile that CSS inside your Go process. No Node
 process, no build step for each edit, and no need to ship every possible utility
 class to every visitor.
 
-**Work in progress.** The parser works; the complete compiler is not ready yet.
-See [WORK.md](WORK.md) for the implementation gates. The examples below describe
-the intended use cases, not a released API.
+**Work in progress.** The core utility compiler works. The complete compiler,
+dynamic settings API, plugins and compatibility profiles are still being built.
+See [WORK.md](WORK.md) for the implementation gates.
 
 
 Why?
@@ -32,9 +32,19 @@ The last case matters because Tailwind's names can be ambiguous. `text-*` can
 mean a font size or a color. A setting's type should settle that question even
 when its value is a CSS variable. Rocketwind must not guess from its name.
 
-Ordinary helper classes are part of the plan too: pass in `text-xl`, `hover:flex`
-and the other classes your templates use, and get a stylesheet back. Configuration
-can come from Go; you don't need a single entry-point CSS file.
+Ordinary helper classes work too: pass in `text-xl`, `hover:flex` and the other
+classes your templates use, and get a stylesheet back. Configuration can come
+from Go; you don't need a single entry-point CSS file.
+
+```go
+compiler := rocketwind.New(rocketwind.Config{
+    Theme: map[string]string{"--color-brand": "#663399"},
+})
+css, err := compiler.Build([]string{"grid", "p-4", "text-xl", "bg-brand"})
+```
+
+Or start with a stylesheet containing `@theme`, `@utility`, `@apply` and
+`@tailwind utilities`, using `rocketwind.Compile(css, config)`.
 
 
 Tailwind compatibility
@@ -42,7 +52,7 @@ Tailwind compatibility
 
 | Version | Status |
 | --- | --- |
-| Tailwind CSS **4.3.4** | Current implementation target. CSS parser behavior verified against the upstream tests. Full compiler compatibility is not yet verified. |
+| Tailwind CSS **4.3.4** | Current target. All 749 compiler calls captured from the upstream utility tests match exactly, along with 222 CSS parser calls and 66 arbitrary-value decoding calls. Full compiler compatibility is not yet verified. |
 | Tailwind CSS **3.4.17** | Planned compatibility profile for existing applications. Not yet implemented or verified. |
 
 The goal is to reproduce the core compiler and standard plugins in Go, including
