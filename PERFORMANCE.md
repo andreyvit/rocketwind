@@ -1,41 +1,67 @@
 # Performance
 
-Measured on 6 November 2026, on an Apple M5 Max with 18 logical CPUs, Go 1.27.3
-and Node 26.4.0. Benchmarks ran separately from tests and profiling. Go figures
-are medians of three runs; allocation figures include garbage produced during
-each operation, not just the memory retained afterward.
+Measured on 6 November 2026 with Go 1.27.3 and Node 26.4.0:
 
-## Current Tailwind comparison
+* Apple M5 Max, 18 logical CPUs, macOS 26.5.2.
+* AMD EPYC 7502P, 32 cores / 64 logical CPUs, Linux 6.18.2 (`bh311`).
+
+Benchmarks ran separately from tests and profiling. The server was lightly
+loaded; benchmark processes ran at niceness 10. Go used its default `GOMAXPROCS`
+on both machines. The Linux benchmark executable was cross-compiled with the
+same Go 1.27.3 toolchain used on the Mac. The server used the official Node 26.4.0
+Linux binary.
+
+## Tailwind 3 and 4 comparison
 
 The public [loyalty fixture](testdata/performance/loyalty.json) contains 592
 classes: layout, spacing, colors, responsive and state variants, forms and
-typography. It is a synthetic stress fixture, not a captured customer's page.
+typography. It is a synthetic page-builder workload.
 Each operation creates a compiler, configures both standard plugins, builds all
-classes and optimizes the CSS for browsers. It excludes source scanning.
+classes and optimizes the CSS for browsers. Both versions use forms 0.5.11
+(class strategy) and typography 0.5.20. Each Rocketwind profile uses the matching
+Tailwind defaults, including v3's smaller spacing scale. The fixture omits
+preflight; source scanning, file I/O and process startup are outside the timer.
 
-Rocketwind takes **5.50 ms**, allocating 10.38 MB in 91,634 allocations. The
-official Tailwind **4.3.4** compiler and optimizer take about **12 ms**. Neither
-measurement reuses a completed compiler or an unchanged-build cache. Node
-loads modules before timing, discards 20 warmup runs, then measures 100 fresh
-compilations. The Go benchmark also keeps process startup outside the timer.
+| Compiler | Apple M5 Max | AMD EPYC 7502P |
+| --- | ---: | ---: |
+| Tailwind 3.4.17 | 47.60 ms | 160.47 ms |
+| Rocketwind v3 | **4.45 ms (10.7×)** | **30.31 ms (5.3×)** |
+| Tailwind 4.3.4 | 12.49 ms | 40.08 ms |
+| Rocketwind v4 | **5.65 ms (2.2×)** | **33.58 ms (1.2×)** |
+
+Rocketwind v3 allocates about 8.33 MB in 120,620 allocations per build; v4
+allocates about 10.38 MB in 91,634 allocations. These count all allocated memory,
+including garbage collected during compilation.
+
+Go figures are medians of five runs with `-benchtime=2s`. Node figures are medians
+of five process medians: each process loads modules, discards 20 warmup runs,
+then times 100 fresh compilations. Tailwind v3's compilation-context maps are
+cleared each iteration; creating a new PostCSS processor alone would reuse
+compiled rules. [Raw samples and environment details](testdata/performance/2026-11-06.json).
 
 Run the Go side:
 
 ```sh
-go test -run '^$' -bench '^BenchmarkLoyaltyCompiler$' -benchtime=2s -count=3 -benchmem
+go test -run '^$' -bench '^BenchmarkLoyaltyCompiler(V3)?$' -benchtime=2s -count=5 -benchmem
 ```
 
 For the independent reference, install development tools outside the Go module:
 
 ```sh
 npm install --prefix .cache --no-save tailwindcss@4.3.4 @tailwindcss/node@4.3.4 @tailwindcss/forms@0.5.11 @tailwindcss/typography@0.5.20 postcss@8.5.32
-node scripts/benchmark-compiler.mjs
+npm install --prefix .cache/benchmark-v3 --no-save tailwindcss@3.4.17 @tailwindcss/node@4.3.4 @tailwindcss/forms@0.5.11 @tailwindcss/typography@0.5.20 postcss@8.5.32
+for trial in 1 2 3 4 5; do
+    node scripts/benchmark-compiler.mjs .cache/benchmark-v3 --compat=3
+    node scripts/benchmark-compiler.mjs .cache
+done
 ```
 
-The script writes `.cache/performance/official-loyalty.css`. An optional third
-argument names a Rocketwind output file to compare. That check normalizes CSS
-spelling, grouped selectors and adjacent identical selectors. It preserves rule
-order and supplies no browser targets that could conceal missing prefixes.
+The script writes `.cache/performance/official-loyalty.css` and
+`official-loyalty-v3.css`. An optional filename after the tooling directory names
+a Rocketwind output file to compare. The check normalizes CSS spelling, grouped
+selectors, adjacent identical selectors and the position of independent `display`
+declarations. It preserves rule order, fallback declarations and prefixes.
+Both profiles matched the official output from both machines.
 
 To generate and check the Rocketwind side of the fixture:
 
@@ -44,13 +70,19 @@ go build -o .cache/rocketwind ./cmd/rocketwind
 python3 - <<'PY'
 import json, pathlib, subprocess
 fixture = json.loads(pathlib.Path('testdata/performance/loyalty.json').read_text())
-subprocess.run([
-    '.cache/rocketwind', 'build', '-i', '-', '--content', '__missing_perf_input__',
-    '--classes', ' '.join(fixture['classes']), '--optimize',
-    '-o', '.cache/performance/rocketwind-loyalty.css',
-], input=fixture['input'], text=True, check=True)
+for version in (3, 4):
+    css = fixture['input']
+    if version == 3:
+        css = ('@plugin "@tailwindcss/forms" { strategy: class; }\n'
+               '@plugin "@tailwindcss/typography";\n' + fixture['inputV3'])
+    subprocess.run([
+        '.cache/rocketwind', 'build', f'--compat={version}', '-i', '-',
+        '--content', '__missing_perf_input__', '--classes', ' '.join(fixture['classes']),
+        '--optimize', '-o', f'.cache/performance/rocketwind-loyalty-v{version}.css',
+    ], input=css, text=True, check=True)
 PY
-node scripts/benchmark-compiler.mjs .cache .cache/performance/rocketwind-loyalty.css
+node scripts/benchmark-compiler.mjs .cache/benchmark-v3 .cache/performance/rocketwind-loyalty-v3.css --compat=3
+node scripts/benchmark-compiler.mjs .cache .cache/performance/rocketwind-loyalty-v4.css
 ```
 
 ## Application workloads

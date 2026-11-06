@@ -1,0 +1,446 @@
+{
+  "date": "2026-11-06",
+  "rocketwindRevision": "942673b94d39db9b8b5bc8280b8a450282bb1b94",
+  "fixture": "testdata/performance/loyalty.json",
+  "fixtureSHA256": "afdb887c4f595792ff7a33e8591f38be3c1fa419fdc17eb676a753e652f9e41a",
+  "candidates": 592,
+  "versions": {
+    "go": "1.27.3",
+    "node": "26.4.0",
+    "tailwind3": "3.4.17",
+    "tailwind4": "4.3.4",
+    "forms": "0.5.11",
+    "typography": "0.5.20"
+  },
+  "work": "Fresh compiler, forms class strategy, typography, supplied candidates, browser optimization without minification; no preflight, scanning, file I/O or process startup.",
+  "goMeasurement": "Median of five Go benchmark runs, -benchtime=2s, default GOMAXPROCS. Each iteration constructs a new compiler.",
+  "tailwindMeasurement": "Median of five process medians. Each process discards 20 warmups and times 100 fresh compilations. V3 compilation-context maps are cleared each iteration.",
+  "systems": [
+    {
+      "label": "Apple Silicon",
+      "cpu": "Apple M5 Max",
+      "logicalCPUs": 18,
+      "system": "macOS-26.5.2-arm64-arm-64bit",
+      "node": "v26.4.0",
+      "go": "go version go1.27.3 darwin/arm64",
+      "loadBefore": [
+        4.1220703125,
+        4.01611328125,
+        5.5224609375
+      ],
+      "startedUTC": "2026-11-06T18:07:34Z",
+      "loadAfter": [
+        4.12890625,
+        4.076171875,
+        5.44287109375
+      ],
+      "rocketwind": {
+        "v3": {
+          "medianMS": 4.450121,
+          "samples": [
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 537,
+              "nsPerOp": 4450121,
+              "bytesPerOp": 8329112,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 538,
+              "nsPerOp": 4682817,
+              "bytesPerOp": 8329041,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 480,
+              "nsPerOp": 4720777,
+              "bytesPerOp": 8328978,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 535,
+              "nsPerOp": 4443727,
+              "bytesPerOp": 8329187,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 541,
+              "nsPerOp": 4439930,
+              "bytesPerOp": 8329182,
+              "allocsPerOp": 120620
+            }
+          ]
+        },
+        "v4": {
+          "medianMS": 5.653865,
+          "samples": [
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 442,
+              "nsPerOp": 5547944,
+              "bytesPerOp": 10376493,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 409,
+              "nsPerOp": 5692954,
+              "bytesPerOp": 10376383,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 415,
+              "nsPerOp": 5704714,
+              "bytesPerOp": 10376204,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 404,
+              "nsPerOp": 5653865,
+              "bytesPerOp": 10376242,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 18,
+              "iterations": 436,
+              "nsPerOp": 5435310,
+              "bytesPerOp": 10376383,
+              "allocsPerOp": 91634
+            }
+          ]
+        }
+      },
+      "tailwind": {
+        "v3": {
+          "medianMS": 47.60362499999974,
+          "samples": [
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 48.13458400000036,
+              "meanMS": 49.410362120000016,
+              "p95MS": 59.304083999999875,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 49.992166,
+              "meanMS": 50.12058044,
+              "p95MS": 55.74695799999972,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 47.60362499999974,
+              "meanMS": 47.89616833000003,
+              "p95MS": 52.34020899999996,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 46.01224999999977,
+              "meanMS": 46.43782369999998,
+              "p95MS": 50.908584000000246,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 47.008792000000085,
+              "meanMS": 48.939463730000014,
+              "p95MS": 58.52300000000014,
+              "cssBytes": 47399
+            }
+          ]
+        },
+        "v4": {
+          "medianMS": 12.494041999999922,
+          "samples": [
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 12.495959000000084,
+              "meanMS": 12.578935850000002,
+              "p95MS": 14.362415999999996,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 12.494041999999922,
+              "meanMS": 12.722401699999995,
+              "p95MS": 14.634000000000015,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 12.813333000000057,
+              "meanMS": 13.880536759999998,
+              "p95MS": 20.64645799999994,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 12.205625000000055,
+              "meanMS": 12.494195049999998,
+              "p95MS": 14.299540999999977,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 11.955500000000029,
+              "meanMS": 12.173492099999999,
+              "p95MS": 13.736124999999902,
+              "cssBytes": 64312
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "bh311",
+      "cpu": "AMD EPYC 7502P 32-Core Processor",
+      "logicalCPUs": 64,
+      "system": "Linux-6.18.2-arch2-1-x86_64-with-glibc2.44",
+      "node": "26.4.0",
+      "go": "1.27.3 (cross-compiled)",
+      "loadBefore": [
+        0.103515625,
+        0.48291015625,
+        0.5966796875
+      ],
+      "startedUTC": "2026-11-06T18:05:47Z",
+      "loadAfter": [
+        1.7177734375,
+        0.96435546875,
+        0.7607421875
+      ],
+      "rocketwind": {
+        "v3": {
+          "medianMS": 30.310817,
+          "samples": [
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 76,
+              "nsPerOp": 30532526,
+              "bytesPerOp": 8336139,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 74,
+              "nsPerOp": 29751437,
+              "bytesPerOp": 8336282,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 78,
+              "nsPerOp": 30273168,
+              "bytesPerOp": 8335651,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 74,
+              "nsPerOp": 30310817,
+              "bytesPerOp": 8335652,
+              "allocsPerOp": 120620
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 75,
+              "nsPerOp": 30472632,
+              "bytesPerOp": 8336267,
+              "allocsPerOp": 120620
+            }
+          ]
+        },
+        "v4": {
+          "medianMS": 33.575671,
+          "samples": [
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 79,
+              "nsPerOp": 33119431,
+              "bytesPerOp": 10383816,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 72,
+              "nsPerOp": 33665018,
+              "bytesPerOp": 10383611,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 76,
+              "nsPerOp": 32950442,
+              "bytesPerOp": 10382873,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 79,
+              "nsPerOp": 33575671,
+              "bytesPerOp": 10383458,
+              "allocsPerOp": 91634
+            },
+            {
+              "GOMAXPROCS": 64,
+              "iterations": 72,
+              "nsPerOp": 33639386,
+              "bytesPerOp": 10382751,
+              "allocsPerOp": 91634
+            }
+          ]
+        }
+      },
+      "tailwind": {
+        "v3": {
+          "medianMS": 160.47402499999953,
+          "samples": [
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 163.53264400000262,
+              "meanMS": 164.5987607100001,
+              "p95MS": 177.76688200000171,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 160.47402499999953,
+              "meanMS": 161.52808228,
+              "p95MS": 175.2052450000001,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 161.56031500000245,
+              "meanMS": 162.38896542999998,
+              "p95MS": 175.12675900000067,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 159.79712300000028,
+              "meanMS": 161.79143613,
+              "p95MS": 174.0621229999997,
+              "cssBytes": 47399
+            },
+            {
+              "compiler": "Tailwind CSS 3.4.17",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 159.34752499999922,
+              "meanMS": 161.77366545999988,
+              "p95MS": 175.22625899999912,
+              "cssBytes": 47399
+            }
+          ]
+        },
+        "v4": {
+          "medianMS": 40.08130599999981,
+          "samples": [
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 40.141757999999754,
+              "meanMS": 40.927904649999995,
+              "p95MS": 45.53329899999994,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 40.08130599999981,
+              "meanMS": 40.737060549999995,
+              "p95MS": 44.7620280000001,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 40.65754800000013,
+              "meanMS": 41.38989552999998,
+              "p95MS": 46.12793699999975,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 39.8955160000005,
+              "meanMS": 40.48524911999996,
+              "p95MS": 44.71678799999995,
+              "cssBytes": 64312
+            },
+            {
+              "compiler": "Tailwind CSS 4.3.4",
+              "node": "v26.4.0",
+              "candidates": 592,
+              "iterations": 100,
+              "medianMS": 40.05147800000009,
+              "meanMS": 40.61559298999995,
+              "p95MS": 43.16111999999998,
+              "cssBytes": 64312
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

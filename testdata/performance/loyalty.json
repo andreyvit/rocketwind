@@ -1,5 +1,6 @@
 {
   "input": "@import \"tailwindcss/theme.css\" theme(reference);\n@plugin \"@tailwindcss/forms\" { strategy: class; }\n@plugin \"@tailwindcss/typography\";\n@tailwind utilities;\n",
+  "inputV3": "@tailwind components;\n@tailwind utilities;\n",
   "classes": [
     "flex",
     "grid",
