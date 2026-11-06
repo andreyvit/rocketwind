@@ -230,7 +230,7 @@
       }
     },
     {
-      "label": "bh311",
+      "label": "AMD EPYC server",
       "cpu": "AMD EPYC 7502P 32-Core Processor",
       "logicalCPUs": 64,
       "system": "Linux-6.18.2-arch2-1-x86_64-with-glibc2.44",

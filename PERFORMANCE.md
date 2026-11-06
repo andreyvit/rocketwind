@@ -3,7 +3,7 @@
 Measured on 6 November 2026 with Go 1.27.3 and Node 26.4.0:
 
 * Apple M5 Max, 18 logical CPUs, macOS 26.5.2.
-* AMD EPYC 7502P, 32 cores / 64 logical CPUs, Linux 6.18.2 (`bh311`).
+* AMD EPYC 7502P, 32 cores / 64 logical CPUs, Linux 6.18.2.
 
 Benchmarks ran separately from tests and profiling. The server was lightly
 loaded; benchmark processes ran at niceness 10. Go used its default `GOMAXPROCS`
@@ -87,7 +87,7 @@ node scripts/benchmark-compiler.mjs .cache .cache/performance/rocketwind-loyalty
 
 ## Application workloads
 
-The Bubblehouse profiles use its actual embedded templates, JavaScript bundles,
+The application profiles use actual embedded templates, JavaScript bundles,
 CSS, configuration and native plugins. The baseline is Rocketwind commit
 `13b1602`; both versions receive the same application snapshot. These private
 sources are not copied into this public repository.
@@ -111,7 +111,7 @@ use the old forms/typography versions. Neither timing includes source scanning
 or process startup. The official custom extractor passes the supplied candidates
 through directly, avoiding an extra scan of the candidate manifest.
 
-Application measurements and reproduction commands also live in Bubblehouse's
+Application measurements and reproduction commands also live in the application's
 `_readme/rocketwind.md`. They separate configuration, scanning, compilation,
 startup, GoX CSS generation and whole-tenant loading. The latter loads existing
 large loyalty-page fixtures through the application's production-repro harness.

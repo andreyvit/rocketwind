@@ -548,14 +548,14 @@ including forms, typography and browser optimization:
 | Machine | Tailwind 3.4.17 | Rocketwind v3 | Tailwind 4.3.4 | Rocketwind v4 |
 | --- | ---: | ---: | ---: | ---: |
 | Apple M5 Max | 47.60 ms | **4.45 ms** | 12.49 ms | **5.65 ms** |
-| AMD EPYC 7502P (bh311) | 160.47 ms | **30.31 ms** | 40.08 ms | **33.58 ms** |
+| AMD EPYC 7502P | 160.47 ms | **30.31 ms** | 40.08 ms | **33.58 ms** |
 
 Go 1.27.3, Node 26.4.0; medians of five runs on each machine. Each Rocketwind
 profile uses the matching Tailwind defaults and plugin versions. Source scanning
 and process startup are timed separately.
 
-In Bubblehouse, scanning all embedded frontend assets and initializing shared
-CSS plus the GoX compiler takes **131 ms**. A prepared component template resolves
+In an application using Rocketwind, scanning embedded frontend assets and
+initializing shared CSS plus the GoX compiler takes **131 ms**. A prepared component template resolves
 and renders in **2.05 µs**; an unchanged incremental build allocates nothing.
 See [PERFORMANCE.md](PERFORMANCE.md) for methodology, allocation counts, source
 scanning measurements and runnable benchmarks.

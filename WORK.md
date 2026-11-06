@@ -1,6 +1,6 @@
 # Implementation gates
 
-Target: Tailwind CSS v4.3.4. Bubblehouse's existing build targets v3.4.17.
+Target: Tailwind CSS v4.3.4. The application's existing build targets v3.4.17.
 
 1. Repository, upstream source pin, test inventory and compatibility audit.
 2. CSS/value/candidate parsing, typed parameters, identifier escaping.
@@ -8,8 +8,8 @@ Target: Tailwind CSS v4.3.4. Bubblehouse's existing build targets v3.4.17.
 4. Stylesheet directives, imports, custom utilities, programmatic Go plugins.
 5. Standard plugins, source scanning, CLI, existing-stylesheet exclusion.
 6. Benchmark, allocation profiling, race tests, fuzzing, 100% Go coverage.
-7. Bubblehouse CSS generation tests and disabled runtime integration proof.
-8. Bubblehouse compiler replacement after CSS equivalence verification.
+7. Application CSS generation tests and disabled runtime integration proof.
+8. Application compiler replacement after CSS equivalence verification.
 9. GoX blocks contribute their Tailwind classes to tenant CSS, excluding classes
    already defined in admin.css. Keep the broader runtime theming replacement
    disabled; test tenant isolation and CSS cache invalidation.
@@ -27,7 +27,7 @@ plugin and browser-optimizer comparisons pass. The full Go suite, race suite,
 vet and strict 12,352/12,352 statement coverage gate pass. See TESTING.md for
 exact scope and JavaScript-host exceptions.
 
-Bubblehouse's static build now uses the Go compiler. Independent comparisons
+The application's static build now uses the Go compiler. Independent comparisons
 match every selector and declaration on committed and working source snapshots,
 with updated prefixing and no conflicting cascade inversions. Browser checks
 match 585,144 computed properties against the original build and preserve
@@ -112,7 +112,7 @@ remains disabled for a separate rollout. No application deployment was made.
 - Go tests, race detector and vet pass; statement coverage is 96.3%. The 100%
   coverage gate remains open.
 - This extends the Tailwind 4 compatibility API. Tailwind 3 output parity and
-  Bubblehouse integration remain pending.
+  application integration remain pending.
 
 ### Remaining compatibility internals
 
@@ -180,7 +180,7 @@ remains disabled for a separate rollout. No application deployment was made.
   96.1%; command entry-point coverage remains part of the integration gate.
 - Minification, source maps, canonicalization and the original CLI integration
   suite remain pending. This is a usable compiler checkpoint, not completion of
-  the CLI or compatibility gates. No Bubblehouse files have been integrated.
+  the CLI or compatibility gates. No application files have been integrated.
 
 ### Source maps
 
@@ -205,7 +205,7 @@ remains disabled for a separate rollout. No application deployment was made.
   and 2.16 ms with maps. Cached unchanged builds remain at zero allocations.
   These are checkpoint measurements, not the final performance gate.
 - Minification, canonicalization, remaining internal/CLI suites, the v3
-  compatibility profile and all Bubblehouse integration remain pending.
+  compatibility profile and all application integration remain pending.
 
 ### Value normalization
 
@@ -267,7 +267,7 @@ remains disabled for a separate rollout. No application deployment was made.
   do not use this index. These remain checkpoint measurements, not the final
   performance gate.
 - The CLI canonicalize command, minification, remaining suites, v3 compatibility
-  and Bubblehouse/GoX integration are still pending.
+  and application/GoX integration are still pending.
 
 ### CLI canonicalization
 
@@ -349,7 +349,7 @@ remains disabled for a separate rollout. No application deployment was made.
   Windows and Linux CLI binaries cross-compile.
 - Go tests, race tests and vet pass. Overall statement coverage is 97.4% with
   ordinary package-local instrumentation; whole-project 100% remains open.
-  Browser optimization, the v3 profile and Bubblehouse integration remain open.
+  Browser optimization, the v3 profile and application integration remain open.
 
 ### Typography configuration
 
@@ -391,7 +391,7 @@ remains disabled for a separate rollout. No application deployment was made.
   source maps without invoking a reference compiler. Separate raw-output
   assertions check fallbacks that the comparison normalizer can itself supply.
 - Full Go tests pass. Whole-project coverage, final performance, the v3 profile
-  and Bubblehouse integration remain open.
+  and application integration remain open.
 
 ### Configuration and error recovery
 
@@ -426,7 +426,7 @@ remains disabled for a separate rollout. No application deployment was made.
 - Relative asset directories now follow Node's working-directory resolution.
   Removed unused arguments and parser-unreachable fallback branches.
 - Coverage is complete for the current implementation. Performance, the v3
-  compatibility profile, Bubblehouse migration proof and GoX hookup remain open.
+  compatibility profile, application migration proof and GoX hookup remain open.
 
 ### Final standalone allocation pass
 
@@ -442,7 +442,7 @@ remains disabled for a separate rollout. No application deployment was made.
   from 441 us and 8,321. Unchanged incremental builds still allocate nothing.
 - Full tests, race tests and all 2,272 independent optimizer comparisons pass.
   The coverage gate passes: 10,803/10,803 statements (100%). Application-level
-  measurements will accompany the Bubblehouse integration.
+  measurements will accompany the application integration.
 
 ## Initial compiler performance measurements
 
@@ -462,7 +462,7 @@ remains disabled for a separate rollout. No application deployment was made.
   variants, 2,759 arbitrary values, two configuration sets and seven stylesheet
   cases. The complete existing Tailwind 4 and CLI suites still pass.
 - This is a compatibility checkpoint. CLI selection, remaining configuration
-  controls, full new-code coverage and Bubblehouse equivalence are not complete.
+  controls, full new-code coverage and application equivalence are not complete.
 
 Apple M5 Max, Go 1.27.3, three local runs per case. Before/after medians:
 
@@ -563,7 +563,7 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
 
 ### Application profiling and source scanning
 
-- Profiled real embedded Bubblehouse assets and large loyalty-page tenant loads.
+- Profiled real embedded application assets and large loyalty-page tenant loads.
   CSS startup fell from 920 to 131 ms; startup allocations fell from 520 to
   123 MB and from 5.37 million to 994 thousand. Legacy tenant load remains
   dominated by work outside Rocketwind; its original theming engine stays on.
