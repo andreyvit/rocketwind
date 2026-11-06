@@ -209,6 +209,7 @@ func pluginThemeValues(api *PluginAPI, namespace string, values []NamedValue) []
 	for _, value := range values {
 		key := prefix + value.Name
 		if _, ok := c.config.Theme[key]; !ok {
+			clear(c.legacyCSSCache)
 			c.config.Theme[key] = value.Value
 			c.themeFlags[key] = "inline reference"
 			c.themeOrder = append(c.themeOrder, key)

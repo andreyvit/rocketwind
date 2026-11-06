@@ -42,6 +42,49 @@ func (o *ConfigObject) set(key string, value any) {
 	*o = append(*o, ConfigEntry{key, value})
 }
 
+// Large palettes and plugin themes need ordered output without quadratic
+// insertion costs. Small objects keep the cheaper linear lookup.
+type configObjectBuilder struct {
+	object ConfigObject
+	index  map[string]int
+}
+
+func (b *configObjectBuilder) set(key string, value any) {
+	if b.index == nil {
+		if len(b.object) < 16 {
+			b.object.set(key, value)
+			return
+		}
+		b.buildIndex()
+	}
+	if i, ok := b.index[key]; ok {
+		b.object[i].Value = value
+	} else {
+		b.index[key] = len(b.object)
+		b.object = append(b.object, ConfigEntry{key, value})
+	}
+}
+
+func (b *configObjectBuilder) get(key string) any {
+	if b.index == nil {
+		if len(b.object) < 16 {
+			return b.object.Get(key)
+		}
+		b.buildIndex()
+	}
+	if i, ok := b.index[key]; ok {
+		return b.object[i].Value
+	}
+	return nil
+}
+
+func (b *configObjectBuilder) buildIndex() {
+	b.index = make(map[string]int, len(b.object)*2)
+	for i := len(b.object) - 1; i >= 0; i-- {
+		b.index[b.object[i].Key] = i
+	}
+}
+
 func (o ConfigObject) MarshalJSON() ([]byte, error) {
 	var buf bytes.Buffer
 	encoder := json.NewEncoder(&buf)
@@ -227,11 +270,11 @@ func mergeConfigValue(base, extra any) any {
 		return append([]any{cloneConfigValue(left)}, cloneConfigValue(values).([]any)...)
 	}
 	if right != nil {
-		result := configObject(cloneConfigValue(left))
+		result := configObjectBuilder{object: configObject(cloneConfigValue(left))}
 		for _, entry := range right {
-			result.set(entry.Key, mergeConfigValue(result.Get(entry.Key), entry.Value))
+			result.set(entry.Key, mergeConfigValue(result.get(entry.Key), entry.Value))
 		}
-		return result
+		return result.object
 	}
 	return cloneConfigValue(extra)
 }

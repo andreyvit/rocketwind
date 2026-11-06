@@ -3,6 +3,7 @@ package rocketwind
 import (
 	"encoding/json"
 	"reflect"
+	"strconv"
 	"strings"
 	"sync"
 	"testing"
@@ -70,6 +71,42 @@ func TestConfigurationExtensionArrays(t *testing.T) {
 		if got := mergeConfigValue(tt.base, tt.extra); !reflect.DeepEqual(got, tt.want) {
 			t.Fatalf("merge(%v,%v) = %v, want %v", tt.base, tt.extra, got, tt.want)
 		}
+	}
+}
+
+func TestLargeThemeExtensionPreservesOrderAndCopies(t *testing.T) {
+	var colors ConfigObject
+	for i := range 80 {
+		colors = append(colors, ConfigEntry{"brand" + strconv.Itoa(i), "red"})
+	}
+	colors = append(colors, ConfigEntry{"brand0", "blue"})
+	want := configObject(cloneConfigValue(colors))
+	want[0].Value = "green"
+	got := mergeConfigValue(colors, ConfigObject{{"brand0", "green"}})
+	if !reflect.DeepEqual(got, want) || colors[0].Value != "red" {
+		t.Fatal("large merge changed key order, duplicate precedence, or its input")
+	}
+	c, err := NewWithPlugins(Config{Theme: map[string]string{"--color-brand": "red"}}, Legacy(ConfigObject{{"theme", ConfigObject{
+		{"borderColor", ThemeFunc(func(theme ThemeResolver) any {
+			colors := configObject(theme("colors"))
+			colors.set("brand", "green")
+			return colors
+		})},
+		{"backgroundColor", ThemeFunc(func(theme ThemeResolver) any { return theme("colors") })},
+	}}}), func(api *PluginAPI) error {
+		if got := api.ThemeValue("backgroundColor.brand"); got != "red" {
+			t.Fatalf("theme callback leaked its mutation: %v", got)
+		}
+		colors := api.ThemeValue("colors").(ConfigObject)
+		colors.set("brand", "blue")
+		return nil
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	css, err := c.Build([]string{"bg-brand"})
+	if err != nil || css != ".bg-brand {\n  background-color: red;\n}\n" {
+		t.Fatalf("plugin copy changed the theme: %v\n%s", err, css)
 	}
 }
 

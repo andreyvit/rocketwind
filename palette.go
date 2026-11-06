@@ -4,7 +4,7 @@ package rocketwind
 // Nested keys become hyphenated names; DEFAULT names the containing color.
 // CSS values retain their precedence over legacy defaults.
 func FlattenColors(colors ConfigObject) ConfigObject {
-	result := ConfigObject{}
+	result := configObjectBuilder{object: ConfigObject{}}
 	for _, entry := range colors {
 		if entry.Key == "__CSS_VALUES__" {
 			continue
@@ -33,5 +33,5 @@ func FlattenColors(colors ConfigObject) ConfigObject {
 			result.set(entry.Key, colors.Get(entry.Key))
 		}
 	}
-	return result
+	return result.object
 }

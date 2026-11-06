@@ -37,6 +37,7 @@ func (api *PluginAPI) ConfigValue(path string, fallback ...any) any {
 }
 
 func (c *Compiler) configureLegacy(sources []legacyConfigSource) error {
+	clear(c.legacyCSSCache)
 	if len(sources) == 0 {
 		return nil
 	}
@@ -259,7 +260,7 @@ func (c *Compiler) finishLegacy() error {
 func (c *Compiler) applyLegacyTheme(path []string, value any) {
 	if object := configObject(value); object != nil {
 		for _, entry := range object {
-			c.applyLegacyTheme(append(slices.Clone(path), entry.Key), entry.Value)
+			c.applyLegacyTheme(append(path, entry.Key), entry.Value)
 		}
 		return
 	}
@@ -267,12 +268,12 @@ func (c *Compiler) applyLegacyTheme(path []string, value any) {
 		if len(array) == 2 && configObject(array[1]) != nil {
 			c.applyLegacyTheme(path, array[0])
 			for _, entry := range configObject(array[1]) {
-				c.applyLegacyTheme(append(slices.Clone(path), "-"+entry.Key), entry.Value)
+				c.applyLegacyTheme(append(path, "-"+entry.Key), entry.Value)
 			}
 		} else if path[0] == "fontSize" && len(array) > 0 {
 			c.applyLegacyTheme(path, array[0])
 			if len(array) > 1 {
-				c.applyLegacyTheme(append(slices.Clone(path), "-line-height"), array[1])
+				c.applyLegacyTheme(append(path, "-line-height"), array[1])
 			}
 		} else {
 			allStrings := true
@@ -286,7 +287,7 @@ func (c *Compiler) applyLegacyTheme(path []string, value any) {
 				c.applyLegacyTheme(path, themeString(array))
 			} else {
 				for i, entry := range array {
-					c.applyLegacyTheme(append(slices.Clone(path), strconv.Itoa(i)), entry)
+					c.applyLegacyTheme(append(path, strconv.Itoa(i)), entry)
 				}
 			}
 		}

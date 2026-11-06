@@ -88,6 +88,7 @@ type Compiler struct {
 	legacyPending         bool
 	legacyPendingTheme    ConfigObject
 	legacyReplaced        map[string]bool
+	legacyCSSCache        map[string][2]any
 	legacyVariantValues   map[string]ConfigObject
 	customGroups          map[string][]staticUtilityGroup
 	customErrors          map[string]error

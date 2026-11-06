@@ -104,7 +104,7 @@ func (c *Compiler) resolveLegacyValue(value any) any {
 		return result
 	}
 	if object := configObject(value); object != nil {
-		result := make(ConfigObject, 0, len(object))
+		result := configObjectBuilder{object: make(ConfigObject, 0, len(object))}
 		for _, entry := range object {
 			if entry.Key == "\x00v3breakpoints" {
 				for _, screen := range configObject(c.themeLookup("screens")) {
@@ -120,7 +120,7 @@ func (c *Compiler) resolveLegacyValue(value any) any {
 				result.set(entry.Key, c.resolveLegacyValue(entry.Value))
 			}
 		}
-		return result
+		return result.object
 	}
 	return value
 }
@@ -129,6 +129,10 @@ func (c *Compiler) resolveAllLegacyTheme() error {
 	if c.legacyTheme == nil {
 		return nil
 	}
+	// Default namespaces repeatedly reference the same CSS palette. Keep the
+	// cache local to theme resolution; builds remain immutable and concurrent.
+	c.legacyCSSCache = make(map[string][2]any)
+	defer func() { c.legacyCSSCache = nil }()
 	for _, entry := range slices.Clone(c.legacyTheme) {
 		c.resolveLegacyNamespace(entry.Key)
 	}
@@ -162,17 +166,18 @@ func (c *Compiler) themeLookup(path string, fallback ...any) any {
 			value = configured
 		}
 	} else if object := configObject(configured); object != nil {
-		merged := configObject(cloneConfigValue(object))
+		merged := configObjectBuilder{object: configObject(cloneConfigValue(object))}
+		flagValues := configObjectBuilder{object: configObject(flags)}
 		for _, entry := range configObject(css) {
 			if entry.Key == "__CSS_VALUES__" {
 				continue
 			}
-			if flag, _ := configObject(flags).Get(entry.Key).(int); flag&4 != 0 && merged.Get(entry.Key) != nil {
+			if flag, _ := flagValues.get(entry.Key).(int); flag&4 != 0 && merged.get(entry.Key) != nil {
 				continue
 			}
 			merged.set(Unescape(entry.Key), cloneConfigValue(entry.Value))
 		}
-		value = merged
+		value = merged.object
 	} else if a, ok := css.([]any); ok {
 		if b, ok := configured.([]any); ok && len(a) == 2 && len(b) == 2 {
 			f, _ := flags.([]any)
@@ -212,6 +217,18 @@ func splitThemeAlpha(path string) (string, string) {
 }
 
 func (c *Compiler) cssThemeObject(path []string) (any, any) {
+	if len(path) != 1 || c.legacyCSSCache == nil {
+		return c.buildCSSThemeObject(path)
+	}
+	entry, ok := c.legacyCSSCache[path[0]]
+	if !ok {
+		entry[0], entry[1] = c.buildCSSThemeObject(path)
+		c.legacyCSSCache[path[0]] = entry
+	}
+	return cloneConfigValue(entry[0]), cloneConfigValue(entry[1])
+}
+
+func (c *Compiler) buildCSSThemeObject(path []string) (any, any) {
 	// themeKeyPath always returns at least one segment, including for "".
 	b := buildContext{compiler: c}
 	if len(path) == 1 && strings.HasPrefix(path[0], "--") {
@@ -224,9 +241,9 @@ func (c *Compiler) cssThemeObject(path []string) (any, any) {
 	if namespace == "" {
 		return nil, 0
 	}
-	var values, flags ConfigObject
-	for _, key := range c.themeKeys() {
-		if key != namespace && !strings.HasPrefix(key, namespace+"-") || ignoredThemeKey(key, namespace) {
+	var values, flags configObjectBuilder
+	for _, key := range c.themeKeysInNamespace(namespace) {
+		if ignoredThemeKey(key, namespace) {
 			continue
 		}
 		value := b.themeValue(key)
@@ -240,63 +257,73 @@ func (c *Compiler) cssThemeObject(path []string) (any, any) {
 		values.set(name, value)
 		flags.set(name, c.themeOptionBits(key))
 	}
-	if len(values) == 0 {
+	if len(values.object) == 0 {
 		return nil, 0
 	}
-	var result, options ConfigObject
-	for _, entry := range values {
+	var result, options configObjectBuilder
+	for _, entry := range values.object {
 		name, extra, tuple := strings.Cut(entry.Key, "--")
 		if strings.HasPrefix(entry.Key, "-") {
 			name, extra, tuple = "DEFAULT", entry.Key[1:], true
 		}
 		if tuple {
-			base := values.Get(name)
+			base := values.get(name)
 			if base == nil {
 				continue
 			}
 			key := camelCase(extra)
-			if old, ok := result.Get(name).([]any); ok {
+			if old, ok := result.get(name).([]any); ok {
 				object := old[1].(ConfigObject)
 				object.set(key, entry.Value)
 				old[1] = object
 			} else {
 				result.set(name, []any{base, ConfigObject{{key, entry.Value}}})
 			}
-			if old, ok := options.Get(name).([]any); ok {
+			if old, ok := options.get(name).([]any); ok {
 				object := old[1].(ConfigObject)
-				object.set(key, flags.Get(entry.Key))
+				object.set(key, flags.get(entry.Key))
 				old[1] = object
 			} else {
-				options.set(name, []any{c.themeOptionBits(namespace), ConfigObject{{key, flags.Get(entry.Key)}}})
+				options.set(name, []any{c.themeOptionBits(namespace), ConfigObject{{key, flags.get(entry.Key)}}})
 			}
-		} else if result.Get(entry.Key) == nil {
+		} else if result.get(entry.Key) == nil {
 			result.set(entry.Key, entry.Value)
-			options.set(entry.Key, flags.Get(entry.Key))
+			options.set(entry.Key, flags.get(entry.Key))
 		}
 	}
-	if path[len(path)-1] == "DEFAULT" || len(path) > 1 && len(result) == 1 && result[0].Key == "DEFAULT" {
-		return result.Get("DEFAULT"), options.Get("DEFAULT")
+	if path[len(path)-1] == "DEFAULT" || len(path) > 1 && len(result.object) == 1 && result.object[0].Key == "DEFAULT" {
+		return result.get("DEFAULT"), options.get("DEFAULT")
 	}
-	result.set("__CSS_VALUES__", options)
-	return result, options
+	result.set("__CSS_VALUES__", options.object)
+	return result.object, options.object
 }
 
 func (c *Compiler) themeKeys() []string {
-	keys := slices.Clone(c.themeOrder)
-	seen := make(map[string]bool, len(keys))
-	for _, key := range keys {
-		seen[key] = true
+	return c.themeKeysInNamespace("")
+}
+
+func (c *Compiler) themeKeysInNamespace(namespace string) []string {
+	matches := func(key string) bool {
+		return namespace == "" || key == namespace || strings.HasPrefix(key, namespace+"-")
+	}
+	var keys []string
+	seen := make(map[string]bool)
+	for _, key := range c.themeOrder {
+		if matches(key) {
+			keys = append(keys, key)
+			seen[key] = true
+		}
 	}
 	var extra []string
 	for key := range c.config.Theme {
-		if !seen[key] {
+		if matches(key) && !seen[key] {
 			extra = append(extra, key)
 			seen[key] = true
 		}
 	}
 	if !c.config.NoDefaultTheme {
 		for key := range builtinTheme {
-			if !seen[key] {
+			if matches(key) && !seen[key] {
 				extra = append(extra, key)
 			}
 		}
