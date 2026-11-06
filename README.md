@@ -163,6 +163,9 @@ Use `compiler.Render([]rocketwind.Rule{...})` to compile several named selectors
 with one set of shared theme variables and property registrations. Named rules
 preserve class-list order, so later declarations can override earlier ones.
 Prepared templates can be reused concurrently with independent resolvers.
+`template.Nodes(resolve)` returns declarations and nested variants for an
+existing CSS writer. `template.UtilityRoots()` reports the parsed utility names,
+after aliases, so a compatibility adapter does not need its own class parser.
 
 Older class spellings can opt into `Config.Aliases`. For example,
 `"family": {Utility: "font", Type: rocketwind.TypeFamilyName}` makes `family-*`

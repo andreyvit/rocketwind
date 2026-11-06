@@ -516,3 +516,16 @@ is in benchmark_test.go; raw local results and profiles are in .cache/.
   previews, incremental/source-map output and both compatibility profiles are
   tested; the focused race run and vet pass. Refreshed benchmark measurements
   in the README after the compatibility work.
+
+### Application integration APIs
+
+- Added prepared utility-root inspection and independently editable template
+  declaration trees. A legacy CSS writer can retain its selector composition
+  and media precedence while Rocketwind handles parsing, typed parameters,
+  scoped class inlining and variant compilation.
+- Fixed important markers in Tailwind 3 named templates and compatibility
+  aliases. Added scoped, important, mutation-isolation and error regressions.
+- The full Go suite, race suite, vet and strict 12,349/12,349 statement coverage
+  gate pass.
+  The application adapter matches its old CSS baseline and every legacy
+  utility/token/variant combination. The broad runtime replacement stays off.

@@ -27,7 +27,13 @@ func (c *Compiler) aliased(class string) (string, ValueType) {
 	}
 	for end := len(base); end > 0; end = strings.LastIndexByte(base[:end], '-') {
 		if alias, ok := c.config.Aliases[base[:end]]; ok {
-			parts[len(parts)-1] = negative + alias.Utility + base[end:] + important
+			resolved := negative + alias.Utility + base[end:]
+			if c.config.Compatibility == Tailwind3 {
+				resolved = important + resolved
+			} else {
+				resolved += important
+			}
+			parts[len(parts)-1] = resolved
 			return strings.Join(parts, ":"), alias.Type
 		}
 	}

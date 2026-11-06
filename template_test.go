@@ -40,6 +40,68 @@ func TestTypedTemplate(t *testing.T) {
 	}
 }
 
+func TestTemplateUtilityRoots(t *testing.T) {
+	c := New(Config{Aliases: map[string]Alias{"family": {Utility: "font", Type: TypeFamilyName}}})
+	template, err := c.Prepare("hover:text-{size} family-{family} [--gap:1px] {child}", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{
+		"size": TypeLength, "family": TypeFamilyName, "child": TypeClasses,
+	})})
+	if err != nil {
+		t.Fatal(err)
+	}
+	roots := template.UtilityRoots()
+	if fmt.Sprint(roots) != "[text font ]" {
+		t.Fatalf("roots: %q", roots)
+	}
+	roots[0] = "changed"
+	if template.UtilityRoots()[0] != "text" {
+		t.Fatal("roots exposed template storage")
+	}
+}
+
+func TestTemplateNodes(t *testing.T) {
+	for _, prefix := range []string{"", "gox"} {
+		c, err := NewWithPlugins(Config{InternalVariablePrefix: prefix}, func(api *PluginAPI) error {
+			api.AddUtility("tone", []*Node{{Kind: "declaration", Name: "color", Value: "red"}})
+			api.AddUtility("broken", []*Node{{Kind: "declaration", Name: "color", Value: "theme(missing)"}})
+			return nil
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+		template, err := c.Prepare("focus:tone [--tw-local:{size}]", TemplateOptions{TypeOf: func(string) (ValueType, error) { return TypeLength, nil }})
+		if err != nil {
+			t.Fatal(err)
+		}
+		resolve := func(Parameter) (Value, error) { return Value{CSS: "13px"}, nil }
+		nodes, err := template.Nodes(resolve)
+		if err != nil || len(nodes) != 2 || nodes[0].Name != "&:focus" || nodes[0].Nodes[0].Value != "red" || nodes[1].Value != "13px" {
+			t.Fatalf("nodes: %+v / %v", nodes, err)
+		}
+		name := "--tw-local"
+		if prefix != "" {
+			name = "--gox-tw-local"
+		}
+		if nodes[1].Name != name {
+			t.Fatalf("property: %s", nodes[1].Name)
+		}
+		nodes[0].Nodes[0].Value = "blue"
+		again, err := template.Nodes(resolve)
+		if err != nil || again[0].Nodes[0].Value != "red" {
+			t.Fatalf("mutated compiler: %+v / %v", again, err)
+		}
+		if _, err := template.Nodes(func(Parameter) (Value, error) { return Value{}, errors.New("missing setting") }); err == nil {
+			t.Fatal("missing resolver error")
+		}
+		broken, err := c.Prepare("broken", TemplateOptions{})
+		if err != nil {
+			t.Fatal(err)
+		}
+		if _, err := broken.Nodes(nil); err == nil {
+			t.Fatal("missing compiler error")
+		}
+	}
+}
+
 func TestTemplateReferences(t *testing.T) {
 	c := New(Config{InlineTheme: true, DisablePolyfills: PolyfillAll})
 	child, err := c.Prepare("text-{color} p-2", TemplateOptions{TypeOf: templateTypes(map[string]ValueType{"color": TypeColor})})

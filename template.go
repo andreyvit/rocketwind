@@ -196,7 +196,13 @@ func (c *Compiler) Prepare(classes string, options TemplateOptions) (*Template, 
 			word = rewritten.String()
 		}
 		if important {
-			word += "!"
+			if c.config.Compatibility == Tailwind3 {
+				parts := slices.Collect(Segments(word, ':'))
+				parts[len(parts)-1] = "!" + parts[len(parts)-1]
+				word = strings.Join(parts, ":")
+			} else {
+				word += "!"
+			}
 		}
 		for candidate := range c.Parse(word) {
 			candidate.Raw = raw
@@ -217,10 +223,40 @@ func (c *Compiler) Prepare(classes string, options TemplateOptions) (*Template, 
 // Parameters returns the distinct parameters in first-use order.
 func (t *Template) Parameters() []Parameter { return slices.Clone(t.parameters) }
 
+// UtilityRoots returns parsed utility roots after alias expansion, in source
+// order. A class can have several interpretations. Arbitrary properties have
+// an empty root; inline class references are resolved later and are omitted.
+// This lets clients attach compatibility semantics without parsing class names.
+func (t *Template) UtilityRoots() []string {
+	var roots []string
+	for _, entry := range t.entries {
+		for _, candidate := range entry.candidates {
+			roots = append(roots, candidate.Root)
+		}
+	}
+	return roots
+}
+
 // CSS generates one named rule. Use Compiler.Render to share theme declarations
 // and CSS property registrations across several rules.
 func (t *Template) CSS(selector string, resolve ResolveFunc) (string, error) {
 	return t.compiler.Render([]Rule{{selector, t, resolve}})
+}
+
+// Nodes resolves a template to an independent tree of declarations and nested
+// variants, before selector flattening. This is useful when integrating with an
+// existing CSS writer. Theme declarations, keyframes and property registrations
+// are not hoisted; use CSS or Compiler.Render for a complete stylesheet.
+func (t *Template) Nodes(resolve ResolveFunc) ([]*Node, error) {
+	b := buildContext{compiler: t.compiler, used: map[string]bool{}, inApply: true, standalone: true}
+	nodes, err := b.renderTemplate(t, resolve, nil)
+	if err != nil {
+		return nil, err
+	}
+	if prefix := t.compiler.config.InternalVariablePrefix; prefix != "" {
+		return namespaceInternalVariables(nodes, prefix), nil
+	}
+	return cloneNodes(nodes, "", false), nil
 }
 
 // Render generates only the supplied named rules and their CSS dependencies.
