@@ -5,8 +5,9 @@
 [![Tailwind 3 & 4](https://img.shields.io/badge/Tailwind-3%20%26%204-38bdf8)](#compatibility)
 [![100% coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](TESTING.md)
 
-**A drop-in replacement for the Tailwind CSS compiler, written in Go.**
+**A Tailwind-compatible CSS compiler written in Go.**
 A standalone CLI and a library for generating CSS inside your app.
+JavaScript configuration and plugins need conversion; see [Compatibility](#compatibility).
 
 
 Why?
